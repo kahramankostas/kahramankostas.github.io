@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Açılır Kutu Seçim ve Kod Üretimi</title>
+  <style>
+    /* Genel stil */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 14px;
+      color: #666;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .dropdown {
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+      outline: none;
+      cursor: pointer;
+    }
+
+    select:focus {
+      border-color: #007bff;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    #generatedCode {
+      font-size: 16px;
+      color: #555;
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Kod Üretimi</h1>
+
+    <!-- Plaka Açılır Kutu -->
+    <div class="dropdown">
+      <label for="selectPlaka">ülke:</label>
+      <select id="selectPlaka" onchange="generateCode()">
+        <option value="">Bir ülke seçin</option>
+      </select>
+    </div>
+	
+	
+	    <!-- Yaş Açılır Kutu -->
+    <div class="dropdown">
+      <label for="selectYas">Yaş:</label>
+      <select id="selectYas" onchange="generateCode()">
+        <option value="">Yaş Seçin</option>
+      </select>
+    </div>
+
+    <!-- Seviye Açılır Kutu -->
+    <div class="dropdown">
+      <label for="selectSeviye">Seviye:</label>
+      <select id="selectSeviye" onchange="generateCode()">
+        <option value="">Dil Seviyesi Seçin</option>
+      </select>
+    </div>
+
+
+
+
+    <!-- Üretilen Kodun Gösterileceği Alan -->
+    <h2>Üretilen Kod:</h2>
+    <p id="generatedCode">Henüz bir seçim yapılmadı.</p>
+  </div>
+
+  <script>
+    // Sözlükleri tanımlama
+    const seviye = {
+      'Türkçeyi anlayabilir, konuşabilir fakat yazamaz.': 0,
+      'Türkçeyi anlayabilir, konuşabilir, yazabilir.': 1,
+      'Türkçeyi anlayabilir fakat konuşamaz.': 2,
+      "Türkçeyi hiç bilmez": 3,
+      'Diğer': 4,
+    };
+
+    const yas = {
+      "5 Yaş Altı": 0,
+      "6 Yaşında": 1,
+      "7 Yaşında": 2,
+      "8 Yaşında": 3,
+      "9 Yaşında": 4,
+      "10 Yaşında": 5,
+      "11 Yaşında": 6,
+      "12 Yaşında": 7,
+      "13 Yaşında": 8,
+      "14 Yaşında": 9,
+      "15 Yaşında": "A",
+      "15 Yaş Üstü": "B",
+    };
+
+    const plaka = {"Amerika Birlesik Devletleri":"US",
+"Iskandinavya":"IX",
+"Bulgaristan": 'BG',
+"Hollanda": 'NL',
+'Çin': 'CN','Ascension Island': 'AC', 'Andorra': 'AD', 'United Arab Emirates': 'AE', 'Afghanistan': 'AF', 'Antigua And Barbuda': 'AG', 'Anguilla': 'AI', 'Albania': 'AL', 'Armenia': 'AM', 'Angola': 'AO', 'Antarctica': 'AQ', 'Argentina': 'AR', 'American Samoa': 'AS', 'Austria': 'AT', 'Australia': 'AU', 'Aruba': 'AW', 'Åland Islands': 'AX', 'Azerbaijan': 'AZ', 'Bosnia & Herzegovina': 'BA', 'Barbados': 'BB', 'Bangladesh': 'BD', 'Belgium': 'BE', 'Burkina Faso': 'BF',  'Bahrain': 'BH', 'Burundi': 'BI', 'Benin': 'BJ', 'Saint Barthélemy': 'BL', 'Bermuda': 'BM', 'Brunei Darussalam': 'BN', 'Bolivia, Plurinational State Of': 'BO', 'Bonaire, Saint Eustatius And Saba': 'BQ', 'Brazil': 'BR', 'Bahamas': 'BS', 'Bhutan': 'BT', 'Bouvet Island': 'BV', 'Botswana': 'BW', 'Belarus': 'BY', 'Belize': 'BZ', 'Canada': 'CA', 'Cocos (Keeling) Islands': 'CC', 'Democratic Republic Of Congo': 'CD', 'Central African Republic': 'CF', 'Republic Of Congo': 'CG', 'Switzerland': 'CH', "Cote d'Ivoire": 'CI', 'Cook Islands': 'CK', 'Chile': 'CL', 'Cameroon': 'CM',  'Colombia': 'CO', 'Clipperton Island': 'CP', 'Costa Rica': 'CR', 'Cuba': 'CU', 'Cabo Verde': 'CV', 'Curacao': 'CW', 'Christmas Island': 'CX', 'Cyprus': 'CY', 'Czech Republic': 'CZ', 'Germany': 'DE', 'Diego Garcia': 'DG', 'Djibouti': 'DJ', 'Denmark': 'DK', 'Dominica': 'DM', 'Dominican Republic': 'DO', 'Algeria': 'DZ', 'Ceuta, Mulilla': 'EA', 'Ecuador': 'EC', 'Estonia': 'EE', 'Egypt': 'EG', 'Western Sahara': 'EH', 'Eritrea': 'ER', 'Spain': 'ES', 'Ethiopia': 'ET', 'European Union': 'EU', 'Finland': 'FI', 'Fiji': 'FJ', 'Falkland Islands': 'FK', 'Micronesia, Federated States Of': 'FM', 'Faroe Islands': 'FO', 'France': 'FR', 'France, Metropolitan': 'FX', 'Gabon': 'GA', 'United Kingdom': 'UK', 'Grenada': 'GD', 'Georgia': 'GE', 'French Guiana': 'GF', 'Guernsey': 'GG', 'Ghana': 'GH', 'Gibraltar': 'GI', 'Greenland': 'GL', 'Gambia': 'GM', 'Guinea': 'GN', 'Guadeloupe': 'GP', 'Equatorial Guinea': 'GQ', 'Greece': 'GR', 'South Georgia And The South Sandwich Islands': 'GS', 'Guatemala': 'GT', 'Guam': 'GU', 'Guinea-bissau': 'GW', 'Guyana': 'GY', 'Hong Kong': 'HK', 'Heard Island And McDonald Islands': 'HM', 'Honduras': 'HN', 'Croatia': 'HR', 'Haiti': 'HT', 'Hungary': 'HU', 'Canary Islands': 'IC', 'Indonesia': 'ID', 'Ireland': 'IE', 'Israel': 'IL', 'Isle Of Man': 'IM', 'India': 'IN', 'British Indian Ocean Territory': 'IO', 'Iraq': 'IQ', 'Iran, Islamic Republic Of': 'IR', 'Iceland': 'IS', 'Italy': 'IT', 'Jersey': 'JE', 'Jamaica': 'JM', 'Jordan': 'JO', 'Japan': 'JP', 'Kenya': 'KE', 'Kyrgyzstan': 'KG', 
+       'Cambodia': 'KH', 'Kiribati': 'KI', 'Comoros': 'KM', 'Saint Kitts And Nevis': 'KN', "Korea, Democratic People's Republic Of": 'KP', 'Korea, Republic Of': 'KR', 'Kuwait': 'KW', 'Cayman Islands': 'KY', 'Kazakhstan': 'KZ', "Lao People's Democratic Republic": 'LA', 'Lebanon': 'LB', 'Saint Lucia': 'LC', 'Liechtenstein': 'LI', 'Sri Lanka': 'LK', 'Liberia': 'LR', 'Lesotho': 'LS', 'Lithuania': 'LT', 'Luxembourg': 'LU', 'Latvia': 'LV', 'Libya': 'LY', 'Morocco': 'MA', 'Monaco': 'MC', 'Moldova': 'MD', 'Montenegro': 'ME', 'Saint Martin': 'MF', 'Madagascar': 'MG', 'Marshall Islands': 'MH', 'Macedonia, The Former Yugoslav Republic Of': 'MK', 'Mali': 'ML', 'Myanmar': 'MM', 'Mongolia': 'MN', 'Macao': 'MO', 'Northern Mariana Islands': 'MP', 'Martinique': 'MQ', 'Mauritania': 'MR', 'Montserrat': 'MS', 'Malta': 'MT', 'Mauritius': 'MU', 'Maldives': 'MV', 'Malawi': 'MW', 'Mexico': 'MX', 'Malaysia': 'MY', 'Mozambique': 'MZ', 'New Caledonia': 'NC', 'Niger': 'NE', 'Norfolk Island': 'NF', 'Nigeria': 'NG', 'Nicaragua': 'NI', 'Norway': 'NO', 'Nepal': 'NP', 'Nauru': 'NR', 'Niue': 'NU', 'New Zealand': 'NZ', 'Oman': 'OM', 'Panama': 'PA', 'Peru': 'PE', 'French Polynesia': 'PF', 'Papua New Guinea': 'PG', 'Philippines': 'PH', 'Pakistan': 'PK', 'Poland': 'PL', 'Saint Pierre And Miquelon': 'PM', 'Pitcairn': 'PN', 'Puerto Rico': 'PR', 'Palestinian Territory, Occupied': 'PS', 'Portugal': 'PT', 'Palau': 'PW', 'Paraguay': 'PY', 'Qatar': 'QA', 'Reunion': 'RE', 'Romania': 'RO', 'Serbia': 'RS', 'Russian Federation': 'RU', 'Rwanda': 'RW', 'Saudi Arabia': 'SA', 'Solomon Islands': 'SB', 'Seychelles': 'SC', 'Sudan': 'SD', 'Sweden': 'SE', 'Singapore': 'SG', 'Saint Helena, Ascension And Tristan Da Cunha': 'SH', 'Slovenia': 'SI', 'Svalbard And Jan Mayen': 'SJ', 'Slovakia': 'SK', 'Sierra Leone': 'SL', 'San Marino': 'SM', 'Senegal': 'SN', 'Somalia': 'SO', 'Suriname': 'SR', 'South Sudan': 'SS', 'São Tomé and Príncipe': 'ST', 'USSR': 'SU', 'El Salvador': 'SV', 'Sint Maarten': 'SX', 'Syrian Arab Republic': 'SY', 'Swaziland': 'SZ', 'Turks And Caicos Islands': 'TC', 'Tristan de Cunha': 'TA', 'Chad': 'TD', 'French Southern Territories': 'TF', 'Togo': 'TG', 'Thailand': 'TH', 'Tajikistan': 'TJ', 'Tokelau': 'TK', 'East Timor': 'TL', 'Turkmenistan': 'TM', 'Tunisia': 'TN', 'Tonga': 'TO', 'Turkey': 'TR', 'Trinidad And Tobago': 'TT', 'Tuvalu': 'TV', 'Taiwan, Province Of China': 'TW', 'Tanzania, United Republic Of': 'TZ', 'Ukraine': 'UA', 'Uganda': 'UG', 'United States Minor Outlying Islands': 'UM', 
+	   'Uruguay': 'UY', 'Uzbekistan': 'UZ', 'Vatican City State': 'VA', 'Saint Vincent And The Grenadines': 'VC', 'Venezuela, Bolivarian Republic Of': 'VE', 'Virgin Islands (British)': 'VG', 'Virgin Islands (US)': 'VI', 'Viet Nam': 'VN', 'Vanuatu': 'VU', 'Wallis And Futuna': 'WF', 'Samoa': 'WS', 'Yemen': 'YE', 'Mayotte': 'YT', 'South Africa': 'ZA', 'Zambia': 'ZM', 'Zimbabwe': 'ZW'};
+
+    // Açılır kutuları doldurma
+    function populateDropdown(dropdownId, dictionary) {
+      const dropdown = document.getElementById(dropdownId);
+      for (const key in dictionary) {
+        const option = document.createElement('option');
+        option.value = dictionary[key];
+        option.textContent = key;
+        dropdown.appendChild(option);
+      }
+    }
+
+    // Sözlükleri açılır kutulara yükle
+    populateDropdown('selectSeviye', seviye);
+    populateDropdown('selectYas', yas);
+    populateDropdown('selectPlaka', plaka);
+
+    // Üretilen kodu oluşturma
+    function generateCode() {
+      const plakaValue = document.getElementById('selectPlaka').value;
+      const yasValue = document.getElementById('selectYas').value;
+      const seviyeValue = document.getElementById('selectSeviye').value;
+
+      // Tüm değerlerin seçildiğinden emin ol
+      if (plakaValue && yasValue && seviyeValue) {
+        const generatedCode = `${plakaValue}${yasValue}${seviyeValue}`;
+        document.getElementById('generatedCode').textContent = `Oluşturulan Kod: ${generatedCode}`;
+      } else {
+        document.getElementById('generatedCode').textContent = 'Lütfen tüm seçenekleri doldurun.';
+      }
+    }
+  </script>
+
+</body>
+</html>
