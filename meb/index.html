@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Açılır Kutu Seçim</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .dropdown {
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Açılır Kutu Seçim</h1>
+
+  <!-- Seviye Açılır Kutu -->
+  <div class="dropdown">
+    <label for="selectSeviye">Seviye:</label>
+    <select id="selectSeviye" onchange="showSelectedValue('seviye', this.value)">
+      <option value="">Bir seviye seçin</option>
+    </select>
+  </div>
+
+  <!-- Yaş Açılır Kutu -->
+  <div class="dropdown">
+    <label for="selectYas">Yaş:</label>
+    <select id="selectYas" onchange="showSelectedValue('yas', this.value)">
+      <option value="">Bir yaş seçin</option>
+    </select>
+  </div>
+
+  <!-- Plaka Açılır Kutu -->
+  <div class="dropdown">
+    <label for="selectPlaka">Plaka:</label>
+    <select id="selectPlaka" onchange="showSelectedValue('plaka', this.value)">
+      <option value="">Bir ülke seçin</option>
+    </select>
+  </div>
+
+  <!-- Seçilen Değerin Gösterileceği Alan -->
+  <h2>Seçilen Değer:</h2>
+  <p id="selectedValue">Henüz bir seçim yapılmadı.</p>
+
+  <script>
+    // Sözlükleri tanımlama
+    const seviye = {
+      'Türkçeyi anlayabilir, konuşabilir fakat yazamaz.': 0,
+      'Türkçeyi anlayabilir, konuşabilir, yazabilir.': 1,
+      'Türkçeyi anlayabilir fakat konuşamaz.': 2,
+      "Türkçeyi hiç bilmez": 3,
+      'Diğer': 4,
+    };
+
+    const yas = {
+      "5 Yaş Altı": 0,
+      "6 Yaşında": 1,
+      "7 Yaşında": 2,
+      "8 Yaşında": 3,
+      "9 Yaşında": 4,
+      "10 Yaşında": 5,
+      "11 Yaşında": 6,
+      "12 Yaşında": 7,
+      "13 Yaşında": 8,
+      "14 Yaşında": 9,
+      "15 Yaşında": 10,
+      "15 Yaş Üstü": 11,
+    };
+
+    const plaka = {
+      'Ascension Island': 'AC',
+      'Andorra': 'AD',
+      'United Arab Emirates': 'AE',
+      'Afghanistan': 'AF',
+    };
+
+    // Açılır kutuları doldurma
+    function populateDropdown(dropdownId, dictionary) {
+      const dropdown = document.getElementById(dropdownId);
+      for (const key in dictionary) {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = key;
+        dropdown.appendChild(option);
+      }
+    }
+
+    // Sözlükleri açılır kutulara yükle
+    populateDropdown('selectSeviye', seviye);
+    populateDropdown('selectYas', yas);
+    populateDropdown('selectPlaka', plaka);
+
+    // Seçilen değeri gösterme
+    function showSelectedValue(type, value) {
+      const dictionaries = { seviye, yas, plaka };
+      const selectedValue = dictionaries[type][value];
+      document.getElementById('selectedValue').textContent = 
+        `Seçilen ${type.charAt(0).toUpperCase() + type.slice(1)}: ${value} - ${selectedValue}`;
+    }
+  </script>
+
+</body>
+</html>
