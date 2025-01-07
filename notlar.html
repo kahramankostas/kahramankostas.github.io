@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persistent Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #f6d365, #fda085);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #output {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            width: 300px;
+            height: 400px;
+            overflow-y: auto;
+            background: #f3f4f6;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 250px;
+        }
+        textarea {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            resize: none;
+            font-size: 14px;
+            font-family: inherit;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        button:active {
+            background: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <form id="textForm">
+        <textarea id="inputText" rows="5" placeholder="Enter your text here"></textarea>
+        <button type="submit">Add Text</button>
+    </form>
+    <div id="output"></div>
+</div>
+
+<script>
+    const form = document.getElementById('textForm');
+    const inputText = document.getElementById('inputText');
+    const output = document.getElementById('output');
+
+    // Load saved data on page load
+    window.addEventListener('load', () => {
+        const savedTexts = JSON.parse(localStorage.getItem('texts')) || [];
+        savedTexts.forEach(text => addTextToOutput(text));
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const text = inputText.value.trim();
+        if (text) {
+            addTextToOutput(text);
+            saveText(text);
+            inputText.value = '';
+        }
+    });
+
+    function addTextToOutput(text) {
+        const p = document.createElement('p');
+        p.textContent = text;
+        p.style.padding = '8px';
+        p.style.margin = '0';
+        p.style.borderBottom = '1px solid #ddd';
+        p.style.wordWrap = 'break-word';
+        output.appendChild(p);
+    }
+
+    function saveText(text) {
+        const savedTexts = JSON.parse(localStorage.getItem('texts')) || [];
+        savedTexts.push(text);
+        localStorage.setItem('texts', JSON.stringify(savedTexts));
+    }
+</script>
+
+</body>
+</html>
