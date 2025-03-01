@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Günlüğüm</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h1 {
+            color: #4a6fa5;
+            margin-bottom: 10px;
+        }
+        .date-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .photo-container {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .photo-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .photo-caption {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 0 0 8px 8px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+            font-style: italic;
+            margin-top: -5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 300px;
+        }
+        .day-counter {
+            text-align: right;
+            font-style: italic;
+            color: #4a6fa5;
+            margin-top: 20px;
+        }
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        .tweet-button {
+            background-color: #1DA1F2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .tweet-button:hover {
+            background-color: #0c85d0;
+        }
+        .tweet-button svg {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Günlüğüm</h1>
+					     <div class="date-info">
+            <span id="current-date"></span>
+            <span id="day-counter"></span>
+        </div>
+        </div>
+        
+
+		
+   <!-- 		
+		
+
+		        <div class="date-info">
+           1 Mart 2025 Cumartesi
+        </div>
+        
+        
+	        <div class="photo-container">
+            <img src="img/.jpg" alt="Günün fotoğrafı">
+            <div class="photo-caption" contenteditable="false">
+			---
+		</div>
+        </div>
+        
+        <div class="content" id="journal-content" contenteditable="false">
+         Günlük içeriği buraya gelecek 
+     
+--
+	 </div>	
+		
+		
+		-->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		        <div class="date-info">
+           1 Mart 2025 Cumartesi
+        </div>
+        
+		
+        <div class="photo-container">
+            <img src="img/010325.jpg" alt="Günün fotoğrafı">
+            <div class="photo-caption" contenteditable="false">Modern zamanda günlük tutmanın güzel tarafı, bunu dijital dokümanlarla desteklemek. Her gün bir fotoğraf eklemeyi düşünüyorum. Benim yaşam şartlarımda yaşayan biri için bu pek iyi bir fikir olmayabilir. Ne görüp de çekeceksem... Ama neden olmasın?</div>
+        </div>
+        
+        <div class="content" id="journal-content" contenteditable="false">
+            <!-- Günlük içeriği buraya gelecek -->
+       Dün bir arkadaşla konuştuk, doktora danışmanının yaklaşık 5000 gündür online günlük tuttuğunu söyledi. Bir fotoğraf, başlık, kısa da olsa bir yazı… Bence inanılmaz bir disiplin, herkes bir şekilde bunu yapabilmeli.
+<p></p>
+Aklıma gelen şeyleri genelde Twitter'da paylaşıyorum. Twitter benim için bir mini blogdu. Yakın vadede ücretli hesabına geçtim ve artık bu blog mini olmak zorunda değil (280 harflik sınır ücretli hesapta yok). Yine de günlük tutmak, düşünceleri yazmak için Twitter pek güzel bir ortam değil.
+<p></p>
+Bunu söylememin nedeni ya da bunu böyle görmemin nedeni, düşüncelerimin ve söylediklerimin akış içinde kayboluyor olması. Tabii ki diğer insanlarla iletişim kurmak, etkileşime girmek güzel. Ancak bu gibi sosyal medya ortamlarında, diğer insanlarla etkileşim içinde olmanın ne yazdığınızı da bir şekilde etkilediğini düşünüyorum.
+<p></p>
+Bu minvalde, bugün ben de bir günlük tutmaya karar verdim. Ramazan’ın ve mart ayının ilk günü olması hasebiyle güzel bir tarih olduğunu düşünüyorum. Tabii bu kasıtlı değil, aslında tamamen bir tesadüf. Bugünü başlamak için güzel hale getiren bir başka neden de bu galiba.
+        </div>
+        
+        <div class="actions">
+            <button class="tweet-button" onclick="shareOnTwitter()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M23 3.01s-2.018 1.192-3.14 1.53a4.48 4.48 0 00-7.86 3v1a10.66 10.66 0 01-9-4.53s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5 0-.278-.028-.556-.08-.83C21.94 5.674 23 3.01 23 3.01z" 
+                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Tweet Olarak Paylaş
+            </button>
+        </div>
+        
+        <div class="day-counter">
+            <span id="total-days"></span>
+        </div>
+    </div>
+
+    <script>
+        // Güncel tarihi ayarla
+        const today = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent = today.toLocaleDateString('tr-TR', options);
+        
+        // Başlangıç tarihini ayarlayın (burayı günlüğünüze başladığınız tarihe göre değiştirin)
+        const startDate = new Date('2025-03-01'); // Örnek: 1 Ocak 2025
+        
+        // Geçen gün sayısını hesapla
+        const timeDiff = Math.abs(today - startDate);
+        const daysPassed = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+        
+        // Gün sayısını güncelle
+        document.getElementById('total-days').textContent = daysPassed + ". gündür günlük tutuyorum";
+        
+        // Twitter paylaşım fonksiyonu
+        function shareOnTwitter() {
+            // Günlük içeriğini al (ilk 200 karakteri)
+            const journalContent = document.getElementById('journal-content').innerText;
+            const shortContent = journalContent.length > 200 
+                ? journalContent.substring(0, journalContent.length ) + "..." 
+                : journalContent;
+            
+            // Fotoğraf açıklamasını al
+            const photoCaption = document.querySelector('.photo-caption').innerText;
+            
+            // Tarih bilgisini al
+            const dateText = document.getElementById('current-date').innerText;
+            
+            // Tweet metni oluştur
+            const tweetText = `Günlüğümden (${dateText}):\n\n${shortContent}\n\nGünün karesi: ${photoCaption}\n\n${daysPassed}. gündür günlük tutuyorum.`;
+            
+            // Tweet URL'sini oluştur ve yeni pencerede aç
+            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+            window.open(tweetUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
