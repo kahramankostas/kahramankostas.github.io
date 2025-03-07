@@ -1,0 +1,17 @@
+		        <div class="date-info">
+           1 Mart 2025 Cumartesi
+        </div>
+        
+        
+	        <div class="photo-container">
+            <img src="img/.jpg" alt="Günün fotoğrafı">
+            <div class="photo-caption" contenteditable="false">
+			---
+		</div>
+        </div>
+        
+        <div class="content" id="journal-content" contenteditable="false">
+         Günlük içeriği buraya gelecek 
+     
+--
+	 </div>	
