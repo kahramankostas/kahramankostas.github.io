@@ -4,7 +4,7 @@
         
         
 	        <div class="photo-container">
-            <img src="img/.jpg" alt="Günün fotoğrafı">
+            <img src="img/080325.jpg" alt="Günün fotoğrafı">
             <div class="photo-caption" contenteditable="false">
 			---
 		</div>
