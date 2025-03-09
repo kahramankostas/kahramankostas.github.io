@@ -4,14 +4,12 @@
         
         
 	        <div class="photo-container">
-            <img src="img/080325.jpg" alt="Günün fotoğrafı">
+            <img src="img/090325.jpg" alt="Günün fotoğrafı">
             <div class="photo-caption" contenteditable="false">
-			---
+ziverbeyden kadıköye doğru inen yolun tamda şükrü saraçoğlu stadyumuna inen bağlantısında gördüm bu tombalak kediyi...
 		</div>
         </div>
         
         <div class="content" id="journal-content" contenteditable="false">
-         Günlük içeriği buraya gelecek 
-     
---
+2016 yılında vefatının ardından heykeli de dikilen dünyaca ünlü tombili'yle 2012 yılında karşılaşmış ve fotoğrafını çekmişim.
 	 </div>	
