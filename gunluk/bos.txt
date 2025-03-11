@@ -4,21 +4,17 @@
         
         
 	        <div class="photo-container">
-            <img src="img/100325.jpg" alt="Günün fotoğrafı">
+            <img src="img/110325.jpg" alt="Günün fotoğrafı">
             <div class="photo-caption" contenteditable="false">
-İki kalp arasında en kısa yol:
-Birbirine uzanmış ve zaman zaman
-Ancak parmak uçlarıyla değebilen
-İki kol.
-		</div>
+		Peki de önemli olmamakla birlikte mevzu bahis harita ve genetik dağılım
+
+
+
+</div>
         </div>
         
         <div class="content" id="journal-content" contenteditable="false">
-<p>2016 yılının Haziran ayında, y&uuml;ksek tahsil yapmak i&ccedil;in ilk kez yurt dışına adım attığımızda, bavullarımız da bizimle birlikte yeni bir hayata başladı. O g&uuml;nden bu yana, bavullarla yaşıyoruz. Yerleşmek, k&ouml;k salmak, bir yerde tamamen kalıcı olmak hep uzak bir ihtimal gibi geldi. &Ccedil;&uuml;nk&uuml; hep bir sonraki adım, tamamlanması gereken işler, gidilecek yerler, yazılacak tezler, bitirilecek okullar vardı. Bavulları a&ccedil;ıp yerleşmek hi&ccedil;bir zaman nasip olmadı.</p>
-<p>&nbsp;</p>
-<p>Eğitim bitti, geri d&ouml;nd&uuml;k. "Artık oh be, yerleşme zamanı geldi," dedik ama bu kez de hasret vurdu bizi. Eşim G&uuml;m&uuml;şhane'de, ben Ankara'da... Yarım hayatlar s&uuml;rd&uuml;rmeye &ccedil;alışıyoruz ama ne yazık ki bu iki yarım bir tam etmiyor. Kitaplar, eşyalar, hatıralar... Hepsi bir yerlerde, birilerine emanet. "Ev" diyebileceğimiz, ger&ccedil;ekten yerleşebileceğimiz bir yer h&acirc;l&acirc; yok.</p>
-<p>&nbsp;</p>
-<p>Ve biz, bavulumuzla yine baş başayız.</p>
-<p>&nbsp;</p>
-<p>Eskisi kadar gen&ccedil; olmadığımızdan mı, yoksa yılların yorgunluğu mu bilmiyorum ama artık ağır geliyor bu bavullar. Sırtımızdaki y&uuml;kten mi, yoksa i&ccedil;imizde bir t&uuml;rl&uuml; tamamlanamayan aidiyet duygusundan mı bilemiyorum... Ama artık bir yere ait olmanın, bavulları a&ccedil;manın, k&ouml;k salmanın vakti gelmedi mi?</p>
+Birkaç yıl önce 23andMe adlı bir şirkete genetik tarama yaptırmıştım. Tarama sonucunda elde edilen verileri ham haliyle talep ettim. Bu ham verileri, başka benzer şirketlere vererek onların da analiz yapmasını isteyebiliyorsunuz. Veri aynı veri olsa da her şirket bunu farklı şekilde yorumlayabiliyor. Ancak genel olarak ortak bir nokta var: Bu analizler ırk bazlı yapılmıyor. Örneğin, 23andMe’nin olağan politikası verileri "Batı Anadolu" veya "Doğu Anadolu" gibi bölgesel kategorilere ayırmak; yani "Türk" ya da "Kürt" gibi ifadeler kullanılmıyor. Değerlendirmeler genellikle coğrafi bölgelere odaklanıyor. Diğer şirketlerde benzer yol izliyorlar.
+<p><p>
+Fakat MyHeritage adlı şirket biraz daha farklı bir yol izlemiş ve risk alarak ırksal tasnif de yapmış. Bu bana ilginç geldi. Daha önceki analizlerle birlikte bu sonuçları da paylaşmak istedim.
 	 </div>	
