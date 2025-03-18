@@ -1,0 +1,35 @@
+
+      <div class="date-info">
+           17 Mart 2025 Cumartesi
+        </div>
+        
+        
+	        <div class="photo-container">
+            <img src="img/170325.jpg" alt="Günün fotoğrafı">
+<video width="560" height="315" controls>
+  <source src="img/170325.mp4" type="video/mp4">
+  Tarayıcınız video etiketini desteklemiyor.
+</video>
+            <div class="photo-caption" contenteditable="false">
+Kaybetmenin İronisi: Yapay Zekanın Gölgesinde İnsan
+</div>
+        </div>
+        
+        <div class="content" id="journal-content" contenteditable="false">
+
+
+
+<b>Kaybetmenin İronisi: Yapay Zekanın Gölgesinde İnsan</b>
+<p><p>
+Pers İmparatoru Kambis, Mısır'ı fetheder ve zaferini kutlamak için Mısır Kralı Kısamelutu'yu huzuruna çağırır. Fethedilen Mısır ordusu, prenses ve veliaht prens otağın önünden alçaltıcı bir şekilde geçirilir. Ancak kral, tüm bu aşağılanma ve kayıplar karşısında soğukkanlılığını korur. Nihayet hizmetçisi zincirlenmiş halde geçerken kral büyük bir acıya kapılır. Pers İmparatoru, bu sahne karşısında şaşkınlıkla nedenini sorgular. Cevap açıktır: İnsan, en değersiz görülen şeyini kaybettiğinde aslında her şeyi kaybettiğini anlar.
+<p><p>
+Tarihten bugüne, insanın en büyük korkusu, kaybetme duygusudur. Cemil Meriç’in anlattığı bu hikâye, kaybetmenin ağırlığını bir hizmetçide bulmamızı sağlayan ironik bir derinlik sunar. Benzer şekilde, günümüzde yapay zeka, insanlığın alıştığı dengeleri sarsarak bu korkuyu tetikliyor.
+<p><p>
+Önce tercümanlar işlerini kaybetti. Kimse bunun önemini anlamadı. Ardından öğretmenler, tasarımcılar, doktorlar, şoförler ve hatta sanatçılar sıraya girdi. Yapay zekanın dokunduğu yerlerde, "insan" bir parça daha yerinden oynadı. En ilginç olanı ise, yazılımcıların –yapay zekanın yaratıcısı olan meslek grubu– bu dönüşümde "en değersiz parçamız" gibi görülmesiydi. Ancak kaybedilen şey, yalnızca bir meslek değil; insanın kendi yarattığına üstünlüğüydü.
+<p><p>
+Bugün yapay zeka, pek çok mesleği bir insandan çok daha iyi yapabiliyor. Bu mesleklerin hâlâ var olmasının tek sebebi, bizlerin, sırf alışkanlıklarımızdan dolayı, bu mesleklerin yok olmasına izin vermemesi.
+<p><p>
+Yapay zekanın hükmettiği dünya ile aramızdaki tek engel, Demokles'in başının üzerindeki kılıcı tutan ince bir at kılını andıran alışkanlıklarımız.
+
+
+	 </div>	
