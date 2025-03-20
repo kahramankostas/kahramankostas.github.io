@@ -1,35 +1,55 @@
 
       <div class="date-info">
-           17 Mart 2025 Cumartesi
+           18 Mart 2025 Cumartesi
         </div>
         
         
 	        <div class="photo-container">
-            <img src="img/170325.jpg" alt="Günün fotoğrafı">
-<video width="560" height="315" controls>
-  <source src="img/170325.mp4" type="video/mp4">
-  Tarayıcınız video etiketini desteklemiyor.
-</video>
+            <img src="img/200325.jpg" alt="Günün fotoğrafı">
             <div class="photo-caption" contenteditable="false">
-Kaybetmenin İronisi: Yapay Zekanın Gölgesinde İnsan
+%37 kuralına göre En iyi aday seçme olasılığının değişimi. Görsel ve ilham hayatımızdaki algoritmalar kitabından alınmıştır.
 </div>
         </div>
         
         <div class="content" id="journal-content" contenteditable="false">
 
+<h2>Gül Bahçesindeki Kız ve Optimal Duraklama Problemi</h2>
+        
+        <h3>Gül Bahçesindeki Kız Hikayesi</h3>
+        <p>Bir zamanlar güzelliği dillere destan, kralların ve sultanların peşinden koştuğu bir kız varmış. Yıllar sonra bir arkadaşı onu düşük standartlarda biriyle evlenmiş olarak görmüş ve nedenini merak etmiş.</p>
+        <p>Kız, arkadaşını bir gül bahçesine götürmüş ve ona şu görevi vermiş: "Bu bahçede ilerleyerek en güzel gülü seç. Ancak geçtiğin bir güle geri dönemezsin." Arkadaşı bahçede ilerledikçe kararsız kalmış ve sonunda elinde vasat bir gülle dönmüş. O anda kızın ne demek istediğini anlamış.</p>
+        
+        <h3>Optimal Duraklama Problemi</h3>
+        <p>Bu hikaye aslında matematiksel bir problem olan <strong>Optimal Duraklama (%37) Problemi</strong> ile bağlantılıdır. Problemin çözümü basittir:</p>
+        <ul>
+            <li>Adayların ilk %37'sini sadece gözlem yaparak geçir.</li>
+            <li>Sonrasında karşılaştığın ilk en iyi adayı seç.</li>
+        </ul>
+        
+        <h3>Gül Bahçesi Problemi ve Eş Seçimi</h3>
+        <p>Bu model, gül bahçesi problemine de uyarlanabilir. Yani, bahçenin ilk %37'sinde gözlem yaparak ilerleyin ve ardından karşılaştığınız en iyi gülü seçin.</p>
+        <p>Bu yöntemi eş seçiminde uygulayacak olursak yaş faktörünü baz alabiliriz. Eğer evlenme yaşı 18-40 arası kabul edilirse, 26 yaş (%37'lik eşik) sonrası en uygun adayla evlenmek optimal çözümdür.</p>
+        
+        <h3>Speed Dating ve Eş Seçimi</h3>
+        <p>Örneklem havuzunu genişletmek için <strong>speed dating</strong> oldukça faydalı bir aktivitedir. Geleneksel çöpçatanlık yöntemlerine benzer bir yapıya sahip olup, gereksiz prosedürleri de ortadan kaldırır.</p>
+        
+        <h3>İstatistik Mi? Aşk Mı?</h3>
+        <p>Ancak her teori hayatla birebir örtüşmeyebilir. Bizzat bu teoriyi anlatan biri olarak, üniversite birinci sınıfta tanıştığım kişiyle evlendim. Buna <strong>"aşk kâğıda yazılmıyor teorisi"</strong> de diyebilirsiniz.</p>
+        
+        <h3>Son Söz</h3>
+        <p>Hayatta bazen istatistikleri boş verip doğru anda doğru kişiyi seçmek gerekir. Yoksa en sona açılması imkânsız antepfıstıkları ve bayat leblebiler kalabilir!</p>
 
-
-<b>Kaybetmenin İronisi: Yapay Zekanın Gölgesinde İnsan</b>
-<p><p>
-Pers İmparatoru Kambis, Mısır'ı fetheder ve zaferini kutlamak için Mısır Kralı Kısamelutu'yu huzuruna çağırır. Fethedilen Mısır ordusu, prenses ve veliaht prens otağın önünden alçaltıcı bir şekilde geçirilir. Ancak kral, tüm bu aşağılanma ve kayıplar karşısında soğukkanlılığını korur. Nihayet hizmetçisi zincirlenmiş halde geçerken kral büyük bir acıya kapılır. Pers İmparatoru, bu sahne karşısında şaşkınlıkla nedenini sorgular. Cevap açıktır: İnsan, en değersiz görülen şeyini kaybettiğinde aslında her şeyi kaybettiğini anlar.
-<p><p>
-Tarihten bugüne, insanın en büyük korkusu, kaybetme duygusudur. Cemil Meriç’in anlattığı bu hikâye, kaybetmenin ağırlığını bir hizmetçide bulmamızı sağlayan ironik bir derinlik sunar. Benzer şekilde, günümüzde yapay zeka, insanlığın alıştığı dengeleri sarsarak bu korkuyu tetikliyor.
-<p><p>
-Önce tercümanlar işlerini kaybetti. Kimse bunun önemini anlamadı. Ardından öğretmenler, tasarımcılar, doktorlar, şoförler ve hatta sanatçılar sıraya girdi. Yapay zekanın dokunduğu yerlerde, "insan" bir parça daha yerinden oynadı. En ilginç olanı ise, yazılımcıların –yapay zekanın yaratıcısı olan meslek grubu– bu dönüşümde "en değersiz parçamız" gibi görülmesiydi. Ancak kaybedilen şey, yalnızca bir meslek değil; insanın kendi yarattığına üstünlüğüydü.
-<p><p>
-Bugün yapay zeka, pek çok mesleği bir insandan çok daha iyi yapabiliyor. Bu mesleklerin hâlâ var olmasının tek sebebi, bizlerin, sırf alışkanlıklarımızdan dolayı, bu mesleklerin yok olmasına izin vermemesi.
-<p><p>
-Yapay zekanın hükmettiği dünya ile aramızdaki tek engel, Demokles'in başının üzerindeki kılıcı tutan ince bir at kılını andıran alışkanlıklarımız.
 
 
 	 </div>	
+
+
+
+
+
+
+
+
+
+
+
