@@ -107,7 +107,68 @@
         </div>
 		
 		
+	      <div class="date-info">
+           19 Mart 2025 Cumartesi
+        </div>
+        
+        
+	        <div class="photo-container">
+            
+<video width="560" height="315" controls>
+  <source src="img/230325.mp4" type="video/mp4">
+  Tarayıcınız video etiketini desteklemiyor.
+</video>
+            <div class="photo-caption" contenteditable="false">
+Serkan'ın iletişim kurmak için kullandığı pek de işlevsel olmayan yöntem
+</div>
+        </div>
+        
+        <div class="content" id="journal-content" contenteditable="false">
+
+<p><strong>Gibi dizisine algoritmik yaklaşımlar veyahut Serkan&rsquo;ın hayatını kolaylaştıran matematiksel &ccedil;&ouml;z&uuml;mler.</strong></p>
+
+<p>Gibi dizisinin bu haftaki b&ouml;l&uuml;m&uuml;nde Serkan, iadesi geciken bir mikrodalga fırın i&ccedil;in Yılmaz&rsquo;a bir tokat nakşeder. Yılmaz ise bunu sineye &ccedil;ekmek yerine "<em>Seni Allah&rsquo;a havale ediyorum</em>" diyerek Serkan&rsquo;ı lanetler. İlgin&ccedil; bir şekilde, bu bedduanın ardından Serkan fel&ccedil; ge&ccedil;irir ve g&ouml;zleri dışında hi&ccedil;bir uzvunu hareket ettiremez hale gelir.</p>
+
+<p>Artık konuşamayan ve bedenini kullanamayan Serkan, &ccedil;evresiyle iletişim kurabilmek i&ccedil;in g&ouml;z kırpmalarını kullanır. Başlangı&ccedil;ta ilkel bir y&ouml;ntem geliştirirler: <em>Alfabedeki harflerin sırasına g&ouml;re g&ouml;z kırparak kelimeleri oluşturma</em>. &Ouml;rneğin "Yılmaz" ismini s&ouml;ylemek i&ccedil;in Serkan, harflerin sırasına g&ouml;re <strong>101 kez</strong> g&ouml;z kırpmak zorundadır.</p>
+
+<p>Bu y&ouml;ntemin b&uuml;y&uuml;k bir problemi vardır: Karmaşıklığı <strong>O(n) </strong>seviyesindedir. Yani, alfabedeki harf sayısı arttık&ccedil;a, g&ouml;z kırpma sayısı da doğrusal olarak artar. Bu, &ouml;zellikle uzun kelimeler i&ccedil;in b&uuml;y&uuml;k bir zaman kaybına yol a&ccedil;ar. <strong>Daha Verimli Bir İletişim Y&ouml;ntemi: Binary Search Mantığı</strong> Serkan ve yakınlarının hayatını kolaylaştırmak adına, bu s&uuml;reci hızlandırmak i&ccedil;in daha verimli bir sistem geliştirelim. Burada Binary Search (ikili arama) prensibi kullanalım:</p>
+
+<ul>
+    <li>🛑 Alfabeyi soldan sağa sıralarız.</li>
+    <li>🛑 Karşısındaki kişi her zaman alfabenin ortasındaki harfi gösterir.</li>
+    <li>🛑 Serkan, eğer harf doğruysa göz kırpar ve onaylar. Yanlışsa:
+        <ul>
+            <li>Harf, hedef harften büyükse, sola bakarak daha küçük harflere yönlenmesini söyler.</li>
+            <li>Harf, hedef harften küçükse, sağa bakarak daha büyük harflere yönlenmesini söyler.</li>
+        </ul>
+    </li>
+    <li>🛑 Karşıdaki kişi, her seferinde mevcut harf kümesinin ortasındaki harfi göstererek süreci tekrarlar.</li>
+    <li>🛑 Doğru harf bulunduğunda Serkan göz kırpar ve onaylar.</li>
+</ul>
+<p>Bu y&ouml;ntemin avantajı <em>O(log₂n) karmaşıklığa sahip olmasıdır</em>. Yani, n harfli bir alfabe i&ccedil;in en fazla log₂n adımda hedef harfe ulaşılır. &Ouml;rneğin, T&uuml;rk alfabesi i&ccedil;in (29 harf) log₂(29) &asymp; 5 adım yeterlidir.</p>
+
+<p><strong>&Ouml;rnek: Serkan "B" Harfini S&ouml;ylemek İstiyor</strong></p>
+
+   <ul>
+      <li>Karşıdaki kişi "L" harfini g&ouml;sterir &rarr; Serkan sola bakar.</li>
+      <li>Karşıdaki kişi "F" harfini g&ouml;sterir &rarr; Serkan sola bakar.</li>
+      <li>Karşıdaki kişi "C" harfini g&ouml;sterir &rarr; Serkan sola bakar.</li>
+	        <li>Karşıdaki kişi "B" harfini g&ouml;sterir &rarr; Serkan g&ouml;z kırpar ve onaylar.</li>
+   </ul>
+<p>Bu y&ouml;ntem sayesinde Serkan, herhangi bir harfi en fazla 5 hamlede se&ccedil;ebilir. İlk y&ouml;ntemde "Yılmaz" kelimesini s&ouml;ylemek i&ccedil;in 101 g&ouml;z kırpması gerekirken, bu yeni sistemle yaklaşık 25 hamlede tamamlanabilir.</p>
+
+<p>Bu yeni sistem sayesinde, Serkan&rsquo;ın iletişim s&uuml;reci 4 kat hızlanmış olur. Basit bir optimizasyonla, n seviyesinde &ccedil;alışan bir algoritmayı log₂n seviyesine indirerek b&uuml;y&uuml;k bir verimlilik sağlanmıştır.</p>
+	 </div>		
 		
+
+
+
+
+
+
+
+
+	
 
       <div class="date-info">
            20 Mart 2025 Cumartesi
