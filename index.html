@@ -287,9 +287,16 @@ a:hover {
         <li class="nav-item">
           <a class="nav-link" href="#teaching">Teaching</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://kahramankostas.github.io/assets/kahraman_kostas.pdf" target="_blank">CV</a>
-        </li>
+        <!-- Navbar'daki CV bağlantısını dropdown menüye dönüştürelim -->
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="cvDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CV
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="cvDropdown">
+    <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas.pdf" target="_blank">English CV</a></li>
+    <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas_tr.pdf" target="_blank">Türkçe CV</a></li>
+  </ul>
+</li>
         <li class="nav-item">
           <a class="nav-link" href="https://ulkemyanimda.github.io/" target="_blank">MEB</a>
         </li>
