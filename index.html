@@ -139,15 +139,71 @@ a:hover {
   margin-bottom: 2rem;
 }
 
-.curve {
+/* Profile Image Container with Hover Effect */
+.profile-image-container {
+  position: relative;
   width: 350px;
   height: 350px;
-  border-radius: 50%;
   float: left;
   margin-right: 2rem;
+  cursor: pointer;
+}
+
+.curve {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
   shape-outside: circle();
   border: 3px solid var(--accent-color);
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+/* Hover Overlay */
+.profile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(52, 152, 219, 0.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.profile-image-container:hover .profile-overlay {
+  opacity: 1;
+}
+
+.profile-image-container:hover .curve {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.overlay-text {
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+.overlay-text h3 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.overlay-text p {
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.4;
 }
 
 /* Postdoc Notice */
@@ -274,6 +330,25 @@ a:hover {
   color: var(--accent-color);
   transform: translateY(-5px);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-image-container {
+    width: 250px;
+    height: 250px;
+    float: none;
+    margin: 0 auto 2rem auto;
+    display: block;
+  }
+  
+  .overlay-text h3 {
+    font-size: 1rem;
+  }
+  
+  .overlay-text p {
+    font-size: 0.8rem;
+  }
+}
 </style>
 
 </head>
@@ -300,16 +375,15 @@ a:hover {
         <li class="nav-item">
           <a class="nav-link" href="#teaching">Teaching</a>
         </li>
-        <!-- Navbar'daki CV bağlantısını dropdown menüye dönüştürelim -->
-<li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#" id="cvDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    CV
-  </a>
-  <ul class="dropdown-menu" aria-labelledby="cvDropdown">
-    <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas.pdf" target="_blank">English CV</a></li>
-    <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas_tr.pdf" target="_blank">Türkçe CV</a></li>
-  </ul>
-</li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="cvDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            CV
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="cvDropdown">
+            <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas.pdf" target="_blank">English CV</a></li>
+            <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas_tr.pdf" target="_blank">Türkçe CV</a></li>
+          </ul>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="https://ulkemyanimda.github.io/" target="_blank">MEB</a>
         </li>
@@ -322,19 +396,27 @@ a:hover {
   <!-- Profile Section -->
   <section id="about">
     <div id="circle-shape-example">
-      <img src="assets/kahraman_kostas.jpeg" class="curve" alt="Dr. Kahraman Kostas">
+      <div class="profile-image-container">
+        <img src="assets/kahraman_kostas.jpeg"  class="curve" alt="Dr. Kahraman Kostas">
+        <div class="profile-overlay">
+          <div class="overlay-text">
+   
+            <p>I'm the one with the glasses.</p>
+          </div>
+        </div>
+      </div>
+      
       <h1>Kahraman Kostas</h1>
       
-
-      
-      <p>I hold a PhD in Computer Science from the School of Mathematical and Computer Sciences, Heriot-Watt University, Edinburgh, where my research focused on IoT security, particularly device identification and attack detection. My broader interests include computer networks, indoor positioning, and the practical applications of machine learning. I previously worked as a Researcher at Huawei's Edinburgh R&amp;D Centre, where I developed machine learning solutions for indoor positioning using geospatial data.</p>
+      <p>I hold a PhD in Computer Science from the School of Mathematical and Computer Sciences, Heriot-Watt University, Edinburgh, where my research focused on IoT security, particularly device identification and attack detection. My broader interests include computer networks, indoor positioning, and the practical applications of machine learning. I previously worked as a Researcher at Huawei's Edinburgh R&D Centre, where I developed machine learning solutions for indoor positioning using geospatial data.</p>
 
       <p>I hold an MSc in Computer Networks and Security (Distinction) from the University of Essex, with my thesis centered on using machine learning for network attack detection (Supervised by Martin Reed). My undergraduate background is in Computer Education and Instructional Technology from Marmara University.</p>
+      
       <div class="postdoc-notice">
         I am open to postdoctoral research opportunities.
       </div>
+      
       <p>Before pursuing graduate studies, I spent seven years teaching computer science in Turkey and contributed to national education projects, including the Fatih Project, which aimed to integrate technology into public education. I am currently a National Education Specialist at the Ministry of National Education, focusing on educational systems for overseas students.</p>
-      <!-- Postdoc Notice -->
 
       <p>In addition to my professional work, I have a keen interest in Turkish literature, etymology, classical poetry, hiking, and photography.</p>
     </div>
@@ -374,13 +456,9 @@ a:hover {
         <div class="news-card">
           <div class="news-date">MORE</div>
           <div class="news-content">
-       For older news please click <a href="https://kahramankostas.github.io/news.html" target="_blank" >[here]</a>
+            For older news please click <a href="https://kahramankostas.github.io/news.html" target="_blank">[here]</a>
           </div>
         </div>
-        
-
-        
-        <!-- Daha fazla haber kartları buraya eklenebilir -->
       </div>
     </div>
   </section>
@@ -418,17 +496,9 @@ a:hover {
       </div>
     </div>
     
-	    <div class="publication">
-
- For more publication please click <a href="https://kahramankostas.github.io/news.html" target="_blank" >[here]</a>
-      </div>
- 
-	
-	
-	       
-	
-	
-    <!-- Diğer yayınlar buraya eklenebilir -->
+    <div class="publication">
+      For more publication please click <a href="https://kahramankostas.github.io/news.html" target="_blank">[here]</a>
+    </div>
   </section>
 
   <!-- Teaching Section -->
@@ -460,7 +530,7 @@ a:hover {
     </div>
   </section>
 </div>
-   </div>
+
 <!-- Footer -->
 <footer class="footer text-center">
   <div class="container">
@@ -469,13 +539,11 @@ a:hover {
       <a href="https://www.linkedin.com/in/kkostas/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
       <a href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank"><i class="ai ai-google-scholar ai-2x"></i></a>
       <a href="https://twitter.com/kkostas" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
-      <a id="scramble"  href="mailto:kahramankostas@gmail.com" target="_blank" class="fa fa-envelope fa-2x"></a>
+      <a href="mailto:kahramankostas@gmail.com" target="_blank" class="fa fa-envelope fa-2x"></a>
     </div>
     <p class="mb-0">Copyleft 2024 Kahraman Kostas</p>
   </div>
 </footer>
-
-<script src="assets/unscramble.js"></script>
 
 <!-- Smooth Scrolling -->
 <script>
