@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ülkem Yanımda - Öğretmen Seminer Kaynakları</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .flag-emoji {
+            font-size: 2rem;
+            margin: 0 10px;
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 18px;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .resource-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .resource-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .resource-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .resource-type {
+            background: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .resource-duration {
+            color: #7f8c8d;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .resource-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .resource-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+        }
+
+        .coming-soon {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .coming-soon h3 {
+            color: #34495e;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .coming-soon p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 200px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .resource-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇹🇷 Ülkem Yanımda 🇹🇷</h1>
+            <p>Öğretmen Seminer Kaynakları ve Eğitim Materyalleri</p>
+            <p style="font-size: 1rem; color: #7f8c8d;">Yurt dışındaki Türk soylu çocuklarımız için kaliteli eğitim kaynakları</p>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="Kaynak ara... (örn: Canva, HTML, yapay zeka)" id="searchInput">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="categories">
+            <button class="category-btn active" data-category="all">Tüm Kaynaklar</button>
+            <button class="category-btn" data-category="design">Tasarım</button>
+            <button class="category-btn" data-category="programming">Programlama</button>
+            <button class="category-btn" data-category="ai">Yapay Zeka</button>
+            <button class="category-btn" data-category="education">Eğitim</button>
+        </div>
+
+        <div class="resources-grid" id="resourcesGrid">
+            <div class="resource-card" data-category="design">
+                <span class="resource-icon">🎨</span>
+                <h3 class="resource-title">Fatih Güngör ile Canva Eğitimi</h3>
+                <p class="resource-description">Canva ile profesyonel tasarımlar oluşturmayı öğrenin. Eğitim materyalleri, posterler ve dijital içerikler hazırlamak için kapsamlı bir rehber.</p>
+                <div class="resource-meta">
+                    <span class="resource-type">İnteraktif Eğitim</span>
+                    <span class="resource-duration">⏱️ Kendi Hızında</span>
+                </div>
+                <a href="https://ulkemyanimda.github.io/canva/index.html" class="resource-link" target="_blank">Eğitime Başla →</a>
+            </div>
+
+            <div class="resource-card" data-category="programming">
+                <span class="resource-icon">💻</span>
+                <h3 class="resource-title">HTML Temel Eğitimi</h3>
+                <p class="resource-description">1 saatte HTML'in temellerini öğrenin. Web sayfası oluşturma, etiketler ve temel yapıları kavramak için mükemmel bir başlangıç.</p>
+                <div class="resource-meta">
+                    <span class="resource-type">Video Eğitimi</span>
+                    <span class="resource-duration">⏱️ ~1 Saat</span>
+                </div>
+                <a href="https://www.youtube.com/watch?v=r9_7EQLINzw" class="resource-link" target="_blank">Videoyu İzle →</a>
+            </div>
+
+            <div class="resource-card" data-category="ai">
+                <span class="resource-icon">🤖</span>
+                <h3 class="resource-title">Yapay Zeka ile Materyal Geliştirme</h3>
+                <p class="resource-description">ChatGPT, Claude ve diğer AI araçları ile eğitim materyalleri oluşturmayı öğrenin. Soru hazırlama, içerik üretimi ve değerlendirme araçları.</p>
+                <div class="resource-meta">
+                    <span class="resource-type">Yakında</span>
+                    <span class="resource-duration">⏱️ TBA</span>
+                </div>
+                <a href="#" class="resource-link" style="background: #95a5a6; cursor: not-allowed;">Yakında Gelecek</a>
+            </div>
+
+            <div class="resource-card" data-category="education">
+                <span class="resource-icon">📚</span>
+                <h3 class="resource-title">Dijital Sınıf Yönetimi</h3>
+                <p class="resource-description">Online derslerde öğrenci katılımını artırma, dijital araçlarla etkileşim sağlama ve uzaktan eğitimde motivasyon teknikleri.</p>
+                <div class="resource-meta">
+                    <span class="resource-type">Yakında</span>
+                    <span class="resource-duration">⏱️ TBA</span>
+                </div>
+                <a href="#" class="resource-link" style="background: #95a5a6; cursor: not-allowed;">Yakında Gelecek</a>
+            </div>
+        </div>
+
+        <div class="coming-soon">
+            <h3>🚀 Daha Fazla İçerik Yolda!</h3>
+            <p>Yeni seminer materyalleri ve eğitim kaynakları düzenli olarak eklenmektedir. Güncellemeleri kaçırmamak için siteyi favorilerinize ekleyin.</p>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 Ülkem Yanımda Projesi | Türk soylu çocuklarımız için kaliteli eğitim</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Son güncelleme: <span id="lastUpdate"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const resourceCards = document.querySelectorAll('.resource-card');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            resourceCards.forEach(card => {
+                const title = card.querySelector('.resource-title').textContent.toLowerCase();
+                const description = card.querySelector('.resource-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.4s ease forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Category filtering
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                
+                resourceCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeInUp 0.4s ease forwards';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Set last update date
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString('tr-TR');
+
+        // Smooth scroll for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add hover effects to cards
+        resourceCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Initialize animations
+        window.addEventListener('load', function() {
+            resourceCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
