@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijital İçerik Oluşturma Kaynakları</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            color: #5a67d8;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #5a67d8;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section h3 {
+            color: #4a5568;
+            font-size: 1.3em;
+            margin: 20px 0 10px 0;
+        }
+
+        .icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .resource-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #5a67d8;
+            transition: all 0.3s ease;
+        }
+
+        .resource-item:hover {
+            background: #e2e8f0;
+            border-left-color: #667eea;
+        }
+
+        .resource-item h4 {
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .resource-item a {
+            color: #5a67d8;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .resource-item a:hover {
+            color: #667eea;
+            text-decoration: underline;
+        }
+
+        .resource-item p {
+            margin-top: 5px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .ai-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .ai-tool {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .ai-tool:hover {
+            transform: scale(1.05);
+        }
+
+        .ai-tool h4 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .ai-tool a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .tips {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .tips h4 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .tips ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tips li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .tips li:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+        }
+
+        .slides-section {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #2d3748;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .slides-section h2 {
+            color: #2d3748;
+            border-bottom: 3px solid #2d3748;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #5a67d8;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .download-btn:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Dijital İçerik Oluşturma Kaynakları</h1>
+            <p>Sunum ve eğitim materyalleri için kapsamlı araç rehberi</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span>Ücretsiz Görsel Kaynakları</h2>
+            <div class="resource-grid">
+                <div class="resource-item">
+                    <h4>Pixabay</h4>
+                    <a href="https://pixabay.com/tr/" target="_blank">https://pixabay.com/tr/</a>
+                    <p>Milyonlarca ücretsiz fotoğraf, illüstrasyon ve vektör</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Unsplash</h4>
+                    <a href="https://unsplash.com/" target="_blank">https://unsplash.com/</a>
+                    <p>Yüksek kaliteli ücretsiz fotoğraflar</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⬇️</span>Video İndirme Araçları</h2>
+            <div class="resource-grid">
+                <div class="resource-item">
+                    <h4>Video DownloadHelper (Chrome)</h4>
+                    <a href="https://chromewebstore.google.com/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfk?hl=tr" target="_blank">Chrome Web Store</a>
+                    <p>Chrome tarayıcısı için video indirme eklentisi</p>
+                </div>
+                <div class="resource-item">
+                    <h4>SaveFrom.net Helper (Opera)</h4>
+                    <a href="https://addons.opera.com/en/extensions/details/savefromnet-helper" target="_blank">Opera Eklentiler</a>
+                    <p>Opera tarayıcısı için video indirme eklentisi</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🛠️</span>Düzenleme Araçları</h2>
+            <div class="resource-grid">
+                <div class="resource-item">
+                    <h4>Inkscape</h4>
+                    <a href="https://inkscape.org/" target="_blank">https://inkscape.org/</a>
+                    <p>Ücretsiz vektör grafik düzenleme programı</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Paint</h4>
+                    <p>Windows'ta varsayılan basit resim düzenleme aracı</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Audacity</h4>
+                    <a href="https://www.audacityteam.org/" target="_blank">https://www.audacityteam.org/</a>
+                    <p>Ücretsiz ses düzenleme programı</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Shotcut</h4>
+                    <a href="https://www.shotcut.org/" target="_blank">https://www.shotcut.org/</a>
+                    <p>Ücretsiz video düzenleme programı</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Notepad++</h4>
+                    <a href="https://notepad-plus-plus.org/downloads/" target="_blank">https://notepad-plus-plus.org/downloads/</a>
+                    <p>Gelişmiş kod düzenleme programı</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🤖</span>Yapay Zeka Araçları</h2>
+            <h3>💬 Metin Tabanlı AI</h3>
+            <div class="ai-tools">
+                <div class="ai-tool">
+                    <h4>Google Gemini</h4>
+                    <a href="https://gemini.google.com/app" target="_blank">Gemini'ye Git</a>
+                </div>
+                <div class="ai-tool">
+                    <h4>ChatGPT</h4>
+                    <a href="https://chatgpt.com/" target="_blank">ChatGPT'ye Git</a>
+                </div>
+                <div class="ai-tool">
+                    <h4>Claude AI</h4>
+                    <a href="https://claude.ai/new" target="_blank">Claude'a Git</a>
+                </div>
+            </div>
+
+            <h3>🎨 Görsel AI</h3>
+            <div class="ai-tools">
+                <div class="ai-tool">
+                    <h4>Grok</h4>
+                    <a href="https://grok.com/" target="_blank">Grok'a Git</a>
+                </div>
+                <div class="ai-tool">
+                    <h4>Microsoft Copilot</h4>
+                    <a href="https://copilot.microsoft.com/" target="_blank">Copilot'a Git</a>
+                </div>
+            </div>
+
+            <h3>📚 Özel AI Araçları</h3>
+            <div class="resource-grid">
+                <div class="resource-item">
+                    <h4>Google AI Studio</h4>
+                    <a href="https://aistudio.google.com/" target="_blank">https://aistudio.google.com/</a>
+                    <p>Google'ın gelişmiş AI stüdyosu</p>
+                </div>
+                <div class="resource-item">
+                    <h4>DeepSeek Chat</h4>
+                    <a href="https://chat.deepseek.com/" target="_blank">https://chat.deepseek.com/</a>
+                    <p>Gelişmiş sohbet AI'ı</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Qwen AI</h4>
+                    <a href="https://chat.qwen.ai/" target="_blank">https://chat.qwen.ai/</a>
+                    <p>Çok dilli AI asistanı</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Google Storybook</h4>
+                    <a href="https://gemini.google.com/storybook" target="_blank">Hikaye Kitabı Oluştur</a>
+                    <p>AI ile hikaye kitabı oluşturma aracı</p>
+                </div>
+            </div>
+
+            <div class="tips">
+                <h4>🎯 Yapay Zeka İpuçları</h4>
+                <ul>
+                    <li><strong>Moodle XML:</strong> Soru hazırlamak için bu anahtar kelimeyi kullanın</li>
+                    <li><strong>HTML+JS+CSS:</strong> Oyun ve etkileşimli SCORM araçları oluşturmak için</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section slides-section">
+            <h2><span class="icon">📊</span>Sunum Slaytları</h2>
+            <p>Bu sunumda kullanılan tüm slaytlara aşağıdaki linkten ulaşabilirsiniz:</p>
+            <a href="https://drive.google.com/drive/folders/1ONBJlxvEHuu-cdQc12o57bntZ1NnAryR" target="_blank" class="download-btn">
+                📁 Slaytları İndir/Görüntüle
+            </a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">💡</span>Kullanım Önerileri</h2>
+            <div class="resource-grid">
+                <div class="resource-item">
+                    <h4>🎨 Görsel İçerik İçin</h4>
+                    <p>Pixabay ve Unsplash'tan görsel indirin, Inkscape ile düzenleyin</p>
+                </div>
+                <div class="resource-item">
+                    <h4>🎬 Video İçerik İçin</h4>
+                    <p>Video DownloadHelper ile indirin, Shotcut ile düzenleyin</p>
+                </div>
+                <div class="resource-item">
+                    <h4>🔊 Ses İçeriği İçin</h4>
+                    <p>Audacity ile ses kayıtlarınızı düzenleyin ve optimize edin</p>
+                </div>
+                <div class="resource-item">
+                    <h4>🤖 AI Destekli İçerik</h4>
+                    <p>ChatGPT, Gemini veya Claude ile içerik oluşturun ve geliştirin</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📚 Bu kaynaklar eğitim amaçlı hazırlanmıştır | Son güncelleme: Ağustos 2025</p>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for better user experience
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(20px)';
+                    section.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 150);
+            });
+        });
+
+        // Add click tracking for external links
+        document.querySelectorAll('a[target="_blank"]').forEach(link => {
+            link.addEventListener('click', function() {
+                console.log('External link clicked:', this.href);
+            });
+        });
+    </script>
+</body>
+</html>
