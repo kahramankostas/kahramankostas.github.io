@@ -1,0 +1,586 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Kahraman Kostas - Computer Science Researcher specializing in IoT security, device identification, and machine learning.">
+<title>Kahraman Kostas - Computer Science Researcher</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #0f172a;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --bg-light: #f8fafc;
+  --bg-card: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background: var(--bg-light);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.profile-img-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto 2rem;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 5px solid rgba(255,255,255,0.3);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  object-fit: cover;
+}
+
+.profile-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  opacity: 0.95;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2rem;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: white;
+  color: var(--accent);
+  transform: translateY(-5px);
+}
+
+/* Navigation */
+.navbar-custom {
+  background: rgba(255,255,255,0.95) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  padding: 1rem 0;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--primary) !important;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: var(--text) !important;
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem !important;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background: var(--bg-light);
+  color: var(--accent) !important;
+}
+
+/* Content Sections */
+.content-section {
+  padding: 5rem 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--gradient);
+  border-radius: 2px;
+}
+
+/* Cards */
+.card-custom {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.card-custom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.news-date {
+  display: inline-block;
+  background: var(--gradient);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+/* Publications */
+.publication-item {
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--accent);
+  transition: all 0.3s ease;
+}
+
+.publication-item:hover {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transform: translateX(5px);
+}
+
+.publication-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.publication-authors {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.publication-venue {
+  color: var(--accent);
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+.publication-links a {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  background: var(--bg-light);
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.publication-links a:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Teaching */
+.teaching-item {
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+}
+
+.teaching-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.teaching-meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Footer */
+.footer {
+  background: var(--primary);
+  color: white;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.footer .social-links a {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.footer .social-links a:hover {
+  background: var(--accent);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .profile-img-container {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: var(--gradient);
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+</style>
+</head>
+
+<body>
+<!-- Scroll Progress Bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
+  <div class="container">
+    <a class="navbar-brand" href="#home">KK</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
+        <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#teaching">Teaching</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="cvDropdown" role="button" data-bs-toggle="dropdown">CV</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas.pdf" target="_blank">English CV</a></li>
+            <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas_tr.pdf" target="_blank">Türkçe CV</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-12 text-center hero-content fade-in-up">
+        <div class="profile-img-container">
+          <img src="assets/kahraman_kostas.jpeg" alt="Kahraman Kostas" class="profile-img">
+        </div>
+        <h1 class="hero-title">Kahraman Kostas</h1>
+        <p class="hero-subtitle">Computer Science Researcher | IoT Security | Machine Learning</p>
+        <div class="social-links">
+          <a href="https://github.com/kahramankostas" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/kkostas/" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank"><i class="ai ai-google-scholar"></i></a>
+          <a href="https://twitter.com/kkostas" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="mailto:kahramankostas@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="content-section">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+    <div class="row">
+      <div class="col-lg-10">
+        <p class="lead">I hold a PhD in Computer Science from Heriot-Watt University, Edinburgh, where my research focused on IoT security, particularly device identification and attack detection. My broader interests include computer networks, indoor positioning, and practical applications of machine learning.</p>
+        
+        <p>I previously worked as a Researcher at Huawei's Edinburgh R&D Centre, developing machine learning solutions for indoor positioning using geospatial data. I hold an MSc in Computer Networks and Security (Distinction) from the University of Essex, with my thesis centered on using machine learning for network attack detection.</p>
+        
+        <p>I am currently a National Education Specialist at the Ministry of National Education, focusing on educational systems for overseas students. In addition to my professional work, I have a keen interest in Turkish literature, etymology, classical poetry, hiking, and photography.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- News Section -->
+<section id="news" class="content-section" style="background: white;">
+  <div class="container">
+    <h2 class="section-title">Latest News</h2>
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="card-custom">
+          <span class="news-date">JUL 2025</span>
+          <p>Our paper, "IoTGeM: Generalizable Models for Behaviour-Based IoT Attack Detection" has been accepted for publication in Computer Networks journal.
+          <a href="https://github.com/kahramankostas/IoTGeM" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://doi.org/10.1016/j.comnet.2025.111550" target="_blank"><i class="fa fa-external-link"></i></a></p>
+        </div>
+        
+        <div class="card-custom">
+          <span class="news-date">JUN 2025</span>
+          <p>Our paper "Graph-Based Floor Separation Using Node Embeddings and Clustering of WiFi Trajectories" has been accepted to IPIN 2025 conference.
+          <a href="https://github.com/kahramankostas/IPIN2025" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://arxiv.org/abs/2505.08088" target="_blank"><i class="fa fa-external-link"></i></a></p>
+        </div>
+        
+        <div class="card-custom">
+          <span class="news-date">JAN 2025</span>
+          <p>New publication! Our paper "Individual Packet Features are a Risk to Model Generalisation in ML-Based Intrusion Detection" has been accepted to IEEE Networking Letters.
+          <a href="https://github.com/kahramankostas/IPF" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://ieeexplore.ieee.org/abstract/document/10824899" target="_blank"><i class="fa fa-external-link"></i></a></p>
+        </div>
+        
+        <div class="card-custom">
+          <span class="news-date">SEP 2024</span>
+          <p>Started new position as National Education Specialist at the Directorate General of Higher Education and Overseas Education.
+          <a href="https://yyegm.meb.gov.tr/" target="_blank"><i class="fa fa-external-link"></i></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Publications Section -->
+<section id="publications" class="content-section">
+  <div class="container">
+    <h2 class="section-title">Selected Publications</h2>
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="publication-item">
+          <div class="publication-title">IoTGeM: Generalisable Models for Behaviour-Based IoT Attack Detection</div>
+          <div class="publication-authors">Kahraman Kostas, Mike Just, Michael A. Lones</div>
+          <div class="publication-venue">Computer Networks, 2025</div>
+          <div class="publication-links">
+            <a href="https://doi.org/10.1016/j.comnet.2025.111550" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+            <a href="https://github.com/kahramankostas/IoTGeM" target="_blank"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        
+        <div class="publication-item">
+          <div class="publication-title">Individual Packet Features are a Risk to Model Generalisation in ML-Based Intrusion Detection</div>
+          <div class="publication-authors">Kahraman Kostas, Mike Just, Michael A. Lones</div>
+          <div class="publication-venue">IEEE Networking Letters, 2025</div>
+          <div class="publication-links">
+            <a href="https://ieeexplore.ieee.org/abstract/document/10824899" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+            <a href="https://github.com/kahramankostas/IPF" target="_blank"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        
+        <div class="publication-item">
+          <div class="publication-title">Semantic verbal fluency in native speakers of Turkish</div>
+          <div class="publication-authors">Rabia Yasa Kostas, Kahraman Kostas, Sarah E MacPherson, Maria K Wolters</div>
+          <div class="publication-venue">Journal of Clinical and Experimental Neuropsychology, 2024</div>
+          <div class="publication-links">
+            <a href="https://www.tandfonline.com/doi/full/10.1080/13803395.2024.2331827" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+          </div>
+        </div>
+        
+        <div class="text-center mt-4">
+          <a href="https://kahramankostas.github.io/news.html" target="_blank" class="btn btn-outline-primary">View All Publications</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaching Section -->
+<section id="teaching" class="content-section" style="background: white;">
+  <div class="container">
+    <h2 class="section-title">Teaching Experience</h2>
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="teaching-item">
+          <div class="teaching-title">Advanced Network Security</div>
+          <div class="teaching-meta">Heriot-Watt University | Teaching Assistant | 2021 & 2022</div>
+        </div>
+        
+        <div class="teaching-item">
+          <div class="teaching-title">Computer Network Security</div>
+          <div class="teaching-meta">Heriot-Watt University | Teaching Assistant | 2020 & 2021</div>
+        </div>
+        
+        <div class="teaching-item">
+          <div class="teaching-title">Software Development 1 (JAVA)</div>
+          <div class="teaching-meta">Heriot-Watt University | Teaching Assistant | 2020</div>
+        </div>
+        
+        <div class="teaching-item">
+          <div class="teaching-title">Data Communications and Networking</div>
+          <div class="teaching-meta">Heriot-Watt University | Teaching Assistant | 2020</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="social-links mb-4">
+      <a href="https://github.com/kahramankostas" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/kkostas/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank"><i class="ai ai-google-scholar"></i></a>
+      <a href="https://twitter.com/kkostas" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="mailto:kahramankostas@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p>&copy; 2024 Kahraman Kostas. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Scroll progress bar
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('scrollProgress').style.width = scrolled + '%';
+});
+
+// Active nav link on scroll
+window.addEventListener('scroll', () => {
+  let current = '';
+  const sections = document.querySelectorAll('section');
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    if (pageYOffset >= sectionTop - 100) {
+      current = section.getAttribute('id');
+    }
+  });
+  
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
