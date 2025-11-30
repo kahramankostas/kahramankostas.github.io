@@ -276,16 +276,48 @@ a:hover {
 
 /* Postdoc Notice */
 .postdoc-notice {
-  border: 2px solid var(--accent-color);
+  border: 3px solid var(--accent-color);
   border-radius: 12px;
   padding: 1.5rem 2rem;
   margin: 2rem 0;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+  background: linear-gradient(135deg, #66ead2 0%, #66c0ea 100%);
   text-align: center;
   font-weight: 600;
-  color: var(--primary-color);
+  color: black;
   clear: both;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+  font-size: 1.0rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.postdoc-notice::before {
+  content: "✨";
+  position: absolute;
+  left: 1.5rem;
+  font-size: 1.5rem;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.postdoc-notice::after {
+  content: "✨";
+  position: absolute;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  animation: sparkle 2s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.postdoc-notice:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
 }
 
 /* News Section */
