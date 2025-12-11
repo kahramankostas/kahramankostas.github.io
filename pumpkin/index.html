@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRT Sahne Bulucu</title>
+    <!-- Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <!-- Generated Data -->
+    <script src="data.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1>SRT Sahne Bulucu</h1>
+            <p>Altyazı dosyalarında arama yapın ve ilgili sahneyi anında açın.</p>
+        </header>
+
+        <!-- No File Inputs Needed; Auto-Loaded from data.js -->
+
+        <section class="search-section" id="search-section">
+            <div class="card search-card">
+                <h2>Arama Yap</h2>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Bir kelime veya cümle yazın... (Örn: Pumpkin)"
+                        autocomplete="off">
+                    <button id="search-btn" class="btn primary">Ara</button>
+                </div>
+            </div>
+
+            <div class="results-container">
+                <div class="results-header">
+                    <h3>Sonuçlar</h3>
+                    <span id="result-count"></span>
+                </div>
+                <div id="results-list" class="results-list">
+                    <!-- Results will be injected here -->
+                    <div class="empty-state">
+                        Henüz arama yapılmadı.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
