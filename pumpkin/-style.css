@@ -1,0 +1,278 @@
+:root {
+    /* Görselden alınan renk paleti */
+    --bg-color: #fdfbf7;      /* Resmin arka planındaki krem tonu */
+    --card-bg: #ffffff;       /* Kartlar için temiz beyaz */
+    --text-primary: #2d2a26;  /* Siyah yerine yumuşak koyu kahve/antrasit */
+    --text-secondary: #74685e; /* İkincil yazılar için toprak tonu */
+    --accent: #e65141;        /* "Kızıl" yazısındaki kırmızı */
+    --accent-hover: #c0392b;  /* Hover durumu için koyu kırmızı */
+    --border: #eaddcf;        /* Kenarlıklar için yumuşak bej */
+    --success: #27ae60;
+    --error: #c0392b;
+    --radius: 16px;           /* Biraz daha yuvarlak hatlar */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-image: radial-gradient(#eaddcf 1px, transparent 1px);
+    background-size: 20px 20px; /* Hafif dokulu bir zemin */
+}
+
+.app-container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    /* Görseldeki yazı tipi renklerine uygun degrade */
+    background: linear-gradient(to right, #e65141, #f39c12);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+    text-shadow: 2px 2px 0px rgba(230, 81, 65, 0.1);
+}
+
+.header p {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Cards */
+.card {
+    background-color: var(--card-bg);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: 0 8px 0 -3px #eaddcf; /* Hafif retro, 3D hissiyatlı gölge */
+}
+
+h2 {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+}
+
+/* Input Styles */
+code {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #c0392b;
+    border: 1px solid #e2e8f0;
+}
+
+.search-bar {
+    display: flex;
+    gap: 12px;
+}
+
+#search-input {
+    flex: 1;
+    background: #fff;
+    border: 2px solid var(--border);
+    color: var(--text-primary);
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+#search-input::placeholder {
+    color: #ccc;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(230, 81, 65, 0.1);
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+
+.btn.primary {
+    background-color: var(--accent);
+    color: white;
+    box-shadow: 0 4px 0 #b03025; /* Buton altı gölgesi */
+}
+
+.btn.primary:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #b03025;
+}
+
+.btn.primary:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+/* Results Section */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 4px;
+}
+
+.results-header h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+#result-count {
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 20px;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 50px;
+    background: #fff;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    font-style: italic;
+}
+
+/* Result Item Cards */
+.result-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.result-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 20px -10px rgba(230, 81, 65, 0.15);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.result-time {
+    background: #fdf2f0; /* Çok açık kırmızı zemin */
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    font-family: monospace;
+    border: 1px solid rgba(230, 81, 65, 0.1);
+}
+
+.result-text {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin: 8px 0;
+    padding: 12px;
+    background: #fcf9f4; /* Çok hafif krem */
+    border-radius: 8px;
+    border-left: 4px solid var(--accent);
+    line-height: 1.5;
+}
+
+.result-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Spinner */
+.hidden { display: none !important; }
+
+#loading-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    justify-content: center;
+}
+
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #eaddcf;
+    border-top: 3px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 600px) {
+    .header h1 { font-size: 2rem; }
+    .search-bar { flex-direction: column; }
+    body { padding: 10px; }
+}
