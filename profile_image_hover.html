@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary-color: #0f172a;
+  --accent-color: #3b82f6;
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#circle-shape-example {
+  position: relative;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.profile-image-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.curve {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  shape-outside: circle();
+  border: 4px solid var(--accent-color);
+  box-shadow: var(--shadow-xl), 0 0 40px rgba(59, 130, 246, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* İlk resim (default) */
+.curve.image-1 {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* İkinci resim (hover'da görünecek) */
+.curve.image-2 {
+  opacity: 0;
+  z-index: 2;
+}
+
+/* Hover durumunda */
+.profile-image-container:hover .curve.image-1 {
+  opacity: 0;
+}
+
+.profile-image-container:hover .curve.image-2 {
+  opacity: 1;
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: var(--shadow-xl), 0 0 50px rgba(59, 130, 246, 0.4);
+}
+
+@media (max-width: 768px) {
+  .profile-image-container {
+    width: 250px;
+    height: 250px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container" style="max-width: 900px;">
+  <section id="about">
+    <div id="circle-shape-example">
+      <div class="profile-image-container">
+        <!-- İlk resim (default) -->
+        <img src="assets/1.jpeg" class="curve image-1" alt="Dr. Kahraman Kostas">
+        <!-- İkinci resim (hover'da görünecek) -->
+        <img src="assets/2.jpeg" class="curve image-2" alt="Dr. Kahraman Kostas - Hover">
+      </div>
+      <p style="margin-top: 2rem; color: #64748b;">Resmin üzerine gelin!</p>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
