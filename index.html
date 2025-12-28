@@ -245,37 +245,32 @@
       box-shadow: var(--shadow-xl), 0 0 40px rgba(59, 130, 246, 0.2);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
-    /* Cursor for clickable image */
-    .profile-image-container {
-      cursor: pointer;
-    }
-
-    /* Ensure the image has a transition for opacity */
-    .curve {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      shape-outside: circle();
-      border: 4px solid var(--accent-color);
-      box-shadow: var(--shadow-xl), 0 0 40px rgba(59, 130, 246, 0.2);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      object-fit: cover;
+    /* Initial image (default) */
+    .curve.image-1 {
       opacity: 1;
-      /* Default opacity */
+      z-index: 1;
     }
 
-    /* Hover effect for the image */
-    .profile-image-container:hover .curve {
-      transform: scale(1.08) rotate(2deg);
-      box-shadow: var(--shadow-xl), 0 0 50px rgba(59, 130, 246, 0.4);
-    }
-
-    /* Class to hide image during swap */
-    .curve.hidden {
+    /* Second image (appears on hover) */
+    .curve.image-2 {
       opacity: 0;
-      transform: scale(0.95);
+      z-index: 2;
+    }
+
+    /* Hover state */
+    .profile-image-container:hover .curve.image-1 {
+      opacity: 0;
+    }
+
+    .profile-image-container:hover .curve.image-2 {
+      opacity: 1;
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: var(--shadow-xl), 0 0 50px rgba(59, 130, 246, 0.4);
     }
 
     /* Postdoc Notice */
@@ -591,112 +586,103 @@
     <section id="about">
       <div id="circle-shape-example">
         <div class="profile-image-container">
-          <img src="assets/1.jpeg" id="profile-img" class="curve" alt="Dr. Kahraman Kostas"
-            style="transition: opacity 0.4s ease; cursor: pointer;">
+          <img src="assets/1.jpeg" class="curve image-1" alt="Dr. Kahraman Kostas - Default">
+          <img src="assets/2.jpeg" class="curve image-2" alt="Dr. Kahraman Kostas - Hover">
         </div>
 
-        <script>
-          document.addEventListener('DOMContentLoaded', function () {
-            var imgElement = document.getElementById('profile-img');
-            var currentImgIndex = 1;
-            var isAnimating = false;
 
-            if (imgElement) {
-              imgElement.addEventListener('click', function () {
-                if (isAnimating) return;
-                isAnimating = true;
 
-                imgElement.style.opacity = '0';
-                imgElement.style.transform = 'scale(0.95)';
+        <h1>Kahraman Kostas, PhD</h1>
 
-                setTimeout(function () {
-                  if (currentImgIndex === 1) {
-                    imgElement.src = 'assets/2.jpeg';
-                    currentImgIndex = 2;
-                  } else {
-                    imgElement.src = 'assets/1.jpeg';
-                    currentImgIndex = 1;
-                  }
+        <p class="lead">
+          <strong>Computer Science Researcher specializing in IoT Security, Generalisable Machine Learning, and Network
+            Forensics.</strong>
+        </p>
 
-                  setTimeout(function () {
-                    imgElement.style.opacity = '1';
-                    imgElement.style.transform = 'scale(1)';
-                    isAnimating = false;
-                  }, 50);
+        <p>
+          I hold a PhD in Computer Science from <a href="https://www.hw.ac.uk/" target="_blank"
+            rel="noopener noreferrer">Heriot-Watt University</a>, Edinburgh.
+          Bridging the gap between theoretical ML models and real-world deployment, my research addresses a fundamental
+          challenge in IoT security:
+          <strong>the lack of generalisable models for device identification and intrusion detection.</strong>
+        </p>
 
-                }, 400);
-              });
-            }
-          });
-        </script>
+        <h3>Research & Impact</h3>
 
-<h1>Kahraman Kostas, PhD</h1>
+        <p>
+          My doctoral thesis, “<a href="https://www.ros.hw.ac.uk/items/2a17932d-5b88-4c18-8e1a-6d21ec66da08"
+            target="_blank" rel="noopener noreferrer">Behaviour-based Security with Machine Learning on IoT
+            Networks</a>,”
+          (Supervisors: <a href="https://researchportal.hw.ac.uk/en/persons/mike-just/" target="_blank"
+            rel="noopener noreferrer">Dr. Mike Just</a> & <a href="https://www.macs.hw.ac.uk/~ml355/" target="_blank"
+            rel="noopener noreferrer">Dr. Michael Lones</a>)
+          systematically demonstrated how conventional feature representations hinder model generalisation.
+        </p>
 
-<p class="lead">
-  <strong>Computer Science Researcher specializing in IoT Security, Generalisable Machine Learning, and Network Forensics.</strong>
-</p>
+        <p>
+          To solve this, I developed novel frameworks—<strong>IoTDevID, GeMID, and IoTGeM</strong>—explicitly designed
+          to remain robust across unseen devices and changing network conditions.
+          This work has been published in top-tier venues including:
+        </p>
 
-<p>
-  I hold a PhD in Computer Science from <a href="https://www.hw.ac.uk/" target="_blank" rel="noopener noreferrer">Heriot-Watt University</a>, Edinburgh. 
-  Bridging the gap between theoretical ML models and real-world deployment, my research addresses a fundamental challenge in IoT security: 
-  <strong>the lack of generalisable models for device identification and intrusion detection.</strong>
-</p>
+        <ul>
+          <li><em>IEEE Internet of Things Journal</em> (Q1)</li>
+          <li><em>Computer Networks</em> (Q1)</li>
+          <li><em>Internet of Things Journal -Elsevier-</em> (Q1)</li>
+          <li><em>IEEE Networking Letters</em> (Q1)</li>
+        </ul>
 
-<h3>Research & Impact</h3>
+        <h3>Industry & Applied Experience</h3>
 
-<p>
-  My doctoral thesis, “<a href="https://www.ros.hw.ac.uk/items/2a17932d-5b88-4c18-8e1a-6d21ec66da08" target="_blank" rel="noopener noreferrer">Behaviour-based Security with Machine Learning on IoT Networks</a>,” 
-  (Supervisors: <a href="https://researchportal.hw.ac.uk/en/persons/mike-just/" target="_blank" rel="noopener noreferrer">Dr. Mike Just</a> & <a href="https://www.macs.hw.ac.uk/~ml355/" target="_blank" rel="noopener noreferrer">Dr. Michael Lones</a>) 
-  systematically demonstrated how conventional feature representations hinder model generalisation.
-</p>
+        <p>
+          <strong>Huawei R&D (Edinburgh):</strong> During my PhD, I worked as a Researcher at the Huawei UK R&D Centre.
+          I developed ML solutions for community detection and WiFi-based distance estimation, strengthening my ability
+          to build industry-scale systems.
+          Prior to this, my team won <strong>1st place in the Huawei UK University Challenge (2021)</strong> for our
+          work on indoor localisation, which we later published at the prestigious <strong>IEEE IPIN</strong>
+          conference.
+        </p>
 
-<p>
-  To solve this, I developed novel frameworks—<strong>IoTDevID, GeMID, and IoTGeM</strong>—explicitly designed to remain robust across unseen devices and changing network conditions. 
-  This work has been published in top-tier venues including:
-</p>
+        <p>
+          <strong>Large-Scale Technical Leadership (Current Role):</strong> Since September 2024, I have been serving as
+          a <strong>National Education Expert</strong> at the Turkish Ministry of National Education.
+          In this capacity, I act as the <strong>Technical Lead and Architect</strong> for the <a
+            href="https://ulkemyanimda.eba.gov.tr/" target="_blank" rel="noopener noreferrer">“Ulkem Yanımda”</a>
+          project.
+        </p>
+        <p>
+          I coordinated the technical infrastructure design and deployment of this international platform, which
+          connects <strong>100+ teachers</strong> with <strong>2000+ students</strong> across <strong>10+
+            countries</strong>.
+          My role involves managing full-stack operations, data analytics, and cross-border coordination to ensure
+          sustainable scalability.
+        </p>
 
-<ul>
-  <li><em>IEEE Internet of Things Journal</em> (Q1)</li>
-  <li><em>Computer Networks</em> (Q1)</li>
-    <li><em>Internet of Things Journal -Elsevier-</em> (Q1)</li>
-  <li><em>IEEE Networking Letters</em> (Q1)</li>
-</ul>
+        <h3>Background</h3>
 
-<h3>Industry & Applied Experience</h3>
+        <p>
+          I hold an MSc in Computer Networks and Security (Distinction) from the <a href="https://www.essex.ac.uk/"
+            target="_blank" rel="noopener noreferrer">University of Essex</a>.
+          My interdisciplinary background, including degrees in Computer Education (Marmara Univ.) and Literature,
+          informs my keen interest in explainable AI and research communication.
+        </p>
 
-<p>
-  <strong>Huawei R&D (Edinburgh):</strong> During my PhD, I worked as a Researcher at the Huawei UK R&D Centre. 
-  I developed ML solutions for community detection and WiFi-based distance estimation, strengthening my ability to build industry-scale systems.
-  Prior to this, my team won <strong>1st place in the Huawei UK University Challenge (2021)</strong> for our work on indoor localisation, which we later published at the prestigious <strong>IEEE IPIN</strong> conference.
-</p>
+        <div class="postdoc-notice"
+          style="background-color: #f0f4f8; border-left: 5px solid #0056b3; padding: 15px; margin-top: 20px; border-radius: 4px;">
+          <strong>🚀 Open for Collaborations:</strong> I am actively seeking <strong>Postdoctoral Research
+            positions</strong> in IoT security, applied ML, and data-driven systems.
+          I am particularly interested in labs that value rigorous methodological analysis combined with real-world
+          deployment.
+          <a href="mailto:kahramankostas@gmail.com" style="font-weight: bold; text-decoration: underline;">Please get in
+            touch to discuss opportunities.</a>
+        </div>
 
-<p>
-  <strong>Large-Scale Technical Leadership (Current Role):</strong> Since September 2024, I have been serving as a <strong>National Education Expert</strong> at the Turkish Ministry of National Education. 
-  In this capacity, I act as the <strong>Technical Lead and Architect</strong> for the <a href="https://ulkemyanimda.eba.gov.tr/" target="_blank" rel="noopener noreferrer">“Ulkem Yanımda”</a> project.
-</p>
-<p>
-  I coordinated the technical infrastructure design and deployment of this international platform, which connects <strong>100+ teachers</strong> with <strong>2000+ students</strong> across <strong>10+ countries</strong>. 
-  My role involves managing full-stack operations, data analytics, and cross-border coordination to ensure sustainable scalability.
-</p>
+        <hr style="margin-top: 30px; margin-bottom: 20px; border: 0; border-top: 1px solid #eee;">
 
-<h3>Background</h3>
-
-<p>
-  I hold an MSc in Computer Networks and Security (Distinction) from the <a href="https://www.essex.ac.uk/" target="_blank" rel="noopener noreferrer">University of Essex</a>. 
-  My interdisciplinary background, including degrees in Computer Education (Marmara Univ.) and Literature, informs my keen interest in explainable AI and research communication.
-</p>
-
-<div class="postdoc-notice" style="background-color: #f0f4f8; border-left: 5px solid #0056b3; padding: 15px; margin-top: 20px; border-radius: 4px;">
-  <strong>🚀 Open for Collaborations:</strong> I am actively seeking <strong>Postdoctoral Research positions</strong> in IoT security, applied ML, and data-driven systems. 
-  I am particularly interested in labs that value rigorous methodological analysis combined with real-world deployment. 
-  <a href="mailto:kahramankostas@gmail.com" style="font-weight: bold; text-decoration: underline;">Please get in touch to discuss opportunities.</a>
-</div>
-
-<hr style="margin-top: 30px; margin-bottom: 20px; border: 0; border-top: 1px solid #eee;">
-
-<p style="font-size: 0.9em; color: #666;">
-  <em>Outside the lab, I am passionate about Turkish literature, etymology, classical poetry, hiking, and photography.</em>
-</p>
+        <p style="font-size: 0.9em; color: #666;">
+          <em>Outside the lab, I am passionate about Turkish literature, etymology, classical poetry, hiking, and
+            photography.</em>
+        </p>
 
       </div>
     </section>
