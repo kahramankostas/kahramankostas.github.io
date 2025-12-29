@@ -94,12 +94,26 @@
             background: #f8f9fa;
         }
 
+        /* PDF Viewer Guncellendi */
         .pdf-viewer {
             width: 100%;
             height: 800px;
             border: 2px solid #dee2e6;
             border-radius: 8px;
             background: white;
+            display: block; /* Bosluk olusmasini engeller */
+        }
+
+        .fallback-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #555;
+            padding: 20px;
+            text-align: center;
+            background-color: #f1f1f1;
         }
 
         .info-box {
@@ -152,16 +166,24 @@
         </div>
 
         <div class="info-box">
-            <p>📄 Aşağıda öğretim programını önizleyebilirsiniz. PDF dosyasını indirmek için yukarıdaki "Programı İndir" butonunu kullanabilirsiniz.</p>
+            <p>📄 Aşağıda öğretim programını önizleyebilirsiniz. Eğer önizleme yüklenmezse yukarıdaki "Programı İndir" butonunu kullanabilirsiniz.</p>
         </div>
 
         <div class="pdf-container">
-            <iframe 
-                src="ttkdop.pdf" 
-                class="pdf-viewer"
-                type="application/pdf">
-                <p>Tarayıcınız PDF önizlemeyi desteklemiyor. <a href="ttkdop.pdf" download>Buraya tıklayarak</a> dosyayı indirebilirsiniz.</p>
-            </iframe>
+            <object 
+                data="ttkdop.pdf" 
+                type="application/pdf" 
+                class="pdf-viewer">
+                
+                <div class="fallback-message">
+                    <p>Tarayıcınız PDF önizlemeyi şu an desteklemiyor veya dosya yüklenemedi.</p>
+                    <p>Dosyayı cihazınıza indirerek inceleyebilirsiniz:</p>
+                    <br>
+                    <a href="ttkdop.pdf" class="btn btn-download">
+                        ⬇️ Dosyayı İndir
+                    </a>
+                </div>
+            </object>
         </div>
     </div>
 </body>
