@@ -1,0 +1,319 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+#video-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#player {
+    width: 100%;
+    height: 500px;
+    border-radius: 4px;
+}
+
+#question-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 100;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.question-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    color: white;
+    text-align: center;
+}
+
+.question-content h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: #ffffff;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.option-btn {
+    padding: 12px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: left;
+}
+
+.option-btn:hover {
+    background-color: #2980b9;
+}
+
+.option-btn.correct {
+    background-color: #2ecc71;
+}
+
+.option-btn.incorrect {
+    background-color: #e74c3c;
+}
+
+.option-btn.disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.feedback {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    min-height: 50px;
+}
+
+.feedback.visible {
+    opacity: 1;
+}
+
+.feedback .correct {
+    color: #2ecc71;
+}
+
+.feedback .incorrect {
+    color: #e74c3c;
+}
+
+.continue-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.continue-btn:hover {
+    background-color: #219653;
+}
+
+.progress-container {
+    margin-top: 30px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.progress-title {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #3498db;
+    width: 0%;
+    transition: width 0.5s;
+}
+
+.progress-stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress-stat {
+    text-align: center;
+    flex: 1;
+}
+
+.progress-label {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+.progress-value {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 5px;
+}
+
+.progress-percent {
+    color: #27ae60;
+}
+
+#completion-message {
+    display: none;
+    background-color: #2ecc71;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.timeline-container {
+    margin-top: 20px;
+    position: relative;
+    height: 40px;
+}
+
+.timeline {
+    position: relative;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.timeline-progress {
+    position: absolute;
+    height: 100%;
+    background-color: #3498db;
+    border-radius: 5px 0 0 5px;
+    width: 0%;
+}
+
+.timeline-markers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.question-marker {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #f39c12;
+    border-radius: 50%;
+    top: -3px;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.question-tooltip {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2c3e50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    display: none;
+}
+
+.question-marker:hover .question-tooltip {
+    display: block;
+}
+
+.answered-marker {
+    background-color: #2ecc71;
+}
+/* Navigasyon Butonları */
+.page-nav {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 20px;
+    pointer-events: none; /* sadece butonlara tıklanabilsin */
+}
+
+.nav-btn {
+    pointer-events: all;
+    background-color: #8B4513;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1em;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.nav-btn:hover {
+    background-color: #A0522D;
+    transform: scale(1.15);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    #player {
+        height: 300px;
+    }
+    
+    .question-content h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .option-btn {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}

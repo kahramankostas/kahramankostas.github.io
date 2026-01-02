@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelime Kartları</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; color: #333; margin: 0; padding: 20px; }
+        .controls-container { text-align: center; margin-bottom: 30px; padding: 10px; }
+        .search-row { margin-bottom: 15px; }
+        #searchInput { width: 50%; max-width: 400px; padding: 15px 25px; font-size: 1.1em; border-radius: 30px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0,0,0,0.05); transition: all 0.3s ease-in-out; margin-right: 10px; }
+        #searchInput:focus { outline: none; border-color: #007bff; box-shadow: 0 4px 12px rgba(0,123,255,0.2); }
+        .btn-random { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 25px; padding: 12px 25px; font-size: 1.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .btn-random:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .container { display: flex; justify-content: center; }
+        .card { background-color: #ffffff; border-radius: 12px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); overflow: hidden; width: 410px; transition: transform 0.2s ease-in-out; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { display: block; width: 410px; height: 349px; object-fit: cover; }
+        .card-content { padding: 20px; }
+        .word-container { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .word { font-size: 2em; color: #005A9C; margin: 0; font-weight: 700; flex-grow: 1; }
+        .audio-controls { display: flex; gap: 8px; }
+        .btn { border: none; border-radius: 6px; padding: 8px 12px; cursor: pointer; font-size: 0.9em; transition: all 0.3s ease; display: flex; align-items: center; gap: 5px; }
+        .btn:hover { transform: translateY(-1px); }
+        .btn-speak { background-color: #28a745; color: white; }
+        .btn-speak:hover { background-color: #218838; }
+        .btn-listen { background-color: #007bff; color: white; }
+        .btn-listen:hover { background-color: #0056b3; }
+        .btn-listening { background-color: #dc3545; }
+        .definition { font-size: 1.1em; color: #1d1d1d; margin: 0 0 15px 0; }
+        .example { font-size: 1em; color: #fc0707; font-style: italic; margin: 0; padding-left: 15px; border-left: 3px solid #AED581; }
+        .pronunciation-result { margin-top: 10px; padding: 8px 12px; border-radius: 6px; font-size: 0.9em; font-weight: bold; }
+        .result-correct { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .result-incorrect { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .result-error { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+        .no-result { text-align: center; padding: 40px; font-size: 1.2em; color: #666; }
+        .word-info { text-align: center; margin-bottom: 15px; color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="controls-container">
+        <div class="search-row">
+            <input type="text" id="searchInput" placeholder="Kelime ara...">
+            <button class="btn-random" onclick="showRandomWord()">🎡 Rastgele Kelime</button>
+        </div>
+        <div class="word-info" id="wordInfo">Rastgele kelime gösteriliyor</div>
+    </div>
+	
+    <div class="container" id="cardContainer">
+        <!-- Kart buraya dinamik olarak yüklenecek -->
+    </div>
+
+    <script>
+        // Kelime veritabanı
+        const words = [
+            {
+                word: "aslan",
+                definition: "Yabani bir hayvan, büyük kedi familyasından etçil bir memeli.",
+                example: "Aslanlar etle beslenir.",
+                image: "imgs/257_2.png"
+            },
+            {
+                word: "kitap",
+                definition: "Yazılı veya basılı sayfaların bir araya getirilmesiyle oluşan yayın.",
+                example: "Her gün bir kitap okumaya çalışıyorum.",
+                image: "imgs/kitap.png"
+            },
+            {
+                word: "güneş",
+                definition: "Güneş sistemimizin merkezindeki yıldız.",
+                example: "Güneş doğudan doğar, batıdan batar.",
+                image: "imgs/gunes.png"
+            },
+            {
+                word: "deniz",
+                definition: "Yeryüzünü kaplayan geniş tuzlu su kütlesi.",
+                example: "Yazın denize gitmeyi seviyorum.",
+                image: "imgs/deniz.png"
+            },
+            {
+                word: "çiçek",
+                definition: "Bitkilerin rengarenk ve kokulu üreme organı.",
+                example: "Bahçedeki çiçekler çok güzel kokuyor.",
+                image: "imgs/cicek.png"
+            },
+            {
+                word: "ev",
+                definition: "İnsanların yaşadığı, barındığı yapı.",
+                example: "Evimiz şehrin merkezinde.",
+                image: "imgs/ev.png"
+            },
+            {
+                word: "araba",
+                definition: "Motorlu kara taşıtı, otomobil.",
+                example: "Yeni arabamız çok ekonomik.",
+                image: "imgs/araba.png"
+            },
+            {
+                word: "kuş",
+                definition: "Uçabilen, tüylü, gagalı hayvan.",
+                example: "Kuşlar gökyüzünde özgürce uçar.",
+                image: "imgs/kus.png"
+            }
+        ];
+
+        let currentWord = null;
+        let filteredWords = [];
+
+        // Sayfa yüklendiğinde rastgele kelime göster
+        document.addEventListener('DOMContentLoaded', function() {
+            showRandomWord();
+            setupSearch();
+        });
+
+        // Arama fonksiyonu
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                
+                if (searchTerm === '') {
+                    document.getElementById('wordInfo').textContent = 'Rastgele kelime gösteriliyor';
+                    showRandomWord();
+                    return;
+                }
+
+                filteredWords = words.filter(word => 
+                    word.word.toLowerCase().includes(searchTerm) ||
+                    word.definition.toLowerCase().includes(searchTerm)
+                );
+
+                if (filteredWords.length > 0) {
+                    currentWord = filteredWords[0];
+                    displayWord(currentWord);
+                    document.getElementById('wordInfo').textContent = 
+                        `"${searchTerm}" için ${filteredWords.length} sonuç bulundu`;
+                } else {
+                    displayNoResult(searchTerm);
+                    document.getElementById('wordInfo').textContent = 
+                        `"${searchTerm}" için sonuç bulunamadı`;
+                }
+            });
+        }
+
+        // Rastgele kelime göster
+        function showRandomWord() {
+            const randomIndex = Math.floor(Math.random() * words.length);
+            currentWord = words[randomIndex];
+            displayWord(currentWord);
+            
+            // Arama kutusunu temizle
+            document.getElementById('searchInput').value = '';
+            document.getElementById('wordInfo').textContent = 'Rastgele kelime gösteriliyor';
+        }
+
+        // Kelimeyi ekranda göster
+        function displayWord(wordData) {
+            const container = document.getElementById('cardContainer');
+            container.innerHTML = `
+                <div class="card">
+                    <img src="${wordData.image}" alt="${wordData.word}" width="410" height="349" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDEwIiBoZWlnaHQ9IjM0OSIgdmlld0JveD0iMCAwIDQxMCAzNDkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MTAiIGhlaWdodD0iMzQ5IiBmaWxsPSIjRjBGMkY1Ii8+CjxwYXRoIGQ9Ik0yMDUgMTc0LjVMMTg1IDE5NC41SDE4NVYxOTQuNUgxODVWMjI0LjVIMjI1VjE5NC41SDIyNUwxODUgMTU0LjVIMjI1VjEyNC41SDE4NVYxNTQuNUwyMDUgMTc0LjVaIiBmaWxsPSIjOTk5Ii8+Cjx0ZXh0IHg9IjIwNSIgeT0iMjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjY2IiBmb250LXNpemU9IjE2Ij5SZXNpbSB5w7xrbGVuZW1lZGk8L3RleHQ+Cjwvc3ZnPg=='">
+                    <div class="card-content">
+                        <div class="word-container">
+                            <h2 class="word">${wordData.word}</h2>
+                            <div class="audio-controls">
+                                <button class="btn btn-speak" onclick="speakWord('${wordData.word}')">🔊 Dinle</button>
+                                <button class="btn btn-listen" onclick="listenPronunciation('${wordData.word}', this)">🎤 Telaffuz</button>
+                            </div>
+                        </div>
+                        <p class="definition">${wordData.definition}</p>
+                        <p class="example">"${wordData.example}"</p>
+                        <div class="pronunciation-result" id="result-${wordData.word}" style="display: none;"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Sonuç bulunamadığında göster
+        function displayNoResult(searchTerm) {
+            const container = document.getElementById('cardContainer');
+            container.innerHTML = `
+                <div class="no-result">
+                    <h3>🔍 Aradığınız kelime bulunamadı</h3>
+                    <p>"${searchTerm}" için sonuç bulunamadı.</p>
+                    <button class="btn-random" onclick="showRandomWord()" style="margin-top: 15px;">
+                        🎲 Rastgele Kelime Göster
+                    </button>
+                </div>
+            `;
+        }
+
+        // Kelimeyi seslendir
+        function speakWord(word) {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'tr-TR';
+                utterance.rate = 0.8;
+                utterance.pitch = 1;
+                utterance.volume = 1;
+                
+                speechSynthesis.speak(utterance);
+            } else {
+                alert('Tarayıcınız sesli okuma özelliğini desteklemiyor.');
+            }
+        }
+
+        // Telaffuz kontrolü
+        function listenPronunciation(targetWord, button) {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                showResult(targetWord, 'Tarayıcınız ses tanıma özelliğini desteklemiyor.', 'error');
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            
+            recognition.lang = 'tr-TR';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            const originalText = button.innerHTML;
+            button.innerHTML = '⏹️ Dinleniyor...';
+            button.classList.remove('btn-listen');
+            button.classList.add('btn-listening');
+            button.disabled = true;
+
+            recognition.onresult = function(event) {
+                const spokenWord = event.results[0][0].transcript.toLowerCase().trim();
+                const targetLower = targetWord.toLowerCase().trim();
+                
+                if (spokenWord === targetLower) {
+                    showResult(targetWord, 'Mükemmel! Telaffuzunuz doğru. ✅', 'correct');
+                } else {
+                    showResult(targetWord, `Tekrar deneyin. Söylediğiniz: "${spokenWord}" | Beklenen: "${targetWord}" ❌`, 'incorrect');
+                }
+                
+                resetButton(button, originalText);
+            };
+
+            recognition.onerror = function(event) {
+                let errorMessage = 'Ses tanıma hatası: ';
+                switch(event.error) {
+                    case 'no-speech':
+                        errorMessage += 'Ses algılanamadı. Lütfen tekrar deneyin.';
+                        break;
+                    case 'audio-capture':
+                        errorMessage += 'Mikrofon erişimi sorunu.';
+                        break;
+                    case 'not-allowed':
+                        errorMessage += 'Mikrofon izni verilmedi.';
+                        break;
+                    default:
+                        errorMessage += event.error;
+                }
+                showResult(targetWord, errorMessage, 'error');
+                resetButton(button, originalText);
+            };
+
+            recognition.onend = function() {
+                resetButton(button, originalText);
+            };
+
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(function(stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                    recognition.start();
+                })
+                .catch(function(err) {
+                    showResult(targetWord, 'Mikrofon izni gerekli. Lütfen izin verin.', 'error');
+                    resetButton(button, originalText);
+                });
+        }
+
+        function resetButton(button, originalText) {
+            button.innerHTML = originalText;
+            button.classList.remove('btn-listening');
+            button.classList.add('btn-listen');
+            button.disabled = false;
+        }
+
+        function showResult(word, message, type) {
+            const resultDiv = document.getElementById('result-' + word);
+            if (resultDiv) {
+                resultDiv.textContent = message;
+                resultDiv.className = 'pronunciation-result result-' + type;
+                resultDiv.style.display = 'block';
+                
+                setTimeout(() => {
+                    resultDiv.style.display = 'none';
+                }, 5000);
+            }
+        }
+    </script>
+	
+
+<footer style="background-color: #f1f1f1; padding: 20px 10px; text-align: center; font-family: Arial, sans-serif;">
+    <div style="margin-bottom: 15px;">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+            <a href="https://yyegm.meb.gov.tr/" target="_blank">
+                <img src="imgs/logo2.png" alt="Logo 1" style="height: 50px; width: auto;">
+            </a>
+            <a href="https://ulkemyanimda.github.io/" target="_blank">
+                <img src="imgs/logo1.png" alt="Logo 2" style="height: 50px; width: auto;">
+            </a>
+        </div>
+    </div>
+
+    <!-- Sosyal Medya İkonları (CDN'den SVG) -->
+    <div style="margin: 15px 0; display: flex; justify-content: center; gap: 15px;">
+        <a href="https://www.instagram.com/ulkemyanimda" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram" style="height: 30px; width: 30px;">
+        </a>
+        <a href="https://twitter.com/ulkemyanimda" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="Twitter" style="height: 30px; width: 30px;">
+        </a>
+        <a href="https://www.facebook.com/ulkemyanimda" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook" style="height: 30px; width: 30px;">
+        </a>
+        <a href="https://www.youtube.com/@ulkem_yanimda" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube" style="height: 30px; width: 30px;">
+        </a>
+    </div>
+
+    <div>
+        <p style="margin: 0; font-size: 14px; color: #333;">&copy; 2025 ÜLKEM YANIMDA!</p>
+    </div>
+</footer>
+
+	
+	
+</body>
+</html>

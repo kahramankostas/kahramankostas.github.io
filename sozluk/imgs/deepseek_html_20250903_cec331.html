@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sözlük Kartları</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            position: relative;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            outline: none;
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #764ba2;
+            font-size: 20px;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-image {
+            width: 410px;
+            height: 349px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 5px;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .word {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .meaning {
+            font-size: 16px;
+            color: #27ae60;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .example {
+            font-size: 14px;
+            color: #8e44ad;
+            font-style: italic;
+            line-height: 1.4;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #8e44ad;
+        }
+        
+        .link-info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(52, 152, 219, 0.9);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .card {
+            position: relative;
+        }
+        
+        .no-image {
+            width: 410px;
+            height: 349px;
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .no-results {
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            grid-column: 1 / -1;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sözlük Kartları</h1>
+    
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Kelime, anlam veya örnek cümlede ara...">
+        <div class="search-icon">🔍</div>
+    </div>
+    
+    <div class="container" id="cardsContainer">
+        <div class="card">
+            <div class="link-info">Aile-Akrabalar</div>
+            
+            <img src="./imgs/169.png" alt="abi / ağabey" class="card-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="no-image" style="display: none;">
+                Resim #169
+            </div>
+            
+            <div class="card-content">
+                <div class="word">abi / ağabey</div>
+                <div class="meaning">Büyük erkek kardeş</div>
+                <div class="example">Ben 9 yaşındayım, abim 16 yaşında</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="link-info">Aile-Akrabalar</div>
+            
+            <img src="./imgs/170.png" alt="abla" class="card-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="no-image" style="display: none;">
+                Resim #170
+            </div>
+            
+            <div class="card-content">
+                <div class="word">abla</div>
+                <div class="meaning">Büyük kız kardeş</div>
+                <div class="example">Ablam üniversiteye gidiyor</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="link-info">Aile-Akrabalar</div>
+            
+            <img src="./imgs/171.png" alt="anne" class="card-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="no-image" style="display: none;">
+                Resim #171
+            </div>
+            
+            <div class="card-content">
+                <div class="word">anne</div>
+                <div class="meaning">Çocuğu olan kadın, valide</div>
+                <div class="example">Annem yemek yapıyor</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="link-info">Aile-Akrabalar</div>
+            
+            <img src="./imgs/172.png" alt="baba" class="card-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="no-image" style="display: none;">
+                Resim #172
+            </div>
+            
+            <div class="card-content">
+                <div class="word">baba</div>
+                <div class="meaning">Çocuğu olan erkek, peder</div>
+                <div class="example">Babam işe gitti</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="link-info">Aile-Akrabalar</div>
+            
+            <img src="./imgs/173.png" alt="kardeş" class="card-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="no-image" style="display: none;">
+                Resim #173
+            </div>
+            
+            <div class="card-content">
+                <div class="word">kardeş</div>
+                <div class="meaning">Aynı anne babadan doğmuş kişiler</div>
+                <div class="example">Benim iki kardeşim var</div>
+            </div>
+        </div>
+        
+        <div class="no-results" id="noResults">
+            Aramanızla eşleşen sonuç bulunamadı.
+        </div>
+                
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const cards = document.querySelectorAll('.card');
+            const noResults = document.getElementById('noResults');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                let foundCount = 0;
+                
+                cards.forEach(card => {
+                    const word = card.querySelector('.word').textContent.toLowerCase();
+                    const meaning = card.querySelector('.meaning').textContent.toLowerCase();
+                    const example = card.querySelector('.example').textContent.toLowerCase();
+                    
+                    if (word.includes(searchTerm) || 
+                        meaning.includes(searchTerm) || 
+                        example.includes(searchTerm)) {
+                        card.style.display = 'block';
+                        foundCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Sonuç yoksa uyarı göster
+                if (foundCount === 0 && searchTerm !== '') {
+                    noResults.style.display = 'block';
+                } else {
+                    noResults.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

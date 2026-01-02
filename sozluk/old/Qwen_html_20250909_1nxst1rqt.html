@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelime Kartları</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; color: #333; margin: 0; padding: 20px; }
+        .search-container { text-align: center; margin-bottom: 30px; padding: 10px; display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; }
+        #searchInput { width: 50%; max-width: 500px; padding: 15px 25px; font-size: 1.1em; border-radius: 30px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0,0,0,0.05); transition: all 0.3s ease-in-out; }
+        #searchInput:focus { outline: none; border-color: #007bff; box-shadow: 0 4px 12px rgba(0,123,255,0.2); }
+        .btn-home, .btn-refresh {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1em;
+        }
+        .btn-home {
+            background-color: #6c757d;
+            color: white;
+        }
+        .btn-home:hover {
+            background-color: #5a6268;
+        }
+        .btn-refresh {
+            background-color: #17a2b8;
+            color: white;
+        }
+        .btn-refresh:hover {
+            background-color: #138496;
+        }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
+        .card { background-color: #ffffff; border-radius: 12px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); overflow: hidden; width: 410px; transition: transform 0.2s ease-in-out; display: none; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { display: block; width: 410px; height: 349px; object-fit: cover; }
+        .card-content { padding: 20px; position: relative; }
+        .word { font-size: 2em; color: #005A9C; margin: 0 0 10px 0; font-weight: 700; }
+        .definition { font-size: 1.1em; color: #1d1d1d; margin: 0 0 15px 0; }
+        .example { font-size: 1em; color: #2E7D32; font-style: italic; margin: 0; padding-left: 15px; border-left: 3px solid #AED581; }
+
+        /* Butonlar */
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-speak {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-speak:hover {
+            background-color: #0056b3;
+        }
+        .btn-listen {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-listening {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-listen:hover, .btn-listening:hover {
+            filter: brightness(90%);
+        }
+
+        /* Sonuç mesajları */
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .result.correct { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .result.incorrect { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .result.error { background-color: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+
+        #info { text-align: center; margin-bottom: 20px; font-weight: bold; color: #555; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <!-- Ana Sayfa Butonu     <div style="text-align: center; margin-bottom: 20px;">
+
+    </div>-->
+
+
+    <!-- Arama ve Yenile Butonu -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Kartlar içinde kelime ara...">
+        <button class="btn-refresh" onclick="showRandomCards(10)">
+            🔄 Kelimeleri Yenile
+        </button>
+		
+		        <button class="btn-home" onclick="window.location.href='https://kelimehazinem.github.io/'">
+            🏠 Ana Sayfa
+        </button>
+    </div>
+
+    <div id="info">Şu an rastgele 10 kart gösteriliyor.</div>
+
+    <div class="container">
+        <div class="card">
+            <img alt="abi" height="349" src="imgs/baba.png" width="410"/>
+            <div class="card-content">
+                <h2 class="word">abi</h2>
+                <p class="definition">Büyük erkek kardeş.</p>
+                <p class="example">"Ben 9 yaşındayım, abim 16 yaşında."</p>
+                <div class="card-actions">
+                    <button class="btn btn-speak" onclick="speakWord('abi')">🎧 Oku</button>
+                    <button class="btn btn-listen" onclick="listenPronunciation('abi', this)">🎤 Telaffuz</button>
+                </div>
+                <div class="result-container"></div>
+            </div>
+        </div> 
+        <!-- Buraya diğer kartları ekleyebilirsiniz -->
+    </div>
+
+    <script>
+        // Kelimeyi seslendir
+        function speakWord(word) {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'tr-TR';
+                utterance.rate = 0.5;
+                utterance.pitch = 1;
+                utterance.volume = 1;
+                
+                speechSynthesis.speak(utterance);
+            } else {
+                alert('Tarayıcınız sesli okuma özelliğini desteklemiyor.');
+            }
+        }
+
+        // Sonucu göster
+        function showResult(targetWord, message, type, button) {
+            const cardContent = button.closest('.card-content');
+            const resultContainer = cardContent.querySelector('.result-container');
+            
+            resultContainer.innerHTML = '';
+            
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `result ${type}`;
+            resultDiv.textContent = message;
+            resultContainer.appendChild(resultDiv);
+            
+            setTimeout(() => {
+                resultDiv.style.opacity = '0';
+                setTimeout(() => {
+                    resultDiv.remove();
+                }, 500);
+            }, 5000);
+        }
+
+        // Butonu sıfırla
+        function resetButton(button, originalText) {
+            button.innerHTML = originalText;
+            button.classList.remove('btn-listening');
+            button.classList.add('btn-listen');
+            button.disabled = false;
+        }
+
+        // Telaffuz kontrolü
+        function listenPronunciation(targetWord, button) {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                showResult(targetWord, 'Tarayıcınız ses tanıma özelliğini desteklemiyor.', 'error', button);
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            
+            recognition.lang = 'tr-TR';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            const originalText = button.innerHTML;
+            button.innerHTML = '⏹️ Dinleniyor...';
+            button.classList.remove('btn-listen');
+            button.classList.add('btn-listening');
+            button.disabled = true;
+
+            recognition.onresult = function(event) {
+                const spokenWord = event.results[0][0].transcript.toLowerCase().trim();
+                const targetLower = targetWord.toLowerCase().trim();
+                
+                if (spokenWord === targetLower) {
+                    showResult(targetWord, 'Mükemmel! Telaffuzunuz doğru. ✅', 'correct', button);
+                } else {
+                    showResult(targetWord, `Tekrar deneyin. Söylediğiniz: "${spokenWord}" | Beklenen: "${targetWord}" ❌`, 'incorrect', button);
+                }
+                
+                resetButton(button, originalText);
+            };
+
+            recognition.onerror = function(event) {
+                let errorMessage = 'Ses tanıma hatası: ';
+                switch(event.error) {
+                    case 'no-speech':
+                        errorMessage += 'Ses algılanamadı. Lütfen tekrar deneyin.';
+                        break;
+                    case 'audio-capture':
+                        errorMessage += 'Mikrofon erişimi sorunu.';
+                        break;
+                    case 'not-allowed':
+                        errorMessage += 'Mikrofon izni verilmedi.';
+                        break;
+                    default:
+                        errorMessage += event.error;
+                }
+                showResult(targetWord, errorMessage, 'error', button);
+                resetButton(button, originalText);
+            };
+
+            recognition.onend = function() {
+                resetButton(button, originalText);
+            };
+
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(function(stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                    recognition.start();
+                })
+                .catch(function(err) {
+                    showResult(targetWord, 'Mikrofon izni gerekli. Lütfen izin verin.', 'error', button);
+                    resetButton(button, originalText);
+                });
+        }
+
+        // Rastgele N kart gösterme fonksiyonu (GLOBAL OLARAK ERİŞİLEBİLİR YAPILDI)
+        function showRandomCards(count = 10) {
+            const cards = Array.from(document.querySelectorAll('.card'));
+            const infoDiv = document.getElementById('info');
+
+            cards.forEach(card => card.style.display = 'none');
+            
+            const shuffled = [...cards].sort(() => 0.5 - Math.random());
+            const selected = shuffled.slice(0, Math.min(count, cards.length));
+            
+            selected.forEach(card => card.style.display = 'block');
+            
+            infoDiv.textContent = `Şu an rastgele ${selected.length} kart gösteriliyor.`;
+        }
+
+        // Sayfa yüklendiğinde çalışacak ana fonksiyon
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const cards = Array.from(document.querySelectorAll('.card'));
+            const infoDiv = document.getElementById('info');
+
+            // Sayfa yüklendiğinde rastgele 10 kart göster
+            showRandomCards(10);
+
+            // Arama olayı
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.trim().toLocaleLowerCase('tr-TR');
+                
+                if (searchTerm === '') {
+                    showRandomCards(10);
+                    return;
+                }
+
+                let matchCount = 0;
+                cards.forEach(function(card) {
+                    const wordElement = card.querySelector('.word');
+                    if (wordElement) {
+                        const wordText = wordElement.textContent.toLocaleLowerCase('tr-TR');
+                        if (wordText.includes(searchTerm)) {
+                            card.style.display = 'block';
+                            matchCount++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+
+                infoDiv.textContent = matchCount > 0 
+                    ? `${matchCount} adet eşleşen kart bulundu.` 
+                    : "Hiçbir kart bulunamadı.";
+            });
+        });
+    </script>
+</body>
+</html>

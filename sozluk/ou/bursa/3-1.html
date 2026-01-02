@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pideli Kebap</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pideli Kebap</h1>
+ <h4 style="text-align: center;">Videoyu izleyip video sonunda yer alan soruyu cevaplayınız</h4>
+
+        <div id="video-container">
+            <!-- YouTube video player buraya yerleştirilecek -->
+            <div id="player"></div>
+            
+            <!-- Soru overlay'i -->
+            <div id="question-overlay">
+                <div class="question-content">
+                    <h2 id="question-text">Soru metni burada görünecek</h2>
+                    
+                    <div id="options-container" class="options">
+                        <!-- Seçenekler JavaScript ile buraya eklenecek -->
+                    </div>
+                    
+                    <div id="feedback" class="feedback"></div>
+                    
+                    <button id="continue-btn" class="continue-btn" style="display:none;">Devam Et</button>
+                </div>
+            </div>
+        </div>
+        <!-- Navigasyon Butonları -->
+<div class="page-nav">
+    <a href="index.html" class="nav-btn left">⟵ Ana Sayfa</a>
+    <a href="3-2.html" class="nav-btn right">Sonraki Sayfa ⟶</a>
+</div>
+
+        <!-- Timeline -->
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="timeline-progress"></div>
+                <div class="timeline-markers">
+                    <!-- Soru işaretleri JavaScript ile buraya eklenecek -->
+                </div>
+            </div>
+        </div>
+        
+     
+        
+        <!-- Tamamlama mesajı -->
+        <div id="completion-message"></div>
+    </div>
+
+    <!-- YouTube API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    
+    <!-- Ana JavaScript -->
+    <script src="js/interactive-video.js"></script>
+</body>
+</html>

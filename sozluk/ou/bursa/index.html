@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bursa'nın Kültürel Zenginlikleri</title>
+    <style>
+        /* =================================
+            ANA SAYFA STİLLERİ
+        ================================= */
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .instructions {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* =================================
+           HARİTA CONTAINER STİLLERİ
+        ================================= */
+        .map-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: white;
+            padding: 15px;
+            display: block;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .map-image {
+            width: 100%;       /* Mobilde tam genişlik */
+            max-width: 700px;  /* Masaüstünde aşırı büyümesin */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+
+        /* =================================
+           QUIZ NOKTALARI - TEMEL STİLLER
+        ================================= */
+        .quiz-point {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(8px);
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        .quiz-point:hover {
+            transform: scale(1.2);
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .quiz-point-icon {
+            width: 105px;
+            height: 105px;
+            object-fit: contain;
+            animation: bounce 1s infinite alternate;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        /* =================================
+           RENK TEMALARI
+        ================================= */
+        .quiz-point.exam1 { background: linear-gradient(45deg, rgba(74, 144, 226, 0.4), rgba(74, 144, 226, 0.2)); border-color: rgba(74, 144, 226, 0.6); }
+        .quiz-point.exam2 { background: linear-gradient(45deg, rgba(231, 76, 60, 0.4), rgba(231, 76, 60, 0.2)); border-color: rgba(231, 76, 60, 0.6); }
+        .quiz-point.exam3 { background: linear-gradient(45deg, rgba(46, 204, 113, 0.4), rgba(46, 204, 113, 0.2)); border-color: rgba(46, 204, 113, 0.6); }
+        .quiz-point.exam4 { background: linear-gradient(45deg, rgba(241, 196, 15, 0.4), rgba(241, 196, 15, 0.2)); border-color: rgba(241, 196, 15, 0.6); }
+        .quiz-point.exam5 { background: linear-gradient(45deg, rgba(155, 89, 182, 0.4), rgba(155, 89, 182, 0.2)); border-color: rgba(155, 89, 182, 0.6); }
+
+        /* =================================
+           ANİMASYONLAR
+        ================================= */
+        @keyframes pulse {
+            0% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            50% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 10px rgba(255, 255, 255, 0.1); }
+            100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 20px rgba(255, 255, 255, 0); }
+        }
+        @keyframes bounce {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-3px); }
+        }
+
+        /* =================================
+           TOOLTIP STİLLERİ
+        ================================= */
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(0, 0, 0, 0.8);
+        }
+        .quiz-point:hover .tooltip { opacity: 1; }
+
+        /* =================================
+           MODAL STİLLERİ
+        ================================= */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content h2 { color: #333; margin-bottom: 15px; font-size: 1.4em; }
+        .modal-content p { color: #666; margin-bottom: 20px; line-height: 1.5; font-size: 0.95em; }
+        .modal-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+        .btn-secondary:hover { background: #e9ecef; }
+
+        /* =================================
+           RESPONSİVE TASARIM
+        ================================= */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .instructions { font-size: 0.9em; }
+            .quiz-point { width: 55px; height: 55px; }
+            .quiz-point-icon { width: 60px; height: 60px; }
+            .tooltip { font-size: 11px; top: -30px; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.5em; }
+            .quiz-point { width: 45px; height: 45px; }
+            .quiz-point-icon { width: 45px; height: 45px; }
+            .instructions { font-size: 0.85em; padding: 8px; }
+            .modal-content { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bursa'nın Kültürel Zenginlikleri</h1>
+        <div class="instructions">
+            Haritadaki ikonlara tıklayarak Bursa'nın kültürel zenginlikleri hakkında bilgi alabilirsiniz.
+        </div> 
+        
+        <div class="map-container">
+            <img src="bursa.svg" alt="Bursa Haritası" class="map-image" id="mapImage">
+            
+            <div class="quiz-point exam4" style="top: 60%; left: 30%;" 
+                 data-title="🎭 Hacivat ve Karagöz"
+                 data-description="Bursa’da ortaya çıkan Karagöz ve Hacivat, gölge oyununun en bilinen kahramanlarıdır. Eğlenceli diyaloglarıyla yüzyıllardır insanları güldürürken düşündürür. Günümüzde Karagöz Müzesi’nde tanıtılmaktadır."
+                 data-link="1.html">
+                <div class="tooltip">Hacivat ve Karagöz</div>
+                <img src="0.png" alt="Hacivat ve Karagöz İkonu" class="quiz-point-icon">
+            </div>
+            
+            <div class="quiz-point exam1" style="top: 27%; left: 25%;"
+                 data-title="🐛 İpekböcekçiliği"
+                 data-description="Bursa yüzyıllar boyunca ipek üretiminin merkezi olmuştur. Dut yapraklarıyla beslenen ipekböceklerinden elde edilen koza, ipliğe dönüştürülerek ipek kumaşlar dokunur. Bu gelenek, şehrin ekonomisi ve kültüründe önemli bir yer tutar."
+                 data-link="2.html">
+                <div class="tooltip">İpekböcekçiliği</div>
+                <img src="1.png" alt="İpek Böceği İkonu" class="quiz-point-icon">
+            </div>
+            
+            <div class="quiz-point exam2" style="top: 27%; left: 45%;"
+                 data-title="🍴 Bursa Mutfağı"
+                 data-description="Bursa mutfağı İskender kebabı, kestane şekeri, pideli köfte ve zeytinyağlı yemekleriyle ünlüdür. Hem Osmanlı mutfağından izler taşır hem de yöresel lezzetleriyle tanınır."
+                 data-link="3-1.html">
+                <div class="tooltip">Bursa Mutfağı</div>
+                <img src="2.png" alt="Bursa Mutfağı İkonu" class="quiz-point-icon">
+            </div>
+            
+            <div class="quiz-point exam3" style="top: 70%; left: 49%;"
+                 data-title="🏔️ Uludağ"
+                 data-description="2.543 metre yüksekliğiyle Uludağ, Bursa’nın simgelerinden biridir. Kışın kayak ve snowboard yapılır, yazın ise kamp, doğa yürüyüşü ve piknik için ziyaret edilir. Dört mevsim boyunca turistlerin ilgisini çeker."
+                 data-link="4.html">
+                <div class="tooltip">Uludağ</div>
+                <img src="3.png" alt="Uludağ İkonu" class="quiz-point-icon">
+            </div>
+            
+            <div class="quiz-point exam5" style="top: 55%; left: 60%;"
+                 data-title="🟦 İznik Çinisi"
+                 data-description="Renkleri doğadan alan İznik çinileri, mavi, beyaz ve kırmızının uyumuyla ünlüdür. Osmanlı döneminde camilerde, saraylarda ve birçok mimari eserde kullanılmıştır. Bugün hâlâ dünyaca tanınan bir sanat ürünüdür."
+                 data-link="5.html">
+                <div class="tooltip">İznik Çinisi</div>
+                <img src="4.png" alt="İznik Çinisi İkonu" class="quiz-point-icon">
+            </div>
+            
+            <div class="quiz-point exam5" style="top: 33%; left: 61%;"
+                 data-title="🕌 Ulu Cami"
+                 data-description="Bursa’nın en büyük camisi olan Ulu Cami, Yıldırım Bayezid tarafından 14. yüzyılda yaptırılmıştır. 20 kubbesiyle ünlüdür ve içinde eşsiz hat sanatlarıyla süslü yazılar bulunur."
+                 data-link="6.html">
+                <div class="tooltip">Ulu Cami</div>
+                <img src="5.png" alt="Ulu Cami İkonu" class="quiz-point-icon">
+            </div>
+        </div>
+    </div>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle"></h2>
+            <p id="modalText"></p>
+            <div class="modal-buttons">
+                <a href="#" id="activityLinkBtn" class="btn btn-primary" target="_blank">Etkinliği Aç</a>
+                <button class="btn btn-secondary" id="closeModalBtn">Geri</button>
+            </div>
+        </div>
+    </div>
+	
+	
+    <script>
+        // Gerekli HTML elementlerini seçiyoruz
+        const quizPoints = document.querySelectorAll('.quiz-point');
+        const modal = document.getElementById('infoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        // YENİ: Link butonunu seçiyoruz
+        const activityLinkBtn = document.getElementById('activityLinkBtn');
+
+        // Her bir kültür noktasına tıklama olayı ekliyoruz
+        quizPoints.forEach(point => {
+            point.addEventListener('click', function() {
+                // Tıklanan noktanın data niteliklerinden bilgileri alıyoruz
+                const title = this.getAttribute('data-title');
+                const description = this.getAttribute('data-description');
+                // YENİ: Yönlendirilecek linki alıyoruz
+                const link = this.getAttribute('data-link');
+
+                // Alınan bilgilerle modal penceresini dolduruyoruz
+                modalTitle.textContent = title;
+                modalText.textContent = description;
+                // YENİ: Link butonunun hedefini (href) ayarlıyoruz
+                activityLinkBtn.href = link;
+                
+                // Modalı görünür yapıyoruz
+                modal.style.display = 'flex';
+            });
+        });
+
+        // "Geri" butonuna tıklandığında modalı gizle
+        closeModalBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Modal dışına tıklandığında modalı gizle
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // ESC tuşu ile modalı kapat
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
+</html>

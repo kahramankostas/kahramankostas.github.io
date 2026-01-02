@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resimli Türkçe Sözlük</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #74b9ff, #0984e3);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .letter {
+            position: absolute;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fall 5s linear forwards;
+            user-select: none;
+            border-radius: 50%;
+            padding: 10px;
+            background-color: rgba(255,255,255,0.2);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .logos-container {
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+.logo-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: flex;           /* 👈 EKLENDİ */
+    justify-content: center; /* 👈 EKLENDİ */
+    align-items: center;     /* 👈 EKLENDİ */
+    border-radius: 50%;      /* Opsiyonel: wrapper'ı da yuvarlak yapar, hover efekti için güzel olur */
+}
+
+        .logo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 2px solid rgba(255,255,255,0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .logo-wrapper:hover .logo-overlay {
+            background: radial-gradient(circle, rgba(255,255,255,0.5), transparent);
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            z-index: 1;
+            pointer-events: none; /* Tıklama olayını wrapper'a bırakmak için */
+			   margin: auto;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+		footer a:hover {
+    transform: scale(1.1);
+}
+    </style>
+</head>
+<body>
+
+    <!-- Harf Yağmuru Animasyonu -->
+    <div id="animation-container"></div>
+
+    <!-- Menü (Animasyondan sonra gösterilecek) -->
+    <div class="menu" id="menu">
+        <!-- <h1 class="title">Hoş Geldin!</h1>-->
+		<img src="tam.svg" alt="Logo 1" class="logo-img"  style="height: 200px; width: auto; border-radius: 8px;">
+        <div class="logos-container">
+            <div class="logo-wrapper" onclick="selectLogo('logo1')">
+                <div class="logo-overlay"></div>
+                <img src="1.svg" alt="Logo 1" class="logo-img">
+            </div>
+			
+            <div class="logo-wrapper" onclick="selectLogo('logo2')">
+                <div class="logo-overlay"></div>
+                <img src="2.svg" alt="Logo 2" class="logo-img">
+            </div>
+        </div>
+		
+		
+		<footer id="main-footer" style="display: none; padding: 30px 20px; text-align: center; font-family: 'Comic Sans MS', cursive, sans-serif; color: #333; z-index: 5;  margin-top: 20px;">
+    <div style="margin-bottom: 20px;">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap;">
+            <a href="https://yyegm.meb.gov.tr/" target="_blank" style="transition: transform 0.3s ease;">
+                <img src="meb.svg" alt="MEB Logo" style="height: 60px; width: auto; border-radius: 8px;">
+            </a>
+            <a href="https://ulkemyanimda.eba.gov.tr/" target="_blank" style="transition: transform 0.3s ease;">
+                <img src="uy.svg" alt="Ülkem Yanımda Logo" style="height: 60px; width: auto; border-radius: 8px;">
+            </a>
+        </div>
+    </div>
+
+    <!-- Sosyal Medya İkonları (sade, beyaz arka plana uygun) -->
+    <div style="margin: 20px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <a href="https://www.instagram.com/ulkemyanimda" target="_blank" style="display: inline-block; transition: transform 0.3s ease;">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram" style="height: 36px; width: 36px; filter: none; /* Renkli kalsın */">
+        </a>
+        <a href="https://twitter.com/ulkemyanimda" target="_blank" style="display: inline-block; transition: transform 0.3s ease;">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="Twitter" style="height: 36px; width: 36px; filter: none;">
+        </a>
+        <a href="https://www.facebook.com/ulkemyanimda" target="_blank" style="display: inline-block; transition: transform 0.3s ease;">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook" style="height: 36px; width: 36px; filter: none;">
+        </a>
+        <a href="https://www.youtube.com/@ulkem_yanimda" target="_blank" style="display: inline-block; transition: transform 0.3s ease;">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube" style="height: 36px; width: 36px; filter: none;">
+        </a>
+    </div>
+
+    <div>
+        <p style="margin: 0; font-size: 16px; font-weight: bold; color: #555;">© 2025 ÜLKEM YANIMDA!</p>
+    </div>
+</footer>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    </div>
+	
+	
+
+
+    <script>
+    // Türkçe alfabeden harfler (çocuklara uygun)
+    const letters = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ".split("");
+    const container = document.getElementById("animation-container");
+    const menu = document.getElementById("menu");
+
+    // Harf yağmuru oluştur
+    function createLetter() {
+        const letter = document.createElement("div");
+        letter.classList.add("letter");
+        letter.innerText = letters[Math.floor(Math.random() * letters.length)];
+        letter.style.left = Math.random() * 100 + "vw";
+        letter.style.animationDuration = (3 + Math.random() * 2) + "s"; // 3-5 saniye
+        container.appendChild(letter);
+
+        // Harf animasyonu bittikten sonra temizle
+        setTimeout(() => {
+            letter.remove();
+        }, 5000);
+    }
+
+    // Animasyonu başlat
+    let letterCount = 0;
+    const maxLetters = 80; // Toplam harf sayısı
+
+    const interval = setInterval(() => {
+        if (letterCount < maxLetters) {
+            createLetter();
+            letterCount++;
+        } else {
+            clearInterval(interval);
+            // Animasyon bittikten sonra menüyü göster
+            setTimeout(() => {
+                container.style.display = "none";
+                menu.style.display = "flex";
+                menu.classList.add("fade-in");
+                document.getElementById("main-footer").style.display = "block";
+            }, 1000); // 1 saniye sonra geçiş
+        }
+    }, 100); // Her 100ms'de bir harf ekle
+
+    // Logo seçim fonksiyonu
+    function selectLogo(logo) {
+        if (logo === 'logo1') {
+            window.location.href = "612.html";
+        } else if (logo === 'logo2') {
+            window.location.href = "13.html";
+        }
+    }
+</script>
+
+
+
+
+</body>
+</html>

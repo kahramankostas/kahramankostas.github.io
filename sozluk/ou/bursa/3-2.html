@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pideli Köfte Tarifi - Sıralama Oyunu v2</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #8B4513; /* SaddleBrown */
+            --secondary-color: #D2B48C; /* Tan */
+            --background-color: #F5F5DC; /* Beige */
+            --text-color: #333;
+            --white-color: #FFFFFF;
+            --success-color: #28a745;
+            --error-color: #dc3545;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: var(--white-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 20px; }
+
+        .recipe-intro {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            text-align: left;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .recipe-intro img {
+            max-width: 150px;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .recipe-intro p { flex: 1; line-height: 1.6; font-size: 1em; }
+
+        h2 { color: var(--primary-color); margin-bottom: 20px; }
+
+        .game-area {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .step-list {
+            flex: 1;
+            min-width: 280px;
+            background-color: #f9f9f9;
+            border: 2px dashed var(--secondary-color);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            min-height: 400px;
+            transition: background-color 0.3s ease;
+        }
+
+        .step-list h3 { margin-top: 0; color: #555; }
+
+        #target-list.drag-over {
+            background-color: #e8f5e9;
+            border-style: solid;
+        }
+
+        .step-item {
+            background-color: var(--white-color);
+            color: var(--text-color);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: grab;
+            user-select: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, border 0.3s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: 2px solid transparent;
+        }
+
+        .step-item.correct {
+            border-color: var(--success-color);
+            background-color: #f0fff0;
+        }
+        .step-item.incorrect {
+            border-color: var(--error-color);
+            background-color: #fff0f0;
+        }
+
+        .step-item:active { cursor: grabbing; }
+
+        .step-item.dragging {
+            opacity: 0.5;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .control-button {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        #checkBtn { background-color: var(--success-color); }
+        #resetBtn { background-color: var(--error-color); }
+
+        .control-button:hover {
+            transform: translateY(-2px);
+        }
+
+        #feedback {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            min-height: 30px;
+            transition: color 0.3s ease;
+        }
+
+        .feedback-success { color: var(--success-color); }
+        .feedback-error { color: var(--error-color); }
+        .feedback-info { color: #555; }
+
+        .navigation {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        .nav-button {
+            background-color: #a9a9a9;
+            color: var(--white-color);
+            border: none; padding: 12px 25px; border-radius: 25px;
+            font-size: 1em; font-weight: bold; cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            animation: button-throb 2s infinite ease-in-out;
+        }
+        .nav-button:hover { background-color: #808080; transform: translateY(-2px); animation-play-state: paused; }
+        @keyframes button-throb { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+
+        @media (max-width: 768px) {
+            .recipe-intro, .game-area { flex-direction: column; }
+            .step-list { min-height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Pideli Köfte Tarifi ve Sıralama Oyunu</h1>
+        
+        <div class="recipe-intro">
+            <img src="pide.png" alt="Pideli Köfte">
+            <p>
+               Kıyma ekmek ile makinede çekilerek buzdolabında bir gün bekletilir. Ertesi gün kimyon ve karabiber ile yoğrularak köfte hamuru hazırlanır. Hamurdan ceviz büyüklüğünde parçalar koparılarak yassı köfteler yapılır. Izgarada veya kömür ateşinde köfteler kızartılır. Aynı ızgarada yada mangalda pideler de kızartılarak kuşbaşı doğranır, servis tabağına yerleştirilir. Pidelerin üzerine kızarmış köfteler, tabağın kenarına yoğurt konur, köftelerin üzerine salçalı sos ve kızgın tereyağı ilave edildikten sonra sıcak olarak servis yapılır.
+            </p>
+        </div>
+
+        <h2>Yapılış Adımlarını Doğru Sıraya Koyun</h2>
+
+        <div class="game-area">
+            <div id="source-list" class="step-list">
+                <h3>Karışık Adımlar (Buradan Sürükleyin)</h3>
+            </div>
+            <div id="target-list" class="step-list">
+                <h3>Doğru Sıralama (Buraya Bırakın)</h3>
+            </div>
+        </div>
+        
+        <div class="game-controls">
+            <button id="checkBtn" class="control-button">Kontrol Et</button>
+            <button id="resetBtn" class="control-button">Yeniden Başla</button>
+        </div>
+        
+        <div id="feedback"></div>
+
+<div class="navigation">
+    <a href="3-1.html" class="nav-button">Önceki</a>
+    <a href="3-3.html" class="nav-button">Sonraki</a>
+</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sourceList = document.getElementById('source-list');
+            const targetList = document.getElementById('target-list');
+            const feedback = document.getElementById('feedback');
+            const checkBtn = document.getElementById('checkBtn');
+            const resetBtn = document.getElementById('resetBtn');
+
+            const steps = [
+                { id: 'step-1', text: 'Kıyma ve ekmek çekilir, bir gün dinlendirilir.' },
+                { id: 'step-2', text: 'Baharat eklenip köfte hamuru yoğrulur.' },
+                { id: 'step-3', text: 'Hamurdan ceviz büyüklüğünde köfteler yapılır.' },
+                { id: 'step-4', text: 'Köfteler ızgarada kızartılır.' },
+                { id: 'step-5', text: 'Pideler kızartılıp doğranarak tabağa konur.' },
+                { id: 'step-6', text: 'Üzerine köfte, yoğurt, sos ve tereyağı eklenir.' }
+            ];
+
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function createStepElement(step) {
+                const item = document.createElement('div');
+                item.classList.add('step-item');
+                item.setAttribute('draggable', 'true');
+                item.id = step.id;
+                item.innerHTML = `<span>${step.text}</span>`;
+                return item;
+            }
+            
+            function addDragListenersToItem(item) {
+                item.addEventListener('dragstart', () => {
+                    item.classList.add('dragging');
+                });
+                item.addEventListener('dragend', () => {
+                    item.classList.remove('dragging');
+                });
+            }
+            
+            function resetGame() {
+                sourceList.innerHTML = '<h3>Karışık Adımlar (Buradan Sürükleyin)</h3>';
+                targetList.innerHTML = '<h3>Doğru Sıralama (Buraya Bırakın)</h3>';
+                feedback.textContent = '';
+                feedback.className = '';
+
+                const shuffledSteps = shuffle([...steps]);
+                shuffledSteps.forEach(step => {
+                    const item = createStepElement(step);
+                    sourceList.appendChild(item);
+                    addDragListenersToItem(item);
+                });
+            }
+
+            function setupDragAndDrop() {
+                [sourceList, targetList].forEach(list => {
+                    list.addEventListener('dragover', e => {
+                        e.preventDefault();
+                        if (list.id === 'target-list') {
+                            list.classList.add('drag-over');
+                        }
+                    });
+                    list.addEventListener('dragleave', () => {
+                        if (list.id === 'target-list') {
+                            list.classList.remove('drag-over');
+                        }
+                    });
+                    list.addEventListener('drop', e => {
+                        e.preventDefault();
+                        if (list.id === 'target-list') {
+                            list.classList.remove('drag-over');
+                        }
+                        const draggingItem = document.querySelector('.dragging');
+                        if (draggingItem) {
+                            list.appendChild(draggingItem);
+                        }
+                        clearFeedbackStyles();
+                    });
+                });
+            }
+            
+            function clearFeedbackStyles() {
+                 document.querySelectorAll('.step-item').forEach(item => {
+                    item.classList.remove('correct', 'incorrect');
+                });
+                feedback.textContent = '';
+                feedback.className = '';
+            }
+
+            function checkOrder() {
+                if (targetList.children.length - 1 < steps.length) {
+                    feedback.textContent = 'Lütfen tüm adımları "Doğru Sıralama" kutusuna taşıyın.';
+                    feedback.className = 'feedback-info';
+                    return;
+                }
+
+                const placedItems = Array.from(targetList.getElementsByClassName('step-item'));
+                let allCorrect = true;
+
+                placedItems.forEach((item, index) => {
+                    const correctId = `step-${index + 1}`;
+                    if (item.id === correctId) {
+                        item.classList.add('correct');
+                        item.classList.remove('incorrect');
+                    } else {
+                        item.classList.add('incorrect');
+                        item.classList.remove('correct');
+                        allCorrect = false;
+                    }
+                });
+
+                if (allCorrect) {
+                    feedback.textContent = 'Tebrikler! Tüm adımlar doğru sırada!';
+                    feedback.className = 'feedback-success';
+                } else {
+                    feedback.textContent = 'Hatalar var. Lütfen kırmızı ile işaretli adımları kontrol edin.';
+                    feedback.className = 'feedback-error';
+                }
+            }
+
+            checkBtn.addEventListener('click', checkOrder);
+            resetBtn.addEventListener('click', resetGame);
+            
+            resetGame();
+            setupDragAndDrop();
+        });
+    </script>
+
+</body>
+</html>

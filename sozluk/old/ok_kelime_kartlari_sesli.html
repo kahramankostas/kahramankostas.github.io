@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelime Kartları</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; color: #333; margin: 0; padding: 20px; }
+        .search-container { text-align: center; margin-bottom: 30px; padding: 10px; }
+        #searchInput { width: 50%; max-width: 500px; padding: 15px 25px; font-size: 1.1em; border-radius: 30px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0,0,0,0.05); transition: all 0.3s ease-in-out; }
+        #searchInput:focus { outline: none; border-color: #007bff; box-shadow: 0 4px 12px rgba(0,123,255,0.2); }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
+        .card { background-color: #ffffff; border-radius: 12px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); overflow: hidden; width: 410px; transition: transform 0.2s ease-in-out; display: block; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { display: block; width: 410px; height: 349px; object-fit: cover; }
+        .card-content { padding: 20px; }
+        .word-container { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .word { font-size: 2em; color: #005A9C; margin: 0; font-weight: 700; flex-grow: 1; }
+        .audio-controls { display: flex; gap: 8px; }
+        .btn { border: none; border-radius: 6px; padding: 8px 12px; cursor: pointer; font-size: 0.9em; transition: all 0.3s ease; display: flex; align-items: center; gap: 5px; }
+        .btn:hover { transform: translateY(-1px); }
+        .btn-speak { background-color: #28a745; color: white; }
+        .btn-speak:hover { background-color: #218838; }
+        .btn-listen { background-color: #007bff; color: white; }
+        .btn-listen:hover { background-color: #0056b3; }
+        .btn-listening { background-color: #dc3545; }
+        .definition { font-size: 1.1em; color: #1d1d1d; margin: 0 0 15px 0; }
+        .example { font-size: 1em; color: #fc0707; font-style: italic; margin: 0; padding-left: 15px; border-left: 3px solid #AED581; }
+        .pronunciation-result { margin-top: 10px; padding: 8px 12px; border-radius: 6px; font-size: 0.9em; font-weight: bold; }
+        .result-correct { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .result-incorrect { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .result-error { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Kartlar içinde kelime ara...">
+    </div>
+	
+    <div class="container">
+        <div class="card">
+            <img src="imgs/257_2.png" alt="aslan" width="410" height="349">
+            <div class="card-content">
+                <div class="word-container">
+                    <h2 class="word">aslan</h2>
+                    <div class="audio-controls">
+                        <button class="btn btn-speak" onclick="speakWord('aslan')">🔊 Dinle</button>
+                        <button class="btn btn-listen" onclick="listenPronunciation('aslan', this)">🎤 Telaffuz</button>
+                    </div>
+                </div>
+                <p class="definition">Yabani bir hayvan.</p>
+                <p class="example">"Aslanlar etle beslenir."</p>
+                <div class="pronunciation-result" id="result-aslan" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Arama fonksiyonu
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const cards = document.querySelectorAll('.card');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLocaleLowerCase('tr-TR');
+                cards.forEach(function(card) {
+                    const wordElement = card.querySelector('.word');
+                    if (wordElement) {
+                        const wordText = wordElement.textContent.toLocaleLowerCase('tr-TR');
+                        if (wordText.includes(searchTerm)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Kelimeyi seslendir
+        function speakWord(word) {
+            if ('speechSynthesis' in window) {
+                // Önceki konuşmayı durdur
+                speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'tr-TR';
+                utterance.rate = 0.8; // Biraz yavaş konuş
+                utterance.pitch = 1;
+                utterance.volume = 1;
+                
+                speechSynthesis.speak(utterance);
+            } else {
+                alert('Tarayıcınız sesli okuma özelliğini desteklemiyor.');
+            }
+        }
+
+        // Telaffuz kontrolü
+        function listenPronunciation(targetWord, button) {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                showResult(targetWord, 'Tarayıcınız ses tanıma özelliğini desteklemiyor.', 'error');
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            
+            recognition.lang = 'tr-TR';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            // Buton durumunu değiştir
+            const originalText = button.innerHTML;
+            button.innerHTML = '⏹️ Dinleniyor...';
+            button.classList.remove('btn-listen');
+            button.classList.add('btn-listening');
+            button.disabled = true;
+
+            recognition.onresult = function(event) {
+                const spokenWord = event.results[0][0].transcript.toLowerCase().trim();
+                const targetLower = targetWord.toLowerCase().trim();
+                
+                console.log('Söylenen:', spokenWord);
+                console.log('Hedef:', targetLower);
+                
+                if (spokenWord === targetLower) {
+                    showResult(targetWord, 'Mükemmel! Telaffuzunuz doğru. ✅', 'correct');
+                } else {
+                    showResult(targetWord, `Tekrar deneyin. Söylediğiniz: "${spokenWord}" | Beklenen: "${targetWord}" ❌`, 'incorrect');
+                }
+                
+                resetButton(button, originalText);
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Ses tanıma hatası:', event.error);
+                let errorMessage = 'Ses tanıma hatası: ';
+                switch(event.error) {
+                    case 'no-speech':
+                        errorMessage += 'Ses algılanamadı. Lütfen tekrar deneyin.';
+                        break;
+                    case 'audio-capture':
+                        errorMessage += 'Mikrofon erişimi sorunu.';
+                        break;
+                    case 'not-allowed':
+                        errorMessage += 'Mikrofon izni verilmedi.';
+                        break;
+                    default:
+                        errorMessage += event.error;
+                }
+                showResult(targetWord, errorMessage, 'error');
+                resetButton(button, originalText);
+            };
+
+            recognition.onend = function() {
+                resetButton(button, originalText);
+            };
+
+            // Mikrofon izni iste ve dinlemeye başla
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(function(stream) {
+                    // İzin alındı, stream'i kapat
+                    stream.getTracks().forEach(track => track.stop());
+                    recognition.start();
+                })
+                .catch(function(err) {
+                    showResult(targetWord, 'Mikrofon izni gerekli. Lütfen izin verin.', 'error');
+                    resetButton(button, originalText);
+                });
+        }
+
+        function resetButton(button, originalText) {
+            button.innerHTML = originalText;
+            button.classList.remove('btn-listening');
+            button.classList.add('btn-listen');
+            button.disabled = false;
+        }
+
+        function showResult(word, message, type) {
+            const resultDiv = document.getElementById('result-' + word);
+            resultDiv.textContent = message;
+            resultDiv.className = 'pronunciation-result result-' + type;
+            resultDiv.style.display = 'block';
+            
+            // 5 saniye sonra mesajı gizle
+            setTimeout(() => {
+                resultDiv.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
