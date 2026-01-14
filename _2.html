@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Türkçe ve Türk Kültürü Dersi Öğretim Programı</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e30a17 0%, #c20912 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-feedback {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-feedback:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(245, 87, 108, 0.4);
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(79, 172, 254, 0.4);
+        }
+
+        .pdf-container {
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .pdf-embed {
+            width: 100%;
+            height: 800px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .info-box {
+            margin: 20px;
+            padding: 15px;
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            border-radius: 4px;
+        }
+
+        .info-box p {
+            color: #1976D2;
+            font-size: 14px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .pdf-embed {
+                height: 600px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Türkçe ve Türk Kültürü Dersi Öğretim Programı</h1>
+            <p>© MEB YÜKSEKÖĞRETİM VE YURT DIŞI EĞİTİM GENEL MÜDÜRLÜĞÜ</p>
+        </div>
+
+        <div class="button-container">
+            <a href="https://ulkemyanimda.eba.gov.tr/moodle/mod/feedback/complete.php?id=2054&courseid=1" 
+               target="_blank" 
+               class="btn btn-feedback">
+                📝 Görüş, Öneri ve Değerlendirme
+            </a>
+            <a href="ttkdop.pdf" 
+               download="Turkce_Turk_Kulturu_Ogretim_Programi.pdf" 
+               class="btn btn-download"
+               id="downloadBtn">
+                ⬇️ Programı İndir
+            </a>
+        </div>
+
+        <div class="info-box">
+            <p>📄 Aşağıda öğretim programını önizleyebilirsiniz. PDF dosyasını indirmek için yukarıdaki "Programı İndir" butonunu kullanabilirsiniz.</p>
+        </div>
+
+        <div class="pdf-container">
+            <div id="loadingMessage" class="loading">PDF yükleniyor</div>
+            <object 
+                id="pdfObject"
+                data="ttkdop.pdf#toolbar=1&navpanes=1&scrollbar=1&view=FitH" 
+                type="application/pdf"
+                class="pdf-embed"
+                style="display: none;">
+                <embed 
+                    src="ttkdop.pdf#toolbar=1&navpanes=1&scrollbar=1&view=FitH" 
+                    type="application/pdf"
+                    class="pdf-embed" />
+            </object>
+        </div>
+    </div>
+
+    <script>
+        // PDF yükleme kontrolü
+        const pdfObject = document.getElementById('pdfObject');
+        const loadingMessage = document.getElementById('loadingMessage');
+        
+        // PDF yüklendiğinde
+        pdfObject.addEventListener('load', function() {
+            setTimeout(function() {
+                loadingMessage.style.display = 'none';
+                pdfObject.style.display = 'block';
+            }, 500);
+        });
+
+        // 2 saniye sonra hala yüklenmediyse göster (bazı tarayıcılar load event'i tetiklemiyor)
+        setTimeout(function() {
+            loadingMessage.style.display = 'none';
+            pdfObject.style.display = 'block';
+        }, 2000);
+
+        // İndirme butonu için alternatif
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            // Eğer dosya bulunamazsa kullanıcıya bilgi ver
+            setTimeout(function() {
+                console.log('PDF indirme işlemi başlatıldı');
+            }, 100);
+        });
+    </script>
+</body>
+</html>

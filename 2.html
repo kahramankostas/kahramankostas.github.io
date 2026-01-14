@@ -3,218 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Türkçe ve Türk Kültürü Dersi Öğretim Programı</title>
+    <title>İnteraktif Masal Testi</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             padding: 20px;
+            margin: 0;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Video Alanı ve Overlay Kapsayıcısı */
+        .video-container {
+            position: relative;
+            width: 800px;
+            max-width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-radius: 12px;
             overflow: hidden;
         }
 
-        .header {
-            background: linear-gradient(135deg, #e30a17 0%, #c20912 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .header p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 20px;
-            background: #f8f9fa;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-feedback {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-        }
-
-        .btn-feedback:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(245, 87, 108, 0.4);
-        }
-
-        .btn-download {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-        }
-
-        .btn-download:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(79, 172, 254, 0.4);
-        }
-
-        .pdf-container {
-            padding: 20px;
-            background: #f8f9fa;
-        }
-
-        .pdf-embed {
+        #player {
             width: 100%;
-            height: 800px;
-            border: 2px solid #dee2e6;
-            border-radius: 8px;
-            background: white;
+            height: 100%;
         }
 
-        .info-box {
-            margin: 20px;
-            padding: 15px;
-            background: #e7f3ff;
-            border-left: 4px solid #2196F3;
-            border-radius: 4px;
+        /* Soru Ekranı (Overlay) */
+        .quiz-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(30, 30, 30, 0.95);
+            display: none; /* Başlangıçta gizli */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            z-index: 10;
         }
 
-        .info-box p {
-            color: #1976D2;
-            font-size: 14px;
-        }
-
-        .loading {
+        .question-text {
+            font-size: 1.5rem;
             text-align: center;
-            padding: 40px;
-            color: #666;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #fff;
         }
 
-        .loading::after {
-            content: '...';
-            animation: dots 1.5s steps(4, end) infinite;
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 90%;
         }
 
-        @keyframes dots {
-            0%, 20% { content: '.'; }
-            40% { content: '..'; }
-            60%, 100% { content: '...'; }
+        .option-btn {
+            background-color: #3a3a3a;
+            border: 2px solid #555;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            text-align: left;
         }
 
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 22px;
+        .option-btn:hover {
+            background-color: #505050;
+            border-color: #777;
+        }
+
+        /* Doğru/Yanlış Renkleri */
+        .option-btn.correct {
+            background-color: #2ecc71 !important;
+            border-color: #27ae60 !important;
+        }
+
+        .option-btn.wrong {
+            background-color: #e74c3c !important;
+            border-color: #c0392b !important;
+        }
+
+        /* Puan Tablosu */
+        .score-board {
+            margin-top: 20px;
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .feedback-msg {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            min-height: 30px;
+        }
+        
+        .continue-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr;
             }
-
-            .pdf-embed {
-                height: 600px;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
+            .question-text {
+                font-size: 1.1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Türkçe ve Türk Kültürü Dersi Öğretim Programı</h1>
-            <p>© MEB YÜKSEKÖĞRETİM VE YURT DIŞI EĞİTİM GENEL MÜDÜRLÜĞÜ</p>
-        </div>
 
-        <div class="button-container">
-            <a href="https://ulkemyanimda.eba.gov.tr/moodle/mod/feedback/complete.php?id=2054&courseid=1" 
-               target="_blank" 
-               class="btn btn-feedback">
-                📝 Görüş, Öneri ve Değerlendirme
-            </a>
-            <a href="ttkdop.pdf" 
-               download="Turkce_Turk_Kulturu_Ogretim_Programi.pdf" 
-               class="btn btn-download"
-               id="downloadBtn">
-                ⬇️ Programı İndir
-            </a>
-        </div>
+    <h1>🎬 Akıllı Video Ders</h1>
 
-        <div class="info-box">
-            <p>📄 Aşağıda öğretim programını önizleyebilirsiniz. PDF dosyasını indirmek için yukarıdaki "Programı İndir" butonunu kullanabilirsiniz.</p>
-        </div>
+    <div class="video-container">
+        <div id="player"></div>
 
-        <div class="pdf-container">
-            <div id="loadingMessage" class="loading">PDF yükleniyor</div>
-            <object 
-                id="pdfObject"
-                data="ttkdop.pdf#toolbar=1&navpanes=1&scrollbar=1&view=FitH" 
-                type="application/pdf"
-                class="pdf-embed"
-                style="display: none;">
-                <embed 
-                    src="ttkdop.pdf#toolbar=1&navpanes=1&scrollbar=1&view=FitH" 
-                    type="application/pdf"
-                    class="pdf-embed" />
-            </object>
+        <div id="quizOverlay" class="quiz-overlay">
+            <div id="questionText" class="question-text">Soru buraya gelecek...</div>
+            <div id="optionsGrid" class="options-grid">
+                </div>
+            <div id="feedbackMsg" class="feedback-msg"></div>
+            <button id="continueBtn" class="continue-btn" onclick="resumeVideo()">Devam Et ▶</button>
         </div>
     </div>
 
+    <div class="score-board">
+        Puan: <span id="score">0</span> / 80
+    </div>
+
     <script>
-        // PDF yükleme kontrolü
-        const pdfObject = document.getElementById('pdfObject');
-        const loadingMessage = document.getElementById('loadingMessage');
-        
-        // PDF yüklendiğinde
-        pdfObject.addEventListener('load', function() {
-            setTimeout(function() {
-                loadingMessage.style.display = 'none';
-                pdfObject.style.display = 'block';
-            }, 500);
-        });
+        // --- 1. SORU VERİTABANI ---
+        // Zamanlamalar, sorunun sorulacağı saniye (bitiş zamanı) olarak ayarlanmıştır.
+        const questions = [
+            {
+                time: 20, // 00:00:20
+                question: "Kurbağa ile fare nasıl bir ilişkiye sahiptir?",
+                options: ["A) Düşmanlardır", "B) Komşudurlar", "C) Arkadaştırlar", "D) Akrabadırlar"],
+                correct: 2 // C şıkkı (0, 1, 2)
+            },
+            {
+                time: 42, // 00:00:42
+                question: "Fare, kurbağanın sesini neden duyamamaktadır?",
+                options: ["A) Kurbağa çok kısık sesle konuştuğu için", "B) Irmağın su sesi bastırdığı için", "C) Fare kulaklarını kaybettiği için", "D) Kurbağa sudan hiç çıkmadığı için"],
+                correct: 1 // B şıkkı
+            },
+            {
+                time: 65, // 00:01:05
+                question: "Kurbağa, birbirlerini daha kolay bulmaları için ne önermiştir?",
+                options: ["A) Her gün aynı saatte buluşmayı", "B) Birbirlerine bağırmayı", "C) Ayaklarına ip bağlamayı", "D) Irmağın ortasında beklemeyi"],
+                correct: 2 // C şıkkı
+            },
+            {
+                time: 85, // 00:01:25
+                question: "Fare, ipi nereden bulmuştur?",
+                options: ["A) Ormandan", "B) Irmağın kenarından", "C) Başka bir hayvandan", "D) Girdiği bir evden"],
+                correct: 3 // D şıkkı
+            },
+            {
+                time: 102, // 00:01:42
+                question: "Fare, kurbağaya giderken hangi hayvan tarafından yakalanmıştır?",
+                options: ["A) Kartal", "B) Karga", "C) Şahin", "D) Baykuş"],
+                correct: 1 // B şıkkı
+            },
+            {
+                time: 105, // 00:01:45
+                question: "Fare karga tarafından yakalanınca kurbağaya ne olmuştur?",
+                options: ["A) Irmağa düşmüştür", "B) Kaçmayı başarmıştır", "C) Gökyüzüne doğru yükselmiştir", "D) İpi çözmüştür"],
+                correct: 2 // C şıkkı
+            },
+            {
+                time: 120, // 00:02:00
+                question: "Kurbağa, başına gelenlerin sebebini neye bağlamıştır?",
+                options: ["A) Yanlış ip seçmesine", "B) Karganın açgözlülüğüne", "C) Denginde olmayan fareyle arkadaş olmasına", "D) Irmağa çok yaklaşmasına"],
+                correct: 2 // C şıkkı
+            },
+            {
+                time: 130, // 00:02:10
+                question: "Masalın sonunda insanlar hangi atasözüyle ders vermiştir?",
+                options: ["A) Komşu komşunun külüne muhtaçtır", "B) Sakla samanı gelir zamanı", "C) Eş eşini bulmayınca halimiz yaman olur", "D) Azıcık aşım kaygısız başım"],
+                correct: 2 // C şıkkı
+            }
+        ];
 
-        // 2 saniye sonra hala yüklenmediyse göster (bazı tarayıcılar load event'i tetiklemiyor)
-        setTimeout(function() {
-            loadingMessage.style.display = 'none';
-            pdfObject.style.display = 'block';
-        }, 2000);
+        // --- 2. DEĞİŞKENLER ---
+        var player;
+        var score = 0;
+        var currentQuestionIndex = 0;
+        var isQuizActive = false;
+        var timerInterval;
 
-        // İndirme butonu için alternatif
-        document.getElementById('downloadBtn').addEventListener('click', function(e) {
-            // Eğer dosya bulunamazsa kullanıcıya bilgi ver
-            setTimeout(function() {
-                console.log('PDF indirme işlemi başlatıldı');
-            }, 100);
-        });
+        // --- 3. YOUTUBE API KURULUMU ---
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '100%',
+                width: '100%',
+                videoId: 'SWHZPEg-Pns', // Video ID
+                playerVars: {
+                    'controls': 1,
+                    'rel': 0,
+                    'modestbranding': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Video hazır, zamanlayıcıyı başlat
+            startTracking();
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                startTracking();
+            } else {
+                stopTracking();
+            }
+        }
+
+        // --- 4. ZAMAN TAKİBİ VE SORU TETİKLEME ---
+        function startTracking() {
+            stopTracking(); // Öncekini temizle
+            timerInterval = setInterval(checkTime, 500); // Yarım saniyede bir kontrol et
+        }
+
+        function stopTracking() {
+            clearInterval(timerInterval);
+        }
+
+        function checkTime() {
+            if (!player || !player.getCurrentTime) return;
+            
+            let currentTime = player.getCurrentTime();
+
+            // Henüz sorulmamış ve zamanı gelmiş bir soru var mı?
+            // currentQuestionIndex < questions.length kontrolü ile tüm sorular bitti mi bakarız
+            if (currentQuestionIndex < questions.length && !isQuizActive) {
+                let q = questions[currentQuestionIndex];
+                
+                // Zamanı geldiyse (veya geçtiyse ama çok da geçmediyse, 2 sn tolerans)
+                if (currentTime >= q.time && currentTime < q.time + 2) {
+                    triggerQuestion(q);
+                }
+            }
+        }
+
+        // --- 5. SORU ARAYÜZÜ İŞLEMLERİ ---
+        function triggerQuestion(q) {
+            isQuizActive = true;
+            player.pauseVideo();
+            
+            // Arayüzü hazırla
+            document.getElementById('quizOverlay').style.display = 'flex';
+            document.getElementById('questionText').innerText = "❓ " + q.question;
+            document.getElementById('feedbackMsg').innerText = "";
+            document.getElementById('continueBtn').style.display = 'none';
+            
+            const optionsGrid = document.getElementById('optionsGrid');
+            optionsGrid.innerHTML = ''; // Eski şıkları temizle
+
+            q.options.forEach((opt, index) => {
+                let btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(index, q.correct, btn);
+                optionsGrid.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex, correctIndex, btnElement) {
+            // Şıklara tıklamayı devre dışı bırak
+            const allBtns = document.querySelectorAll('.option-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            const feedback = document.getElementById('feedbackMsg');
+
+            if (selectedIndex === correctIndex) {
+                // DOĞRU
+                btnElement.classList.add('correct');
+                score += 10;
+                document.getElementById('score').innerText = score;
+                feedback.innerText = "✅ Harika! Doğru cevap.";
+                feedback.style.color = "#2ecc71";
+            } else {
+                // YANLIŞ
+                btnElement.classList.add('wrong');
+                // Doğru olanı da yeşil yapalım ki öğrenci görsün
+                allBtns[correctIndex].classList.add('correct');
+                feedback.innerText = "❌ Maalesef yanlış. Doğru cevap yeşil ile işaretlendi.";
+                feedback.style.color = "#e74c3c";
+            }
+
+            // Devam et butonunu göster
+            document.getElementById('continueBtn').style.display = 'block';
+        }
+
+        function resumeVideo() {
+            document.getElementById('quizOverlay').style.display = 'none';
+            isQuizActive = false;
+            currentQuestionIndex++; // Bir sonraki soruya geçmek için indeksi artır
+            player.playVideo();
+        }
+
     </script>
 </body>
 </html>
