@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico?">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kahraman Kostas - Promptlar</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #1e293b;
+            --accent-color: #3b82f6;
+            --accent-light: #60a5fa;
+            --success-color: #10b981;
+            --light-bg: #f8fafc;
+            --dark-bg: #f1f5f9;
+            --border-color: #e2e8f0;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        body {
+            text-align: left;
+            padding-top: 72px;
+            font-family: 'Source Sans Pro', sans-serif;
+            color: var(--text-color);
+            line-height: 1.8;
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+            min-height: 100vh;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 2rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .navbar {
+            box-shadow: var(--shadow-md);
+            font-family: 'Montserrat', sans-serif;
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.8px;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.3rem;
+            color: var(--text-muted) !important;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        /* Card Styling */
+        .prompt-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            height: 100%;
+            border-top: 5px solid var(--accent-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prompt-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-top-color: var(--success-color);
+        }
+
+        .prompt-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .prompt-card:hover::before {
+            opacity: 1;
+        }
+
+        .prompt-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .prompt-card:hover .prompt-icon {
+            transform: scale(1.1) rotate(5deg);
+            color: var(--success-color);
+        }
+
+        .prompt-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .prompt-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            border: none;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+        }
+
+        .prompt-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px -2px rgba(59, 130, 246, 0.4);
+            color: white;
+        }
+
+        .footer {
+            padding: 3rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            margin-top: 5rem;
+            color: white;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white">
+        <div class="container" style="max-width: 900px;">
+            <a class="navbar-brand" href="index.html">Kahraman Kostas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Prompts</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 1000px;">
+        <h1>Eğitsel Oyun Promptları</h1>
+
+        <div class="row g-4">
+
+            <!-- Card 1 -->
+            <div class="col-md-6 col-lg-6">
+                <div class="prompt-card">
+                    <div class="prompt-icon">
+                        <i class="fas fa-headphones-alt"></i>
+                    </div>
+                    <div class="prompt-title">Dinle → Resmi Seç Oyunu</div>
+                    <a href="kaynaklar/promtlar/Dinle → Resmi Seç Oyunu.pdf" class="prompt-btn" target="_blank">
+                        <i class="fas fa-file-pdf me-2"></i> İncele / İndir
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-6 col-lg-6">
+                <div class="prompt-card">
+                    <div class="prompt-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="prompt-title">Doğru - Yanlış Oyunu</div>
+                    <a href="kaynaklar/promtlar/Doğru-yanlis.pdf" class="prompt-btn" target="_blank">
+                        <i class="fas fa-file-pdf me-2"></i> İncele / İndir
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-6 col-lg-6">
+                <div class="prompt-card">
+                    <div class="prompt-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <div class="prompt-title">Eşleştirme Oyunu</div>
+                    <a href="kaynaklar/promtlar/Eşleştirme Oyunu.pdf" class="prompt-btn" target="_blank">
+                        <i class="fas fa-file-pdf me-2"></i> İncele / İndir
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-md-6 col-lg-6">
+                <div class="prompt-card">
+                    <div class="prompt-icon">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <div class="prompt-title">Sürükle Bırak Oyunu</div>
+                    <a href="kaynaklar/promtlar/SÜRÜKLE BIRAK OYUNU İÇİN PROMPT.pdf" class="prompt-btn" target="_blank">
+                        <i class="fas fa-file-pdf me-2"></i> İncele / İndir
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Kahraman Kostas. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
