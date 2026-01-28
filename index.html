@@ -1,943 +1,963 @@
-<!DOCTYPE HTML>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="tr">
 <head>
-  <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico?">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description"
-    content="Kahraman Kostas - Computer Science Researcher specializing in IoT security, device identification, and machine learning. PhD from Heriot-Watt University.">
-  <meta name="keywords"
-    content="Kahraman Kostas, IoT Security, Machine Learning, Computer Networks, Indoor Positioning, Computer Science, Heriot-Watt University">
-  <meta name="author" content="Kahraman Kostas">
-  <meta name="robots" content="index, follow">
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Kahraman Kostas - Computer Science Researcher">
-  <meta property="og:description"
-    content="Computer Science Researcher specializing in IoT security, device identification, and machine learning. PhD from Heriot-Watt University.">
-  <meta property="og:url" content="/">
-  <meta property="og:site_name" content="Kahraman Kostas">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@kkostas">
-  <meta name="twitter:title" content="Kahraman Kostas - Computer Science Researcher">
-  <meta name="twitter:description"
-    content="Computer Science Researcher specializing in IoT security, device identification, and machine learning">
-
-  <link rel="canonical" href="/">
-  <meta name="google-site-verification" content="QzOYYorbgwP6cQluJH_ErRjmofaTJXFDBxRtxJ0TToM">
-
-  <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "name": "Kahraman Kostas",
-  "jobTitle": "Computer Science Researcher",
-  "alumniOf": "Heriot-Watt University",
-  "url": "/",
-  "sameAs": [
-    "https://github.com/kahramankostas",
-    "https://www.linkedin.com/in/kkostas/",
-    "https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl",
-    "https://twitter.com/kkostas"
-  ]
-}
-</script>
-
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <title>Kahraman Kostas - Computer Science Researcher</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-    crossorigin="anonymous"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@300;400&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <style>
-    :root {
-      --primary-color: #0f172a;
-      --secondary-color: #1e293b;
-      --accent-color: #3b82f6;
-      --accent-light: #60a5fa;
-      --success-color: #10b981;
-      --light-bg: #f8fafc;
-      --dark-bg: #f1f5f9;
-      --border-color: #e2e8f0;
-      --text-color: #1e293b;
-      --text-muted: #64748b;
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-
-    * {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      text-align: left;
-      padding-top: 72px;
-      font-family: 'Source Sans Pro', sans-serif;
-      color: var(--text-color);
-      line-height: 1.8;
-      background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
-      min-height: 100vh;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      color: var(--primary-color);
-      margin-top: 2rem;
-      margin-bottom: 1.2rem;
-      letter-spacing: -0.5px;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    h2 {
-      font-size: 2rem;
-      position: relative;
-      padding-bottom: 1rem;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
-      border-radius: 2px;
-    }
-
-    a {
-      color: var(--accent-color);
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-    }
-
-    a:hover {
-      color: var(--accent-light);
-    }
-
-    .navbar {
-      box-shadow: var(--shadow-md);
-      font-family: 'Montserrat', sans-serif;
-      background: rgba(255, 255, 255, 0.95) !important;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .navbar-brand {
-      font-weight: 700;
-      color: var(--primary-color) !important;
-      font-size: 1.3rem;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .nav-link {
-      font-weight: 600;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      letter-spacing: 0.8px;
-      padding: 0.5rem 1rem !important;
-      margin: 0 0.3rem;
-      color: var(--text-muted) !important;
-      position: relative;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 1rem;
-      width: 0;
-      height: 2px;
-      background: var(--accent-color);
-      transition: width 0.3s ease;
-    }
-
-    .nav-link:hover {
-      color: var(--accent-color) !important;
-    }
-
-    .nav-link:hover::after {
-      width: calc(100% - 2rem);
-    }
-
-    .nav-link.active {
-      color: var(--accent-color) !important;
-    }
-
-    .nav-link.active::after {
-      width: calc(100% - 2rem);
-    }
-
-    /* Profile Section */
-    /* 1. Kapsayıcıyı blok yapıyoruz (flex'i siliyoruz) */
-    #circle-shape-example {
-      position: relative;
-      margin-top: 3rem;
-      margin-bottom: 3rem;
-      display: block;
-      /* BURASI DEĞİŞTİ: flex yerine block */
-      /* align-items ve gap özelliklerini siliyoruz çünkü float ile çalışmazlar */
-    }
-
-    /* 2. Resmi sola yaslıyoruz ki yazı etrafını sarsın */
-    .profile-image-container {
-      position: relative;
-      width: 300px;
-      height: 300px;
-      float: left;
-      /* YENİ EKLENDİ: Resmi sola yaslar */
-      margin-right: 3rem;
-      /* YENİ EKLENDİ: Resim ile yazı arasına boşluk */
-      margin-bottom: 1rem;
-      /* Alt tarafa biraz boşluk */
-      /* flex-shrink'e artık gerek yok */
-      cursor: pointer;
-    }
-
-    /* Küçük bir düzeltme: Telefondan bakıldığında (Responsive) bozulmaması için */
-    @media (max-width: 768px) {
-      .profile-image-container {
-        float: none;
-        /* Mobilde float'ı iptal et */
-        margin: 0 auto 2rem auto;
-        /* Ortala */
-      }
-    }
-
-    .curve {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      shape-outside: circle();
-      border: 4px solid var(--accent-color);
-      box-shadow: var(--shadow-xl), 0 0 40px rgba(59, 130, 246, 0.2);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    /* Initial image (default) */
-    .curve.image-1 {
-      opacity: 1;
-      z-index: 1;
-    }
-
-    /* Second image (appears on hover) */
-    .curve.image-2 {
-      opacity: 0;
-      z-index: 2;
-    }
-
-    /* Hover state */
-    .profile-image-container:hover .curve.image-1 {
-      opacity: 0;
-    }
-
-    .profile-image-container:hover .curve.image-2 {
-      opacity: 1;
-      transform: scale(1.05) rotate(2deg);
-      box-shadow: var(--shadow-xl), 0 0 50px rgba(59, 130, 246, 0.4);
-    }
-
-    /* Postdoc Notice */
-    .postdoc-notice {
-      border: 2px solid var(--accent-color);
-      border-radius: 12px;
-      padding: 1.5rem 2rem;
-      margin: 2rem 0;
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
-      text-align: center;
-      font-weight: 600;
-      color: var(--primary-color);
-      clear: both;
-      box-shadow: var(--shadow-md);
-    }
-
-    /* News Section */
-    .news-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 1.5rem;
-      padding: 1.5rem;
-      border-left: 5px solid var(--accent-color);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-top-right-radius: 12px;
-      border-bottom-right-radius: 12px;
-    }
-
-    .news-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-      border-left-color: var(--success-color);
-    }
-
-    .news-date {
-      font-weight: 700;
-      font-family: 'Montserrat', sans-serif;
-      color: var(--accent-color);
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-    }
-
-    .news-content {
-      margin-top: 0.8rem;
-      color: var(--text-color);
-    }
-
-    .news-content a {
-      display: inline-block;
-      margin-right: 1.2rem;
-      font-size: 1.1rem;
-      transition: transform 0.3s ease;
-    }
-
-    .news-content a:hover {
-      transform: scale(1.2) rotate(5deg);
-    }
-
-    /* Publications Section */
-    .publication {
-      background: white;
-      margin-bottom: 1.8rem;
-      padding: 1.5rem;
-      border-radius: 12px;
-      border-left: 5px solid var(--secondary-color);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-    }
-
-    .publication:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateX(4px);
-    }
-
-    .publication strong {
-      color: var(--primary-color);
-    }
-
-    .publication-title {
-      font-weight: 700;
-      color: var(--primary-color);
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-      line-height: 1.4;
-    }
-
-    .publication-authors {
-      font-style: normal;
-      color: var(--text-color);
-      margin-bottom: 0.4rem;
-      font-size: 0.95rem;
-    }
-
-    .publication-venue {
-      font-style: italic;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .publication-links {
-      margin-top: 0.8rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .publication-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      padding: 0.5rem 0.8rem;
-      border-radius: 8px;
-      background: linear-gradient(135deg, var(--light-bg), var(--dark-bg));
-      color: var(--accent-color);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-    }
-
-    .publication-links a:hover {
-      background: var(--accent-color);
-      color: white;
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-
-    /* Teaching Section */
-    .teaching-item {
-      background: white;
-      margin-bottom: 1.5rem;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      border-left: 5px solid var(--success-color);
-      transition: all 0.3s ease;
-    }
-
-    .teaching-item:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateX(4px);
-    }
-
-    .teaching-position {
-      font-weight: 700;
-      color: var(--primary-color);
-      font-size: 1.05rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .teaching-university {
-      font-style: italic;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 0.3rem;
-    }
-
-    .teaching-role {
-      font-size: 0.9rem;
-      color: var(--text-color);
-    }
-
-    /* Footer */
-    .footer {
-      padding: 3rem 0;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-      margin-top: 4rem;
-      color: white;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .footer a {
-      color: white;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .footer a:hover {
-      color: var(--accent-light);
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-5px) rotate(5deg);
-      border-color: var(--accent-light);
-    }
-
-    .footer p {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.95rem;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      body {
-        padding-top: 60px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-      }
-
-      #circle-shape-example {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-      }
-
-      .profile-image-container {
-        width: 250px;
-        height: 250px;
-        margin: 0 auto;
-      }
-
-      .overlay-text h3 {
-        font-size: 1.1rem;
-      }
-
-      .overlay-text p {
-        font-size: 0.85rem;
-      }
-
-      .nav-link {
-        font-size: 0.75rem;
-      }
-
-      .news-card,
-      .publication,
-      .teaching-item {
-        padding: 1.2rem;
-      }
-    }
-  </style>
-
-</head>
-
-<body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white">
-    <div class="container" style="max-width: 900px;">
-      <a class="navbar-brand" href="#">Kahraman Kostas</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#news">News</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#publications">Publications</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#teaching">Teaching</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="cvDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              CV
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="cvDropdown">
-              <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas.pdf"
-                  target="_blank">English CV</a></li>
-              <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas_tr.pdf"
-                  target="_blank">Türkçe CV</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="cvDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              MEB
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="cvDropdown">
-              <li><a class="dropdown-item" href="https://ulkemyanimda.github.io/" target="_blank">Ülkem Yanımda
-                  Materyal</a></li>
-              <li><a class="dropdown-item" href="https://ulkemyanimda.eba.gov.tr/" target="_blank">Ülkem Yanımda
-                  Moodle</a></li>
-              <li><a class="dropdown-item" href="https://ulkemyanimda.eba.gov.tr/videolar/" target="_blank">TTKD Kitap
-                  QR</a></li>
-              <li><a class="dropdown-item" href="https://yyegm.meb.gov.tr/" target="_blank">YYEGM</a></li>
-              <li><a class="dropdown-item" href="kaynaklar/uy-seminer.html" target="_blank">UY-Seminer</a></li>
-              <li><a class="dropdown-item" href="kaynaklar/yztarihi.pptx" target="_blank">YZ Tarihi</a></li>
-            </ul>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div class="container" style="max-width: 900px;">
-    <!-- Profile Section -->
-    <section id="about">
-      <div id="circle-shape-example">
-        <div class="profile-image-container">
-          <img src="assets/dr.jekyll.jpg" class="curve image-1" alt="Dr. Kahraman Kostas - Default">
-          <img src="assets/mr.hyde.jpg" class="curve image-2" alt="Dr. Kahraman Kostas - Hover">
-        </div>
-
-
-
-        <h1>Kahraman Kostas, PhD</h1>
-
-        <p class="lead">
-          <strong>Computer Science Researcher specializing in IoT Security, Generalisable Machine Learning, and Network
-            Forensics.</strong>
-        </p>
-
-        <p>
-          I hold a PhD in Computer Science from <a href="https://www.hw.ac.uk/" target="_blank"
-            rel="noopener noreferrer">Heriot-Watt University</a>, Edinburgh.
-          Bridging the gap between theoretical ML models and real-world deployment, my research addresses a fundamental
-          challenge in IoT security:
-          <strong>the lack of generalisable models for device identification and intrusion detection.</strong>
-        </p>
-
-        <h3>Research & Impact</h3>
-
-        <p>
-          My doctoral thesis, “<a href="https://www.ros.hw.ac.uk/items/2a17932d-5b88-4c18-8e1a-6d21ec66da08"
-            target="_blank" rel="noopener noreferrer">Behaviour-based Security with Machine Learning on IoT
-            Networks</a>,”
-          (Supervisors: <a href="https://researchportal.hw.ac.uk/en/persons/mike-just/" target="_blank"
-            rel="noopener noreferrer">Dr. Mike Just</a> & <a href="https://www.macs.hw.ac.uk/~ml355/" target="_blank"
-            rel="noopener noreferrer">Dr. Michael Lones</a>)
-          systematically demonstrated how conventional feature representations hinder model generalisation.
-        </p>
-
-        <p>
-          To solve this, I developed novel frameworks—<strong>IoTDevID, GeMID, and IoTGeM</strong>—explicitly designed
-          to remain robust across unseen devices and changing network conditions.
-          This work has been published in top-tier venues including:
-        </p>
-
-        <ul>
-          <li><em>IEEE Internet of Things Journal</em> (Q1)</li>
-          <li><em>Computer Networks</em> (Q1)</li>
-          <li><em>Internet of Things Journal -Elsevier-</em> (Q1)</li>
-          <li><em>IEEE Networking Letters</em> (Q1)</li>
-        </ul>
-
-        <h3>Industry & Applied Experience</h3>
-
-        <p>
-          <strong>Huawei R&D (Edinburgh):</strong> During my PhD, I worked as a Researcher at the Huawei UK R&D Centre.
-          I developed ML solutions for community detection and WiFi-based distance estimation, strengthening my ability
-          to build industry-scale systems.
-          Prior to this, my team won <strong>1st place in the Huawei UK University Challenge (2021)</strong> for our
-          work on indoor localisation, which we later published at the prestigious <strong>IEEE IPIN</strong>
-          conference.
-        </p>
-
-        <p>
-          <strong>Large-Scale Technical Leadership (Current Role):</strong> Since September 2024, I have been serving as
-          a <strong>National Education Expert</strong> at the Turkish Ministry of National Education.
-          In this capacity, I act as the <strong>Technical Lead and Architect</strong> for the <a
-            href="https://ulkemyanimda.eba.gov.tr/" target="_blank" rel="noopener noreferrer">“Ulkem Yanımda”</a>
-          project.
-        </p>
-        <p>
-          I coordinated the technical infrastructure design and deployment of this international platform, which
-          connects <strong>100+ teachers</strong> with <strong>2000+ students</strong> across <strong>10+
-            countries</strong>.
-          My role involves managing full-stack operations, data analytics, and cross-border coordination to ensure
-          sustainable scalability.
-        </p>
-
-        <h3>Background</h3>
-
-        <p>
-          I hold an MSc in Computer Networks and Security (Distinction) from the <a href="https://www.essex.ac.uk/"
-            target="_blank" rel="noopener noreferrer">University of Essex</a>.
-          My interdisciplinary background, including degrees in Computer Education (Marmara Univ.) and Literature,
-          informs my keen interest in explainable AI and research communication.
-        </p>
-
-        <div class="postdoc-notice"
-          style="background-color: #f0f4f8; border-left: 5px solid #0056b3; padding: 15px; margin-top: 20px; border-radius: 4px;">
-          <strong>🚀 Open for Collaborations:</strong> I am actively seeking <strong>Postdoctoral Research
-            positions</strong> in IoT security, applied ML, and data-driven systems.
-          I am particularly interested in labs that value rigorous methodological analysis combined with real-world
-          deployment.
-          <a href="mailto:kahramankostas@gmail.com" style="font-weight: bold; text-decoration: underline;">Please get in
-            touch to discuss opportunities.</a>
-        </div>
-
-        <hr style="margin-top: 30px; margin-bottom: 20px; border: 0; border-top: 1px solid #eee;">
-
-        <p style="font-size: 0.9em; color: #666;">
-          <em>Outside the lab, I am passionate about Turkish literature, etymology, classical poetry, hiking, and
-            photography.</em>
-        </p>
-
-      </div>
-    </section>
-
-    <!-- News Section-->
-    <section id="news">
-      <h2>News</h2>
-      <div class="row">
-        <div class="col-12">
-
-          <div class="news-card">
-            <div class="news-date">OCT 2025</div>
-            <div class="news-content">
-              Our (With <a href="https://www.linkedin.com/in/rykostas">RYK</a>) paper "GeMID: Generalizable Models for
-              IoT Device Identification" has been accepted for publication in the Elsevier IoT journal.
-              <a href="https://github.com/kahramankostas/GeMID"><i class="fab fa-github"></i></a>
-              <a href="https://doi.org/10.1016/j.iot.2025.101806"><i class="fa fa-external-link"></i></a>
-
-
-            </div>
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <div class="news-card">
-            <div class="news-date">JUL 2025</div>
-            <div class="news-content">
-              Our paper, "IoTGeM: Generalizable Models for Behaviour-Based IoT Attack Detection" has been accepted for
-              publication in the Computer Networks journal.
-              <a href="https://github.com/kahramankostas/IoTGeM"><i class="fab fa-github"></i></a>
-              <a href="https://doi.org/10.1016/j.comnet.2025.111550"><i class="fa fa-external-link"></i></a>
-
-
-            </div>
-          </div>
-
-
-
-
-
-
-
-
-          <div class="news-card">
-            <div class="news-date">JUN 2025</div>
-            <div class="news-content">
-              Our (With <a href="https://www.linkedin.com/in/rykostas">RYK</a>) paper "Graph-Based Floor Separation
-              Using Node Embeddings and Clustering of WiFi Trajectories" has been accepted to the IPIN 2025 conference.
-              <a href="https://github.com/kahramankostas/IPIN2025"><i class="fab fa-github"></i></a>
-              <a href="https://arxiv.org/abs/2505.08088"><i class="fa fa-external-link"></i></a>
-
-
-            </div>
-          </div>
-
-
-          <div class="news-card">
-            <div class="news-date">JAN 2025</div>
-            <div class="news-content">
-              New publication🎉 Our paper (Individual Packet Features are a Risk to Model Generalisation in ML-Based
-              Intrusion Detection) has been accepted to IEEE Networking Letters.
-              <a href="https://github.com/kahramankostas/IPF"><i class="fab fa-github"></i></a>
-              <a href="https://ieeexplore.ieee.org/abstract/document/10824899"><i class="fa fa-external-link"></i></a>
-            </div>
-          </div>
-
-          <div class="news-card">
-            <div class="news-date">NOV 2024</div>
-            <div class="news-content">
-              Our new paper ready for publication (GeMID: Generalizable Models for Device Identification in IoT
-              Networks).
-              <a href="https://github.com/kahramankostas/GeMID"><i class="fab fa-github"></i></a>
-              <a href="https://arxiv.org/abs/2411.14441"><i class="fa fa-external-link"></i></a>
-            </div>
-          </div>
-
-          <div class="news-card">
-            <div class="news-date">SEP 2024</div>
-            <div class="news-content">
-              I have started a new position as a National Education Specialist at the Directorate General of Higher
-              Education and Overseas Education.
-              <a href="https://yyegm.meb.gov.tr/"><i class="fa fa-external-link"></i></a>
-            </div>
-          </div>
-
-          <div class="news-card">
-            <div class="news-date">MORE</div>
-            <div class="news-content">
-              For older news please click <a href="https://kahramankostas.github.io/news.html"
-                target="_blank">[here]</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Publications Section -->
-    <section id="publications">
-      <h2>Publications</h2>
-      <div class="publication">
-
-
-        <div class="publication-title">
-          GeMID: Generalizable Models for IoT Device Identification
-        </div>
-        <div class="publication-authors">
-          K Kostas, <a href="https://www.linkedin.com/in/rykostas">R Yasa Kostas</a>, M Just, MA Lones
-        </div>
-        <div class="publication-venue">
-          Elsevier Internet of Things Journal, 2025
-        </div>
-        <div class="publication-links">
-          <a href="https://github.com/kahramankostas/GeMID"><i class="fab fa-github"></i></a>
-          <a href="https://doi.org/10.1016/j.iot.2025.101806"><i class="fa fa-external-link"></i></a>
-        </div>
-      </div>
-
-
-      <div class="publication">
-        <div class="publication-title">IoTGeM: Generalisable Models for Behaviour-Based IoT Attack Detection</div>
-        <div class="publication-authors">Kahraman Kostas, Mike Just, Michael A. Lones</div>
-        <div class="publication-venue">Computer Networks, 2025</div>
-        <div class="publication-links">
-          <a href="https://github.com/kahramankostas/IoTGeM"><i class="fab fa-github"></i></a>
-          <a href="https://doi.org/10.1016/j.comnet.2025.111550"><i class="fa fa-external-link"></i></a>
-        </div>
-      </div>
-
-      <div class="publication">
-        <div class="publication-title">Individual Packet Features are a Risk to Model Generalisation in ML-Based
-          Intrusion Detection</div>
-        <div class="publication-authors">Kahraman Kostas, Mike Just, Michael A. Lones</div>
-        <div class="publication-venue">IEEE Networking Letters, 2025</div>
-        <div class="publication-links">
-
-          <a href="https://github.com/kahramankostas/IPF"><i class="fab fa-github"></i></a>
-          <a href="https://ieeexplore.ieee.org/abstract/document/10824899"><i class="fa fa-external-link"></i></a>
-        </div>
-      </div>
-
-      <div class="publication">
-        <div class="publication-title">Semantic verbal fluency in native speakers of Turkish: A systematic review of
-          category use, scoring metrics and normative data in healthy individuals</div>
-        <div class="publication-authors">Rabia Yasa Kostas, Kahraman Kostas, Sarah E MacPherson, Maria K Wolters</div>
-        <div class="publication-venue">JCEN, 2024</div>
-        <div class="publication-links">
-          <a href="https://www.tandfonline.com/doi/full/10.1080/13803395.2024.2331827"><i
-              class="fa fa-external-link"></i></a>
-        </div>
-      </div>
-
-
-
-      <div class="publication">
-        For more publication please click <a href="https://kahramankostas.github.io/news.html"
-          target="_blank">[here]</a>
-      </div>
-    </section>
-
-    <!-- Teaching Section -->
-    <section id="teaching">
-      <h2>Teaching</h2>
-
-      <div class="teaching-item">
-        <div class="teaching-position">Advanced Network Security</div>
-        <div class="teaching-university">Heriot-Watt University</div>
-        <div class="teaching-role">Teaching Assistant, Mike Just, 2021 & 2022</div>
-      </div>
-
-      <div class="teaching-item">
-        <div class="teaching-position">Computer Network Security</div>
-        <div class="teaching-university">Heriot-Watt University</div>
-        <div class="teaching-role">Teaching Assistant, Mike Just, 2020 & 2021</div>
-      </div>
-
-      <div class="teaching-item">
-        <div class="teaching-position">Software Development 1 (JAVA)</div>
-        <div class="teaching-university">Heriot-Watt University</div>
-        <div class="teaching-role">Teaching Assistant, Michael Lones, 2020</div>
-      </div>
-
-      <div class="teaching-item">
-        <div class="teaching-position">Data Communications and Networking</div>
-        <div class="teaching-university">Heriot-Watt University</div>
-        <div class="teaching-role">Teaching Assistant, Idris Skloul Ibrahim, 2020</div>
-      </div>
-    </section>
-  </div>
-
-  <!-- Footer -->
-  <footer class="footer text-center">
-    <div class="container">
-      <div class="social-links mb-4">
-        <a href="https://github.com/kahramankostas" target="_blank"><i class="fab fa-github fa-2x"></i></a>
-        <a href="https://www.linkedin.com/in/kkostas/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-        <a href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank"><i
-            class="ai ai-google-scholar ai-2x"></i></a>
-        <a href="https://twitter.com/kkostas" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
-        <a href="mailto:kahramankostas@gmail.com" target="_blank" class="fa fa-envelope fa-2x"></a>
-        <a href="https://www.instagram.com/kahramankostas/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-        <a href="https://www.facebook.com/kahramankostas/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
-      </div>
-
-      <div class="mb-4 d-flex justify-content-center align-items-center" style="height: 260px; overflow: hidden;">
-
-        <div style="transform: scale(4.6); transform-origin: center center; pointer-events: none;">
-          <script type="text/javascript" id="clstr_globe"
-            src="//clustrmaps.com/globe.js?d=VhFlBo0lGIQLlW0DWLfta5fMG5kVcl88MVy6SsV1Tl0"></script>
-        </div>
-
-      </div>
-
-      <p class="mb-0">Copyleft 2025 Kahraman Kostas</p>
-    </div>
-  </footer>
-
-  <!-- Smooth Scrolling -->
-  <script data-goatcounter="https://kkostas.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-  <script>
-    $(document).ready(function () {
-      // Add smooth scrolling to all links
-      $("a").on('click', function (event) {
-        if (this.hash !== "") {
-          event.preventDefault();
-          var hash = this.hash;
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top - 70
-          }, 800, function () {
-            window.location.hash = hash;
-          });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Kahraman Kostas - Computer Scientist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-      });
 
-      // Add active class to nav links based on scroll position
-      $(window).scroll(function () {
-        var scrollDistance = $(window).scrollTop();
-        $('section').each(function (i) {
-          if ($(this).position().top - 100 <= scrollDistance) {
-            $('.navbar-nav a.active').removeClass('active');
-            $('.navbar-nav a').eq(i).addClass('active');
-          }
+        :root {
+            --primary-blue: #0047AB;
+            --secondary-blue: #1E90FF;
+            --light-blue: #E8F4F8;
+            --dark: #0A0A0A;
+            --white: #FFFFFF;
+            --gray: #F5F5F5;
+            --accent: #00BFFF;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            border-bottom: 2px solid var(--primary-blue);
+            box-shadow: 0 4px 20px rgba(0, 71, 171, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary-blue);
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-blue) 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            opacity: 0.1;
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
+            animation: pulse 8s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.1); opacity: 0.15; }
+        }
+
+        .hero .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-blue);
+            display: block;
+            font-size: 5.5rem;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            animation: slideUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-content .description {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            animation: slideUp 1s ease-out 0.4s backwards;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 71, 171, 0.1);
+            border: 2px solid var(--light-blue);
+            animation: slideUp 1s ease-out 0.6s backwards;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary-blue);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            animation: slideUp 1s ease-out 0.8s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 71, 171, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 71, 171, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-blue);
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* Research Section */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .research-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid var(--light-blue);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 71, 171, 0.15);
+            border-color: var(--primary-blue);
+        }
+
+        .research-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .research-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .research-card .journal {
+            color: #666;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .research-card .year {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .research-card .badge {
+            display: inline-block;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        /* Education Section */
+        #education {
+            background: var(--gray);
+        }
+
+        .education-timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary-blue), var(--accent));
+        }
+
+        .education-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            border: 4px solid var(--white);
+            box-shadow: 0 0 0 4px var(--light-blue);
+        }
+
+        .education-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item .institution {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .education-item .duration {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-item p {
+            color: #444;
+            line-height: 1.7;
+        }
+
+        /* Experience Section */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border-left: 5px solid var(--primary-blue);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 71, 171, 0.15);
+        }
+
+        .experience-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-card .company {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-card .duration {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-card li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+            color: #444;
+        }
+
+        .experience-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        #skills {
+            background: var(--light-blue);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 71, 171, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 71, 171, 0.2);
+        }
+
+        .skill-category h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contact-info {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 71, 171, 0.1);
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light-blue);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateX(10px);
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content h1 span {
+                font-size: 3.5rem;
+            }
+
+            .research-grid,
+            .skills-container,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">KK</div>
+            <ul>
+                <li><a href="#home">Ana Sayfa</a></li>
+                <li><a href="#research">Araştırma</a></li>
+                <li><a href="#education">Eğitim</a></li>
+                <li><a href="#experience">Deneyim</a></li>
+                <li><a href="#skills">Yetenekler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Dr. Kahraman <span>Kostas</span></h1>
+                <p class="subtitle">PhD in Computer Science</p>
+                <p class="description">
+                    IoT güvenliği ve makine öğrenmesi alanında uzmanlaşmış bilgisayar bilimcisi. 
+                    Ağ davranış analizi ile cihaz tanımlama ve saldırı tespiti üzerine çalışmalar yürütmektedir.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#research" class="btn btn-primary">Araştırmalarımı İncele</a>
+                    <a href="#contact" class="btn btn-secondary">İletişime Geç</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">6+</span>
+                    <span class="stat-label">Yayınlanmış Makale</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Q1 Dergi</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">7+</span>
+                    <span class="stat-label">Yıl Araştırma</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research">
+        <div class="section-header fade-in">
+            <h2>Araştırma & Yayınlar</h2>
+            <p>IoT güvenliği, makine öğrenmesi ve ağ analitiği alanlarındaki son çalışmalar</p>
+        </div>
+        <div class="research-grid">
+            <div class="research-card fade-in">
+                <span class="year">2025</span><span class="badge">Q1</span>
+                <h3>IoTGeM: Generalizable Models for Behaviour-Based IoT Attack Detection</h3>
+                <p class="journal">Computer Networks Journal</p>
+                <p>IoT ağlarında davranış tabanlı saldırı tespiti için genelleştirilebilir modeller.</p>
+            </div>
+
+            <div class="research-card fade-in">
+                <span class="year">2025</span><span class="badge">Q1</span>
+                <h3>Individual Packet Features are a Risk to Model Generalisation</h3>
+                <p class="journal">IEEE Networking Letters</p>
+                <p>Makine öğrenmesi tabanlı saldırı tespit sistemlerinde model genelleştirme riskleri.</p>
+            </div>
+
+            <div class="research-card fade-in">
+                <span class="year">2025</span><span class="badge">Q1</span>
+                <h3>GeMID: Generalizable Models for Device Identification in IoT Networks</h3>
+                <p class="journal">Internet of Things Journal</p>
+                <p>IoT ağlarında cihaz tanımlama için genelleştirilebilir model yaklaşımları.</p>
+            </div>
+
+            <div class="research-card fade-in">
+                <span class="year">2022</span><span class="badge">Q1</span>
+                <h3>IoTDevID: A Behavior-Based Device Identification Method for the IoT</h3>
+                <p class="journal">IEEE Internet of Things Journal</p>
+                <p>IoT için davranış tabanlı cihaz tanımlama yöntemi geliştirme.</p>
+            </div>
+
+            <div class="research-card fade-in">
+                <span class="year">2022</span><span class="badge">Top-Tier</span>
+                <h3>WiFi Based Distance Estimation Using Supervised Machine Learning</h3>
+                <p class="journal">IEEE IPIN Conference</p>
+                <p>Denetimli makine öğrenmesi kullanarak WiFi tabanlı mesafe tahmini.</p>
+            </div>
+
+            <div class="research-card fade-in">
+                <span class="year">2024</span><span class="badge">Q2</span>
+                <h3>Semantic Verbal Fluency in Native Speakers of Turkish</h3>
+                <p class="journal">Journal of Clinical and Experimental Neuropsychology</p>
+                <p>Türkçe anadil konuşucularında semantik sözel akıcılık üzerine sistematik inceleme.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="section-header fade-in">
+            <h2>Eğitim</h2>
+            <p>Akademik yolculuk ve nitelikler</p>
+        </div>
+        <div class="education-timeline">
+            <div class="education-item fade-in">
+                <h3>Doktora - Bilgisayar Bilimleri</h3>
+                <p class="institution">Heriot-Watt University, Edinburgh, UK</p>
+                <p class="duration">2019 - 2024</p>
+                <p>Tez: Behaviour-based Security with Machine Learning on IoT Networks. IoT ağlarında cihaz tanımlama ve saldırı tespiti problemlerinin klasik ve derin öğrenme yöntemleriyle çözümü üzerine araştırma.</p>
+            </div>
+
+            <div class="education-item fade-in">
+                <h3>Yüksek Lisans - Bilgisayar Ağları ve Güvenliği</h3>
+                <p class="institution">University of Essex, Colchester, UK</p>
+                <p class="duration">2017 - 2018</p>
+                <p>Distinction derecesi ile mezuniyet. IP Ağları ve Uygulamaları, Bilgisayar Güvenliği, Yakınsak Ağlar ve Hizmetler, Mobil İletişim, Ağ Güvenliği konularında uzmanlaşma.</p>
+            </div>
+
+            <div class="education-item fade-in">
+                <h3>Lisans - Bilgisayar ve Öğretim Teknolojileri</h3>
+                <p class="institution">Marmara Üniversitesi, Istanbul, Türkiye</p>
+                <p class="duration">2005 - 2009</p>
+                <p>GPA: 74.74. Programlama Dilleri, Bilgisayar Ağları, İşletim Sistemleri, Web Tasarım ve İnternet Uygulamaları konularında eğitim.</p>
+            </div>
+
+            <div class="education-item fade-in">
+                <h3>Lisans - Türk Dili ve Edebiyatı</h3>
+                <p class="institution">Anadolu Üniversitesi, Eskişehir, Türkiye</p>
+                <p class="duration">2012 - 2015</p>
+                <p>GPA: 3.41. Türk dilinin dilbilimsel, edebi ve kültürel yönlerine odaklanan program.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-header fade-in">
+            <h2>Profesyonel Deneyim</h2>
+            <p>Akademik ve endüstriyel çalışmalar</p>
+        </div>
+        <div class="experience-grid">
+            <div class="experience-card fade-in">
+                <h3>Milli Eğitim Uzmanı</h3>
+                <p class="company">Türkiye Milli Eğitim Bakanlığı, Ankara</p>
+                <p class="duration">Eylül 2024 - Devam Ediyor</p>
+                <ul>
+                    <li>Yurtdışında yaşayan öğrenciler için eğitim uygulamaları geliştirme</li>
+                </ul>
+            </div>
+
+            <div class="experience-card fade-in">
+                <h3>Doktora Adayı / Öğretim Asistanı</h3>
+                <p class="company">Heriot-Watt University, Edinburgh, UK</p>
+                <p class="duration">Ekim 2019 - Ocak 2021</p>
+                <ul>
+                    <li>Veri İletişimi ve Ağlar dersi öğretim asistanlığı ve laboratuvar gözetmenliği</li>
+                    <li>Bilgisayar Ağ Güvenliği dersi öğretim asistanlığı</li>
+                    <li>İleri Ağ Güvenliği dersi laboratuvar gözetmenliği</li>
+                    <li>Yazılım Geliştirme 1 (Java) dersi öğretim asistanlığı</li>
+                </ul>
+            </div>
+
+            <div class="experience-card fade-in">
+                <h3>Araştırma Stajyeri</h3>
+                <p class="company">Huawei UK Edinburgh R&D, Edinburgh, UK</p>
+                <p class="duration">Şubat 2022 - Ağustos 2022</p>
+                <ul>
+                    <li>Makine öğrenmesi yöntemleriyle kapalı alan konumlandırma problemlerine çözüm geliştirme</li>
+                    <li>WiFi parmak izi kullanarak mesafe tahmini</li>
+                    <li>WiFi mesafeleri kullanarak topluluk tespiti</li>
+                </ul>
+            </div>
+
+            <div class="experience-card fade-in">
+                <h3>Bilgisayar Öğretmeni ve Teknoloji Danışmanı</h3>
+                <p class="company">Türkiye Milli Eğitim Bakanlığı, Manisa</p>
+                <p class="duration">Eylül 2009 - Ocak 2016</p>
+                <ul>
+                    <li>Bilgisayar tabanlı müfredat geliştirme</li>
+                    <li>Öğrencilere programlama eğitimi ve proje desteği sağlama</li>
+                    <li>Öğretmenlere dijital materyal ve etkileşimli tahta kullanımı eğitimi</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-header fade-in">
+            <h2>Teknik Yetenekler</h2>
+            <p>Programlama dilleri, framework'ler ve araçlar</p>
+        </div>
+        <div class="skills-container">
+            <div class="skill-category fade-in">
+                <h3>Programlama Dilleri</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Julia</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">LaTeX</span>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <h3>Framework & Kütüphaneler</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Keras</span>
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">Scikit-learn</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">Scapy</span>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <h3>Analitik Araçlar</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">SAS Viya</span>
+                    <span class="skill-tag">SAS Studio</span>
+                    <span class="skill-tag">SAS Visual Analytics</span>
+                    <span class="skill-tag">Model Studio</span>
+                    <span class="skill-tag">Base SAS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header fade-in">
+            <h2>İletişim</h2>
+            <p>Benimle iletişime geçin</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <h3>İletişim Bilgileri</h3>
+                <div class="contact-item">
+                    <span>📧 kahramankostas@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>📍 Ankara, Türkiye</span>
+                </div>
+                <div class="contact-item">
+                    <a href="https://kahramankostas.github.io" target="_blank">🌐 kahramankostas.github.io</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/kahramankostas" target="_blank" class="social-link">GH</a>
+                    <a href="https://scholar.google.com" target="_blank" class="social-link">SC</a>
+                    <a href="https://linkedin.com/in/kkostas" target="_blank" class="social-link">IN</a>
+                </div>
+            </div>
+            <div class="fade-in">
+                <div style="background: linear-gradient(135deg, var(--primary-blue), var(--accent)); padding: 3rem; border-radius: 20px; color: white; text-align: center;">
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1.5rem;">İşbirliği Fırsatları</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
+                        IoT güvenliği, makine öğrenmesi ve ağ analitiği alanlarında araştırma işbirlikleri ve projelerde yer almak için benimle iletişime geçebilirsiniz.
+                    </p>
+                    <a href="mailto:kahramankostas@gmail.com" class="btn" style="background: white; color: var(--primary-blue);">E-posta Gönder</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Dr. Kahraman Kostas. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
-      });
-    });
-  </script>
+    </script>
 </body>
-
 </html>
