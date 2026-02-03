@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Model / Soru Bazlı Veri Listeleme</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --card: #ffffff;
+      --text: #111111;
+      --muted: #666666;
+      --border: #d0d0d0;
+      --accent: #333333;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+
+    header h1 {
+      margin: 0 0 8px 0;
+      font-size: 22px;
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      padding: 16px 24px;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+    }
+
+    select, input {
+      padding: 10px 12px;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+    }
+
+    main {
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+    }
+
+    .meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .content {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    footer {
+      padding: 16px 24px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Değerlendirme Verileri</h1>
+    <p>Model adı ve soru numarasına göre filtrelenebilir liste</p>
+  </header>
+
+  <section class="filters">
+    <select id="modelFilter">
+      <option value="">Tüm Modeller</option>
+    </select>
+
+    <select id="questionFilter">
+      <option value="">Tüm Sorular</option>
+    </select>
+
+    <input type="text" id="searchInput" placeholder="Metin içinde ara…" />
+  </section>
+
+  <main id="list"></main>
+
+  <footer>
+    Siyah / beyaz / gri tema · Yerel JSON veri kullanımı
+  </footer>
+
+  <script>
+    // Örnek veri yükleme (data.json ile aynı dizinde olmalı)
+    fetch('data.json')
+      .then(res => res.json())
+      .then(data => init(data));
+
+    function init(data) {
+      const modelFilter = document.getElementById('modelFilter');
+      const questionFilter = document.getElementById('questionFilter');
+      const searchInput = document.getElementById('searchInput');
+      const list = document.getElementById('list');
+
+      const models = [...new Set(data.map(d => d.model))];
+      const questions = [...new Set(data.map(d => d.question))];
+
+      models.forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m;
+        opt.textContent = m;
+        modelFilter.appendChild(opt);
+      });
+
+      questions.forEach(q => {
+        const opt = document.createElement('option');
+        opt.value = q;
+        opt.textContent = q;
+        questionFilter.appendChild(opt);
+      });
+
+      function render() {
+        const mVal = modelFilter.value;
+        const qVal = questionFilter.value;
+        const search = searchInput.value.toLowerCase();
+
+        list.innerHTML = '';
+
+        data
+          .filter(d => (!mVal || d.model === mVal))
+          .filter(d => (!qVal || d.question === qVal))
+          .filter(d => !search || JSON.stringify(d).toLowerCase().includes(search))
+          .forEach(d => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+              <h3>${d.title || 'Değerlendirme'}</h3>
+              <div class="meta">Model: ${d.model} · Soru: ${d.question}</div>
+              <div class="content">${d.content}</div>
+            `;
+            list.appendChild(card);
+          });
+      }
+
+      modelFilter.onchange = render;
+      questionFilter.onchange = render;
+      searchInput.oninput = render;
+
+      render();
+    }
+  </script>
+</body>
+</html>
