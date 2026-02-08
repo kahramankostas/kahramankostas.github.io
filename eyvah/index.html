@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyvah - İnteraktif Video</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #video-stage {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        #player {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+
+        #overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 100;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        #overlay h2 {
+            color: #d35400;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        #overlay p {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            max-width: 80%;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+            transform: translateY(-2px);
+        }
+
+        #fsToggle {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            z-index: 50;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+
+<body>
+
+<div id="video-stage">
+    <div id="player"></div>
+
+    <button id="fsToggle">Tam Ekran / Küçük Ekran</button>
+
+    <div id="overlay">
+        <h2 id="title">Yönerge</h2>
+        <p id="message">
+            Şarkıyı dikkatle dinleyiniz. Belirlenen duraklama noktalarında size sorular sorulacaktır.
+        </p>
+        <button id="actionBtn">Tamam, Başla</button>
+    </div>
+</div>
+
+<!-- YouTube API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+    let player;
+    let currentStep = 0;
+
+    const questions = [
+        { time: 52,  text: "Sizce bu şarkıda ne olmuş olabilir? Neden 'eyvah' deniyor?" },
+        { time: 86,  text: "Şarkıda da belirtildiği üzere temiz olmak için neler yapmalıyız?" },
+        { time: 206, text: "Peki, senin temizlik alışkanlıkların neler?" }
+    ];
+
+    const overlay   = document.getElementById('overlay');
+    const title     = document.getElementById('title');
+    const message   = document.getElementById('message');
+    const actionBtn = document.getElementById('actionBtn');
+    const fsToggle  = document.getElementById('fsToggle');
+    const stage     = document.getElementById('video-stage');
+
+    // YouTube Player oluştur
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            videoId: 'ZKHAQZFwsfE',
+            playerVars: {
+                controls: 1,
+                rel: 0,
+                modestbranding: 1
+            }
+        });
+    }
+
+    // Başlat / Devam Et
+    actionBtn.addEventListener('click', () => {
+        overlay.classList.add('hidden');
+        player.playVideo();
+    });
+
+    // Zaman kontrolü
+    setInterval(() => {
+        if (!player || typeof player.getCurrentTime !== 'function') return;
+
+        if (currentStep < questions.length) {
+            const q = questions[currentStep];
+            if (player.getCurrentTime() >= q.time) {
+                player.pauseVideo();
+                showQuestion(q.text);
+                currentStep++;
+            }
+        }
+    }, 500);
+
+    function showQuestion(text) {
+        title.innerText = "Soru";
+        message.innerText = text;
+        actionBtn.innerText = "Devam Et";
+        overlay.classList.remove('hidden');
+    }
+
+    // Tam ekran
+    fsToggle.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+            stage.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    });
+</script>
+
+</body>
+</html>
