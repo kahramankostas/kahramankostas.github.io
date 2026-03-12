@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Türkçe ve Türk Kültürü Dersleri – Romanya</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D72638;
+    --teal: #00A99D;
+    --gold: #F5A623;
+    --dark: #1a1a2e;
+    --light: #f9f5f0;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #D72638 0%, #9b1a26 40%, #1a1a2e 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    border-radius: 20px;
+    background: white;
+    padding: 12px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+    margin-bottom: 32px;
+    animation: floatIn 0.9s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    color: var(--white);
+    line-height: 1.15;
+    max-width: 700px;
+    margin-bottom: 16px;
+    animation: floatIn 0.9s 0.15s ease both;
+  }
+
+  .hero h1 span {
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: rgba(255,255,255,0.85);
+    max-width: 560px;
+    margin-bottom: 14px;
+    font-weight: 600;
+    animation: floatIn 0.9s 0.25s ease both;
+  }
+
+  .hero-ro {
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    color: rgba(255,255,255,0.6);
+    max-width: 580px;
+    font-style: italic;
+    margin-bottom: 40px;
+    animation: floatIn 0.9s 0.35s ease both;
+  }
+
+  .badge-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 50px;
+    animation: floatIn 0.9s 0.45s ease both;
+  }
+
+  .badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    backdrop-filter: blur(6px);
+  }
+
+  /* CTA BUTTON */
+  .cta-wrap {
+    animation: floatIn 0.9s 0.55s ease both;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-label {
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 12px;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(135deg, var(--gold) 0%, #e8890a 100%);
+    color: var(--dark);
+    text-decoration: none;
+    padding: 20px 42px;
+    border-radius: 16px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    box-shadow: 0 10px 40px rgba(245,166,35,0.55), 0 2px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.25), transparent);
+    pointer-events: none;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 18px 60px rgba(245,166,35,0.7), 0 4px 16px rgba(0,0,0,0.3);
+  }
+
+  .cta-btn:active {
+    transform: translateY(-1px) scale(1.01);
+  }
+
+  .cta-icon {
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+  }
+
+  /* DATE BANNER */
+  .date-banner {
+    background: var(--teal);
+    color: white;
+    text-align: center;
+    padding: 18px 24px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+
+  .date-banner span {
+    color: var(--gold);
+    font-size: 1.2em;
+  }
+
+  /* FEATURES */
+  .features {
+    max-width: 1100px;
+    margin: 64px auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  .feat-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    border-top: 4px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: floatIn 0.7s ease both;
+  }
+
+  .feat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+  }
+
+  .feat-card:nth-child(1) { border-color: var(--red); }
+  .feat-card:nth-child(2) { border-color: var(--teal); }
+  .feat-card:nth-child(3) { border-color: var(--gold); }
+  .feat-card:nth-child(4) { border-color: #9b59b6; }
+
+  .feat-icon { font-size: 2.8rem; margin-bottom: 14px; }
+
+  .feat-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+
+  .feat-card p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* INFO SECTION */
+  .info {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 64px 24px;
+  }
+
+  .info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin-bottom: 16px;
+    color: var(--gold);
+  }
+
+  .info p {
+    max-width: 640px;
+    margin: 0 auto 10px;
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 36px;
+  }
+
+  .contact-chip {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .contact-chip:hover { background: rgba(255,255,255,0.16); }
+
+  /* FOOTER CTA */
+  .footer-cta {
+    background: linear-gradient(135deg, var(--red), #9b1a26);
+    padding: 64px 24px;
+    text-align: center;
+  }
+
+  .footer-cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    color: white;
+    margin-bottom: 8px;
+  }
+
+  .footer-cta p {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 32px;
+    font-size: 1rem;
+  }
+
+  footer {
+    background: #111;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 20px;
+    font-size: 0.82rem;
+  }
+
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+  }
+
+  @media (max-width: 500px) {
+    .hero { padding: 50px 16px 70px; }
+    .cta-btn { padding: 16px 28px; font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="logo.png" alt="Ülkem Yanımda Logo" class="hero-logo">
+
+  <h1>Türkçe ve <span>Türk Kültürü</span> Ders Kayıtları Başlıyor!</h1>
+
+  <p class="hero-sub">Romanya'daki Türk vatandaşları ve soydaşlarımızın çocuklarına yönelik 5–16 yaş grubuna özel ücretsiz çevrim içi dersler.</p>
+  <p class="hero-ro">Cursuri online gratuite de limbă și cultură turcă pentru copii între 5 și 16 ani din România.</p>
+
+  <div class="badge-row">
+    <div class="badge">🎓 Ücretsiz / Gratuit</div>
+    <div class="badge">💻 Çevrim İçi / Online</div>
+    <div class="badge">👦 5–16 Yaş / Ani</div>
+    <div class="badge">🗓️ Mart 2026</div>
+  </div>
+
+  <div class="cta-wrap">
+    <div class="cta-label">Hemen Kayıt Ol / Înscrie-te acum</div>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd_zupFQn3LLUdcujc-12C8yqlQbvJkR02Z34s6tPvYMMLTxA/viewform?usp=dialog"
+       target="_blank" class="cta-btn">
+      <span class="cta-icon">📝</span>
+      KAYIT FORMUNU AÇ &nbsp;→
+    </a>
+  </div>
+</section>
+
+<!-- DATE BANNER -->
+<div class="date-banner">
+  📅 2025–2026 Eğitim Yılı Bahar Dönemi Kayıt Tarihleri: &nbsp;<span>1–15 Mart 2026</span>
+  &nbsp;|&nbsp; Data de înscriere: &nbsp;<span>1–15 Martie 2026</span>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="feat-card">
+    <div class="feat-icon">🎭</div>
+    <h3>Kültürel Etkinlikler</h3>
+    <p>Evenimente Culturale — Türk kültürünü yaşatan etkinlikler ve deneyimler.</p>
+  </div>
+  <div class="feat-card">
+    <div class="feat-icon">👩‍🏫</div>
+    <h3>Uzman Öğretmenler</h3>
+    <p>Profesori specializați — Alanında deneyimli, uzman eğitmenlerle etkili öğrenme.</p>
+  </div>
+  <div class="feat-card">
+    <div class="feat-icon">📡</div>
+    <h3>Canlı Çevrim İçi Dersler</h3>
+    <p>Cursuri live online gratuite — Evinizden katılabileceğiniz ücretsiz canlı dersler.</p>
+  </div>
+  <div class="feat-card">
+    <div class="feat-icon">🏆</div>
+    <h3>Oyunlar & Yarışmalar</h3>
+    <p>Jocuri, competiții — Öğrenmeyi eğlenceli kılan oyunlar ve yarışmalar.</p>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="info">
+  <h2>Kimler Katılabilir?</h2>
+  <p>Bu program, Romanya'da yaşayan Türk vatandaşları ve soydaşlarımızın <strong>5–16 yaş arasındaki</strong> çocuklarına yöneliktir. Kayıt ve dersler tamamen <strong>ücretsizdir</strong>.</p>
+  <p style="font-style:italic; color: rgba(255,255,255,0.55);">Programul este dedicat cetățenilor turci și copiilor din comunitatea noastră din România, cu vârste între 5 și 16 ani. Înscrierea și cursurile sunt complet gratuite.</p>
+
+  <div class="contact-row">
+    <a href="https://ulkemyanimda.eba.gov.tr/kayit/" target="_blank" class="contact-chip">🌐 ulkemyanimda.eba.gov.tr/kayit/</a>
+    <a href="mailto:ulkemyanimda@meb.gov.tr" class="contact-chip">✉️ ulkemyanimda@meb.gov.tr</a>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta">
+  <h2>Kayıt Olmak İçin Forma Tıkla!</h2>
+  <p>Înscrie-te acum completând formularul de mai jos!</p>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSd_zupFQn3LLUdcujc-12C8yqlQbvJkR02Z34s6tPvYMMLTxA/viewform?usp=dialog"
+     target="_blank" class="cta-btn" style="font-size:1.1rem; padding:18px 40px;">
+    <span class="cta-icon">📝</span>
+    KAYIT FORMUNU AÇ &nbsp;→
+  </a>
+</section>
+
+<footer>
+  Yükseköğretim ve Yurt Dışı Eğitim Genel Müdürlüğü &nbsp;|&nbsp; Ülkem Yanımda &nbsp;|&nbsp; 2025–2026
+</footer>
+
+</body>
+</html>
