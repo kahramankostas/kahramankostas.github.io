@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="tr" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Türkçe Dersleri</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.4), 0 0 40px rgba(220, 38, 38, 0.2); transform: scale(1); }
+      50% { box-shadow: 0 0 30px rgba(220, 38, 38, 0.6), 0 0 60px rgba(220, 38, 38, 0.3); transform: scale(1.03); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .btn-join {
+      animation: pulse-glow 2.5s ease-in-out infinite;
+      background: linear-gradient(135deg, #dc2626, #b91c1c, #dc2626);
+      background-size: 200% 200%;
+      transition: all 0.3s ease;
+    }
+    .btn-join:hover {
+      animation: none;
+      transform: scale(1.08);
+      box-shadow: 0 0 40px rgba(220, 38, 38, 0.7), 0 0 80px rgba(220, 38, 38, 0.4);
+    }
+    .btn-join .shimmer-text {
+      background: linear-gradient(90deg, #fff 0%, #fecaca 25%, #fff 50%, #fecaca 75%, #fff 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s linear infinite;
+    }
+    .card-float { animation: float 4s ease-in-out infinite; }
+    .card-float:nth-child(2) { animation-delay: 0.5s; }
+    .card-float:nth-child(3) { animation-delay: 1s; }
+    .card-float:nth-child(4) { animation-delay: 1.5s; }
+    .profile-ring {
+      background: conic-gradient(#dc2626, #f59e0b, #dc2626);
+      padding: 4px;
+      border-radius: 50%;
+      animation: spin 8s linear infinite;
+    }
+    @keyframes spin { 100% { transform: rotate(0deg); } }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ <script src="/_sdk/telemetry_sdk.js"></script></head>
+ <body class="h-full overflow-auto" style="font-family: 'DM Sans', sans-serif;">
+  <div id="app" class="h-full w-full bg-slate-900 text-white"><!-- Hero Section -->
+   <header class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-red-950 opacity-90"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(circle at 70% 30%, rgba(220,38,38,0.1) 0%, transparent 50%);"></div>
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24">
+     <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16"><!-- Profile Image -->
+      <div class="flex-shrink-0">
+       <div class="profile-ring w-48 h-48 md:w-56 md:h-56">
+        <div class="w-full h-full rounded-full overflow-hidden bg-slate-700 flex items-center justify-center"><img src="https://kahramankostas.github.io/assets/mr.hyde.jpg" alt="Dr. Kahraman KOŞTAŞ" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'flex items-center justify-center w-full h-full text-5xl font-bold text-red-400\' style=\'font-family: Playfair Display\'>KK</div>';">
+        </div>
+       </div>
+      </div><!-- Text Content -->
+      <div class="text-center md:text-left flex-1">
+       <h1 id="main-title" class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4" style="font-family: 'Playfair Display', serif; color: #fef2f2;">Türkçe ve Türk Kültürü Dersleri İçin Teknolojinin Kullanımı</h1>
+       <p id="subtitle" class="text-lg md:text-xl text-red-200 mb-3 font-medium">Türkçe ve Türk Kültürü Dersleri İçin Etkileşimli Materyal Geliştirme</p>
+       <p id="author-name" class="text-base text-slate-300 mb-2">Dr. Kahraman KOŞTAŞ</p>
+       <p class="text-sm text-slate-400 italic mb-8"></p><!-- Join Button --> <a id="join-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-join inline-flex items-center gap-3 px-10 py-5 rounded-full text-white text-xl font-bold no-underline cursor-pointer"> <i data-lucide="video" class="w-6 h-6"></i> <span id="button-text" class="shimmer-text">Derse Katıl</span> <i data-lucide="arrow-right" class="w-6 h-6"></i> </a>
+      </div>
+     </div>
+    </div>
+   </header><!-- Topics Section -->
+   <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="text-2xl font-bold text-center mb-12" style="font-family: 'Playfair Display', serif; color: #fca5a5;">Ders İçerikleri</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+     <div class="card-float bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-red-500/40 transition-colors">
+      <div class="flex items-start gap-4">
+       <div class="w-10 h-10 rounded-xl bg-red-900/40 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="wrench" class="w-5 h-5 text-red-400"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-white mb-1">Araç Seçimi</h3>
+        <p class="text-sm text-slate-400">Ücretsiz/ücretli, Türkçe destekli, eğitime uygun araçlar karşılaştırması</p>
+       </div>
+      </div>
+     </div>
+     <div class="card-float bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-red-500/40 transition-colors">
+      <div class="flex items-start gap-4">
+       <div class="w-10 h-10 rounded-xl bg-amber-900/40 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="pen-tool" class="w-5 h-5 text-amber-400"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-white mb-1">Prompt Yazma</h3>
+        <p class="text-sm text-slate-400">Dil öğretimi bağlamında etkili yönerge yazımı, somut örneklerle</p>
+       </div>
+      </div>
+     </div>
+     <div class="card-float bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-red-500/40 transition-colors">
+      <div class="flex items-start gap-4">
+       <div class="w-10 h-10 rounded-xl bg-emerald-900/40 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="layout" class="w-5 h-5 text-emerald-400"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-white mb-1">Sınıf İçi Uygulamalar</h3>
+        <p class="text-sm text-slate-400">Metin üretimi, alıştırma tasarımı, telaffuz desteği, kültür içerikleri</p>
+       </div>
+      </div>
+     </div>
+     <div class="card-float bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-red-500/40 transition-colors">
+      <div class="flex items-start gap-4">
+       <div class="w-10 h-10 rounded-xl bg-blue-900/40 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="shield" class="w-5 h-5 text-blue-400"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-white mb-1">Güvenlik ve Etik</h3>
+        <p class="text-sm text-slate-400">Yaş gruplarına göre sınırlar, veri gizliliği, akademik dürüstlük</p>
+       </div>
+      </div>
+     </div>
+
+
+    </div>
+   </section>
+  </div>
+  <script>
+    lucide.createIcons();
+
+    const defaultConfig = {
+      main_title: "Türkçe ve Türk Kültürü Dersleri İçin Teknolojinin Kullanımı",
+      subtitle: "Türkçe ve Türk Kültürü Dersleri İçin Etkileşimli Materyal Geliştirme",
+      author_name: "Dr. Kahraman KOŞTAŞ",
+      button_text: "Derse Katıl",
+      background_color: "#0f172a",
+      surface_color: "#1e293b",
+      text_color: "#ffffff",
+      accent_color: "#dc2626",
+      secondary_text_color: "#94a3b8",
+      font_family: "Playfair Display",
+      font_size: 16
+    };
+
+    function applyConfig(config) {
+      document.getElementById('main-title').textContent = config.main_title || defaultConfig.main_title;
+      document.getElementById('subtitle').textContent = config.subtitle || defaultConfig.subtitle;
+      document.getElementById('author-name').textContent = config.author_name || defaultConfig.author_name;
+      document.getElementById('button-text').textContent = config.button_text || defaultConfig.button_text;
+
+      const app = document.getElementById('app');
+      app.style.backgroundColor = config.background_color || defaultConfig.background_color;
+
+      document.querySelectorAll('.card-float').forEach(c => {
+        c.style.backgroundColor = (config.surface_color || defaultConfig.surface_color) + '99';
+      });
+
+      const mainTitle = document.getElementById('main-title');
+      const font = config.font_family || defaultConfig.font_family;
+      mainTitle.style.fontFamily = `${font}, serif`;
+
+      const baseSize = config.font_size || defaultConfig.font_size;
+      mainTitle.style.fontSize = `${baseSize * 2.5}px`;
+      document.getElementById('subtitle').style.fontSize = `${baseSize * 1.25}px`;
+    }
+
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange: async (config) => { applyConfig(config); },
+      mapToCapabilities: (config) => ({
+        recolorables: [
+          { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+          { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+          { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+          { get: () => config.accent_color || defaultConfig.accent_color, set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } },
+          { get: () => config.secondary_text_color || defaultConfig.secondary_text_color, set: (v) => { config.secondary_text_color = v; window.elementSdk.setConfig({ secondary_text_color: v }); } }
+        ],
+        borderables: [],
+        fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+        fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+      }),
+      mapToEditPanelValues: (config) => new Map([
+        ["main_title", config.main_title || defaultConfig.main_title],
+        ["subtitle", config.subtitle || defaultConfig.subtitle],
+        ["author_name", config.author_name || defaultConfig.author_name],
+        ["button_text", config.button_text || defaultConfig.button_text]
+      ])
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a078fbafc8eb37b3',t:'MTc4MDc2NTMyOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
