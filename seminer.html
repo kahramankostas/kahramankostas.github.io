@@ -40,9 +40,14 @@
       animation: shimmer 3s linear infinite;
     }
     .card-float { animation: float 4s ease-in-out infinite; }
-    .card-float:nth-child(2) { animation-delay: 0.5s; }
-    .card-float:nth-child(3) { animation-delay: 1s; }
-    .card-float:nth-child(4) { animation-delay: 1.5s; }
+    .card-float:nth-child(1) { animation-delay: 0.1s; }
+    .card-float:nth-child(2) { animation-delay: 0.3s; }
+    .card-float:nth-child(3) { animation-delay: 0.5s; }
+    .card-float:nth-child(4) { animation-delay: 0.7s; }
+    .card-float:nth-child(5) { animation-delay: 0.9s; }
+    .card-float:nth-child(6) { animation-delay: 1.1s; }
+    .card-float:nth-child(7) { animation-delay: 1.3s; }
+    
     .profile-ring {
       background: conic-gradient(#dc2626, #f59e0b, #dc2626);
       padding: 4px;
@@ -80,54 +85,95 @@
       </div>
      </div>
     </div>
-   </header><section class="max-w-6xl mx-auto px-6 py-16">
-    <h2 class="text-2xl font-bold text-center mb-12" style="font-family: 'Playfair Display', serif; color: #fca5a5;">Ders İçerikleri</h2>
+   </header>
+   
+   <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="text-2xl font-bold text-center mb-12" style="font-family: 'Playfair Display', serif; color: #fca5a5;">Faydalı Kaynaklar ve Bağlantılar</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-     <div class="card-float bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-red-500/40 transition-colors">
+     
+     <a href="https://dilim.eba.gov.tr/tr/login" target="_blank" rel="noopener noreferrer" class="card-float block bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-red-500/60 hover:bg-slate-800/80 transition-all group">
       <div class="flex items-start gap-4">
-       <div class="w-10 h-10 rounded-xl bg-red-900/40 flex items-center justify-center flex-shrink-0">
-        <i data-lucide="wrench" class="w-5 h-5 text-red-400"></i>
+       <div class="w-10 h-10 rounded-xl bg-red-900/40 flex items-center justify-center flex-shrink-0 group-hover:bg-red-800/60 transition-colors">
+        <i data-lucide="globe" class="w-5 h-5 text-red-400"></i>
        </div>
        <div>
-        <h3 class="font-semibold text-white mb-1">Araç Seçimi</h3>
-        <p class="text-sm text-slate-400">Ücretsiz/ücretli, Türkçe destekli, eğitime uygun araçlar karşılaştırması</p>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">MEB Dilim</h3>
+        <p class="text-sm text-slate-400">Milli Eğitim Bakanlığı'nın yabancılara Türkçe öğretimine yönelik olarak hazırladığı dijital eğitim platformu.</p>
        </div>
       </div>
-     </div>
-     <div class="card-float bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-red-500/40 transition-colors">
-      <div class="flex items-start gap-4">
-       <div class="w-10 h-10 rounded-xl bg-amber-900/40 flex items-center justify-center flex-shrink-0">
-        <i data-lucide="pen-tool" class="w-5 h-5 text-amber-400"></i>
-       </div>
-       <div>
-        <h3 class="font-semibold text-white mb-1">Prompt Yazma</h3>
-        <p class="text-sm text-slate-400">Dil öğretimi bağlamında etkili yönerge yazımı, somut örneklerle</p>
-       </div>
-      </div>
-     </div>
-     <div class="card-float bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-red-500/40 transition-colors">
-      <div class="flex items-start gap-4">
-       <div class="w-10 h-10 rounded-xl bg-emerald-900/40 flex items-center justify-center flex-shrink-0">
-        <i data-lucide="layout" class="w-5 h-5 text-emerald-400"></i>
-       </div>
-       <div>
-        <h3 class="font-semibold text-white mb-1">Sınıf İçi Uygulamalar</h3>
-        <p class="text-sm text-slate-400">Metin üretimi, alıştırma tasarımı, telaffuz desteği, kültür içerikleri</p>
-       </div>
-      </div>
-     </div>
-     <div class="card-float bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-red-500/40 transition-colors">
-      <div class="flex items-start gap-4">
-       <div class="w-10 h-10 rounded-xl bg-blue-900/40 flex items-center justify-center flex-shrink-0">
-        <i data-lucide="shield" class="w-5 h-5 text-blue-400"></i>
-       </div>
-       <div>
-        <h3 class="font-semibold text-white mb-1">Güvenlik ve Etik</h3>
-        <p class="text-sm text-slate-400">Yaş gruplarına göre sınırlar, veri gizliliği, akademik dürüstlük</p>
-       </div>
-      </div>
-     </div>
+     </a>
 
+     <a href="https://gemini.google.com/gem/storybook" target="_blank" rel="noopener noreferrer" class="card-float block bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-purple-500/60 hover:bg-slate-800/80 transition-all group">
+      <div class="flex items-start gap-4">
+       <div class="w-10 h-10 rounded-xl bg-purple-900/40 flex items-center justify-center flex-shrink-0 group-hover:bg-purple-800/60 transition-colors">
+        <i data-lucide="book-open" class="w-5 h-5 text-purple-400"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-purple-300 transition-colors">Gemini Hikaye Kitabı</h3>
+        <p class="text-sm text-slate-400">Yapay zekâ desteğiyle derse özel özgün okuma metinleri ve hikâye kitapları oluşturabileceğiniz araç.</p>
+       </div>
+      </div>
+     </a>
+
+     <a href="https://www.youtube.com/watch?v=jrChjHEbtIw" target="_blank" rel="noopener noreferrer" class="card-float block bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-rose-500/60 hover:bg-slate-800/80 transition-all group">
+      <div class="flex items-start gap-4">
+       <div class="w-10 h-10 rounded-xl bg-rose-900/40 flex items-center justify-center flex-shrink-0 group-hover:bg-rose-800/60 transition-colors">
+        <i data-lucide="youtube" class="w-5 h-5 text-rose-400"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-rose-300 transition-colors">5 Dakikada Kişisel Web Sitesi (YS)</h3>
+        <p class="text-sm text-slate-400">Yapay zekâ araçlarını kullanarak kodlama bilmeden çok kısa sürede kişisel eğitim web sitesi hazırlama rehberi.</p>
+       </div>
+      </div>
+     </a>
+
+     <a href="https://www.youtube.com/watch?v=KCkei_waKh8" target="_blank" rel="noopener noreferrer" class="card-float block bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-amber-500/60 hover:bg-slate-800/80 transition-all group">
+      <div class="flex items-start gap-4">
+       <div class="w-10 h-10 rounded-xl bg-amber-900/40 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-800/60 transition-colors">
+        <i data-lucide="gamepad-2" class="w-5 h-5 text-amber-400"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-amber-300 transition-colors">Aynı İçerikten 5 Farklı Oyun</h3>
+        <p class="text-sm text-slate-400">Öğretmenler için eğitim teknolojileri kullanılarak tek bir ders konusundan beş farklı etkileşimli oyun türetme yöntemleri.</p>
+       </div>
+      </div>
+     </a>
+
+     <a href="https://ulkemyanimda.github.io/yz.html" target="_blank" rel="noopener noreferrer" class="card-float block bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-blue-500/60 hover:bg-slate-800/80 transition-all group">
+      <div class="flex items-start gap-4">
+       <div class="w-10 h-10 rounded-xl bg-blue-900/40 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-800/60 transition-colors">
+        <i data-lucide="cpu" class="w-5 h-5 text-blue-400"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-blue-300 transition-colors">Eğitimde Yapay Zekâ Kaynakları</h3>
+        <p class="text-sm text-slate-400">Eğitim materyali geliştirme süreçlerinizde kullanabileceğiniz yapay zekâ araçlarının güncel ve kapsamlı derlemesi.</p>
+       </div>
+      </div>
+     </a>
+
+     <a href="https://materyalfabrikasi.github.io/" target="_blank" rel="noopener noreferrer" class="card-float block bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-emerald-500/60 hover:bg-slate-800/80 transition-all group">
+      <div class="flex items-start gap-4">
+       <div class="w-10 h-10 rounded-xl bg-emerald-900/40 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-800/60 transition-colors">
+        <i data-lucide="library" class="w-5 h-5 text-emerald-400"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-emerald-300 transition-colors">Türkçe ve Türk Kültürü Dersi Materyalleri</h3>
+        <p class="text-sm text-slate-400">Derslerinizi zenginleştirecek interaktif içeriklerin, çalışma kâğıtlarının ve sunumların bulunduğu materyal fabrikası.</p>
+       </div>
+      </div>
+     </a>
+
+     <a href="https://ulkemyanimda.github.io/ogretmensandigi/Ogretmenleruretiyor/index.html" target="_blank" rel="noopener noreferrer" class="card-float block bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/60 hover:bg-slate-800/80 transition-all group md:col-span-2 lg:col-span-1 lg:col-start-1 lg:col-end-3 xl:w-1/2 xl:mx-auto">
+      <div class="flex items-start gap-4">
+       <div class="w-10 h-10 rounded-xl bg-cyan-900/40 flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-800/60 transition-colors">
+        <i data-lucide="target" class="w-5 h-5 text-cyan-400"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-cyan-300 transition-colors">🎯 Öğretmenler Üretiyor</h3>
+        <p class="text-sm text-slate-400">Öğretmenlerin dijital dünyada kendi ürettikleri etkinliklerin, eğitsel içeriklerin ve tecrübelerin paylaşıldığı ortak havuz.</p>
+       </div>
+      </div>
+     </a>
 
     </div>
    </section>
@@ -194,5 +240,5 @@
       ])
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a078fbafc8eb37b3',t:'MTc4MDc2NTMyOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ </body>
 </html>
