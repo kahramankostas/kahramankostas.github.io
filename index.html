@@ -27,7 +27,7 @@
   <meta name="twitter:description"
     content="Computer Science Researcher specializing in IoT security, device identification, and machine learning">
 
-  <link rel="canonical" href="/">
+  <link class="canonical" href="/">
   <meta name="google-site-verification" content="QzOYYorbgwP6cQluJH_ErRjmofaTJXFDBxRtxJ0TToM">
 
   <script type="application/ld+json">
@@ -41,8 +41,12 @@
   "sameAs": [
     "https://github.com/kahramankostas",
     "https://www.linkedin.com/in/kkostas/",
+    "https://orcid.org/0000-0002-4696-1857",
     "https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl",
-    "https://twitter.com/kkostas"
+    "https://twitter.com/kkostas",
+    "https://www.researchgate.net/profile/Kahraman-Kostas",
+    "https://www.webofscience.com/wos/author/record/JZT-7728-2024",
+    "https://www.scopus.com/authid/detail.uri?authorId=57222271214"
   ]
 }
 </script>
@@ -201,38 +205,27 @@
     }
 
     /* Profile Section */
-    /* 1. Kapsayıcıyı blok yapıyoruz (flex'i siliyoruz) */
     #circle-shape-example {
       position: relative;
       margin-top: 3rem;
       margin-bottom: 3rem;
       display: block;
-      /* BURASI DEĞİŞTİ: flex yerine block */
-      /* align-items ve gap özelliklerini siliyoruz çünkü float ile çalışmazlar */
     }
 
-    /* 2. Resmi sola yaslıyoruz ki yazı etrafını sarsın */
     .profile-image-container {
       position: relative;
       width: 300px;
       height: 300px;
       float: left;
-      /* YENİ EKLENDİ: Resmi sola yaslar */
       margin-right: 3rem;
-      /* YENİ EKLENDİ: Resim ile yazı arasına boşluk */
       margin-bottom: 1rem;
-      /* Alt tarafa biraz boşluk */
-      /* flex-shrink'e artık gerek yok */
       cursor: pointer;
     }
 
-    /* Küçük bir düzeltme: Telefondan bakıldığında (Responsive) bozulmaması için */
     @media (max-width: 768px) {
       .profile-image-container {
         float: none;
-        /* Mobilde float'ı iptal et */
         margin: 0 auto 2rem auto;
-        /* Ortala */
       }
     }
 
@@ -448,6 +441,7 @@
       justify-content: center;
       gap: 1.5rem;
       margin-bottom: 1.5rem;
+      flex-wrap: wrap;
     }
 
     .footer a {
@@ -475,6 +469,11 @@
       font-size: 0.95rem;
     }
 
+    /* Academic Icon Override Styles */
+    .ai-orcid:hover {
+      color: #a6ce39 !important; /* ORCID Original Green */
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
       body {
@@ -499,14 +498,6 @@
         width: 250px;
         height: 250px;
         margin: 0 auto;
-      }
-
-      .overlay-text h3 {
-        font-size: 1.1rem;
-      }
-
-      .overlay-text p {
-        font-size: 0.85rem;
       }
 
       .nav-link {
@@ -545,6 +536,22 @@
           <li class="nav-item">
             <a class="nav-link" href="#teaching">Teaching</a>
           </li>
+          
+          <!-- Academic Profiles Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="profilesDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Profiles
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="profilesDropdown">
+              <li><a class="dropdown-item" href="https://orcid.org/0000-0002-4696-1857" target="_blank">ORCID</a></li>
+              <li><a class="dropdown-item" href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank">Google Scholar</a></li>
+              <li><a class="dropdown-item" href="https://www.researchgate.net/profile/Kahraman-Kostas" target="_blank">ResearchGate</a></li>
+              <li><a class="dropdown-item" href="https://www.webofscience.com/wos/author/record/JZT-7728-2024" target="_blank">Web of Science</a></li>
+              <li><a class="dropdown-item" href="https://www.scopus.com/authid/detail.uri?authorId=57222271214" target="_blank">Scopus</a></li>
+            </ul>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="cvDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -559,22 +566,18 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="cvDropdown" role="button" data-bs-toggle="dropdown"
+            <a class="nav-link dropdown-toggle" href="#" id="mebDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               MEB
             </a>
-            <ul class="dropdown-menu" aria-labelledby="cvDropdown">
-              <li><a class="dropdown-item" href="https://ulkemyanimda.github.io/" target="_blank">Ülkem Yanımda
-                  Materyal</a></li>
-              <li><a class="dropdown-item" href="https://ulkemyanimda.eba.gov.tr/" target="_blank">Ülkem Yanımda
-                  Moodle</a></li>
-              <li><a class="dropdown-item" href="https://ulkemyanimda.eba.gov.tr/videolar/" target="_blank">TTKD Kitap
-                  QR</a></li>
+            <ul class="dropdown-menu" aria-labelledby="mebDropdown">
+              <li><a class="dropdown-item" href="https://ulkemyanimda.github.io/" target="_blank">Ülkem Yanımda Materyal</a></li>
+              <li><a class="dropdown-item" href="https://ulkemyanimda.eba.gov.tr/" target="_blank">Ülkem Yanımda Moodle</a></li>
+              <li><a class="dropdown-item" href="https://ulkemyanimda.eba.gov.tr/videolar/" target="_blank">TTKD Kitap QR</a></li>
               <li><a class="dropdown-item" href="https://yyegm.meb.gov.tr/" target="_blank">YYEGM</a></li>
               <li><a class="dropdown-item" href="kaynaklar/uy-seminer.html" target="_blank">UY-Seminer</a></li>
               <li><a class="dropdown-item" href="kaynaklar/yztarihi.pptx" target="_blank">YZ Tarihi</a></li>
-			                <li><a class="dropdown-item" href="kaynaklar/yurtdisi-uyum-uy.pptx" target="_blank">TTK Yurt Dışı Göreve Uyum </a></li>
-
+              <li><a class="dropdown-item" href="kaynaklar/yurtdisi-uyum-uy.pptx" target="_blank">TTK Yurt Dışı Göreve Uyum </a></li>
             </ul>
           </li>
 
@@ -592,13 +595,10 @@
           <img src="assets/mr.hyde.jpg" class="curve image-2" alt="Dr. Kahraman Kostas - Hover">
         </div>
 
-
-
         <h1>Kahraman Kostas, PhD</h1>
 
         <p class="lead">
-          <strong>Computer Science Researcher specializing in IoT Security, Generalisable Machine Learning, and Network
-            Forensics.</strong>
+          <strong>Computer Science Researcher specializing in IoT Security, Generalisable Machine Learning, and Network Forensics.</strong>
         </p>
 
         <p>
@@ -613,8 +613,7 @@
 
         <p>
           My doctoral thesis, “<a href="https://www.ros.hw.ac.uk/items/2a17932d-5b88-4c18-8e1a-6d21ec66da08"
-            target="_blank" rel="noopener noreferrer">Behaviour-based Security with Machine Learning on IoT
-            Networks</a>,”
+            target="_blank" rel="noopener noreferrer">Behaviour-based Security with Machine Learning on IoT Networks</a>,”
           (Supervisors: <a href="https://researchportal.hw.ac.uk/en/persons/mike-just/" target="_blank"
             rel="noopener noreferrer">Dr. Mike Just</a> & <a href="https://www.macs.hw.ac.uk/~ml355/" target="_blank"
             rel="noopener noreferrer">Dr. Michael Lones</a>)
@@ -641,21 +640,18 @@
           I developed ML solutions for community detection and WiFi-based distance estimation, strengthening my ability
           to build industry-scale systems.
           Prior to this, my team won <strong>1st place in the Huawei UK University Challenge (2021)</strong> for our
-          work on indoor localisation, which we later published at the prestigious <strong>IEEE IPIN</strong>
-          conference.
+          work on indoor localisation, which we later published at the prestigious <strong>IEEE IPIN</strong> conference.
         </p>
 
         <p>
           <strong>Large-Scale Technical Leadership (Current Role):</strong> Since September 2024, I have been serving as
           a <strong>National Education Expert</strong> at the Turkish Ministry of National Education.
           In this capacity, I act as the <strong>Technical Lead and Architect</strong> for the <a
-            href="https://ulkemyanimda.eba.gov.tr/" target="_blank" rel="noopener noreferrer">“Ulkem Yanımda”</a>
-          project.
+            href="https://ulkemyanimda.eba.gov.tr/" target="_blank" rel="noopener noreferrer">“Ulkem Yanımda”</a> project.
         </p>
         <p>
           I coordinated the technical infrastructure design and deployment of this international platform, which
-          connects <strong>100+ teachers</strong> with <strong>2000+ students</strong> across <strong>10+
-            countries</strong>.
+          connects <strong>100+ teachers</strong> with <strong>2000+ students</strong> across <strong>10+ countries</strong>.
           My role involves managing full-stack operations, data analytics, and cross-border coordination to ensure
           sustainable scalability.
         </p>
@@ -671,19 +667,16 @@
 
         <div class="postdoc-notice"
           style="background-color: #f0f4f8; border-left: 5px solid #0056b3; padding: 15px; margin-top: 20px; border-radius: 4px;">
-          <strong>🚀 Open for Collaborations:</strong> I am actively seeking <strong>Postdoctoral Research
-            positions</strong> in IoT security, applied ML, and data-driven systems.
+          <strong>🚀 Open for Collaborations:</strong> I am actively seeking <strong>Postdoctoral Research positions</strong> in IoT security, applied ML, and data-driven systems.
           I am particularly interested in labs that value rigorous methodological analysis combined with real-world
           deployment.
-          <a href="mailto:kahramankostas@gmail.com" style="font-weight: bold; text-decoration: underline;">Please get in
-            touch to discuss opportunities.</a>
+          <a href="mailto:kahramankostas@gmail.com" style="font-weight: bold; text-decoration: underline;">Please get in touch to discuss opportunities.</a>
         </div>
 
         <hr style="margin-top: 30px; margin-bottom: 20px; border: 0; border-top: 1px solid #eee;">
 
         <p style="font-size: 0.9em; color: #666;">
-          <em>Outside the lab, I am passionate about Turkish literature, etymology, classical poetry, hiking, and
-            photography.</em>
+          <em>Outside the lab, I am passionate about Turkish literature, etymology, classical poetry, hiking, and photography.</em>
         </p>
 
       </div>
@@ -694,62 +687,49 @@
       <h2>News</h2>
       <div class="row">
         <div class="col-12">
-		
-
-		
-		
-		<div class="news-card">
-  <div class="news-date">APR 2026</div>
-  <div class="news-content">
-    I Presented three papers at the <b>6th International Artificial Intelligence and Data Science Congress</b>: 
-    <a href="https://icada.com.tr/en/" target="_blank" rel="noopener noreferrer">
-      <i class="fa fa-external-link"></i>
-    </a>
-    
-    <ul style="margin-top:8px; padding-left:18px;">
-      
-      <li>
-        <b>CNN-based IoT Device Identification: A Comparative Study on Payload vs. Fingerprint</b>
-        <a href="https://arxiv.org/pdf/2304.13894" target="_blank" rel="noopener noreferrer">
-          <i class="fa fa-external-link"></i>
-        </a>
-        <a href="https://github.com/kahramankostas/CNN-based-IoT-Device-Identification" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-github"></i>
-        </a><br>
-
-      </li>
-      
-      <li style="margin-top:6px;">
-        <b>There Are No Silly Questions: Evaluation of Offline LLM Capabilities from a Turkish Perspective</b>
-        <a href="https://arxiv.org/pdf/2603.09996" target="_blank" rel="noopener noreferrer">
-          <i class="fa fa-external-link"></i>
-        </a>
-        <a href="https://github.com/edibeselvi/SillyQuestions/" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-github"></i>
-        </a><br>
-
-      </li>
-      
-      <li style="margin-top:6px;">
-        <b>Measuring Logical Reasoning in Turkish Offline Language Models via Fallacy Detection</b>
-        <a href="https://www.researchgate.net/profile/Kahraman-Kostas/publication/401344591_Measuring_Logical_Reasoning_in_Turkish_Offline_Language_Models_via_Fallacy_Detection/links/69a2cab443ad5e30a8536212/Measuring-Logical-Reasoning-in-Turkish-Offline-Language-Models-via-Fallacy-Detection.pdf" target="_blank" rel="noopener noreferrer">
-          <i class="fa fa-external-link"></i>
-        </a>
-        <a href="https://github.com/kahramankostas/TRfallacy/" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-github"></i>
-        </a><br>
-
-      </li>
-
-    </ul>
-  </div>
-</div>
-		
-		
-		
-		
-		
-
+        
+        <div class="news-card">
+          <div class="news-date">APR 2026</div>
+          <div class="news-content">
+            I Presented three papers at the <b>6th International Artificial Intelligence and Data Science Congress</b>: 
+            <a href="https://icada.com.tr/en/" target="_blank" rel="noopener noreferrer">
+              <i class="fa fa-external-link"></i>
+            </a>
+            
+            <ul style="margin-top:8px; padding-left:18px;">
+              <li>
+                <b>CNN-based IoT Device Identification: A Comparative Study on Payload vs. Fingerprint</b>
+                <a href="https://arxiv.org/pdf/2304.13894" target="_blank" rel="noopener noreferrer">
+                  <i class="fa fa-external-link"></i>
+                </a>
+                <a href="https://github.com/kahramankostas/CNN-based-IoT-Device-Identification" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-github"></i>
+                </a><br>
+              </li>
+              
+              <li style="margin-top:6px;">
+                <b>There Are No Silly Questions: Evaluation of Offline LLM Capabilities from a Turkish Perspective</b>
+                <a href="https://arxiv.org/pdf/2603.09996" target="_blank" rel="noopener noreferrer">
+                  <i class="fa fa-external-link"></i>
+                </a>
+                <a href="https://github.com/edibeselvi/SillyQuestions/" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-github"></i>
+                </a><br>
+              </li>
+              
+              <li style="margin-top:6px;">
+                <b>Measuring Logical Reasoning in Turkish Offline Language Models via Fallacy Detection</b>
+                <a href="https://www.researchgate.net/profile/Kahraman-Kostas/publication/401344591_Measuring_Logical_Reasoning_in_Turkish_Offline_Language_Models_via_Fallacy_Detection/links/69a2cab443ad5e30a8536212/Measuring-Logical-Reasoning-in-Turkish-Offline-Language-Models-via-Fallacy-Detection.pdf" target="_blank" rel="noopener noreferrer">
+                  <i class="fa fa-external-link"></i>
+                </a>
+                <a href="https://github.com/kahramankostas/TRfallacy/" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-github"></i>
+                </a><br>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
           <div class="news-card">
             <div class="news-date">OCT 2025</div>
             <div class="news-content">
@@ -760,18 +740,6 @@
             </div>
           </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
           <div class="news-card">
             <div class="news-date">JUL 2025</div>
             <div class="news-content">
@@ -779,17 +747,8 @@
               publication in the Computer Networks journal.
               <a href="https://github.com/kahramankostas/IoTGeM"><i class="fab fa-github"></i></a>
               <a href="https://doi.org/10.1016/j.comnet.2025.111550"><i class="fa fa-external-link"></i></a>
-
-
             </div>
           </div>
-
-
-
-
-
-
-
 
           <div class="news-card">
             <div class="news-date">JUN 2025</div>
@@ -798,11 +757,8 @@
               Using Node Embeddings and Clustering of WiFi Trajectories" has been accepted to the IPIN 2025 conference.
               <a href="https://github.com/kahramankostas/IPIN2025"><i class="fab fa-github"></i></a>
               <a href="https://arxiv.org/abs/2505.08088"><i class="fa fa-external-link"></i></a>
-
-
             </div>
           </div>
-
 
           <div class="news-card">
             <div class="news-date">JAN 2025</div>
@@ -847,114 +803,82 @@
     <!-- Publications Section -->
     <section id="publications">
       <h2>Publications</h2>
-	  
-	  
-	  <div class="publication">
-  <div class="publication-title">
-    CNN-based IoT Device Identification: A Comparative Study on Payload vs. Fingerprint
-    <span class="badge" style="margin-left:8px; font-size:0.75em; background:#eef; padding:2px 6px; border-radius:6px;">
-      Conference Presentation
-    </span>
-  </div>
-  <div class="publication-authors">Kahraman Kostas</div>
-  <div class="publication-venue">6th International Artificial Intelligence and Data Science Congress, 2026</div>
-  <div class="publication-links">
-    <a href="presentation/7.pdf" target="_blank" rel="noopener noreferrer" title="Slides">
-      <i class="fa fa-file-powerpoint"></i>
-    </a>
-    <a href="https://github.com/kahramankostas/CNN-based-IoT-Device-Identification" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-github"></i>
-    </a>
-    <a href="https://arxiv.org/pdf/2304.13894" target="_blank" rel="noopener noreferrer">
-      <i class="fa fa-external-link"></i>
-    </a>
-  </div>
-</div>
-
-<div class="publication">
-  <div class="publication-title">
-    There Are No Silly Questions: Evaluation of Offline LLM Capabilities from a Turkish Perspective
-    <span class="badge" style="margin-left:8px; font-size:0.75em; background:#eef; padding:2px 6px; border-radius:6px;">
-      Conference Presentation
-    </span>
-  </div>
-  <div class="publication-authors">Edibe Yılmaz, Kahraman Kostas</div>
-  <div class="publication-venue">6th International Artificial Intelligence and Data Science Congress, 2026</div>
-  <div class="publication-links">
-    <a href="presentation/15.pdf" target="_blank" rel="noopener noreferrer" title="Slides">
-      <i class="fa fa-file-powerpoint"></i>
-    </a>
-    <a href="https://github.com/edibeselvi/SillyQuestions/" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-github"></i>
-    </a>
-    <a href="https://arxiv.org/pdf/2603.09996" target="_blank" rel="noopener noreferrer">
-      <i class="fa fa-external-link"></i>
-    </a>
-  </div>
-</div>
-
-<div class="publication">
-  <div class="publication-title">
-    Measuring Logical Reasoning in Turkish Offline Language Models via Fallacy Detection
-    <span class="badge" style="margin-left:8px; font-size:0.75em; background:#eef; padding:2px 6px; border-radius:6px;">
-      Conference Presentation
-    </span>
-  </div>
-  <div class="publication-authors">İnanç Feridun Canci, Zeynep Gizem Emir Shahbazov, Edibe Yılmaz, Kahraman Kostas</div>
-  <div class="publication-venue">6th International Artificial Intelligence and Data Science Congress, 2026</div>
-  <div class="publication-links">
-    <a href="presentation/40.pdf" target="_blank" rel="noopener noreferrer" title="Slides">
-      <i class="fa fa-file-powerpoint"></i>
-    </a>
-    <a href="https://github.com/kahramankostas/TRfallacy/" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-github"></i>
-    </a>
-    <a href="https://www.researchgate.net/profile/Kahraman-Kostas/publication/401344591_Measuring_Logical_Reasoning_in_Turkish_Offline_Language_Models_via_Fallacy_Detection/links/69a2cab443ad5e30a8536212/Measuring-Logical-Reasoning-in-Turkish-Offline-Language-Models-via-Fallacy-Detection.pdf" target="_blank" rel="noopener noreferrer">
-      <i class="fa fa-external-link"></i>
-    </a>
-  </div>
-</div>
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+      
       <div class="publication">
-
-
         <div class="publication-title">
-          GeMID: Generalizable Models for IoT Device Identification
+          CNN-based IoT Device Identification: A Comparative Study on Payload vs. Fingerprint
+          <span class="badge" style="margin-left:8px; font-size:0.75em; background:#eef; padding:2px 6px; border-radius:6px;">
+            Conference Presentation
+          </span>
         </div>
-        <div class="publication-authors">
-          K Kostas, <a href="https://www.linkedin.com/in/rykostas">R Yasa Kostas</a>, M Just, MA Lones
+        <div class="publication-authors">Kahraman Kostas</div>
+        <div class="publication-venue">6th International Artificial Intelligence and Data Science Congress, 2026</div>
+        <div class="publication-links">
+          <a href="presentation/7.pdf" target="_blank" rel="noopener noreferrer" title="Slides">
+            <i class="fa fa-file-powerpoint"></i>
+          </a>
+          <a href="https://github.com/kahramankostas/CNN-based-IoT-Device-Identification" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://arxiv.org/pdf/2304.13894" target="_blank" rel="noopener noreferrer">
+            <i class="fa fa-external-link"></i>
+          </a>
         </div>
-        <div class="publication-venue">
-          Elsevier Internet of Things Journal, 2025
+      </div>
+
+      <div class="publication">
+        <div class="publication-title">
+          There Are No Silly Questions: Evaluation of Offline LLM Capabilities from a Turkish Perspective
+          <span class="badge" style="margin-left:8px; font-size:0.75em; background:#eef; padding:2px 6px; border-radius:6px;">
+            Conference Presentation
+          </span>
         </div>
+        <div class="publication-authors">Edibe Yılmaz, Kahraman Kostas</div>
+        <div class="publication-venue">6th International Artificial Intelligence and Data Science Congress, 2026</div>
+        <div class="publication-links">
+          <a href="presentation/15.pdf" target="_blank" rel="noopener noreferrer" title="Slides">
+            <i class="fa fa-file-powerpoint"></i>
+          </a>
+          <a href="https://github.com/edibeselvi/SillyQuestions/" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://arxiv.org/pdf/2603.09996" target="_blank" rel="noopener noreferrer">
+            <i class="fa fa-external-link"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="publication">
+        <div class="publication-title">
+          Measuring Logical Reasoning in Turkish Offline Language Models via Fallacy Detection
+          <span class="badge" style="margin-left:8px; font-size:0.75em; background:#eef; padding:2px 6px; border-radius:6px;">
+            Conference Presentation
+          </span>
+        </div>
+        <div class="publication-authors">İnanç Feridun Canci, Zeynep Gizem Emir Shahbazov, Edibe Yılmaz, Kahraman Kostas</div>
+        <div class="publication-venue">6th International Artificial Intelligence and Data Science Congress, 2026</div>
+        <div class="publication-links">
+          <a href="presentation/40.pdf" target="_blank" rel="noopener noreferrer" title="Slides">
+            <i class="fa fa-file-powerpoint"></i>
+          </a>
+          <a href="https://github.com/kahramankostas/TRfallacy/" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.researchgate.net/profile/Kahraman-Kostas/publication/401344591_Measuring_Logical_Reasoning_in_Turkish_Offline_Language_Models_via_Fallacy_Detection/links/69a2cab443ad5e30a8536212/Measuring-Logical-Reasoning-in-Turkish-Offline-Language-Models-via-Fallacy-Detection.pdf" target="_blank" rel="noopener noreferrer">
+            <i class="fa fa-external-link"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="publication">
+        <div class="publication-title">GeMID: Generalizable Models for IoT Device Identification</div>
+        <div class="publication-authors">K Kostas, <a href="https://www.linkedin.com/in/rykostas">R Yasa Kostas</a>, M Just, MA Lones</div>
+        <div class="publication-venue">Elsevier Internet of Things Journal, 2025</div>
         <div class="publication-links">
           <a href="https://github.com/kahramankostas/GeMID"><i class="fab fa-github"></i></a>
           <a href="https://doi.org/10.1016/j.iot.2025.101806"><i class="fa fa-external-link"></i></a>
         </div>
       </div>
-
 
       <div class="publication">
         <div class="publication-title">IoTGeM: Generalisable Models for Behaviour-Based IoT Attack Detection</div>
@@ -967,29 +891,23 @@
       </div>
 
       <div class="publication">
-        <div class="publication-title">Individual Packet Features are a Risk to Model Generalisation in ML-Based
-          Intrusion Detection</div>
+        <div class="publication-title">Individual Packet Features are a Risk to Model Generalisation in ML-Based Intrusion Detection</div>
         <div class="publication-authors">Kahraman Kostas, Mike Just, Michael A. Lones</div>
         <div class="publication-venue">IEEE Networking Letters, 2025</div>
         <div class="publication-links">
-
           <a href="https://github.com/kahramankostas/IPF"><i class="fab fa-github"></i></a>
           <a href="https://ieeexplore.ieee.org/abstract/document/10824899"><i class="fa fa-external-link"></i></a>
         </div>
       </div>
 
       <div class="publication">
-        <div class="publication-title">Semantic verbal fluency in native speakers of Turkish: A systematic review of
-          category use, scoring metrics and normative data in healthy individuals</div>
+        <div class="publication-title">Semantic verbal fluency in native speakers of Turkish: A systematic review of category use, scoring metrics and normative data in healthy individuals</div>
         <div class="publication-authors">Rabia Yasa Kostas, Kahraman Kostas, Sarah E MacPherson, Maria K Wolters</div>
         <div class="publication-venue">JCEN, 2024</div>
         <div class="publication-links">
-          <a href="https://www.tandfonline.com/doi/full/10.1080/13803395.2024.2331827"><i
-              class="fa fa-external-link"></i></a>
+          <a href="https://www.tandfonline.com/doi/full/10.1080/13803395.2024.2331827"><i class="fa fa-external-link"></i></a>
         </div>
       </div>
-
-
 
       <div class="publication">
         For more publication please click <a href="https://kahramankostas.github.io/news.html"
@@ -1031,21 +949,22 @@
   <footer class="footer text-center">
     <div class="container">
       <div class="social-links mb-4">
-        <a href="https://github.com/kahramankostas" target="_blank"><i class="fab fa-github fa-2x"></i></a>
-        <a href="https://www.linkedin.com/in/kkostas/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-        <a href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank"><i
-            class="ai ai-google-scholar ai-2x"></i></a>
-        <a href="https://twitter.com/kkostas" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
-        <a href="mailto:kahramankostas@gmail.com" target="_blank" class="fa fa-envelope fa-2x"></a>
-        <a href="https://www.instagram.com/kahramankostas/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-        <a href="https://www.facebook.com/kahramankostas/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+        <a href="https://orcid.org/0000-0002-4696-1857" target="_blank" title="ORCID"><i class="ai ai-orcid fa-2x"></i></a>
+        <a href="https://github.com/kahramankostas" target="_blank" title="GitHub"><i class="fab fa-github fa-2x"></i></a>
+        <a href="https://www.linkedin.com/in/kkostas/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a>
+        <a href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar ai-2x"></i></a>
+        <a href="https://www.researchgate.net/profile/Kahraman-Kostas" target="_blank" title="ResearchGate"><i class="ai ai-researchgate ai-2x"></i></a>
+        <a href="https://www.webofscience.com/wos/author/record/JZT-7728-2024" target="_blank" title="Web of Science"><i class="ai ai-publons ai-2x"></i></a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=57222271214" target="_blank" title="Scopus"><i class="ai ai-scopus ai-2x"></i></a>
+        <a href="https://twitter.com/kkostas" target="_blank" title="Twitter"><i class="fab fa-twitter fa-2x"></i></a>
+        <a href="mailto:kahramankostas@gmail.com" target="_blank" title="Email" class="fa fa-envelope fa-2x"></a>
+        <a href="https://www.instagram.com/kahramankostas/" target="_blank" title="Instagram"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="https://www.facebook.com/kahramankostas/" target="_blank" title="Facebook"><i class="fab fa-facebook fa-2x"></i></a>
       </div>
 
-     <div class="mb-4 d-flex justify-content-center align-items-center" style="height: 260px; overflow: hidden;">      
-
-
-<script type="text/javascript" src="//cdn.livetrafficfeed.com/static/3d-maps/live.v2.js?o=000080&amp;l=339966&amp;b=008000&amp;c=ff0000&amp;n=e61c1c&amp;root=0&amp;s=200"></script><noscript><a href="#"></a></noscript>
-    </div>   
+       <div class="mb-4 d-flex justify-content-center align-items-center" style="height: 260px; overflow: hidden;">      
+        <script type="text/javascript" src="//cdn.livetrafficfeed.com/static/3d-maps/live.v2.js?o=000080&amp;l=339966&amp;b=008000&amp;c=ff0000&amp;n=e61c1c&amp;root=0&amp;s=200"></script><noscript><a href="#"></a></noscript>
+      </div>   
 
       <p class="mb-0">Copyleft 2025 Kahraman Kostas</p>
     </div>
@@ -1055,7 +974,6 @@
   <script data-goatcounter="https://kkostas.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <script>
     $(document).ready(function () {
-      // Add smooth scrolling to all links
       $("a").on('click', function (event) {
         if (this.hash !== "") {
           event.preventDefault();
@@ -1068,7 +986,6 @@
         }
       });
 
-      // Add active class to nav links based on scroll position
       $(window).scroll(function () {
         var scrollDistance = $(window).scrollTop();
         $('section').each(function (i) {
