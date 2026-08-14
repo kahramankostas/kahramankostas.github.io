@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="tr" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Çevrim İçi Toplantı Portalı</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2); transform: scale(1); }
+      50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.3); transform: scale(1.03); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .btn-join {
+      animation: pulse-glow 2.5s ease-in-out infinite;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8, #3b82f6);
+      background-size: 200% 200%;
+      transition: all 0.3s ease;
+    }
+    .btn-join:hover {
+      animation: none;
+      transform: scale(1.06);
+      box-shadow: 0 0 35px rgba(59, 130, 246, 0.7), 0 0 70px rgba(59, 130, 246, 0.4);
+    }
+    .btn-join .shimmer-text {
+      background: linear-gradient(90deg, #ffffff 0%, #bfdbfe 30%, #ffffff 60%, #bfdbfe 80%, #ffffff 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3.5s linear infinite;
+    }
+    .card-float { animation: float 4s ease-in-out infinite; }
+    .card-float:nth-child(1) { animation-delay: 0.1s; }
+    .card-float:nth-child(2) { animation-delay: 0.25s; }
+    .card-float:nth-child(3) { animation-delay: 0.4s; }
+    .card-float:nth-child(4) { animation-delay: 0.55s; }
+    .card-float:nth-child(5) { animation-delay: 0.7s; }
+    .card-float:nth-child(6) { animation-delay: 0.85s; }
+    
+    .profile-ring {
+      background: conic-gradient(#3b82f6, #06b6d4, #6366f1, #3b82f6);
+      padding: 3px;
+      border-radius: 50%;
+    }
+    body { box-sizing: border-box; }
+  </style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/telemetry_sdk.js"></script>
+ </head>
+ <body class="h-full overflow-auto bg-slate-950 text-slate-100" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+  <div id="app" class="min-h-full w-full bg-slate-950">
+    
+    <!-- Hero / Header Section -->
+    <header class="relative overflow-hidden border-b border-slate-800/80">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/30 via-slate-900 to-slate-950"></div>
+      <div class="absolute -top-40 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute top-40 left-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"></div>
+      
+      <div class="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-20">
+        <div class="flex flex-col md:flex-row items-center gap-10 md:gap-14">
+          
+          <!-- Avatar / Host Badge -->
+          <div class="flex-shrink-0">
+            <div class="profile-ring w-40 h-40 md:w-48 md:h-48 shadow-2xl">
+              <div class="w-full h-full rounded-full overflow-hidden bg-slate-800 flex items-center justify-center border-4 border-slate-950">
+                <img src="./assets/mr.hyde.jpg" alt="Toplantı Yöneticisi" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'flex items-center justify-center w-full h-full text-4xl font-bold text-blue-400\'>TY</div>';">
+              </div>
+            </div>
+          </div>
+          
+          <!-- Content Details -->
+          <div class="text-center md:text-left flex-1">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-950/60 border border-blue-800/50 rounded-full mb-4 text-xs md:text-sm font-semibold text-blue-300 backdrop-blur-md">
+              <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+              <span>Canlı Çevrim İçi Etkinlik</span>
+            </div>
+
+            <h1 id="main-title" class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3 tracking-tight text-white" style="font-family: 'Space Grotesk', sans-serif;">
+Çevrim İçi Toplantı & Bilgi Paylaşımı
+            </h1>
+            
+          
+            
+            <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-8 text-sm text-slate-300">
+              <div class="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+                <i data-lucide="user" class="w-4 h-4 text-blue-400"></i>
+<span>Kahraman Koştaş</span>
+              </div>
+              <div class="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+                <i data-lucide="calendar" class="w-4 h-4 text-emerald-400"></i>
+                        <span>17.08.2026 - Pazartesi</span>
+              </div>
+              <div class="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+                <i data-lucide="clock" class="w-4 h-4 text-amber-400"></i>
+                <span>14:00</span>
+              </div>
+            </div>
+
+            <!-- Main CTA Button -->
+            <div>
+              <a id="join-btn" href="https://teams.microsoft.com/meet/311509892120012?p=VMketKJeibsrvNsqFm" target="_blank" rel="noopener noreferrer" class="btn-join inline-flex items-center gap-3 px-9 py-4 rounded-full text-white text-lg font-bold shadow-lg cursor-pointer">
+                <i data-lucide="video" class="w-5 h-5"></i>
+                <span id="button-text" class="shimmer-text tracking-wide">Toplantıya Katıl</span>
+                <i data-lucide="arrow-right" class="w-5 h-5 text-blue-200"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-400">
+      <p>© 2026 Çevrim İçi Etkinlik ve Toplantı Platformu. Tüm hakları saklıdır.</p>
+    </footer>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const defaultConfig = {
+      main_title: "Genel Koordinasyon ve Değerlendirme Toplantısı",
+      subtitle: "Dönem projeleri, süreç takibi ve gelecek planlamalarının ele alınacağı bilgilendirme ve istişare oturumu.",
+      author_name: "Moderatör / Toplantı Yöneticisi",
+      button_text: "Toplantıya Katıl",
+      background_color: "#020617",
+      surface_color: "#0f172a",
+      text_color: "#f8fafc",
+      accent_color: "#2563eb",
+      secondary_text_color: "#94a3b8",
+      font_family: "Space Grotesk",
+      font_size: 16
+    };
+
+    function applyConfig(config) {
+      document.getElementById('main-title').textContent = config.main_title || defaultConfig.main_title;
+      document.getElementById('subtitle').textContent = config.subtitle || defaultConfig.subtitle;
+      document.getElementById('author-name').textContent = config.author_name || defaultConfig.author_name;
+      document.getElementById('button-text').textContent = config.button_text || defaultConfig.button_text;
+
+      const app = document.getElementById('app');
+      app.style.backgroundColor = config.background_color || defaultConfig.background_color;
+
+      document.querySelectorAll('.card-float').forEach(c => {
+        c.style.backgroundColor = (config.surface_color || defaultConfig.surface_color) + 'b3';
+      });
+
+      const mainTitle = document.getElementById('main-title');
+      const font = config.font_family || defaultConfig.font_family;
+      mainTitle.style.fontFamily = `${font}, sans-serif`;
+
+      const baseSize = config.font_size || defaultConfig.font_size;
+      mainTitle.style.fontSize = `${baseSize * 2.25}px`;
+      document.getElementById('subtitle').style.fontSize = `${baseSize * 1.1}px`;
+    }
+
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange: async (config) => { applyConfig(config); },
+      mapToCapabilities: (config) => ({
+        recolorables: [
+          { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+          { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+          { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+          { get: () => config.accent_color || defaultConfig.accent_color, set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } },
+          { get: () => config.secondary_text_color || defaultConfig.secondary_text_color, set: (v) => { config.secondary_text_color = v; window.elementSdk.setConfig({ secondary_text_color: v }); } }
+        ],
+        borderables: [],
+        fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+        fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+      }),
+      mapToEditPanelValues: (config) => new Map([
+        ["main_title", config.main_title || defaultConfig.main_title],
+        ["subtitle", config.subtitle || defaultConfig.subtitle],
+        ["author_name", config.author_name || defaultConfig.author_name],
+        ["button_text", config.button_text || defaultConfig.button_text]
+      ])
+    });
+  </script>
+ </body>
+</html>
