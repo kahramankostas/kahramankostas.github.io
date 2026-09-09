@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IoT Network Traffic Dataset</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root{
+  --bg:#0a0e17;
+  --panel:#111827;
+  --panel-2:#151d30;
+  --border:#232c40;
+  --border-soft:#1a2233;
+  --teal:#2dd4bf;
+  --teal-dim:#1a4d47;
+  --amber:#f2a65a;
+  --text:#e6e9ef;
+  --text-dim:#8b93a7;
+  --text-faint:#586178;
+  --danger:#e8756a;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  min-height:100vh;
+  padding:28px 20px 60px;
+}
+
+.app{
+  max-width:1400px;
+  margin:0 auto;
+}
+
+/* subtle grid backdrop on the whole page */
+body{
+  background-image:
+    linear-gradient(rgba(45,212,191,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45,212,191,0.035) 1px, transparent 1px);
+  background-size: 34px 34px;
+  background-color: var(--bg);
+}
+
+header.top{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:18px;
+  border-bottom:1px solid var(--border);
+  padding-bottom:20px;
+  margin-bottom:22px;
+}
+
+.title-block h1{
+  font-size:26px;
+  font-weight:600;
+  margin:0 0 6px 0;
+  letter-spacing:-0.01em;
+}
+.title-block h1 .pulse{
+  display:inline-block;
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--teal);
+  margin-right:10px;
+  box-shadow:0 0 0 4px rgba(45,212,191,0.15);
+}
+.title-block p{
+  margin:0;
+  color:var(--text-dim);
+  font-size:14px;
+  max-width:520px;
+  line-height:1.5;
+}
+
+.stat-row{
+  display:flex;
+  gap:22px;
+}
+.stat{
+  text-align:right;
+}
+.stat .num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:20px;
+  font-weight:600;
+  color:var(--teal);
+}
+.stat .lbl{
+  font-size:11px;
+  color:var(--text-faint);
+  margin-top:2px;
+}
+
+.controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.search-wrap{
+  position:relative;
+  flex:1 1 260px;
+  max-width:360px;
+}
+.search-wrap input{
+  width:100%;
+  background:var(--panel);
+  border:1px solid var(--border);
+  color:var(--text);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:14px;
+  padding:10px 14px 10px 36px;
+  border-radius:8px;
+  outline:none;
+  transition:border-color .15s ease;
+}
+.search-wrap input:focus{
+  border-color:var(--teal);
+}
+.search-wrap input::placeholder{color:var(--text-faint);}
+.search-wrap svg{
+  position:absolute;
+  left:12px; top:50%;
+  transform:translateY(-50%);
+  width:15px;height:15px;
+  color:var(--text-faint);
+}
+
+.chip-group{
+  display:flex;
+  gap:6px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:3px;
+}
+.chip{
+  border:none;
+  background:transparent;
+  color:var(--text-dim);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:13px;
+  padding:7px 13px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:background .15s ease, color .15s ease;
+}
+.chip:hover{color:var(--text);}
+.chip.active{
+  background:var(--teal-dim);
+  color:var(--teal);
+}
+
+.reset-btn{
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--text-faint);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:13px;
+  padding:9px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:border-color .15s ease, color .15s ease;
+}
+.reset-btn:hover{
+  border-color:var(--text-dim);
+  color:var(--text);
+}
+
+.result-line{
+  font-size:12px;
+  color:var(--text-faint);
+  margin:0 0 10px 2px;
+  font-family:'IBM Plex Mono',monospace;
+}
+.result-line b{color:var(--teal); font-weight:600;}
+
+.table-shell{
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:auto;
+  max-height:70vh;
+  background:var(--panel);
+  position:relative;
+}
+
+table{
+  border-collapse:separate;
+  border-spacing:0;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12.5px;
+  white-space:nowrap;
+}
+
+thead th{
+  position:sticky;
+  top:0;
+  background:var(--panel-2);
+  color:var(--text-dim);
+  font-weight:500;
+  text-align:left;
+  padding:10px 14px;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+  user-select:none;
+  z-index:2;
+  font-size:11.5px;
+  vertical-align:bottom;
+}
+thead th:hover{color:var(--text);}
+thead th .arrow{
+  color:var(--teal);
+  margin-left:4px;
+  font-size:10px;
+}
+thead th .match{
+  color:var(--amber);
+}
+
+thead th.fixed, tbody td.fixed{
+  position:sticky;
+  background:var(--panel-2);
+  z-index:3;
+}
+thead th.fixed{z-index:4;}
+
+th.col-tarih, td.col-tarih{left:0; min-width:96px;}
+th.col-tip, td.col-tip{left:96px; min-width:64px;}
+th.col-durum, td.col-durum{left:160px; min-width:70px;}
+th.col-toplam, td.col-toplam{left:230px; min-width:100px; border-right:1px solid var(--border);}
+
+td.fixed{background:var(--panel);}
+tbody tr:nth-child(even) td.fixed{background:#0f1526;}
+
+tbody td{
+  padding:9px 14px;
+  border-bottom:1px solid var(--border-soft);
+  color:var(--text);
+}
+tbody tr:hover td:not(.fixed){
+  filter:brightness(1.25);
+}
+tbody tr:hover td.fixed{
+  color:var(--teal);
+}
+
+td.dataset-Train{color:#7dd3c8;}
+td.dataset-Test{color:var(--amber);}
+td.state-active{color:var(--teal);}
+td.state-idle{color:var(--text-dim);}
+
+td.metric{
+  text-align:right;
+  color:var(--text-dim);
+}
+td.col-toplam{
+  text-align:right;
+  font-weight:600;
+  color:var(--text);
+}
+
+.legend{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:14px;
+  font-size:12px;
+  color:var(--text-faint);
+}
+.legend .bar{
+  width:120px;height:8px;
+  border-radius:4px;
+  background:linear-gradient(90deg, var(--panel-2), var(--teal));
+  border:1px solid var(--border);
+}
+
+.empty-state{
+  padding:40px 20px;
+  text-align:center;
+  color:var(--text-faint);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:14px;
+}
+
+footer.note{
+  margin-top:18px;
+  font-size:12px;
+  color:var(--text-faint);
+  line-height:1.6;
+}
+
+::-webkit-scrollbar{height:10px; width:10px;}
+::-webkit-scrollbar-track{background:var(--panel);}
+::-webkit-scrollbar-thumb{background:var(--border); border-radius:6px;}
+::-webkit-scrollbar-thumb:hover{background:var(--text-faint);}
+
+@media (max-width:720px){
+  .stat-row{display:none;}
+  .title-block p{max-width:100%;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="top">
+    <div class="title-block">
+      <h1><span class="pulse"></span>IoT Network Traffic Dataset</h1>
+      <p>Packet traffic (KB) generated by 40 smart home devices in active/idle states, recorded by date.</p>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="num" id="statRecords">–</div><div class="lbl">Record</div></div>
+      <div class="stat"><div class="num" id="statDevices">–</div><div class="lbl">Device</div></div>
+      <div class="stat"><div class="num" id="statRange">–</div><div class="lbl">Date range</div></div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="searchInput" type="text" placeholder="Device search (exp: Gosund, Camera, Plug)…" autocomplete="off">
+    </div>
+    <div class="chip-group" id="datasetChips">
+      <button class="chip active" data-val="all">All</button>
+      <button class="chip" data-val="Train">Train</button>
+      <button class="chip" data-val="Test">Test</button>
+    </div>
+    <div class="chip-group" id="stateChips">
+      <button class="chip active" data-val="all">All</button>
+      <button class="chip" data-val="active">active</button>
+      <button class="chip" data-val="idle">idle</button>
+    </div>
+    <button class="reset-btn" id="resetBtn">Reset</button>
+  </div>
+
+  <div class="result-line" id="resultLine"></div>
+
+  <div class="table-shell">
+    <table id="dataTable">
+      <thead><tr id="headRow"></tr></thead>
+      <tbody id="bodyRows"></tbody>
+    </table>
+  </div>
+
+  <div class="legend">
+    <span>Cell density (min → max within column):</span>
+    <span class="bar"></span>
+  </div>
+
+  <footer class="note">
+Number of packets collected as input data for ML (in KB). Click the column headers to sort by device.
+Total number of packets generated by devices, and number of devices, in each session. Values scaled to 1000.
+  </footer>
+
+</div>
+
+<script>
+const RAW = {"devices": ["AMCREST WiFi Camera", "Amazon Alexa Echo Dot 1", "Amazon Alexa Echo Dot 2", "Amazon Alexa Echo Spot", "Amazon Alexa Echo Studio", "Amazon Plug", "Arlo Base Station", "Arlo Q Camera", "Atomi Coffee Maker", "Borun/Sichuan-AI Camera", "D-Link Water Sensor", "D-Link Mini Camera", "Eufy HomeBase 2", "Globe Lamp ESP_B1680C", "Google Nest Mini", "Gosund ESP_032979 Plug", "Gosund ESP_039AAF Sckt", "Gosund ESP_0C3994 Plug", "Gosund ESP_10098F Sckt", "Gosund ESP_10ACD8 Plug", "Gosund ESP_147FF9 Plug", "Gosund ESP_1ACEE1 Sckt", "HeimVision Smrt WiFiCam", "HeimVision SL R-Lamp", "Home Eye Camera", "LG Smart TV", "Luohe Cam Dog", "Nest Indoor Camera", "Netatmo Camera", "Netatmo Weather Station", "Philips Hue Bridge", "Ring Base Station", "SIMCAM 1S (AMPAKTec)", "Smart Board", "Sonos One Speaker", "Teckin Plug 1", "Teckin Plug 2", "Yutron Plug 1", "Yutron Plug 2", "iRobot Roomba"], "rows": [{"dataset": "Train", "date": "20211102", "state": "active", "total": 353.62, "AMCREST WiFi Camera": 6.68, "Amazon Alexa Echo Dot 1": 6.91, "Amazon Alexa Echo Dot 2": 6.84, "Amazon Alexa Echo Spot": 14.94, "Amazon Alexa Echo Studio": 13.2, "Amazon Plug": 1.47, "Arlo Base Station": 12.63, "Arlo Q Camera": 21.08, "Atomi Coffee Maker": 6.94, "Borun/Sichuan-AI Camera": 24.04, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.08, "Eufy HomeBase 2": 8.08, "Globe Lamp ESP_B1680C": 6.75, "Google Nest Mini": 20.59, "Gosund ESP_032979 Plug": 6.65, "Gosund ESP_039AAF Sckt": 6.62, "Gosund ESP_0C3994 Plug": 6.63, "Gosund ESP_10098F Sckt": 0.0, "Gosund ESP_10ACD8 Plug": 6.66, "Gosund ESP_147FF9 Plug": 6.63, "Gosund ESP_1ACEE1 Sckt": 6.64, "HeimVision Smrt WiFiCam": 14.3, "HeimVision SL R-Lamp": 7.88, "Home Eye Camera": 22.48, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.03, "Nest Indoor Camera": 33.4, "Netatmo Camera": 9.59, "Netatmo Weather Station": 1.81, "Philips Hue Bridge": 12.5, "Ring Base Station": 3.37, "SIMCAM 1S (AMPAKTec)": 21.45, "Smart Board": 0.4, "Sonos One Speaker": 5.18, "Teckin Plug 1": 6.68, "Teckin Plug 2": 6.34, "Yutron Plug 1": 6.35, "Yutron Plug 2": 6.68, "iRobot Roomba": 1.12}, {"dataset": "Train", "date": "20211103", "state": "active", "total": 947.57, "AMCREST WiFi Camera": 5.54, "Amazon Alexa Echo Dot 1": 7.1, "Amazon Alexa Echo Dot 2": 6.98, "Amazon Alexa Echo Spot": 15.19, "Amazon Alexa Echo Studio": 13.16, "Amazon Plug": 1.48, "Arlo Base Station": 4.93, "Arlo Q Camera": 18.81, "Atomi Coffee Maker": 6.93, "Borun/Sichuan-AI Camera": 24.42, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.1, "Eufy HomeBase 2": 8.07, "Globe Lamp ESP_B1680C": 6.75, "Google Nest Mini": 24.46, "Gosund ESP_032979 Plug": 6.75, "Gosund ESP_039AAF Sckt": 6.74, "Gosund ESP_0C3994 Plug": 6.75, "Gosund ESP_10098F Sckt": 0.0, "Gosund ESP_10ACD8 Plug": 6.75, "Gosund ESP_147FF9 Plug": 6.74, "Gosund ESP_1ACEE1 Sckt": 6.75, "HeimVision Smrt WiFiCam": 14.29, "HeimVision SL R-Lamp": 7.88, "Home Eye Camera": 25.28, "LG Smart TV": 600.0, "Luohe Cam Dog": 2.92, "Nest Indoor Camera": 24.23, "Netatmo Camera": 12.21, "Netatmo Weather Station": 1.87, "Philips Hue Bridge": 12.67, "Ring Base Station": 3.26, "SIMCAM 1S (AMPAKTec)": 21.08, "Smart Board": 0.55, "Sonos One Speaker": 8.71, "Teckin Plug 1": 6.62, "Teckin Plug 2": 6.29, "Yutron Plug 1": 6.53, "Yutron Plug 2": 6.65, "iRobot Roomba": 1.21}, {"dataset": "Train", "date": "20211105", "state": "active", "total": 361.14, "AMCREST WiFi Camera": 5.52, "Amazon Alexa Echo Dot 1": 7.0, "Amazon Alexa Echo Dot 2": 6.93, "Amazon Alexa Echo Spot": 13.72, "Amazon Alexa Echo Studio": 13.12, "Amazon Plug": 1.48, "Arlo Base Station": 4.95, "Arlo Q Camera": 21.54, "Atomi Coffee Maker": 6.94, "Borun/Sichuan-AI Camera": 26.2, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.11, "Eufy HomeBase 2": 8.07, "Globe Lamp ESP_B1680C": 6.74, "Google Nest Mini": 21.27, "Gosund ESP_032979 Plug": 6.74, "Gosund ESP_039AAF Sckt": 6.74, "Gosund ESP_0C3994 Plug": 6.75, "Gosund ESP_10098F Sckt": 0.0, "Gosund ESP_10ACD8 Plug": 6.75, "Gosund ESP_147FF9 Plug": 6.75, "Gosund ESP_1ACEE1 Sckt": 6.76, "HeimVision Smrt WiFiCam": 13.82, "HeimVision SL R-Lamp": 7.88, "Home Eye Camera": 29.66, "LG Smart TV": 0.0, "Luohe Cam Dog": 2.78, "Nest Indoor Camera": 23.78, "Netatmo Camera": 26.15, "Netatmo Weather Station": 1.7, "Philips Hue Bridge": 14.03, "Ring Base Station": 3.21, "SIMCAM 1S (AMPAKTec)": 20.91, "Smart Board": 0.38, "Sonos One Speaker": 4.97, "Teckin Plug 1": 6.61, "Teckin Plug 2": 6.46, "Yutron Plug 1": 6.63, "Yutron Plug 2": 6.06, "iRobot Roomba": 1.05}, {"dataset": "Train", "date": "20211108", "state": "active", "total": 521.74, "AMCREST WiFi Camera": 5.63, "Amazon Alexa Echo Dot 1": 10.73, "Amazon Alexa Echo Dot 2": 10.92, "Amazon Alexa Echo Spot": 14.99, "Amazon Alexa Echo Studio": 13.06, "Amazon Plug": 1.47, "Arlo Base Station": 45.08, "Arlo Q Camera": 78.96, "Atomi Coffee Maker": 6.94, "Borun/Sichuan-AI Camera": 26.05, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.11, "Eufy HomeBase 2": 8.08, "Globe Lamp ESP_B1680C": 6.74, "Google Nest Mini": 21.11, "Gosund ESP_032979 Plug": 6.7, "Gosund ESP_039AAF Sckt": 6.33, "Gosund ESP_0C3994 Plug": 6.36, "Gosund ESP_10098F Sckt": 3.29, "Gosund ESP_10ACD8 Plug": 6.37, "Gosund ESP_147FF9 Plug": 6.34, "Gosund ESP_1ACEE1 Sckt": 6.35, "HeimVision Smrt WiFiCam": 13.78, "HeimVision SL R-Lamp": 7.9, "Home Eye Camera": 37.03, "LG Smart TV": 0.0, "Luohe Cam Dog": 2.98, "Nest Indoor Camera": 84.38, "Netatmo Camera": 10.19, "Netatmo Weather Station": 1.82, "Philips Hue Bridge": 13.81, "Ring Base Station": 3.47, "SIMCAM 1S (AMPAKTec)": 21.96, "Smart Board": 0.43, "Sonos One Speaker": 4.97, "Teckin Plug 1": 6.59, "Teckin Plug 2": 6.07, "Yutron Plug 1": 6.61, "Yutron Plug 2": 6.12, "iRobot Roomba": 1.06}, {"dataset": "Train", "date": "20211109", "state": "active", "total": 441.11, "AMCREST WiFi Camera": 6.09, "Amazon Alexa Echo Dot 1": 11.44, "Amazon Alexa Echo Dot 2": 10.94, "Amazon Alexa Echo Spot": 14.72, "Amazon Alexa Echo Studio": 13.17, "Amazon Plug": 1.47, "Arlo Base Station": 45.97, "Arlo Q Camera": 47.26, "Atomi Coffee Maker": 6.93, "Borun/Sichuan-AI Camera": 24.37, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.09, "Eufy HomeBase 2": 7.97, "Globe Lamp ESP_B1680C": 6.75, "Google Nest Mini": 21.08, "Gosund ESP_032979 Plug": 6.75, "Gosund ESP_039AAF Sckt": 6.74, "Gosund ESP_0C3994 Plug": 6.75, "Gosund ESP_10098F Sckt": 6.75, "Gosund ESP_10ACD8 Plug": 6.75, "Gosund ESP_147FF9 Plug": 6.75, "Gosund ESP_1ACEE1 Sckt": 6.76, "HeimVision Smrt WiFiCam": 13.76, "HeimVision SL R-Lamp": 7.88, "Home Eye Camera": 25.97, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.03, "Nest Indoor Camera": 43.68, "Netatmo Camera": 9.17, "Netatmo Weather Station": 1.77, "Philips Hue Bridge": 12.47, "Ring Base Station": 3.34, "SIMCAM 1S (AMPAKTec)": 21.65, "Smart Board": 0.44, "Sonos One Speaker": 4.99, "Teckin Plug 1": 6.62, "Teckin Plug 2": 6.08, "Yutron Plug 1": 6.64, "Yutron Plug 2": 6.07, "iRobot Roomba": 1.05}, {"dataset": "Train", "date": "20211110", "state": "active", "total": 473.7, "AMCREST WiFi Camera": 6.74, "Amazon Alexa Echo Dot 1": 44.07, "Amazon Alexa Echo Dot 2": 48.5, "Amazon Alexa Echo Spot": 19.88, "Amazon Alexa Echo Studio": 14.95, "Amazon Plug": 2.39, "Arlo Base Station": 22.25, "Arlo Q Camera": 37.38, "Atomi Coffee Maker": 6.93, "Borun/Sichuan-AI Camera": 24.2, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.09, "Eufy HomeBase 2": 7.98, "Globe Lamp ESP_B1680C": 6.74, "Google Nest Mini": 17.82, "Gosund ESP_032979 Plug": 6.73, "Gosund ESP_039AAF Sckt": 6.73, "Gosund ESP_0C3994 Plug": 6.74, "Gosund ESP_10098F Sckt": 6.75, "Gosund ESP_10ACD8 Plug": 6.75, "Gosund ESP_147FF9 Plug": 0.0, "Gosund ESP_1ACEE1 Sckt": 6.75, "HeimVision Smrt WiFiCam": 13.79, "HeimVision SL R-Lamp": 7.86, "Home Eye Camera": 33.05, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.01, "Nest Indoor Camera": 26.28, "Netatmo Camera": 9.0, "Netatmo Weather Station": 1.82, "Philips Hue Bridge": 13.79, "Ring Base Station": 3.27, "SIMCAM 1S (AMPAKTec)": 21.15, "Smart Board": 6.15, "Sonos One Speaker": 6.87, "Teckin Plug 1": 6.09, "Teckin Plug 2": 6.11, "Yutron Plug 1": 6.46, "Yutron Plug 2": 6.49, "iRobot Roomba": 1.16}, {"dataset": "Train", "date": "20211112", "state": "active", "total": 439.88, "AMCREST WiFi Camera": 5.65, "Amazon Alexa Echo Dot 1": 14.08, "Amazon Alexa Echo Dot 2": 40.82, "Amazon Alexa Echo Spot": 15.7, "Amazon Alexa Echo Studio": 19.46, "Amazon Plug": 1.47, "Arlo Base Station": 4.89, "Arlo Q Camera": 37.48, "Atomi Coffee Maker": 6.92, "Borun/Sichuan-AI Camera": 24.09, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.09, "Eufy HomeBase 2": 8.06, "Globe Lamp ESP_B1680C": 6.73, "Google Nest Mini": 25.21, "Gosund ESP_032979 Plug": 6.73, "Gosund ESP_039AAF Sckt": 6.73, "Gosund ESP_0C3994 Plug": 6.74, "Gosund ESP_10098F Sckt": 6.74, "Gosund ESP_10ACD8 Plug": 6.75, "Gosund ESP_147FF9 Plug": 0.0, "Gosund ESP_1ACEE1 Sckt": 6.73, "HeimVision Smrt WiFiCam": 13.74, "HeimVision SL R-Lamp": 7.86, "Home Eye Camera": 39.65, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.02, "Nest Indoor Camera": 29.18, "Netatmo Camera": 10.53, "Netatmo Weather Station": 1.91, "Philips Hue Bridge": 15.19, "Ring Base Station": 3.28, "SIMCAM 1S (AMPAKTec)": 21.48, "Smart Board": 8.36, "Sonos One Speaker": 6.98, "Teckin Plug 1": 6.25, "Teckin Plug 2": 6.26, "Yutron Plug 1": 6.56, "Yutron Plug 2": 6.39, "iRobot Roomba": 1.19}, {"dataset": "Train", "date": "20211115", "state": "active", "total": 541.98, "AMCREST WiFi Camera": 5.66, "Amazon Alexa Echo Dot 1": 12.14, "Amazon Alexa Echo Dot 2": 11.83, "Amazon Alexa Echo Spot": 14.93, "Amazon Alexa Echo Studio": 14.21, "Amazon Plug": 1.82, "Arlo Base Station": 110.0, "Arlo Q Camera": 55.18, "Atomi Coffee Maker": 7.14, "Borun/Sichuan-AI Camera": 17.26, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.17, "Eufy HomeBase 2": 8.15, "Globe Lamp ESP_B1680C": 6.88, "Google Nest Mini": 24.21, "Gosund ESP_032979 Plug": 6.87, "Gosund ESP_039AAF Sckt": 6.89, "Gosund ESP_0C3994 Plug": 6.89, "Gosund ESP_10098F Sckt": 6.9, "Gosund ESP_10ACD8 Plug": 6.89, "Gosund ESP_147FF9 Plug": 6.88, "Gosund ESP_1ACEE1 Sckt": 6.9, "HeimVision Smrt WiFiCam": 13.61, "HeimVision SL R-Lamp": 8.07, "Home Eye Camera": 23.0, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.01, "Nest Indoor Camera": 67.01, "Netatmo Camera": 9.43, "Netatmo Weather Station": 1.83, "Philips Hue Bridge": 17.5, "Ring Base Station": 3.85, "SIMCAM 1S (AMPAKTec)": 21.47, "Smart Board": 3.04, "Sonos One Speaker": 4.25, "Teckin Plug 1": 6.36, "Teckin Plug 2": 6.28, "Yutron Plug 1": 6.58, "Yutron Plug 2": 6.59, "iRobot Roomba": 1.21}, {"dataset": "Train", "date": "20211116", "state": "active", "total": 512.23, "AMCREST WiFi Camera": 5.43, "Amazon Alexa Echo Dot 1": 11.33, "Amazon Alexa Echo Dot 2": 10.96, "Amazon Alexa Echo Spot": 13.68, "Amazon Alexa Echo Studio": 13.82, "Amazon Plug": 1.47, "Arlo Base Station": 11.09, "Arlo Q Camera": 98.64, "Atomi Coffee Maker": 6.93, "Borun/Sichuan-AI Camera": 22.57, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.11, "Eufy HomeBase 2": 8.01, "Globe Lamp ESP_B1680C": 6.74, "Google Nest Mini": 21.04, "Gosund ESP_032979 Plug": 6.73, "Gosund ESP_039AAF Sckt": 6.75, "Gosund ESP_0C3994 Plug": 6.75, "Gosund ESP_10098F Sckt": 6.77, "Gosund ESP_10ACD8 Plug": 6.74, "Gosund ESP_147FF9 Plug": 6.73, "Gosund ESP_1ACEE1 Sckt": 6.75, "HeimVision Smrt WiFiCam": 13.93, "HeimVision SL R-Lamp": 7.91, "Home Eye Camera": 27.98, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.02, "Nest Indoor Camera": 84.55, "Netatmo Camera": 14.13, "Netatmo Weather Station": 1.9, "Philips Hue Bridge": 15.72, "Ring Base Station": 3.32, "SIMCAM 1S (AMPAKTec)": 22.03, "Smart Board": 8.06, "Sonos One Speaker": 3.84, "Teckin Plug 1": 6.11, "Teckin Plug 2": 6.01, "Yutron Plug 1": 6.26, "Yutron Plug 2": 6.25, "iRobot Roomba": 1.17}, {"dataset": "Train", "date": "20211117", "state": "active", "total": 451.52, "AMCREST WiFi Camera": 5.36, "Amazon Alexa Echo Dot 1": 23.47, "Amazon Alexa Echo Dot 2": 22.58, "Amazon Alexa Echo Spot": 15.33, "Amazon Alexa Echo Studio": 58.61, "Amazon Plug": 1.47, "Arlo Base Station": 4.88, "Arlo Q Camera": 44.92, "Atomi Coffee Maker": 6.93, "Borun/Sichuan-AI Camera": 24.42, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.12, "Eufy HomeBase 2": 7.95, "Globe Lamp ESP_B1680C": 6.73, "Google Nest Mini": 14.1, "Gosund ESP_032979 Plug": 6.73, "Gosund ESP_039AAF Sckt": 6.73, "Gosund ESP_0C3994 Plug": 6.75, "Gosund ESP_10098F Sckt": 6.75, "Gosund ESP_10ACD8 Plug": 6.74, "Gosund ESP_147FF9 Plug": 6.73, "Gosund ESP_1ACEE1 Sckt": 6.73, "HeimVision Smrt WiFiCam": 13.66, "HeimVision SL R-Lamp": 7.88, "Home Eye Camera": 27.78, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.02, "Nest Indoor Camera": 29.93, "Netatmo Camera": 9.54, "Netatmo Weather Station": 1.91, "Philips Hue Bridge": 13.7, "Ring Base Station": 3.25, "SIMCAM 1S (AMPAKTec)": 21.23, "Smart Board": 3.99, "Sonos One Speaker": 4.84, "Teckin Plug 1": 6.15, "Teckin Plug 2": 6.01, "Yutron Plug 1": 6.14, "Yutron Plug 2": 6.35, "iRobot Roomba": 1.1}, {"dataset": "Test", "date": "20211118", "state": "active", "total": 335.33, "AMCREST WiFi Camera": 5.97, "Amazon Alexa Echo Dot 1": 11.78, "Amazon Alexa Echo Dot 2": 11.35, "Amazon Alexa Echo Spot": 13.33, "Amazon Alexa Echo Studio": 14.21, "Amazon Plug": 1.47, "Arlo Base Station": 4.81, "Arlo Q Camera": 4.97, "Atomi Coffee Maker": 6.94, "Borun/Sichuan-AI Camera": 24.18, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.11, "Eufy HomeBase 2": 8.12, "Globe Lamp ESP_B1680C": 6.73, "Google Nest Mini": 20.55, "Gosund ESP_032979 Plug": 6.74, "Gosund ESP_039AAF Sckt": 6.74, "Gosund ESP_0C3994 Plug": 6.75, "Gosund ESP_10098F Sckt": 6.75, "Gosund ESP_10ACD8 Plug": 6.74, "Gosund ESP_147FF9 Plug": 6.74, "Gosund ESP_1ACEE1 Sckt": 6.74, "HeimVision Smrt WiFiCam": 13.66, "HeimVision SL R-Lamp": 7.88, "Home Eye Camera": 21.26, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.02, "Nest Indoor Camera": 29.55, "Netatmo Camera": 4.31, "Netatmo Weather Station": 1.88, "Philips Hue Bridge": 12.86, "Ring Base Station": 3.2, "SIMCAM 1S (AMPAKTec)": 21.01, "Smart Board": 3.63, "Sonos One Speaker": 3.89, "Teckin Plug 1": 6.26, "Teckin Plug 2": 6.21, "Yutron Plug 1": 6.28, "Yutron Plug 2": 6.38, "iRobot Roomba": 1.34}, {"dataset": "Test", "date": "20211119", "state": "active", "total": 315.75, "AMCREST WiFi Camera": 5.54, "Amazon Alexa Echo Dot 1": 11.83, "Amazon Alexa Echo Dot 2": 11.15, "Amazon Alexa Echo Spot": 13.41, "Amazon Alexa Echo Studio": 14.22, "Amazon Plug": 1.47, "Arlo Base Station": 4.91, "Arlo Q Camera": 3.64, "Atomi Coffee Maker": 6.92, "Borun/Sichuan-AI Camera": 24.12, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.11, "Eufy HomeBase 2": 8.07, "Globe Lamp ESP_B1680C": 6.73, "Google Nest Mini": 20.25, "Gosund ESP_032979 Plug": 6.73, "Gosund ESP_039AAF Sckt": 6.73, "Gosund ESP_0C3994 Plug": 6.75, "Gosund ESP_10098F Sckt": 6.76, "Gosund ESP_10ACD8 Plug": 6.74, "Gosund ESP_147FF9 Plug": 6.73, "Gosund ESP_1ACEE1 Sckt": 6.73, "HeimVision Smrt WiFiCam": 0.0, "HeimVision SL R-Lamp": 7.87, "Home Eye Camera": 21.08, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.02, "Nest Indoor Camera": 29.57, "Netatmo Camera": 4.1, "Netatmo Weather Station": 1.85, "Philips Hue Bridge": 12.7, "Ring Base Station": 3.21, "SIMCAM 1S (AMPAKTec)": 20.92, "Smart Board": 1.37, "Sonos One Speaker": 3.82, "Teckin Plug 1": 6.14, "Teckin Plug 2": 6.0, "Yutron Plug 1": 6.13, "Yutron Plug 2": 6.33, "iRobot Roomba": 1.12}, {"dataset": "Test", "date": "20211122", "state": "active", "total": 451.39, "AMCREST WiFi Camera": 5.62, "Amazon Alexa Echo Dot 1": 9.54, "Amazon Alexa Echo Dot 2": 9.35, "Amazon Alexa Echo Spot": 14.91, "Amazon Alexa Echo Studio": 13.49, "Amazon Plug": 1.47, "Arlo Base Station": 15.1, "Arlo Q Camera": 58.72, "Atomi Coffee Maker": 6.94, "Borun/Sichuan-AI Camera": 24.12, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.12, "Eufy HomeBase 2": 8.15, "Globe Lamp ESP_B1680C": 6.73, "Google Nest Mini": 20.72, "Gosund ESP_032979 Plug": 6.71, "Gosund ESP_039AAF Sckt": 6.71, "Gosund ESP_0C3994 Plug": 6.72, "Gosund ESP_10098F Sckt": 6.74, "Gosund ESP_10ACD8 Plug": 6.72, "Gosund ESP_147FF9 Plug": 6.72, "Gosund ESP_1ACEE1 Sckt": 6.71, "HeimVision Smrt WiFiCam": 13.64, "HeimVision SL R-Lamp": 7.87, "Home Eye Camera": 22.2, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.02, "Nest Indoor Camera": 78.49, "Netatmo Camera": 9.49, "Netatmo Weather Station": 1.82, "Philips Hue Bridge": 13.54, "Ring Base Station": 3.32, "SIMCAM 1S (AMPAKTec)": 21.26, "Smart Board": 3.82, "Sonos One Speaker": 3.87, "Teckin Plug 1": 6.13, "Teckin Plug 2": 6.05, "Yutron Plug 1": 6.39, "Yutron Plug 2": 6.38, "iRobot Roomba": 1.12}, {"dataset": "Test", "date": "20211123", "state": "active", "total": 461.84, "AMCREST WiFi Camera": 6.28, "Amazon Alexa Echo Dot 1": 11.53, "Amazon Alexa Echo Dot 2": 10.46, "Amazon Alexa Echo Spot": 15.34, "Amazon Alexa Echo Studio": 13.58, "Amazon Plug": 1.41, "Arlo Base Station": 7.82, "Arlo Q Camera": 58.5, "Atomi Coffee Maker": 7.1, "Borun/Sichuan-AI Camera": 24.76, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.15, "Eufy HomeBase 2": 8.12, "Globe Lamp ESP_B1680C": 6.89, "Google Nest Mini": 20.72, "Gosund ESP_032979 Plug": 6.88, "Gosund ESP_039AAF Sckt": 6.87, "Gosund ESP_0C3994 Plug": 6.9, "Gosund ESP_10098F Sckt": 6.91, "Gosund ESP_10ACD8 Plug": 6.89, "Gosund ESP_147FF9 Plug": 6.88, "Gosund ESP_1ACEE1 Sckt": 6.88, "HeimVision Smrt WiFiCam": 13.9, "HeimVision SL R-Lamp": 8.07, "Home Eye Camera": 26.72, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.09, "Nest Indoor Camera": 74.48, "Netatmo Camera": 11.61, "Netatmo Weather Station": 1.85, "Philips Hue Bridge": 12.97, "Ring Base Station": 3.33, "SIMCAM 1S (AMPAKTec)": 28.15, "Smart Board": 5.24, "Sonos One Speaker": 3.93, "Teckin Plug 1": 6.25, "Teckin Plug 2": 6.18, "Yutron Plug 1": 6.57, "Yutron Plug 2": 6.59, "iRobot Roomba": 1.06}, {"dataset": "Test", "date": "20211124", "state": "active", "total": 336.83, "AMCREST WiFi Camera": 5.74, "Amazon Alexa Echo Dot 1": 11.22, "Amazon Alexa Echo Dot 2": 10.28, "Amazon Alexa Echo Spot": 14.61, "Amazon Alexa Echo Studio": 13.34, "Amazon Plug": 1.47, "Arlo Base Station": 4.9, "Arlo Q Camera": 17.54, "Atomi Coffee Maker": 6.93, "Borun/Sichuan-AI Camera": 24.88, "D-Link Water Sensor": 0.08, "D-Link Mini Camera": 1.1, "Eufy HomeBase 2": 7.96, "Globe Lamp ESP_B1680C": 6.73, "Google Nest Mini": 20.23, "Gosund ESP_032979 Plug": 6.73, "Gosund ESP_039AAF Sckt": 6.73, "Gosund ESP_0C3994 Plug": 6.74, "Gosund ESP_10098F Sckt": 6.75, "Gosund ESP_10ACD8 Plug": 6.74, "Gosund ESP_147FF9 Plug": 6.73, "Gosund ESP_1ACEE1 Sckt": 6.73, "HeimVision Smrt WiFiCam": 0.09, "HeimVision SL R-Lamp": 7.88, "Home Eye Camera": 21.73, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.01, "Nest Indoor Camera": 23.02, "Netatmo Camera": 6.47, "Netatmo Weather Station": 1.86, "Philips Hue Bridge": 12.57, "Ring Base Station": 3.29, "SIMCAM 1S (AMPAKTec)": 27.77, "Smart Board": 4.74, "Sonos One Speaker": 4.11, "Teckin Plug 1": 6.1, "Teckin Plug 2": 6.23, "Yutron Plug 1": 6.46, "Yutron Plug 2": 6.34, "iRobot Roomba": 1.03}, {"dataset": "Test", "date": "20211125", "state": "active", "total": 382.52, "AMCREST WiFi Camera": 5.76, "Amazon Alexa Echo Dot 1": 11.37, "Amazon Alexa Echo Dot 2": 10.25, "Amazon Alexa Echo Spot": 16.0, "Amazon Alexa Echo Studio": 14.08, "Amazon Plug": 1.55, "Arlo Base Station": 5.15, "Arlo Q Camera": 34.63, "Atomi Coffee Maker": 6.94, "Borun/Sichuan-AI Camera": 24.23, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.09, "Eufy HomeBase 2": 8.07, "Globe Lamp ESP_B1680C": 6.73, "Google Nest Mini": 20.68, "Gosund ESP_032979 Plug": 6.73, "Gosund ESP_039AAF Sckt": 6.73, "Gosund ESP_0C3994 Plug": 6.76, "Gosund ESP_10098F Sckt": 6.76, "Gosund ESP_10ACD8 Plug": 6.76, "Gosund ESP_147FF9 Plug": 6.74, "Gosund ESP_1ACEE1 Sckt": 6.73, "HeimVision Smrt WiFiCam": 29.56, "HeimVision SL R-Lamp": 7.88, "Home Eye Camera": 21.17, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.03, "Nest Indoor Camera": 22.86, "Netatmo Camera": 5.75, "Netatmo Weather Station": 1.9, "Philips Hue Bridge": 14.36, "Ring Base Station": 3.3, "SIMCAM 1S (AMPAKTec)": 21.16, "Smart Board": 6.04, "Sonos One Speaker": 5.75, "Teckin Plug 1": 6.1, "Teckin Plug 2": 6.18, "Yutron Plug 1": 6.3, "Yutron Plug 2": 6.31, "iRobot Roomba": 1.18}, {"dataset": "Test", "date": "20211126", "state": "active", "total": 1176.98, "AMCREST WiFi Camera": 7.74, "Amazon Alexa Echo Dot 1": 16.24, "Amazon Alexa Echo Dot 2": 14.83, "Amazon Alexa Echo Spot": 20.22, "Amazon Alexa Echo Studio": 17.21, "Amazon Plug": 0.52, "Arlo Base Station": 326.0, "Arlo Q Camera": 148.99, "Atomi Coffee Maker": 9.2, "Borun/Sichuan-AI Camera": 32.01, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.65, "Eufy HomeBase 2": 11.3, "Globe Lamp ESP_B1680C": 8.93, "Google Nest Mini": 26.73, "Gosund ESP_032979 Plug": 8.93, "Gosund ESP_039AAF Sckt": 8.93, "Gosund ESP_0C3994 Plug": 8.94, "Gosund ESP_10098F Sckt": 8.92, "Gosund ESP_10ACD8 Plug": 8.95, "Gosund ESP_147FF9 Plug": 8.97, "Gosund ESP_1ACEE1 Sckt": 8.94, "HeimVision Smrt WiFiCam": 18.23, "HeimVision SL R-Lamp": 10.45, "Home Eye Camera": 42.15, "LG Smart TV": 30.0, "Luohe Cam Dog": 4.05, "Nest Indoor Camera": 39.26, "Netatmo Camera": 19.26, "Netatmo Weather Station": 2.47, "Philips Hue Bridge": 17.65, "Ring Base Station": 5.69, "SIMCAM 1S (AMPAKTec)": 29.41, "Smart Board": 212.0, "Sonos One Speaker": 6.21, "Teckin Plug 1": 8.18, "Teckin Plug 2": 8.72, "Yutron Plug 1": 8.65, "Yutron Plug 2": 8.37, "iRobot Roomba": 1.56}, {"dataset": "Test", "date": "20211206", "state": "active", "total": 437.73, "AMCREST WiFi Camera": 6.5, "Amazon Alexa Echo Dot 1": 11.06, "Amazon Alexa Echo Dot 2": 10.68, "Amazon Alexa Echo Spot": 15.59, "Amazon Alexa Echo Studio": 15.76, "Amazon Plug": 1.56, "Arlo Base Station": 24.18, "Arlo Q Camera": 33.81, "Atomi Coffee Maker": 6.94, "Borun/Sichuan-AI Camera": 32.4, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.09, "Eufy HomeBase 2": 8.79, "Globe Lamp ESP_B1680C": 6.73, "Google Nest Mini": 18.5, "Gosund ESP_032979 Plug": 6.75, "Gosund ESP_039AAF Sckt": 6.73, "Gosund ESP_0C3994 Plug": 6.74, "Gosund ESP_10098F Sckt": 6.74, "Gosund ESP_10ACD8 Plug": 6.78, "Gosund ESP_147FF9 Plug": 6.73, "Gosund ESP_1ACEE1 Sckt": 6.74, "HeimVision Smrt WiFiCam": 13.81, "HeimVision SL R-Lamp": 7.88, "Home Eye Camera": 18.93, "LG Smart TV": 0.0, "Luohe Cam Dog": 2.97, "Nest Indoor Camera": 69.6, "Netatmo Camera": 11.83, "Netatmo Weather Station": 1.77, "Philips Hue Bridge": 12.83, "Ring Base Station": 3.41, "SIMCAM 1S (AMPAKTec)": 21.78, "Smart Board": 0.77, "Sonos One Speaker": 4.66, "Teckin Plug 1": 6.08, "Teckin Plug 2": 6.32, "Yutron Plug 1": 6.55, "Yutron Plug 2": 6.55, "iRobot Roomba": 1.2}, {"dataset": "Test", "date": "20211207", "state": "active", "total": 2603.11, "AMCREST WiFi Camera": 5.66, "Amazon Alexa Echo Dot 1": 10.97, "Amazon Alexa Echo Dot 2": 10.55, "Amazon Alexa Echo Spot": 15.57, "Amazon Alexa Echo Studio": 14.44, "Amazon Plug": 1.52, "Arlo Base Station": 438.0, "Arlo Q Camera": 41.61, "Atomi Coffee Maker": 6.93, "Borun/Sichuan-AI Camera": 27.73, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.09, "Eufy HomeBase 2": 6.53, "Globe Lamp ESP_B1680C": 6.73, "Google Nest Mini": 14.97, "Gosund ESP_032979 Plug": 2.72, "Gosund ESP_039AAF Sckt": 6.27, "Gosund ESP_0C3994 Plug": 2.67, "Gosund ESP_10098F Sckt": 2.69, "Gosund ESP_10ACD8 Plug": 2.67, "Gosund ESP_147FF9 Plug": 2.66, "Gosund ESP_1ACEE1 Sckt": 2.67, "HeimVision Smrt WiFiCam": 15.55, "HeimVision SL R-Lamp": 7.89, "Home Eye Camera": 29.16, "LG Smart TV": 1805.0, "Luohe Cam Dog": 3.02, "Nest Indoor Camera": 27.1, "Netatmo Camera": 9.89, "Netatmo Weather Station": 1.82, "Philips Hue Bridge": 14.18, "Ring Base Station": 3.81, "SIMCAM 1S (AMPAKTec)": 21.62, "Smart Board": 0.43, "Sonos One Speaker": 11.62, "Teckin Plug 1": 6.73, "Teckin Plug 2": 6.25, "Yutron Plug 1": 6.68, "Yutron Plug 2": 6.78, "iRobot Roomba": 1.05}, {"dataset": "Test", "date": "20211208", "state": "active", "total": 396.29, "AMCREST WiFi Camera": 6.16, "Amazon Alexa Echo Dot 1": 10.66, "Amazon Alexa Echo Dot 2": 10.59, "Amazon Alexa Echo Spot": 15.34, "Amazon Alexa Echo Studio": 13.63, "Amazon Plug": 1.52, "Arlo Base Station": 13.7, "Arlo Q Camera": 29.37, "Atomi Coffee Maker": 6.94, "Borun/Sichuan-AI Camera": 25.18, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.12, "Eufy HomeBase 2": 8.03, "Globe Lamp ESP_B1680C": 6.74, "Google Nest Mini": 14.31, "Gosund ESP_032979 Plug": 1.04, "Gosund ESP_039AAF Sckt": 0.98, "Gosund ESP_0C3994 Plug": 0.98, "Gosund ESP_10098F Sckt": 1.05, "Gosund ESP_10ACD8 Plug": 0.98, "Gosund ESP_147FF9 Plug": 0.97, "Gosund ESP_1ACEE1 Sckt": 0.98, "HeimVision Smrt WiFiCam": 5.44, "HeimVision SL R-Lamp": 7.91, "Home Eye Camera": 39.17, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.02, "Nest Indoor Camera": 89.4, "Netatmo Camera": 9.71, "Netatmo Weather Station": 1.79, "Philips Hue Bridge": 12.85, "Ring Base Station": 3.46, "SIMCAM 1S (AMPAKTec)": 21.97, "Smart Board": 0.51, "Sonos One Speaker": 3.89, "Teckin Plug 1": 6.64, "Teckin Plug 2": 6.07, "Yutron Plug 1": 6.59, "Yutron Plug 2": 6.54, "iRobot Roomba": 1.06}, {"dataset": "Train", "date": "20211223", "state": "active", "total": 321.38, "AMCREST WiFi Camera": 6.26, "Amazon Alexa Echo Dot 1": 11.73, "Amazon Alexa Echo Dot 2": 11.49, "Amazon Alexa Echo Spot": 13.33, "Amazon Alexa Echo Studio": 13.33, "Amazon Plug": 1.46, "Arlo Base Station": 4.93, "Arlo Q Camera": 3.79, "Atomi Coffee Maker": 6.92, "Borun/Sichuan-AI Camera": 24.79, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.08, "Eufy HomeBase 2": 7.99, "Globe Lamp ESP_B1680C": 6.72, "Google Nest Mini": 19.71, "Gosund ESP_032979 Plug": 6.75, "Gosund ESP_039AAF Sckt": 6.72, "Gosund ESP_0C3994 Plug": 6.72, "Gosund ESP_10098F Sckt": 6.72, "Gosund ESP_10ACD8 Plug": 6.72, "Gosund ESP_147FF9 Plug": 6.72, "Gosund ESP_1ACEE1 Sckt": 6.72, "HeimVision Smrt WiFiCam": 13.57, "HeimVision SL R-Lamp": 7.9, "Home Eye Camera": 17.0, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.02, "Nest Indoor Camera": 23.24, "Netatmo Camera": 3.78, "Netatmo Weather Station": 1.77, "Philips Hue Bridge": 12.81, "Ring Base Station": 3.17, "SIMCAM 1S (AMPAKTec)": 20.89, "Smart Board": 0.74, "Sonos One Speaker": 4.98, "Teckin Plug 1": 6.81, "Teckin Plug 2": 6.67, "Yutron Plug 1": 6.74, "Yutron Plug 2": 6.46, "iRobot Roomba": 1.2}, {"dataset": "Train", "date": "20211225", "state": "active", "total": 364.74, "AMCREST WiFi Camera": 5.68, "Amazon Alexa Echo Dot 1": 16.13, "Amazon Alexa Echo Dot 2": 11.76, "Amazon Alexa Echo Spot": 14.88, "Amazon Alexa Echo Studio": 14.39, "Amazon Plug": 1.46, "Arlo Base Station": 13.16, "Arlo Q Camera": 23.09, "Atomi Coffee Maker": 6.93, "Borun/Sichuan-AI Camera": 25.21, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.08, "Eufy HomeBase 2": 8.01, "Globe Lamp ESP_B1680C": 6.73, "Google Nest Mini": 19.97, "Gosund ESP_032979 Plug": 6.74, "Gosund ESP_039AAF Sckt": 6.72, "Gosund ESP_0C3994 Plug": 6.72, "Gosund ESP_10098F Sckt": 6.72, "Gosund ESP_10ACD8 Plug": 6.72, "Gosund ESP_147FF9 Plug": 6.73, "Gosund ESP_1ACEE1 Sckt": 6.72, "HeimVision Smrt WiFiCam": 13.52, "HeimVision SL R-Lamp": 7.89, "Home Eye Camera": 19.59, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.02, "Nest Indoor Camera": 16.77, "Netatmo Camera": 7.1, "Netatmo Weather Station": 1.88, "Philips Hue Bridge": 12.95, "Ring Base Station": 3.2, "SIMCAM 1S (AMPAKTec)": 21.15, "Smart Board": 2.71, "Sonos One Speaker": 11.82, "Teckin Plug 1": 6.8, "Teckin Plug 2": 6.68, "Yutron Plug 1": 6.75, "Yutron Plug 2": 6.35, "iRobot Roomba": 1.04}, {"dataset": "Train", "date": "20211228", "state": "active", "total": 386.08, "AMCREST WiFi Camera": 5.45, "Amazon Alexa Echo Dot 1": 11.56, "Amazon Alexa Echo Dot 2": 11.93, "Amazon Alexa Echo Spot": 20.39, "Amazon Alexa Echo Studio": 15.07, "Amazon Plug": 1.46, "Arlo Base Station": 8.51, "Arlo Q Camera": 23.5, "Atomi Coffee Maker": 6.92, "Borun/Sichuan-AI Camera": 24.6, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.07, "Eufy HomeBase 2": 8.45, "Globe Lamp ESP_B1680C": 6.72, "Google Nest Mini": 13.55, "Gosund ESP_032979 Plug": 6.75, "Gosund ESP_039AAF Sckt": 6.72, "Gosund ESP_0C3994 Plug": 6.72, "Gosund ESP_10098F Sckt": 6.72, "Gosund ESP_10ACD8 Plug": 6.72, "Gosund ESP_147FF9 Plug": 6.72, "Gosund ESP_1ACEE1 Sckt": 6.72, "HeimVision Smrt WiFiCam": 13.52, "HeimVision SL R-Lamp": 7.89, "Home Eye Camera": 19.59, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.02, "Nest Indoor Camera": 24.72, "Netatmo Camera": 5.67, "Netatmo Weather Station": 1.81, "Philips Hue Bridge": 7.08, "Ring Base Station": 3.23, "SIMCAM 1S (AMPAKTec)": 21.19, "Smart Board": 0.61, "Sonos One Speaker": 44.11, "Teckin Plug 1": 6.79, "Teckin Plug 2": 6.68, "Yutron Plug 1": 6.64, "Yutron Plug 2": 6.17, "iRobot Roomba": 1.1}, {"dataset": "Train", "date": "20220103", "state": "active", "total": 308.43, "AMCREST WiFi Camera": 5.59, "Amazon Alexa Echo Dot 1": 11.72, "Amazon Alexa Echo Dot 2": 9.36, "Amazon Alexa Echo Spot": 14.45, "Amazon Alexa Echo Studio": 13.35, "Amazon Plug": 1.5, "Arlo Base Station": 4.91, "Arlo Q Camera": 2.75, "Atomi Coffee Maker": 6.93, "Borun/Sichuan-AI Camera": 25.43, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.08, "Eufy HomeBase 2": 8.07, "Globe Lamp ESP_B1680C": 6.72, "Google Nest Mini": 14.93, "Gosund ESP_032979 Plug": 6.73, "Gosund ESP_039AAF Sckt": 6.72, "Gosund ESP_0C3994 Plug": 6.74, "Gosund ESP_10098F Sckt": 6.72, "Gosund ESP_10ACD8 Plug": 6.73, "Gosund ESP_147FF9 Plug": 6.75, "Gosund ESP_1ACEE1 Sckt": 6.73, "HeimVision Smrt WiFiCam": 14.93, "HeimVision SL R-Lamp": 7.86, "Home Eye Camera": 16.75, "LG Smart TV": 0.0, "Luohe Cam Dog": 0.0, "Nest Indoor Camera": 25.41, "Netatmo Camera": 3.74, "Netatmo Weather Station": 1.68, "Philips Hue Bridge": 7.07, "Ring Base Station": 3.16, "SIMCAM 1S (AMPAKTec)": 20.91, "Smart Board": 0.48, "Sonos One Speaker": 4.92, "Teckin Plug 1": 6.68, "Teckin Plug 2": 6.37, "Yutron Plug 1": 6.61, "Yutron Plug 2": 6.6, "iRobot Roomba": 1.39}, {"dataset": "Test", "date": "20211102", "state": "idle", "total": 503.68, "AMCREST WiFi Camera": 7.92, "Amazon Alexa Echo Dot 1": 8.94, "Amazon Alexa Echo Dot 2": 8.9, "Amazon Alexa Echo Spot": 19.26, "Amazon Alexa Echo Studio": 121.47, "Amazon Plug": 2.0, "Arlo Base Station": 6.85, "Arlo Q Camera": 3.82, "Atomi Coffee Maker": 9.54, "Borun/Sichuan-AI Camera": 32.99, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.46, "Eufy HomeBase 2": 11.04, "Globe Lamp ESP_B1680C": 9.26, "Google Nest Mini": 29.43, "Gosund ESP_032979 Plug": 9.26, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.26, "Gosund ESP_10098F Sckt": 0.0, "Gosund ESP_10ACD8 Plug": 9.27, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.26, "HeimVision Smrt WiFiCam": 20.23, "HeimVision SL R-Lamp": 10.84, "Home Eye Camera": 28.76, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 6.63, "Netatmo Camera": 7.35, "Netatmo Weather Station": 2.47, "Philips Hue Bridge": 17.05, "Ring Base Station": 4.79, "SIMCAM 1S (AMPAKTec)": 28.62, "Smart Board": 0.35, "Sonos One Speaker": 6.89, "Teckin Plug 1": 9.08, "Teckin Plug 2": 8.7, "Yutron Plug 1": 8.82, "Yutron Plug 2": 9.08, "iRobot Roomba": 1.43}, {"dataset": "Test", "date": "20211103", "state": "idle", "total": 401.55, "AMCREST WiFi Camera": 7.85, "Amazon Alexa Echo Dot 1": 9.09, "Amazon Alexa Echo Dot 2": 9.11, "Amazon Alexa Echo Spot": 18.78, "Amazon Alexa Echo Studio": 19.42, "Amazon Plug": 2.05, "Arlo Base Station": 6.83, "Arlo Q Camera": 3.82, "Atomi Coffee Maker": 9.52, "Borun/Sichuan-AI Camera": 33.06, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.46, "Eufy HomeBase 2": 11.12, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 30.55, "Gosund ESP_032979 Plug": 9.26, "Gosund ESP_039AAF Sckt": 9.27, "Gosund ESP_0C3994 Plug": 9.28, "Gosund ESP_10098F Sckt": 0.0, "Gosund ESP_10ACD8 Plug": 9.27, "Gosund ESP_147FF9 Plug": 9.26, "Gosund ESP_1ACEE1 Sckt": 9.27, "HeimVision Smrt WiFiCam": 20.05, "HeimVision SL R-Lamp": 10.83, "Home Eye Camera": 28.81, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.66, "Nest Indoor Camera": 6.48, "Netatmo Camera": 7.27, "Netatmo Weather Station": 2.46, "Philips Hue Bridge": 16.93, "Ring Base Station": 4.7, "SIMCAM 1S (AMPAKTec)": 28.64, "Smart Board": 0.2, "Sonos One Speaker": 6.82, "Teckin Plug 1": 9.06, "Teckin Plug 2": 8.71, "Yutron Plug 1": 8.95, "Yutron Plug 2": 9.07, "iRobot Roomba": 1.42}, {"dataset": "Test", "date": "20211104", "state": "idle", "total": 398.29, "AMCREST WiFi Camera": 8.6, "Amazon Alexa Echo Dot 1": 9.32, "Amazon Alexa Echo Dot 2": 9.36, "Amazon Alexa Echo Spot": 18.9, "Amazon Alexa Echo Studio": 19.41, "Amazon Plug": 2.09, "Arlo Base Station": 6.89, "Arlo Q Camera": 3.94, "Atomi Coffee Maker": 9.51, "Borun/Sichuan-AI Camera": 34.96, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.47, "Eufy HomeBase 2": 11.23, "Globe Lamp ESP_B1680C": 9.26, "Google Nest Mini": 22.58, "Gosund ESP_032979 Plug": 9.27, "Gosund ESP_039AAF Sckt": 9.26, "Gosund ESP_0C3994 Plug": 9.26, "Gosund ESP_10098F Sckt": 0.0, "Gosund ESP_10ACD8 Plug": 9.28, "Gosund ESP_147FF9 Plug": 9.26, "Gosund ESP_1ACEE1 Sckt": 9.28, "HeimVision Smrt WiFiCam": 19.78, "HeimVision SL R-Lamp": 10.83, "Home Eye Camera": 28.76, "LG Smart TV": 0.0, "Luohe Cam Dog": 3.8, "Nest Indoor Camera": 7.69, "Netatmo Camera": 7.69, "Netatmo Weather Station": 2.53, "Philips Hue Bridge": 16.88, "Ring Base Station": 4.73, "SIMCAM 1S (AMPAKTec)": 28.6, "Smart Board": 0.24, "Sonos One Speaker": 6.9, "Teckin Plug 1": 8.91, "Teckin Plug 2": 8.84, "Yutron Plug 1": 8.88, "Yutron Plug 2": 8.56, "iRobot Roomba": 1.51}, {"dataset": "Test", "date": "20211108", "state": "idle", "total": 433.88, "AMCREST WiFi Camera": 7.97, "Amazon Alexa Echo Dot 1": 15.31, "Amazon Alexa Echo Dot 2": 15.73, "Amazon Alexa Echo Spot": 17.53, "Amazon Alexa Echo Studio": 19.5, "Amazon Plug": 2.05, "Arlo Base Station": 6.81, "Arlo Q Camera": 3.81, "Atomi Coffee Maker": 9.55, "Borun/Sichuan-AI Camera": 35.11, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.52, "Eufy HomeBase 2": 10.97, "Globe Lamp ESP_B1680C": 9.27, "Google Nest Mini": 29.83, "Gosund ESP_032979 Plug": 9.26, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.27, "Gosund ESP_10098F Sckt": 9.27, "Gosund ESP_10ACD8 Plug": 9.26, "Gosund ESP_147FF9 Plug": 9.26, "Gosund ESP_1ACEE1 Sckt": 9.29, "HeimVision Smrt WiFiCam": 19.07, "HeimVision SL R-Lamp": 10.85, "Home Eye Camera": 28.78, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 20.06, "Netatmo Camera": 5.12, "Netatmo Weather Station": 2.51, "Philips Hue Bridge": 16.89, "Ring Base Station": 4.69, "SIMCAM 1S (AMPAKTec)": 28.64, "Smart Board": 0.05, "Sonos One Speaker": 6.82, "Teckin Plug 1": 9.11, "Teckin Plug 2": 8.36, "Yutron Plug 1": 9.11, "Yutron Plug 2": 8.38, "iRobot Roomba": 1.52}, {"dataset": "Test", "date": "20211110", "state": "idle", "total": 466.4, "AMCREST WiFi Camera": 8.43, "Amazon Alexa Echo Dot 1": 15.27, "Amazon Alexa Echo Dot 2": 15.38, "Amazon Alexa Echo Spot": 19.42, "Amazon Alexa Echo Studio": 17.88, "Amazon Plug": 1.98, "Arlo Base Station": 6.84, "Arlo Q Camera": 51.55, "Atomi Coffee Maker": 9.54, "Borun/Sichuan-AI Camera": 34.98, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.48, "Eufy HomeBase 2": 11.27, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 31.72, "Gosund ESP_032979 Plug": 9.25, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.27, "Gosund ESP_10098F Sckt": 9.27, "Gosund ESP_10ACD8 Plug": 9.27, "Gosund ESP_147FF9 Plug": 0.0, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.83, "HeimVision SL R-Lamp": 10.82, "Home Eye Camera": 29.0, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 8.06, "Netatmo Camera": 5.17, "Netatmo Weather Station": 2.51, "Philips Hue Bridge": 17.11, "Ring Base Station": 4.68, "SIMCAM 1S (AMPAKTec)": 28.63, "Smart Board": 3.87, "Sonos One Speaker": 6.86, "Teckin Plug 1": 8.39, "Teckin Plug 2": 8.3, "Yutron Plug 1": 9.12, "Yutron Plug 2": 8.93, "iRobot Roomba": 1.43}, {"dataset": "Test", "date": "20211112", "state": "idle", "total": 487.15, "AMCREST WiFi Camera": 8.53, "Amazon Alexa Echo Dot 1": 15.11, "Amazon Alexa Echo Dot 2": 14.88, "Amazon Alexa Echo Spot": 17.22, "Amazon Alexa Echo Studio": 17.35, "Amazon Plug": 2.0, "Arlo Base Station": 6.8, "Arlo Q Camera": 47.37, "Atomi Coffee Maker": 9.54, "Borun/Sichuan-AI Camera": 34.99, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.47, "Eufy HomeBase 2": 11.01, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 40.4, "Gosund ESP_032979 Plug": 9.25, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.27, "Gosund ESP_10098F Sckt": 9.27, "Gosund ESP_10ACD8 Plug": 9.28, "Gosund ESP_147FF9 Plug": 9.28, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.82, "HeimVision SL R-Lamp": 10.82, "Home Eye Camera": 28.81, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 11.71, "Netatmo Camera": 5.12, "Netatmo Weather Station": 2.55, "Philips Hue Bridge": 24.88, "Ring Base Station": 4.72, "SIMCAM 1S (AMPAKTec)": 28.64, "Smart Board": 3.3, "Sonos One Speaker": 6.93, "Teckin Plug 1": 8.41, "Teckin Plug 2": 8.4, "Yutron Plug 1": 9.03, "Yutron Plug 2": 8.7, "iRobot Roomba": 1.43}, {"dataset": "Test", "date": "20211115", "state": "idle", "total": 450.91, "AMCREST WiFi Camera": 7.44, "Amazon Alexa Echo Dot 1": 16.37, "Amazon Alexa Echo Dot 2": 15.87, "Amazon Alexa Echo Spot": 17.82, "Amazon Alexa Echo Studio": 18.01, "Amazon Plug": 1.99, "Arlo Base Station": 10.25, "Arlo Q Camera": 3.95, "Atomi Coffee Maker": 9.55, "Borun/Sichuan-AI Camera": 22.25, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.48, "Eufy HomeBase 2": 11.08, "Globe Lamp ESP_B1680C": 9.26, "Google Nest Mini": 28.8, "Gosund ESP_032979 Plug": 9.26, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.29, "Gosund ESP_10098F Sckt": 9.3, "Gosund ESP_10ACD8 Plug": 9.29, "Gosund ESP_147FF9 Plug": 9.28, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.84, "HeimVision SL R-Lamp": 10.82, "Home Eye Camera": 28.5, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.12, "Nest Indoor Camera": 41.22, "Netatmo Camera": 5.11, "Netatmo Weather Station": 2.58, "Philips Hue Bridge": 24.87, "Ring Base Station": 4.65, "SIMCAM 1S (AMPAKTec)": 28.63, "Smart Board": 1.41, "Sonos One Speaker": 5.31, "Teckin Plug 1": 8.48, "Teckin Plug 2": 8.38, "Yutron Plug 1": 8.72, "Yutron Plug 2": 8.83, "iRobot Roomba": 1.43}, {"dataset": "Test", "date": "20211116", "state": "idle", "total": 454.01, "AMCREST WiFi Camera": 7.5, "Amazon Alexa Echo Dot 1": 16.55, "Amazon Alexa Echo Dot 2": 15.58, "Amazon Alexa Echo Spot": 17.92, "Amazon Alexa Echo Studio": 18.09, "Amazon Plug": 1.99, "Arlo Base Station": 6.81, "Arlo Q Camera": 3.84, "Atomi Coffee Maker": 9.54, "Borun/Sichuan-AI Camera": 34.99, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.5, "Eufy HomeBase 2": 11.12, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 32.3, "Gosund ESP_032979 Plug": 9.25, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.28, "Gosund ESP_10098F Sckt": 9.27, "Gosund ESP_10ACD8 Plug": 9.27, "Gosund ESP_147FF9 Plug": 9.26, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.83, "HeimVision SL R-Lamp": 10.81, "Home Eye Camera": 28.44, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 40.95, "Netatmo Camera": 5.2, "Netatmo Weather Station": 2.47, "Philips Hue Bridge": 17.21, "Ring Base Station": 4.69, "SIMCAM 1S (AMPAKTec)": 28.64, "Smart Board": 0.0, "Sonos One Speaker": 5.33, "Teckin Plug 1": 8.43, "Teckin Plug 2": 8.29, "Yutron Plug 1": 8.56, "Yutron Plug 2": 8.71, "iRobot Roomba": 1.5}, {"dataset": "Test", "date": "20211117", "state": "idle", "total": 458.17, "AMCREST WiFi Camera": 7.56, "Amazon Alexa Echo Dot 1": 16.46, "Amazon Alexa Echo Dot 2": 16.16, "Amazon Alexa Echo Spot": 17.94, "Amazon Alexa Echo Studio": 18.52, "Amazon Plug": 2.01, "Arlo Base Station": 6.86, "Arlo Q Camera": 3.84, "Atomi Coffee Maker": 9.54, "Borun/Sichuan-AI Camera": 33.14, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.51, "Eufy HomeBase 2": 11.02, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 20.19, "Gosund ESP_032979 Plug": 9.25, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.27, "Gosund ESP_10098F Sckt": 9.27, "Gosund ESP_10ACD8 Plug": 9.27, "Gosund ESP_147FF9 Plug": 9.27, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.87, "HeimVision SL R-Lamp": 10.83, "Home Eye Camera": 28.82, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.16, "Nest Indoor Camera": 40.84, "Netatmo Camera": 5.26, "Netatmo Weather Station": 2.59, "Philips Hue Bridge": 17.2, "Ring Base Station": 4.75, "SIMCAM 1S (AMPAKTec)": 28.65, "Smart Board": 0.0, "Sonos One Speaker": 21.86, "Teckin Plug 1": 8.41, "Teckin Plug 2": 8.24, "Yutron Plug 1": 8.68, "Yutron Plug 2": 8.69, "iRobot Roomba": 1.51}, {"dataset": "Train", "date": "20211118", "state": "idle", "total": 448.29, "AMCREST WiFi Camera": 7.56, "Amazon Alexa Echo Dot 1": 16.78, "Amazon Alexa Echo Dot 2": 16.06, "Amazon Alexa Echo Spot": 18.0, "Amazon Alexa Echo Studio": 18.49, "Amazon Plug": 2.0, "Arlo Base Station": 6.78, "Arlo Q Camera": 3.8, "Atomi Coffee Maker": 9.53, "Borun/Sichuan-AI Camera": 33.1, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.47, "Eufy HomeBase 2": 11.01, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 28.82, "Gosund ESP_032979 Plug": 9.25, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.28, "Gosund ESP_10098F Sckt": 9.28, "Gosund ESP_10ACD8 Plug": 9.28, "Gosund ESP_147FF9 Plug": 9.26, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 13.83, "HeimVision SL R-Lamp": 10.81, "Home Eye Camera": 28.82, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 40.66, "Netatmo Camera": 5.16, "Netatmo Weather Station": 2.63, "Philips Hue Bridge": 17.17, "Ring Base Station": 4.72, "SIMCAM 1S (AMPAKTec)": 28.64, "Smart Board": 3.38, "Sonos One Speaker": 5.36, "Teckin Plug 1": 8.42, "Teckin Plug 2": 8.27, "Yutron Plug 1": 8.64, "Yutron Plug 2": 8.67, "iRobot Roomba": 1.48}, {"dataset": "Train", "date": "20211119", "state": "idle", "total": 441.97, "AMCREST WiFi Camera": 8.25, "Amazon Alexa Echo Dot 1": 16.65, "Amazon Alexa Echo Dot 2": 16.41, "Amazon Alexa Echo Spot": 18.14, "Amazon Alexa Echo Studio": 18.41, "Amazon Plug": 2.0, "Arlo Base Station": 6.9, "Arlo Q Camera": 5.31, "Atomi Coffee Maker": 9.54, "Borun/Sichuan-AI Camera": 34.98, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.46, "Eufy HomeBase 2": 11.37, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 28.66, "Gosund ESP_032979 Plug": 9.25, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.26, "Gosund ESP_10098F Sckt": 9.29, "Gosund ESP_10ACD8 Plug": 9.28, "Gosund ESP_147FF9 Plug": 9.28, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 4.64, "HeimVision SL R-Lamp": 10.82, "Home Eye Camera": 29.03, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 40.78, "Netatmo Camera": 5.21, "Netatmo Weather Station": 2.5, "Philips Hue Bridge": 17.28, "Ring Base Station": 4.71, "SIMCAM 1S (AMPAKTec)": 28.64, "Smart Board": 1.29, "Sonos One Speaker": 5.42, "Teckin Plug 1": 8.42, "Teckin Plug 2": 8.26, "Yutron Plug 1": 8.56, "Yutron Plug 2": 8.67, "iRobot Roomba": 1.42}, {"dataset": "Train", "date": "20211122", "state": "idle", "total": 448.13, "AMCREST WiFi Camera": 7.68, "Amazon Alexa Echo Dot 1": 14.84, "Amazon Alexa Echo Dot 2": 12.67, "Amazon Alexa Echo Spot": 20.86, "Amazon Alexa Echo Studio": 17.41, "Amazon Plug": 2.05, "Arlo Base Station": 6.81, "Arlo Q Camera": 3.8, "Atomi Coffee Maker": 9.54, "Borun/Sichuan-AI Camera": 33.25, "D-Link Water Sensor": 0.0, "D-Link Mini Camera": 1.48, "Eufy HomeBase 2": 10.96, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 28.37, "Gosund ESP_032979 Plug": 9.25, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.28, "Gosund ESP_10098F Sckt": 9.3, "Gosund ESP_10ACD8 Plug": 9.29, "Gosund ESP_147FF9 Plug": 9.27, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.81, "HeimVision SL R-Lamp": 10.81, "Home Eye Camera": 28.94, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.16, "Nest Indoor Camera": 40.82, "Netatmo Camera": 5.05, "Netatmo Weather Station": 2.56, "Philips Hue Bridge": 17.25, "Ring Base Station": 4.7, "SIMCAM 1S (AMPAKTec)": 28.63, "Smart Board": 1.34, "Sonos One Speaker": 5.32, "Teckin Plug 1": 8.35, "Teckin Plug 2": 8.39, "Yutron Plug 1": 8.84, "Yutron Plug 2": 8.87, "iRobot Roomba": 1.46}, {"dataset": "Train", "date": "20211124", "state": "idle", "total": 426.78, "AMCREST WiFi Camera": 7.75, "Amazon Alexa Echo Dot 1": 15.58, "Amazon Alexa Echo Dot 2": 14.15, "Amazon Alexa Echo Spot": 18.74, "Amazon Alexa Echo Studio": 17.16, "Amazon Plug": 2.01, "Arlo Base Station": 6.83, "Arlo Q Camera": 4.34, "Atomi Coffee Maker": 9.53, "Borun/Sichuan-AI Camera": 33.27, "D-Link Water Sensor": 0.07, "D-Link Mini Camera": 1.49, "Eufy HomeBase 2": 11.17, "Globe Lamp ESP_B1680C": 9.24, "Google Nest Mini": 28.26, "Gosund ESP_032979 Plug": 9.25, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.29, "Gosund ESP_10098F Sckt": 9.28, "Gosund ESP_10ACD8 Plug": 9.28, "Gosund ESP_147FF9 Plug": 9.27, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.79, "HeimVision SL R-Lamp": 10.82, "Home Eye Camera": 29.05, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 7.0, "Netatmo Camera": 5.14, "Netatmo Weather Station": 2.48, "Philips Hue Bridge": 17.18, "Ring Base Station": 4.65, "SIMCAM 1S (AMPAKTec)": 37.53, "Smart Board": 4.55, "Sonos One Speaker": 5.38, "Teckin Plug 1": 8.44, "Teckin Plug 2": 8.38, "Yutron Plug 1": 8.72, "Yutron Plug 2": 8.63, "iRobot Roomba": 1.43}, {"dataset": "Train", "date": "20211125", "state": "idle", "total": 415.9, "AMCREST WiFi Camera": 7.95, "Amazon Alexa Echo Dot 1": 15.88, "Amazon Alexa Echo Dot 2": 14.38, "Amazon Alexa Echo Spot": 18.76, "Amazon Alexa Echo Studio": 17.59, "Amazon Plug": 2.04, "Arlo Base Station": 6.82, "Arlo Q Camera": 3.81, "Atomi Coffee Maker": 9.54, "Borun/Sichuan-AI Camera": 33.25, "D-Link Water Sensor": 0.04, "D-Link Mini Camera": 1.49, "Eufy HomeBase 2": 10.98, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 28.65, "Gosund ESP_032979 Plug": 9.25, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.29, "Gosund ESP_10098F Sckt": 9.29, "Gosund ESP_10ACD8 Plug": 9.29, "Gosund ESP_147FF9 Plug": 9.27, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 21.05, "HeimVision SL R-Lamp": 10.82, "Home Eye Camera": 28.61, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.16, "Nest Indoor Camera": 6.82, "Netatmo Camera": 5.07, "Netatmo Weather Station": 2.55, "Philips Hue Bridge": 17.18, "Ring Base Station": 4.68, "SIMCAM 1S (AMPAKTec)": 28.64, "Smart Board": 0.48, "Sonos One Speaker": 5.37, "Teckin Plug 1": 8.4, "Teckin Plug 2": 8.32, "Yutron Plug 1": 8.44, "Yutron Plug 2": 8.55, "iRobot Roomba": 1.43}, {"dataset": "Train", "date": "20211126", "state": "idle", "total": 442.39, "AMCREST WiFi Camera": 8.95, "Amazon Alexa Echo Dot 1": 16.37, "Amazon Alexa Echo Dot 2": 15.58, "Amazon Alexa Echo Spot": 21.8, "Amazon Alexa Echo Studio": 19.96, "Amazon Plug": 0.0, "Arlo Base Station": 6.85, "Arlo Q Camera": 4.38, "Atomi Coffee Maker": 9.55, "Borun/Sichuan-AI Camera": 34.99, "D-Link Water Sensor": 0.07, "D-Link Mini Camera": 1.5, "Eufy HomeBase 2": 11.0, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 28.43, "Gosund ESP_032979 Plug": 9.25, "Gosund ESP_039AAF Sckt": 9.26, "Gosund ESP_0C3994 Plug": 9.28, "Gosund ESP_10098F Sckt": 9.29, "Gosund ESP_10ACD8 Plug": 9.29, "Gosund ESP_147FF9 Plug": 9.27, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.91, "HeimVision SL R-Lamp": 10.82, "Home Eye Camera": 29.32, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.18, "Nest Indoor Camera": 21.8, "Netatmo Camera": 5.0, "Netatmo Weather Station": 2.5, "Philips Hue Bridge": 17.21, "Ring Base Station": 4.69, "SIMCAM 1S (AMPAKTec)": 28.62, "Smart Board": 4.77, "Sonos One Speaker": 5.38, "Teckin Plug 1": 8.37, "Teckin Plug 2": 8.6, "Yutron Plug 1": 8.63, "Yutron Plug 2": 8.62, "iRobot Roomba": 1.42}, {"dataset": "Train", "date": "20211129", "state": "idle", "total": 400.76, "AMCREST WiFi Camera": 8.49, "Amazon Alexa Echo Dot 1": 15.3, "Amazon Alexa Echo Dot 2": 14.39, "Amazon Alexa Echo Spot": 19.23, "Amazon Alexa Echo Studio": 19.33, "Amazon Plug": 1.97, "Arlo Base Station": 7.04, "Arlo Q Camera": 3.97, "Atomi Coffee Maker": 9.61, "Borun/Sichuan-AI Camera": 33.24, "D-Link Water Sensor": 0.04, "D-Link Mini Camera": 1.5, "Eufy HomeBase 2": 11.01, "Globe Lamp ESP_B1680C": 9.32, "Google Nest Mini": 19.83, "Gosund ESP_032979 Plug": 9.34, "Gosund ESP_039AAF Sckt": 9.34, "Gosund ESP_0C3994 Plug": 9.38, "Gosund ESP_10098F Sckt": 9.34, "Gosund ESP_10ACD8 Plug": 9.34, "Gosund ESP_147FF9 Plug": 9.34, "Gosund ESP_1ACEE1 Sckt": 9.33, "HeimVision Smrt WiFiCam": 20.23, "HeimVision SL R-Lamp": 10.88, "Home Eye Camera": 23.21, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.17, "Nest Indoor Camera": 6.52, "Netatmo Camera": 5.02, "Netatmo Weather Station": 2.59, "Philips Hue Bridge": 17.31, "Ring Base Station": 0.0, "SIMCAM 1S (AMPAKTec)": 28.73, "Smart Board": 0.39, "Sonos One Speaker": 5.4, "Teckin Plug 1": 8.51, "Teckin Plug 2": 8.62, "Yutron Plug 1": 9.0, "Yutron Plug 2": 9.04, "iRobot Roomba": 1.48}, {"dataset": "Train", "date": "20211130", "state": "idle", "total": 393.1, "AMCREST WiFi Camera": 7.79, "Amazon Alexa Echo Dot 1": 15.77, "Amazon Alexa Echo Dot 2": 14.29, "Amazon Alexa Echo Spot": 19.18, "Amazon Alexa Echo Studio": 17.51, "Amazon Plug": 2.0, "Arlo Base Station": 10.01, "Arlo Q Camera": 3.8, "Atomi Coffee Maker": 9.53, "Borun/Sichuan-AI Camera": 33.67, "D-Link Water Sensor": 0.07, "D-Link Mini Camera": 1.49, "Eufy HomeBase 2": 11.16, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 19.26, "Gosund ESP_032979 Plug": 0.0, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.25, "Gosund ESP_10098F Sckt": 9.26, "Gosund ESP_10ACD8 Plug": 9.25, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.75, "HeimVision SL R-Lamp": 10.84, "Home Eye Camera": 23.2, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 6.65, "Netatmo Camera": 5.08, "Netatmo Weather Station": 2.46, "Philips Hue Bridge": 17.27, "Ring Base Station": 4.7, "SIMCAM 1S (AMPAKTec)": 28.62, "Smart Board": 0.38, "Sonos One Speaker": 5.34, "Teckin Plug 1": 8.3, "Teckin Plug 2": 8.86, "Yutron Plug 1": 8.25, "Yutron Plug 2": 8.55, "iRobot Roomba": 1.42}, {"dataset": "Train", "date": "20211201", "state": "idle", "total": 405.04, "AMCREST WiFi Camera": 8.9, "Amazon Alexa Echo Dot 1": 15.49, "Amazon Alexa Echo Dot 2": 14.6, "Amazon Alexa Echo Spot": 18.9, "Amazon Alexa Echo Studio": 17.48, "Amazon Plug": 2.01, "Arlo Base Station": 6.85, "Arlo Q Camera": 3.8, "Atomi Coffee Maker": 9.53, "Borun/Sichuan-AI Camera": 35.77, "D-Link Water Sensor": 0.04, "D-Link Mini Camera": 1.49, "Eufy HomeBase 2": 11.03, "Globe Lamp ESP_B1680C": 9.24, "Google Nest Mini": 21.1, "Gosund ESP_032979 Plug": 9.26, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.25, "Gosund ESP_10098F Sckt": 9.26, "Gosund ESP_10ACD8 Plug": 9.25, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.75, "HeimVision SL R-Lamp": 10.84, "Home Eye Camera": 23.24, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.14, "Nest Indoor Camera": 7.39, "Netatmo Camera": 5.19, "Netatmo Weather Station": 2.56, "Philips Hue Bridge": 17.26, "Ring Base Station": 4.71, "SIMCAM 1S (AMPAKTec)": 28.63, "Smart Board": 0.44, "Sonos One Speaker": 5.37, "Teckin Plug 1": 8.28, "Teckin Plug 2": 8.87, "Yutron Plug 1": 8.27, "Yutron Plug 2": 8.71, "iRobot Roomba": 1.43}, {"dataset": "Train", "date": "20211202", "state": "idle", "total": 404.43, "AMCREST WiFi Camera": 7.77, "Amazon Alexa Echo Dot 1": 14.71, "Amazon Alexa Echo Dot 2": 14.15, "Amazon Alexa Echo Spot": 19.08, "Amazon Alexa Echo Studio": 17.49, "Amazon Plug": 1.97, "Arlo Base Station": 6.9, "Arlo Q Camera": 3.8, "Atomi Coffee Maker": 9.53, "Borun/Sichuan-AI Camera": 35.7, "D-Link Water Sensor": 0.11, "D-Link Mini Camera": 2.53, "Eufy HomeBase 2": 11.16, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 20.06, "Gosund ESP_032979 Plug": 9.28, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.25, "Gosund ESP_10098F Sckt": 9.27, "Gosund ESP_10ACD8 Plug": 9.24, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.84, "HeimVision SL R-Lamp": 10.85, "Home Eye Camera": 23.69, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.13, "Nest Indoor Camera": 7.83, "Netatmo Camera": 5.15, "Netatmo Weather Station": 2.52, "Philips Hue Bridge": 17.25, "Ring Base Station": 4.68, "SIMCAM 1S (AMPAKTec)": 28.6, "Smart Board": 0.5, "Sonos One Speaker": 5.34, "Teckin Plug 1": 8.26, "Teckin Plug 2": 8.8, "Yutron Plug 1": 9.07, "Yutron Plug 2": 8.5, "iRobot Roomba": 1.43}, {"dataset": "Train", "date": "20211203", "state": "idle", "total": 427.99, "AMCREST WiFi Camera": 8.44, "Amazon Alexa Echo Dot 1": 14.9, "Amazon Alexa Echo Dot 2": 14.75, "Amazon Alexa Echo Spot": 18.24, "Amazon Alexa Echo Studio": 17.32, "Amazon Plug": 1.99, "Arlo Base Station": 6.86, "Arlo Q Camera": 3.82, "Atomi Coffee Maker": 9.53, "Borun/Sichuan-AI Camera": 35.76, "D-Link Water Sensor": 0.07, "D-Link Mini Camera": 1.48, "Eufy HomeBase 2": 11.34, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 28.62, "Gosund ESP_032979 Plug": 9.27, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.25, "Gosund ESP_10098F Sckt": 9.27, "Gosund ESP_10ACD8 Plug": 9.25, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.33, "HeimVision Smrt WiFiCam": 18.8, "HeimVision SL R-Lamp": 10.85, "Home Eye Camera": 23.51, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.16, "Nest Indoor Camera": 8.64, "Netatmo Camera": 5.14, "Netatmo Weather Station": 2.47, "Philips Hue Bridge": 17.7, "Ring Base Station": 4.67, "SIMCAM 1S (AMPAKTec)": 28.63, "Smart Board": 14.91, "Sonos One Speaker": 5.2, "Teckin Plug 1": 8.44, "Teckin Plug 2": 8.6, "Yutron Plug 1": 9.1, "Yutron Plug 2": 8.93, "iRobot Roomba": 1.0}, {"dataset": "Train", "date": "20211207", "state": "idle", "total": 408.74, "AMCREST WiFi Camera": 8.05, "Amazon Alexa Echo Dot 1": 15.23, "Amazon Alexa Echo Dot 2": 14.13, "Amazon Alexa Echo Spot": 18.63, "Amazon Alexa Echo Studio": 19.22, "Amazon Plug": 2.01, "Arlo Base Station": 6.91, "Arlo Q Camera": 3.81, "Atomi Coffee Maker": 9.53, "Borun/Sichuan-AI Camera": 35.77, "D-Link Water Sensor": 0.04, "D-Link Mini Camera": 1.48, "Eufy HomeBase 2": 11.28, "Globe Lamp ESP_B1680C": 9.24, "Google Nest Mini": 20.42, "Gosund ESP_032979 Plug": 9.26, "Gosund ESP_039AAF Sckt": 9.25, "Gosund ESP_0C3994 Plug": 9.25, "Gosund ESP_10098F Sckt": 9.26, "Gosund ESP_10ACD8 Plug": 9.25, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 20.2, "HeimVision SL R-Lamp": 10.84, "Home Eye Camera": 23.64, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 7.06, "Netatmo Camera": 5.24, "Netatmo Weather Station": 2.61, "Philips Hue Bridge": 17.33, "Ring Base Station": 6.41, "SIMCAM 1S (AMPAKTec)": 28.63, "Smart Board": 0.58, "Sonos One Speaker": 5.38, "Teckin Plug 1": 8.45, "Teckin Plug 2": 8.51, "Yutron Plug 1": 8.68, "Yutron Plug 2": 9.01, "iRobot Roomba": 1.5}, {"dataset": "Train", "date": "20211208", "state": "idle", "total": 357.63, "AMCREST WiFi Camera": 7.99, "Amazon Alexa Echo Dot 1": 15.18, "Amazon Alexa Echo Dot 2": 14.57, "Amazon Alexa Echo Spot": 18.94, "Amazon Alexa Echo Studio": 19.5, "Amazon Plug": 2.0, "Arlo Base Station": 6.78, "Arlo Q Camera": 3.82, "Atomi Coffee Maker": 9.53, "Borun/Sichuan-AI Camera": 35.73, "D-Link Water Sensor": 0.07, "D-Link Mini Camera": 1.48, "Eufy HomeBase 2": 11.02, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 19.89, "Gosund ESP_032979 Plug": 1.38, "Gosund ESP_039AAF Sckt": 1.32, "Gosund ESP_0C3994 Plug": 1.33, "Gosund ESP_10098F Sckt": 1.38, "Gosund ESP_10ACD8 Plug": 1.33, "Gosund ESP_147FF9 Plug": 1.33, "Gosund ESP_1ACEE1 Sckt": 1.33, "HeimVision Smrt WiFiCam": 20.07, "HeimVision SL R-Lamp": 10.85, "Home Eye Camera": 23.84, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.16, "Nest Indoor Camera": 12.79, "Netatmo Camera": 5.05, "Netatmo Weather Station": 2.4, "Philips Hue Bridge": 17.26, "Ring Base Station": 4.7, "SIMCAM 1S (AMPAKTec)": 28.63, "Smart Board": 0.41, "Sonos One Speaker": 5.29, "Teckin Plug 1": 9.12, "Teckin Plug 2": 8.34, "Yutron Plug 1": 9.1, "Yutron Plug 2": 9.0, "iRobot Roomba": 1.44}, {"dataset": "Train", "date": "20211209", "state": "idle", "total": 429.03, "AMCREST WiFi Camera": 7.63, "Amazon Alexa Echo Dot 1": 14.66, "Amazon Alexa Echo Dot 2": 14.43, "Amazon Alexa Echo Spot": 18.91, "Amazon Alexa Echo Studio": 19.18, "Amazon Plug": 1.97, "Arlo Base Station": 6.89, "Arlo Q Camera": 3.82, "Atomi Coffee Maker": 9.53, "Borun/Sichuan-AI Camera": 35.43, "D-Link Water Sensor": 0.07, "D-Link Mini Camera": 1.49, "Eufy HomeBase 2": 11.3, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 20.1, "Gosund ESP_032979 Plug": 9.26, "Gosund ESP_039AAF Sckt": 9.24, "Gosund ESP_0C3994 Plug": 9.25, "Gosund ESP_10098F Sckt": 9.25, "Gosund ESP_10ACD8 Plug": 9.25, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 19.11, "HeimVision SL R-Lamp": 10.85, "Home Eye Camera": 23.4, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.16, "Nest Indoor Camera": 14.62, "Netatmo Camera": 5.21, "Netatmo Weather Station": 2.54, "Philips Hue Bridge": 17.3, "Ring Base Station": 4.7, "SIMCAM 1S (AMPAKTec)": 28.63, "Smart Board": 0.65, "Sonos One Speaker": 23.08, "Teckin Plug 1": 8.29, "Teckin Plug 2": 8.58, "Yutron Plug 1": 8.39, "Yutron Plug 2": 8.7, "iRobot Roomba": 1.42}, {"dataset": "Train", "date": "20211210", "state": "idle", "total": 423.3, "AMCREST WiFi Camera": 8.12, "Amazon Alexa Echo Dot 1": 15.42, "Amazon Alexa Echo Dot 2": 14.77, "Amazon Alexa Echo Spot": 19.13, "Amazon Alexa Echo Studio": 19.35, "Amazon Plug": 2.28, "Arlo Base Station": 6.9, "Arlo Q Camera": 3.79, "Atomi Coffee Maker": 9.52, "Borun/Sichuan-AI Camera": 35.36, "D-Link Water Sensor": 0.04, "D-Link Mini Camera": 1.48, "Eufy HomeBase 2": 10.94, "Globe Lamp ESP_B1680C": 9.24, "Google Nest Mini": 21.11, "Gosund ESP_032979 Plug": 9.27, "Gosund ESP_039AAF Sckt": 9.24, "Gosund ESP_0C3994 Plug": 9.25, "Gosund ESP_10098F Sckt": 9.26, "Gosund ESP_10ACD8 Plug": 9.25, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.72, "HeimVision SL R-Lamp": 10.84, "Home Eye Camera": 23.33, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 23.02, "Netatmo Camera": 5.2, "Netatmo Weather Station": 2.37, "Philips Hue Bridge": 17.25, "Ring Base Station": 4.69, "SIMCAM 1S (AMPAKTec)": 28.59, "Smart Board": 0.47, "Sonos One Speaker": 6.86, "Teckin Plug 1": 8.31, "Teckin Plug 2": 8.55, "Yutron Plug 1": 8.54, "Yutron Plug 2": 8.79, "iRobot Roomba": 1.43}, {"dataset": "Test", "date": "20211213", "state": "idle", "total": 421.23, "AMCREST WiFi Camera": 8.47, "Amazon Alexa Echo Dot 1": 15.19, "Amazon Alexa Echo Dot 2": 15.03, "Amazon Alexa Echo Spot": 19.43, "Amazon Alexa Echo Studio": 19.54, "Amazon Plug": 2.05, "Arlo Base Station": 6.74, "Arlo Q Camera": 3.82, "Atomi Coffee Maker": 9.53, "Borun/Sichuan-AI Camera": 35.38, "D-Link Water Sensor": 0.07, "D-Link Mini Camera": 1.48, "Eufy HomeBase 2": 11.03, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 20.22, "Gosund ESP_032979 Plug": 9.28, "Gosund ESP_039AAF Sckt": 9.24, "Gosund ESP_0C3994 Plug": 9.25, "Gosund ESP_10098F Sckt": 9.26, "Gosund ESP_10ACD8 Plug": 9.25, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.82, "HeimVision SL R-Lamp": 10.84, "Home Eye Camera": 23.72, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.16, "Nest Indoor Camera": 20.58, "Netatmo Camera": 5.42, "Netatmo Weather Station": 2.42, "Philips Hue Bridge": 17.26, "Ring Base Station": 4.66, "SIMCAM 1S (AMPAKTec)": 28.54, "Smart Board": 0.42, "Sonos One Speaker": 6.9, "Teckin Plug 1": 8.2, "Teckin Plug 2": 8.62, "Yutron Plug 1": 8.4, "Yutron Plug 2": 8.88, "iRobot Roomba": 1.42}, {"dataset": "Test", "date": "20211215", "state": "idle", "total": 424.56, "AMCREST WiFi Camera": 8.09, "Amazon Alexa Echo Dot 1": 14.14, "Amazon Alexa Echo Dot 2": 13.82, "Amazon Alexa Echo Spot": 18.83, "Amazon Alexa Echo Studio": 17.68, "Amazon Plug": 2.0, "Arlo Base Station": 7.36, "Arlo Q Camera": 3.81, "Atomi Coffee Maker": 9.53, "Borun/Sichuan-AI Camera": 35.47, "D-Link Water Sensor": 0.07, "D-Link Mini Camera": 1.47, "Eufy HomeBase 2": 11.43, "Globe Lamp ESP_B1680C": 9.24, "Google Nest Mini": 27.99, "Gosund ESP_032979 Plug": 9.26, "Gosund ESP_039AAF Sckt": 9.24, "Gosund ESP_0C3994 Plug": 9.26, "Gosund ESP_10098F Sckt": 9.24, "Gosund ESP_10ACD8 Plug": 9.25, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.67, "HeimVision SL R-Lamp": 10.84, "Home Eye Camera": 23.4, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 21.63, "Netatmo Camera": 5.16, "Netatmo Weather Station": 2.63, "Philips Hue Bridge": 17.27, "Ring Base Station": 4.66, "SIMCAM 1S (AMPAKTec)": 28.6, "Smart Board": 0.5, "Sonos One Speaker": 5.38, "Teckin Plug 1": 8.29, "Teckin Plug 2": 8.95, "Yutron Plug 1": 8.27, "Yutron Plug 2": 9.07, "iRobot Roomba": 1.44}, {"dataset": "Test", "date": "20211216", "state": "idle", "total": 416.07, "AMCREST WiFi Camera": 7.65, "Amazon Alexa Echo Dot 1": 12.23, "Amazon Alexa Echo Dot 2": 12.27, "Amazon Alexa Echo Spot": 18.83, "Amazon Alexa Echo Studio": 17.25, "Amazon Plug": 2.0, "Arlo Base Station": 6.91, "Arlo Q Camera": 3.8, "Atomi Coffee Maker": 9.52, "Borun/Sichuan-AI Camera": 35.58, "D-Link Water Sensor": 0.11, "D-Link Mini Camera": 1.46, "Eufy HomeBase 2": 11.01, "Globe Lamp ESP_B1680C": 9.25, "Google Nest Mini": 21.12, "Gosund ESP_032979 Plug": 9.26, "Gosund ESP_039AAF Sckt": 9.24, "Gosund ESP_0C3994 Plug": 9.25, "Gosund ESP_10098F Sckt": 9.25, "Gosund ESP_10ACD8 Plug": 9.25, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.25, "HeimVision Smrt WiFiCam": 18.68, "HeimVision SL R-Lamp": 10.85, "Home Eye Camera": 23.4, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.15, "Nest Indoor Camera": 25.21, "Netatmo Camera": 5.15, "Netatmo Weather Station": 2.46, "Philips Hue Bridge": 17.2, "Ring Base Station": 4.66, "SIMCAM 1S (AMPAKTec)": 28.61, "Smart Board": 0.37, "Sonos One Speaker": 5.33, "Teckin Plug 1": 8.28, "Teckin Plug 2": 9.13, "Yutron Plug 1": 8.32, "Yutron Plug 2": 9.11, "iRobot Roomba": 1.43}, {"dataset": "Test", "date": "20211220", "state": "idle", "total": 428.31, "AMCREST WiFi Camera": 7.78, "Amazon Alexa Echo Dot 1": 15.73, "Amazon Alexa Echo Dot 2": 14.76, "Amazon Alexa Echo Spot": 18.35, "Amazon Alexa Echo Studio": 19.86, "Amazon Plug": 2.0, "Arlo Base Station": 6.8, "Arlo Q Camera": 3.83, "Atomi Coffee Maker": 9.52, "Borun/Sichuan-AI Camera": 35.51, "D-Link Water Sensor": 0.07, "D-Link Mini Camera": 1.47, "Eufy HomeBase 2": 11.01, "Globe Lamp ESP_B1680C": 9.24, "Google Nest Mini": 27.55, "Gosund ESP_032979 Plug": 9.26, "Gosund ESP_039AAF Sckt": 9.24, "Gosund ESP_0C3994 Plug": 9.24, "Gosund ESP_10098F Sckt": 9.25, "Gosund ESP_10ACD8 Plug": 9.25, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.24, "HeimVision Smrt WiFiCam": 18.66, "HeimVision SL R-Lamp": 10.84, "Home Eye Camera": 23.18, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.14, "Nest Indoor Camera": 21.32, "Netatmo Camera": 5.18, "Netatmo Weather Station": 2.28, "Philips Hue Bridge": 17.32, "Ring Base Station": 4.75, "SIMCAM 1S (AMPAKTec)": 28.62, "Smart Board": 0.52, "Sonos One Speaker": 5.32, "Teckin Plug 1": 9.36, "Teckin Plug 2": 9.15, "Yutron Plug 1": 9.24, "Yutron Plug 2": 8.67, "iRobot Roomba": 1.58}, {"dataset": "Test", "date": "20211222", "state": "idle", "total": 436.18, "AMCREST WiFi Camera": 7.63, "Amazon Alexa Echo Dot 1": 16.77, "Amazon Alexa Echo Dot 2": 15.48, "Amazon Alexa Echo Spot": 18.56, "Amazon Alexa Echo Studio": 20.42, "Amazon Plug": 2.0, "Arlo Base Station": 6.78, "Arlo Q Camera": 3.79, "Atomi Coffee Maker": 9.52, "Borun/Sichuan-AI Camera": 35.56, "D-Link Water Sensor": 0.07, "D-Link Mini Camera": 1.46, "Eufy HomeBase 2": 11.02, "Globe Lamp ESP_B1680C": 9.24, "Google Nest Mini": 27.83, "Gosund ESP_032979 Plug": 9.26, "Gosund ESP_039AAF Sckt": 9.24, "Gosund ESP_0C3994 Plug": 9.24, "Gosund ESP_10098F Sckt": 9.25, "Gosund ESP_10ACD8 Plug": 9.25, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.24, "HeimVision Smrt WiFiCam": 18.77, "HeimVision SL R-Lamp": 10.84, "Home Eye Camera": 23.18, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.16, "Nest Indoor Camera": 22.92, "Netatmo Camera": 5.2, "Netatmo Weather Station": 2.53, "Philips Hue Bridge": 17.28, "Ring Base Station": 4.69, "SIMCAM 1S (AMPAKTec)": 28.64, "Smart Board": 2.39, "Sonos One Speaker": 6.84, "Teckin Plug 1": 9.37, "Teckin Plug 2": 9.12, "Yutron Plug 1": 9.28, "Yutron Plug 2": 8.7, "iRobot Roomba": 1.44}, {"dataset": "Test", "date": "20211223", "state": "idle", "total": 435.22, "AMCREST WiFi Camera": 8.32, "Amazon Alexa Echo Dot 1": 16.74, "Amazon Alexa Echo Dot 2": 15.62, "Amazon Alexa Echo Spot": 18.37, "Amazon Alexa Echo Studio": 20.51, "Amazon Plug": 1.98, "Arlo Base Station": 6.84, "Arlo Q Camera": 3.8, "Atomi Coffee Maker": 9.52, "Borun/Sichuan-AI Camera": 35.5, "D-Link Water Sensor": 0.07, "D-Link Mini Camera": 1.46, "Eufy HomeBase 2": 11.24, "Globe Lamp ESP_B1680C": 9.24, "Google Nest Mini": 27.58, "Gosund ESP_032979 Plug": 9.25, "Gosund ESP_039AAF Sckt": 9.24, "Gosund ESP_0C3994 Plug": 9.24, "Gosund ESP_10098F Sckt": 9.25, "Gosund ESP_10ACD8 Plug": 9.25, "Gosund ESP_147FF9 Plug": 9.25, "Gosund ESP_1ACEE1 Sckt": 9.24, "HeimVision Smrt WiFiCam": 18.83, "HeimVision SL R-Lamp": 10.85, "Home Eye Camera": 23.19, "LG Smart TV": 0.0, "Luohe Cam Dog": 4.16, "Nest Indoor Camera": 20.25, "Netatmo Camera": 5.19, "Netatmo Weather Station": 2.54, "Philips Hue Bridge": 17.28, "Ring Base Station": 4.7, "SIMCAM 1S (AMPAKTec)": 28.62, "Smart Board": 3.19, "Sonos One Speaker": 6.87, "Teckin Plug 1": 9.36, "Teckin Plug 2": 9.19, "Yutron Plug 1": 9.25, "Yutron Plug 2": 8.68, "iRobot Roomba": 1.56}]};
+const DEVICES = RAW.devices;
+const ROWS = RAW.rows;
+
+let filterDataset = 'all';
+let filterState = 'all';
+let searchTerm = '';
+let sortCol = 'date';
+let sortDir = 'asc';
+
+function normalize(s){
+  return s.toLowerCase()
+    .replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ı/g,'i')
+    .replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u');
+}
+
+function formatDate(d){
+  return d.slice(0,4) + '-' + d.slice(4,6) + '-' + d.slice(6,8);
+}
+
+// precompute per-device min/max for heatmap
+const ranges = {};
+DEVICES.forEach(dev => {
+  let vals = ROWS.map(r => r[dev]);
+  ranges[dev] = { min: Math.min(...vals), max: Math.max(...vals) };
+});
+
+function heatColor(dev, val){
+  const {min, max} = ranges[dev];
+  if(max === min) return 'transparent';
+  const t = (val - min) / (max - min);
+  // teal wash, opacity scales with intensity
+  const alpha = (0.05 + t * 0.34).toFixed(3);
+  return `rgba(45,212,191,${alpha})`;
+}
+
+function matchingDevices(){
+  if(!searchTerm) return DEVICES;
+  const q = normalize(searchTerm);
+  return DEVICES.filter(d => normalize(d).includes(q));
+}
+
+function highlightMatch(name){
+  if(!searchTerm) return name;
+  const q = normalize(searchTerm);
+  const idx = normalize(name).indexOf(q);
+  if(idx === -1) return name;
+  return name.slice(0,idx) + '<span class="match">' + name.slice(idx, idx+searchTerm.length) + '</span>' + name.slice(idx+searchTerm.length);
+}
+
+function getFilteredRows(){
+  return ROWS.filter(r =>
+    (filterDataset === 'all' || r.dataset === filterDataset) &&
+    (filterState === 'all' || r.state === filterState)
+  );
+}
+
+function sortRows(rows){
+  const arr = [...rows];
+  arr.sort((a,b) => {
+    let av, bv;
+    if(sortCol === 'date'){ av = a.date; bv = b.date; }
+    else if(sortCol === 'total'){ av = a.total; bv = b.total; }
+    else { av = a[sortCol]; bv = b[sortCol]; }
+    if(av < bv) return sortDir === 'asc' ? -1 : 1;
+    if(av > bv) return sortDir === 'asc' ? 1 : -1;
+    return 0;
+  });
+  return arr;
+}
+
+function render(){
+  const devs = matchingDevices();
+  const rows = sortRows(getFilteredRows());
+
+  // header
+  const headRow = document.getElementById('headRow');
+  const fixedHeaders = [
+    {key:'date', label:'Date', cls:'col-tarih fixed'},
+    {key:'dataset', label:'Type', cls:'col-tip fixed'},
+    {key:'state', label:'State  (active/idle)', cls:'col-durum fixed'},
+    {key:'total', label:'Total (KB)', cls:'col-toplam fixed'},
+  ];
+  let html = '';
+  fixedHeaders.forEach(h => {
+    html += `<th class="${h.cls}" data-key="${h.key}">${h.label}${arrowFor(h.key)}</th>`;
+  });
+  devs.forEach(d => {
+    html += `<th data-key="${d}" title="${d}">${highlightMatch(d)}${arrowFor(d)}</th>`;
+  });
+  headRow.innerHTML = html;
+
+  // body
+  const body = document.getElementById('bodyRows');
+  if(rows.length === 0){
+    body.innerHTML = `<tr><td colspan="${4+devs.length}"><div class="empty-state">No matching records found. Change the filters.</div></td></tr>`;
+  } else {
+    body.innerHTML = rows.map(r => {
+      let rowHtml = `<td class="col-tarih fixed">${formatDate(r.date)}</td>`;
+      rowHtml += `<td class="col-tip fixed dataset-${r.dataset}">${r.dataset}</td>`;
+      rowHtml += `<td class="col-durum fixed state-${r.state}">${r.state}</td>`;
+      rowHtml += `<td class="col-toplam fixed">${r.total.toFixed(2)}</td>`;
+      devs.forEach(d => {
+        const v = r[d];
+        rowHtml += `<td class="metric" style="background:${heatColor(d, v)}">${v.toFixed(2)}</td>`;
+      });
+      return `<tr>${rowHtml}</tr>`;
+    }).join('');
+  }
+
+  document.getElementById('resultLine').innerHTML =
+    `<b>${rows.length}</b> Record · <b>${devs.length}</b> device columns are displayed. (Total ${ROWS.length} record, ${DEVICES.length} device)`;
+}
+
+function arrowFor(key){
+  if(sortCol !== key) return '';
+  return `<span class="arrow">${sortDir === 'asc' ? '↑' : '↓'}</span>`;
+}
+
+document.getElementById('headRow').addEventListener('click', e => {
+  const th = e.target.closest('th');
+  if(!th) return;
+  const key = th.dataset.key;
+  if(sortCol === key){
+    sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+  } else {
+    sortCol = key;
+    sortDir = key === 'date' ? 'asc' : 'desc';
+  }
+  render();
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchTerm = e.target.value.trim();
+  render();
+});
+
+function setupChips(id, onSet){
+  const group = document.getElementById(id);
+  group.querySelectorAll('.chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      group.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      onSet(btn.dataset.val);
+      render();
+    });
+  });
+}
+setupChips('datasetChips', v => filterDataset = v);
+setupChips('stateChips', v => filterState = v);
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  filterDataset = 'all'; filterState = 'all'; searchTerm = '';
+  sortCol = 'date'; sortDir = 'asc';
+  document.getElementById('searchInput').value = '';
+  document.querySelectorAll('#datasetChips .chip, #stateChips .chip').forEach(b => b.classList.remove('active'));
+  document.querySelector('#datasetChips .chip[data-val="all"]').classList.add('active');
+  document.querySelector('#stateChips .chip[data-val="all"]').classList.add('active');
+  render();
+});
+
+// stats
+document.getElementById('statRecords').textContent = ROWS.length;
+document.getElementById('statDevices').textContent = DEVICES.length;
+const dates = ROWS.map(r => r.date).sort();
+document.getElementById('statRange').textContent = formatDate(dates[0]).slice(2) + ' → ' + formatDate(dates[dates.length-1]).slice(2);
+
+render();
+</script>
+</body>
+</html>
