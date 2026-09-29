@@ -204,6 +204,39 @@
       width: calc(100% - 2rem);
     }
 
+    /* Çok Katmanlı Dropdown (Nested Dropdown) Stilleri */
+    .dropdown-submenu {
+      position: relative;
+    }
+
+    .dropdown-submenu > .dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-top: -6px;
+      margin-left: -1px;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .dropdown-submenu:hover > .dropdown-menu,
+    .dropdown-submenu:focus-within > .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-submenu > a::after {
+      display: block;
+      content: " ";
+      float: right;
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      border-style: solid;
+      border-width: 5px 0 5px 5px;
+      border-left-color: #64748b;
+      margin-top: 7px;
+      margin-right: -5px;
+    }
+
     /* Profile Section */
     #circle-shape-example {
       position: relative;
@@ -226,6 +259,12 @@
       .profile-image-container {
         float: none;
         margin: 0 auto 2rem auto;
+      }
+
+      .dropdown-submenu > .dropdown-menu {
+        left: 1.5rem;
+        margin-top: 0;
+        position: relative;
       }
     }
 
@@ -524,6 +563,22 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
+          <!-- Dersler Dropdown (Çok Katmanlı / Nested) -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="derslerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dersler
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="derslerDropdown">
+              <li class="dropdown-submenu">
+                <a class="dropdown-item" href="#">Veri Madenciliği</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="https://docs.google.com/presentation/d/1q9S_x5ZXWC3841CTffX4k111AGKx08b7/edit?usp=drive_link&ouid=113556104633434507141&rtpof=true&sd=true">İçerik</a></li>
+                  <li><a class="dropdown-item" href="https://forms.gle/852kQ1LhsNhdLsYh9">Anket</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link active" href="#">About</a>
           </li>
