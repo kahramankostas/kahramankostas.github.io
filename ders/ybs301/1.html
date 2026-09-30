@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veri Madenciliği 1. Ders: Veri Setlerini Tanıma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace']
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              900: '#1e3a8a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    pre code {
+      font-family: 'Fira Code', monospace;
+    }
+    .check-item:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans selection:bg-blue-600 selection:text-white">
+
+  <!-- Header / Hero Section -->
+  <header class="border-b border-slate-800 bg-slate-950/60 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <span class="p-2 rounded-xl bg-blue-600/20 text-blue-400 border border-blue-500/30">
+          <i class="fa-solid fa-database text-lg"></i>
+        </span>
+        <div>
+          <h1 class="text-lg font-bold tracking-tight text-white">Veri Madenciliği — 1. Ders</h1>
+          <p class="text-xs text-slate-400">Veri Setlerini Tanıma ve Keşifsel Veri Analizi (EDA)</p>
+        </div>
+      </div>
+
+      <a href="https://docs.google.com/presentation/d/1q9S_x5ZXWC3841CTffX4k111AGKx08b7" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-lg shadow-blue-600/20">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        <span>Google Slides Sunumu</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8 space-y-12">
+
+    <!-- Overview Banner -->
+    <div class="rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900/90 to-blue-950/40 p-6 md:p-8 shadow-xl">
+      <div class="max-w-3xl space-y-3">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/20">
+          Ders İzlencesi
+        </span>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+          Veriyi Anlamak, Çözümün Yarısıdır
+        </h2>
+        <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+          Veri madenciliği sürecine başlarken ilk aşama, üzerinde çalışılan veriyi her yönüyle tanımak, boyutlarını, tiplerini, eksikliklerini ve dağılımını kavramaktır. Bu sayfada temel veri setlerinin yükleniş kodlarını ve inceleme kontrol adımlarını bulabilirsiniz.
+        </p>
+      </div>
+    </div>
+
+    <!-- 7 Benchmark Datasets -->
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-layer-group text-blue-400"></i> İncelenecek 7 Temel Veri Seti
+        </h3>
+        <span class="text-xs text-slate-400">Scikit-Learn & OpenML</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Dataset Card 1 -->
+        <div class="p-4 rounded-xl border border-slate-800 bg-slate-850 bg-slate-800/40 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2 text-emerald-400 text-xs font-mono mb-2">
+            <i class="fa-solid fa-seedling"></i> Klasik Tablo
+          </div>
+          <h4 class="font-bold text-white text-base">Iris</h4>
+          <p class="text-xs text-slate-400 mt-1">150 örnek, 4 sayısal özellik. Çiçek türlerini sınıflandırmak için en bilinen başlangıç veri seti.</p>
+        </div>
+
+        <!-- Dataset Card 2 -->
+        <div class="p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2 text-purple-400 text-xs font-mono mb-2">
+            <i class="fa-solid fa-wine-glass"></i> Klasik Tablo
+          </div>
+          <h4 class="font-bold text-white text-base">Wine</h4>
+          <p class="text-xs text-slate-400 mt-1">178 örnek, 13 kimyasal analiz özelliği. Şarapların ait olduğu 3 farklı üreticiyi tahmin eder.</p>
+        </div>
+
+        <!-- Dataset Card 3 -->
+        <div class="p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2 text-rose-400 text-xs font-mono mb-2">
+            <i class="fa-solid fa-ribbon"></i> İkili Sınıflandırma
+          </div>
+          <h4 class="font-bold text-white text-base">Breast Cancer</h4>
+          <p class="text-xs text-slate-400 mt-1">569 örnek, 30 özellik. Tümörün iyi (benign) ya da kötü (malignant) huylu oluşunun tespiti.</p>
+        </div>
+
+        <!-- Dataset Card 4 -->
+        <div class="p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2 text-amber-400 text-xs font-mono mb-2">
+            <i class="fa-solid fa-house"></i> Regresyon
+          </div>
+          <h4 class="font-bold text-white text-base">California Housing</h4>
+          <p class="text-xs text-slate-400 mt-1">20.640 blok grubu. Sürekli sayısal hedef değişkeni olan medyan konut fiyat tahmini.</p>
+        </div>
+
+        <!-- Dataset Card 5 -->
+        <div class="p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2 text-cyan-400 text-xs font-mono mb-2">
+            <i class="fa-solid fa-ship"></i> Karmaşık & Eksik Veri
+          </div>
+          <h4 class="font-bold text-white text-base">Titanic</h4>
+          <p class="text-xs text-slate-400 mt-1">Yolcu profilleri, yaş/kabin eksik değerleri, kategorik ve sayısal karışık nitelikler.</p>
+        </div>
+
+        <!-- Dataset Card 6 -->
+        <div class="p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2 text-indigo-400 text-xs font-mono mb-2">
+            <i class="fa-solid fa-image"></i> Görüntü
+          </div>
+          <h4 class="font-bold text-white text-base">MNIST 784</h4>
+          <p class="text-xs text-slate-400 mt-1">70.000 el yazısı rakam. 28x28 piksel yoğunlukları matrisi (784 özellik).</p>
+        </div>
+
+        <!-- Dataset Card 7 -->
+        <div class="p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:border-slate-700 transition md:col-span-2">
+          <div class="flex items-center gap-2 text-yellow-400 text-xs font-mono mb-2">
+            <i class="fa-solid fa-file-lines"></i> Metin / Doğal Dil (NLP)
+          </div>
+          <h4 class="font-bold text-white text-base">20 Newsgroups</h4>
+          <p class="text-xs text-slate-400 mt-1">Binlerce haber grubu iletisi. Ham metinlerin vektörleştirilmesi ve konu modelleme çalışmaları için standart referans seti.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Block Section -->
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-code text-blue-400"></i> Python Yükleme Kodu
+        </h3>
+        <button onclick="copyCode()" id="copyBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-lg transition border border-slate-700">
+          <i class="fa-regular fa-copy"></i>
+          <span id="copyText">Kodu Kopyala</span>
+        </button>
+      </div>
+
+      <div class="relative rounded-2xl border border-slate-800 bg-slate-950 overflow-hidden shadow-2xl">
+        <div class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
+          <span class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+            <span class="ml-2 text-slate-400 font-mono">load_datasets.py</span>
+          </span>
+          <span>Python 3.x</span>
+        </div>
+        <pre class="p-5 text-sm font-mono overflow-x-auto text-slate-300 leading-relaxed"><code id="codeSnippet"><span class="text-blue-400">from</span> sklearn.datasets <span class="text-blue-400">import</span> (
+    load_iris,
+    load_wine,
+    load_breast_cancer,
+    fetch_california_housing,
+    fetch_openml,
+    fetch_20newsgroups
+)
+
+<span class="text-slate-500"># 1. Klasik Tablo (Paketle birlikte hazır gelir, internet gerekmez)</span>
+iris = load_iris(as_frame=<span class="text-amber-400">True</span>)
+X_iris, y_iris = iris.data, iris.target
+
+wine = load_wine(as_frame=<span class="text-amber-400">True</span>)
+cancer = load_breast_cancer(as_frame=<span class="text-amber-400">True</span>)
+
+<span class="text-slate-500"># 2. Regresyon: California Housing (İlk çağrıda arka planda indirir ve önbelleğe alır)</span>
+housing = fetch_california_housing(as_frame=<span class="text-amber-400">True</span>)
+X_house, y_house = housing.data, housing.target
+
+<span class="text-slate-500"># 3. Titanic (OpenML üzerinden tek satırda çekilir)</span>
+titanic = fetch_openml(<span class="text-emerald-400">'titanic'</span>, version=1, as_frame=<span class="text-amber-400">True</span>)
+X_titanic, y_titanic = titanic.data, titanic.target
+
+<span class="text-slate-500"># 4. Görüntü: MNIST 784 (OpenML üzerinden çekilir, ~70.000 satır 28x28 piksel)</span>
+mnist = fetch_openml(<span class="text-emerald-400">'mnist_784'</span>, version=1, as_frame=<span class="text-amber-400">False</span>)
+X_mnist, y_mnist = mnist.data, mnist.target
+
+<span class="text-slate-500"># 5. Metin / NLP: 20 Newsgroups (Sadece belirli kategorileri çekmek için)</span>
+categories = [<span class="text-emerald-400">'alt.atheism'</span>, <span class="text-emerald-400">'soc.religion.christian'</span>, <span class="text-emerald-400">'comp.graphics'</span>, <span class="text-emerald-400">'sci.med'</span>]
+newsgroups = fetch_20newsgroups(subset=<span class="text-emerald-400">'train'</span>, categories=categories, shuffle=<span class="text-amber-400">True</span>, random_state=42)
+text_data, text_labels = newsgroups.data, newsgroups.target</code></pre>
+      </div>
+    </section>
+
+    <!-- EDA Checklist Section -->
+    <section class="space-y-6">
+      <div>
+        <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-list-check text-blue-400"></i> Veri Setini Tanı: Keşif Kontrol Listesi
+        </h3>
+        <p class="text-slate-400 text-sm mt-1">Her bir veri seti üzerinde çalışırken aşağıdaki 12 temel sorunun yanıtını belirleyin.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        <div class="check-item transition-all p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 hover:bg-slate-800/40">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 font-mono font-semibold text-xs mb-3 border border-blue-500/20">01</span>
+          <h4 class="font-semibold text-slate-100 text-base">Veri setinde kaç gözlem var?</h4>
+          <p class="text-xs text-slate-400 mt-1 font-mono">df.shape[0] / len(df)</p>
+        </div>
+
+        <div class="check-item transition-all p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 hover:bg-slate-800/40">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 font-mono font-semibold text-xs mb-3 border border-blue-500/20">02</span>
+          <h4 class="font-semibold text-slate-100 text-base">Kaç özellik var?</h4>
+          <p class="text-xs text-slate-400 mt-1 font-mono">df.shape[1] / len(df.columns)</p>
+        </div>
+
+        <div class="check-item transition-all p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 hover:bg-slate-800/40">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 font-mono font-semibold text-xs mb-3 border border-blue-500/20">03</span>
+          <h4 class="font-semibold text-slate-100 text-base">Özelliklerin isimleri neler?</h4>
+          <p class="text-xs text-slate-400 mt-1 font-mono">list(df.columns)</p>
+        </div>
+
+        <div class="check-item transition-all p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 hover:bg-slate-800/40">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 font-mono font-semibold text-xs mb-3 border border-blue-500/20">04</span>
+          <h4 class="font-semibold text-slate-100 text-base">Hangi özellikler sayısal?</h4>
+          <p class="text-xs text-slate-400 mt-1 font-mono">df.select_dtypes(include='number')</p>
+        </div>
+
+        <div class="check-item transition-all p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 hover:bg-slate-800/40">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 font-mono font-semibold text-xs mb-3 border border-blue-500/20">05</span>
+          <h4 class="font-semibold text-slate-100 text-base">Kategorik özellik var mı?</h4>
+          <p class="text-xs text-slate-400 mt-1 font-mono">df.select_dtypes(include=['object', 'category'])</p>
+        </div>
+
+        <div class="check-item transition-all p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 hover:bg-slate-800/40">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 font-mono font-semibold text-xs mb-3 border border-blue-500/20">06</span>
+          <h4 class="font-semibold text-slate-100 text-base">Eksik veri var mı?</h4>
+          <p class="text-xs text-slate-400 mt-1 font-mono">df.isnull().sum()</p>
+        </div>
+
+        <div class="check-item transition-all p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 hover:bg-slate-800/40">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 font-mono font-semibold text-xs mb-3 border border-blue-500/20">07</span>
+          <h4 class="font-semibold text-slate-100 text-base">Hedef değişken nedir?</h4>
+          <p class="text-xs text-slate-400 mt-1">Tahmin edilmek istenen bağımlı sütun (y).</p>
+        </div>
+
+        <div class="check-item transition-all p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 hover:bg-slate-800/40">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 font-mono font-semibold text-xs mb-3 border border-blue-500/20">08</span>
+          <h4 class="font-semibold text-slate-100 text-base">Hedef değişken kaç farklı değer alıyor?</h4>
+          <p class="text-xs text-slate-400 mt-1 font-mono">y.nunique() / y.unique()</p>
+        </div>
+
+        <div class="check-item transition-all p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 hover:bg-slate-800/40">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 font-mono font-semibold text-xs mb-3 border border-blue-500/20">09</span>
+          <h4 class="font-semibold text-slate-100 text-base">Sınıflar dengeli mi?</h4>
+          <p class="text-xs text-slate-400 mt-1 font-mono">y.value_counts(normalize=True)</p>
+        </div>
+
+        <div class="check-item transition-all p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 hover:bg-slate-800/40">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 font-mono font-semibold text-xs mb-3 border border-blue-500/20">10</span>
+          <h4 class="font-semibold text-slate-100 text-base">Özelliklerin değer aralıkları birbirine benziyor mu?</h4>
+          <p class="text-xs text-slate-400 mt-1 font-mono">df.describe().T[['min', 'max']]</p>
+        </div>
+
+        <div class="check-item transition-all p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 hover:bg-slate-800/40">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 font-mono font-semibold text-xs mb-3 border border-blue-500/20">11</span>
+          <h4 class="font-semibold text-slate-100 text-base">En yüksek korelasyona sahip iki özellik hangileri?</h4>
+          <p class="text-xs text-slate-400 mt-1 font-mono">df.corr().abs()</p>
+        </div>
+
+        <div class="check-item transition-all p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 hover:bg-slate-800/40">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 font-mono font-semibold text-xs mb-3 border border-blue-500/20">12</span>
+          <h4 class="font-semibold text-slate-100 text-base">Veriye baktığınızda dikkatinizi çeken bir şey nedir?</h4>
+          <p class="text-xs text-slate-400 mt-1">Aykırı değerler, sıfır yoğunluğu, hatalı girişler.</p>
+        </div>
+
+      </div>
+
+      <!-- Final Question Card -->
+      <div class="p-6 rounded-2xl border-2 border-blue-500/40 bg-gradient-to-r from-blue-950/40 via-slate-900 to-slate-900">
+        <div class="flex items-start gap-4">
+          <div class="p-3 rounded-xl bg-blue-500/20 text-blue-400">
+            <i class="fa-solid fa-circle-question text-2xl"></i>
+          </div>
+          <div class="space-y-1">
+            <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-blue-400">Ve son olarak</h4>
+            <p class="text-lg md:text-xl font-bold text-white">
+              “Bu veri setinden hangi sorulara cevap vermeye çalışabiliriz?”
+            </p>
+            <p class="text-slate-400 text-sm">
+              Model kurmadan önce iş problemini ve hedefini formüle edin (sınıflandırma, regresyon, kümeleme veya anomali tespiti).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-950/80 py-8 mt-12 text-center text-xs text-slate-500">
+    <p>Veri Madenciliği Dersi — 1. Hafta Laboratuvar Notu</p>
+    <p class="mt-1">
+      <a href="https://docs.google.com/presentation/d/1q9S_x5ZXWC3841CTffX4k111AGKx08b7" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
+        Slayt Linki: Google Presentation
+      </a>
+    </p>
+  </footer>
+
+  <script>
+    function copyCode() {
+      const code = `from sklearn.datasets import (
+    load_iris,
+    load_wine,
+    load_breast_cancer,
+    fetch_california_housing,
+    fetch_openml,
+    fetch_20newsgroups
+)
+
+# 1. Klasik Tablo (Paketle birlikte hazır gelir, internet gerekmez)
+iris = load_iris(as_frame=True)
+X_iris, y_iris = iris.data, iris.target
+
+wine = load_wine(as_frame=True)
+cancer = load_breast_cancer(as_frame=True)
+
+# 2. Regresyon: California Housing (İlk çağrıda arka planda indirir ve önbelleğe alır)
+housing = fetch_california_housing(as_frame=True)
+X_house, y_house = housing.data, housing.target
+
+# 3. Titanic (OpenML üzerinden tek satırda çekilir)
+titanic = fetch_openml('titanic', version=1, as_frame=True)
+X_titanic, y_titanic = titanic.data, titanic.target
+
+# 4. Görüntü: MNIST 784 (OpenML üzerinden çekilir, ~70.000 satır 28x28 piksel)
+mnist = fetch_openml('mnist_784', version=1, as_frame=False)
+X_mnist, y_mnist = mnist.data, mnist.target
+
+# 5. Metin / NLP: 20 Newsgroups (Sadece belirli kategorileri çekmek için)
+categories = ['alt.atheism', 'soc.religion.christian', 'comp.graphics', 'sci.med']
+newsgroups = fetch_20newsgroups(subset='train', categories=categories, shuffle=True, random_state=42)
+text_data, text_labels = newsgroups.data, newsgroups.target`;
+
+      navigator.clipboard.writeText(code).then(() => {
+        const copyText = document.getElementById('copyText');
+        copyText.innerText = 'Kopyalandı!';
+        setTimeout(() => {
+          copyText.innerText = 'Kodu Kopyala';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
