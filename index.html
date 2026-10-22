@@ -1,21 +1,21 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
   <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico?">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description"
-    content="Kahraman Kostas - Computer Science Researcher specializing in IoT security, device identification, and machine learning. PhD from Heriot-Watt University.">
+    content="Dr. Kahraman Kostas - Computer Science Researcher specializing in IoT security, device identification, and machine learning. PhD from Heriot-Watt University.">
   <meta name="keywords"
-    content="Kahraman Kostas, IoT Security, Machine Learning, Computer Networks, Indoor Positioning, Computer Science, Heriot-Watt University">
-  <meta name="author" content="Kahraman Kostas">
+    content="Kahraman Kostas, IoT Security, Machine Learning, Computer Networks, Indoor Positioning, Computer Science, Heriot-Watt University, Network Forensics, Explainable AI">
+  <meta name="author" content="Dr. Kahraman Kostas">
   <meta name="robots" content="index, follow">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Kahraman Kostas - Computer Science Researcher">
+  <meta property="og:title" content="Dr. Kahraman Kostas - Computer Science Researcher">
   <meta property="og:description"
     content="Computer Science Researcher specializing in IoT security, device identification, and machine learning. PhD from Heriot-Watt University.">
   <meta property="og:url" content="/">
@@ -23,11 +23,11 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@kkostas">
-  <meta name="twitter:title" content="Kahraman Kostas - Computer Science Researcher">
+  <meta name="twitter:title" content="Dr. Kahraman Kostas - Computer Science Researcher">
   <meta name="twitter:description"
     content="Computer Science Researcher specializing in IoT security, device identification, and machine learning">
 
-  <link class="canonical" href="/">
+  <link rel="canonical" href="/">
   <meta name="google-site-verification" content="QzOYYorbgwP6cQluJH_ErRjmofaTJXFDBxRtxJ0TToM">
 
   <script type="application/ld+json">
@@ -51,79 +51,163 @@
 }
 </script>
 
+  <!-- Icons -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <title>Kahraman Kostas - Computer Science Researcher</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <title>Dr. Kahraman Kostas | Computer Science Researcher</title>
+
+  <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
+
+  <!-- Modern Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@300;400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <style>
+    /* ==========================================================
+       CSS Variables & Themes (Light & Dark Mode)
+       ========================================================== */
     :root {
+      --bg-page: #f8fafc;
+      --bg-body-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #eff6ff 100%);
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --bg-card-hover: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-card: rgba(226, 232, 240, 0.85);
+
       --primary-color: #0f172a;
       --secondary-color: #1e293b;
-      --accent-color: #3b82f6;
-      --accent-light: #60a5fa;
-      --success-color: #10b981;
-      --light-bg: #f8fafc;
-      --dark-bg: #f1f5f9;
-      --border-color: #e2e8f0;
-      --text-color: #1e293b;
+      --text-color: #334155;
       --text-muted: #64748b;
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --text-highlight: #0f172a;
+
+      --accent-color: #2563eb;
+      --accent-light: #3b82f6;
+      --accent-subtle: rgba(37, 99, 235, 0.08);
+      --accent-gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #06b6d4 100%);
+      --accent-glow: rgba(37, 99, 235, 0.25);
+
+      --success-color: #059669;
+      --success-subtle: rgba(16, 185, 129, 0.1);
+      --badge-bg: #eff6ff;
+      --badge-text: #1d4ed8;
+
+      --navbar-bg: rgba(255, 255, 255, 0.88);
+      --navbar-border: rgba(226, 232, 240, 0.8);
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 20px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.09), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
+
+      --code-bg: #f8fafc;
+      --code-text: #0f172a;
     }
 
+    [data-theme="dark"] {
+      --bg-page: #090d16;
+      --bg-body-gradient: radial-gradient(circle at 10% 20%, #17223b 0%, #0d1322 40%, #080c14 100%);
+      --bg-card: rgba(17, 24, 39, 0.85);
+      --bg-card-hover: rgba(24, 34, 53, 0.95);
+      --bg-subtle: #131d2e;
+      --border-color: #1e293b;
+      --border-card: rgba(51, 65, 85, 0.55);
+
+      --primary-color: #f8fafc;
+      --secondary-color: #cbd5e1;
+      --text-color: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-highlight: #ffffff;
+
+      --accent-color: #38bdf8;
+      --accent-light: #7dd3fc;
+      --accent-subtle: rgba(56, 189, 248, 0.12);
+      --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #60a5fa 50%, #818cf8 100%);
+      --accent-glow: rgba(56, 189, 248, 0.3);
+
+      --success-color: #34d399;
+      --success-subtle: rgba(52, 211, 153, 0.15);
+      --badge-bg: rgba(56, 189, 248, 0.15);
+      --badge-text: #7dd3fc;
+
+      --navbar-bg: rgba(9, 13, 22, 0.88);
+      --navbar-border: rgba(30, 41, 59, 0.8);
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 10px 20px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+
+      --code-bg: #0d1322;
+      --code-text: #e2e8f0;
+    }
+
+    /* Base Styling */
     * {
+      box-sizing: border-box;
       scroll-behavior: smooth;
     }
 
-    body {
-      text-align: left;
-      padding-top: 72px;
-      font-family: 'Source Sans Pro', sans-serif;
-      color: var(--text-color);
-      line-height: 1.8;
-      background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
-      min-height: 100vh;
+    section {
+      scroll-margin-top: 85px;
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: 'Montserrat', sans-serif;
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-color);
+      background: var(--bg-body-gradient);
+      background-attachment: fixed;
+      line-height: 1.75;
+      padding-top: 76px;
+      margin: 0;
+      min-height: 100vh;
+      transition: background 0.4s ease, color 0.4s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Scroll Reading Progress Bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent-gradient);
+      z-index: 9999;
+      transition: width 0.1s ease;
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
       font-weight: 700;
       color: var(--primary-color);
-      margin-top: 2rem;
-      margin-bottom: 1.2rem;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.02em;
     }
 
     h1 {
-      font-size: 2.5rem;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 2.6rem;
+      line-height: 1.2;
     }
 
     h2 {
-      font-size: 2rem;
+      font-size: 1.9rem;
       position: relative;
-      padding-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
     }
 
     h2::after {
@@ -131,80 +215,105 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 60px;
+      width: 48px;
       height: 4px;
-      background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
-      border-radius: 2px;
+      background: var(--accent-gradient);
+      border-radius: 4px;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
     }
 
     a {
       color: var(--accent-color);
       text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     a:hover {
       color: var(--accent-light);
     }
 
+    /* ==========================================================
+       Navbar Styling
+       ========================================================== */
     .navbar {
-      box-shadow: var(--shadow-md);
-      font-family: 'Montserrat', sans-serif;
-      background: rgba(255, 255, 255, 0.95) !important;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-color);
+      background: var(--navbar-bg) !important;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--navbar-border);
+      box-shadow: var(--shadow-sm);
+      padding: 0.65rem 0;
+      transition: all 0.3s ease;
     }
 
     .navbar-brand {
+      font-family: 'Outfit', sans-serif;
       font-weight: 700;
-      color: var(--primary-color) !important;
-      font-size: 1.3rem;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      background: var(--accent-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .nav-link {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 600;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      letter-spacing: 0.8px;
-      padding: 0.5rem 1rem !important;
-      margin: 0 0.3rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      padding: 0.45rem 0.85rem !important;
+      margin: 0 0.15rem;
       color: var(--text-muted) !important;
-      position: relative;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 1rem;
-      width: 0;
-      height: 2px;
-      background: var(--accent-color);
-      transition: width 0.3s ease;
+      border-radius: 8px;
+      transition: all 0.2s ease;
     }
 
     .nav-link:hover {
       color: var(--accent-color) !important;
-    }
-
-    .nav-link:hover::after {
-      width: calc(100% - 2rem);
+      background: var(--accent-subtle);
     }
 
     .nav-link.active {
       color: var(--accent-color) !important;
+      background: var(--accent-subtle);
+      font-weight: 700;
     }
 
-    .nav-link.active::after {
-      width: calc(100% - 2rem);
+    .dropdown-menu {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      box-shadow: var(--shadow-xl);
+      padding: 0.5rem;
+      animation: fadeIn 0.2s ease forwards;
     }
 
-    /* Çok Katmanlı Dropdown (Nested Dropdown) Stilleri */
+    .dropdown-item {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-color);
+      border-radius: 6px;
+      padding: 0.5rem 0.85rem;
+      transition: all 0.15s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--accent-subtle);
+      color: var(--accent-color);
+      transform: translateX(3px);
+    }
+
+    /* Nested Dropdown Styling */
     .dropdown-submenu {
       position: relative;
     }
@@ -213,8 +322,8 @@
       top: 0;
       left: 100%;
       margin-top: -6px;
-      margin-left: -1px;
-      border-radius: 6px;
+      margin-left: 2px;
+      border-radius: 10px;
       display: none;
     }
 
@@ -224,363 +333,1105 @@
     }
 
     .dropdown-submenu > a::after {
-      display: block;
-      content: " ";
+      content: "▸";
       float: right;
-      width: 0;
-      height: 0;
-      border-color: transparent;
-      border-style: solid;
-      border-width: 5px 0 5px 5px;
-      border-left-color: #64748b;
-      margin-top: 7px;
-      margin-right: -5px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-left: 0.5rem;
     }
 
-    /* Profile Section */
-    #circle-shape-example {
-      position: relative;
-      margin-top: 3rem;
-      margin-bottom: 3rem;
-      display: block;
-    }
-
-    .profile-image-container {
-      position: relative;
-      width: 300px;
-      height: 300px;
-      float: left;
-      margin-right: 3rem;
-      margin-bottom: 1rem;
+    /* Theme Toggle Button */
+    .theme-toggle-btn {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--primary-color);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-left: 0.5rem;
+      font-size: 1rem;
     }
 
-    @media (max-width: 768px) {
-      .profile-image-container {
-        float: none;
-        margin: 0 auto 2rem auto;
-      }
-
-      .dropdown-submenu > .dropdown-menu {
-        left: 1.5rem;
-        margin-top: 0;
-        position: relative;
-      }
+    .theme-toggle-btn:hover {
+      transform: rotate(20deg) scale(1.08);
+      border-color: var(--accent-color);
+      box-shadow: 0 0 12px var(--accent-glow);
     }
 
-    .curve {
+    /* ==========================================================
+       Hero Profile Section
+       ========================================================== */
+    .hero-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 250px;
+      height: 250px;
+      background: var(--accent-glow);
+      filter: blur(70px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .profile-avatar-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .profile-image-wrapper {
+      position: relative;
+      width: 230px;
+      height: 230px;
+      cursor: pointer;
+      border-radius: 50%;
+      padding: 6px;
+      background: var(--accent-gradient);
+      box-shadow: var(--shadow-xl), 0 0 35px var(--accent-glow);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .profile-image-wrapper:hover {
+      transform: scale(1.04) rotate(1deg);
+    }
+
+    .profile-img {
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      shape-outside: circle();
-      border: 4px solid var(--accent-color);
-      box-shadow: var(--shadow-xl), 0 0 40px rgba(59, 130, 246, 0.2);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       object-fit: cover;
       position: absolute;
       top: 0;
       left: 0;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Initial image (default) */
-    .curve.image-1 {
+    .profile-img.img-default {
       opacity: 1;
       z-index: 1;
     }
 
-    /* Second image (appears on hover) */
-    .curve.image-2 {
+    .profile-img.img-hover {
       opacity: 0;
       z-index: 2;
     }
 
-    /* Hover state */
-    .profile-image-container:hover .curve.image-1 {
+    .profile-image-wrapper:hover .profile-img.img-default {
       opacity: 0;
     }
 
-    .profile-image-container:hover .curve.image-2 {
+    .profile-image-wrapper:hover .profile-img.img-hover {
       opacity: 1;
-      transform: scale(1.05) rotate(2deg);
-      box-shadow: var(--shadow-xl), 0 0 50px rgba(59, 130, 246, 0.4);
     }
 
-    /* Postdoc Notice */
-    .postdoc-notice {
-      border: 2px solid var(--accent-color);
-      border-radius: 12px;
-      padding: 1.5rem 2rem;
-      margin: 2rem 0;
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
-      text-align: center;
-      font-weight: 600;
-      color: var(--primary-color);
-      clear: both;
-      box-shadow: var(--shadow-md);
-    }
-
-    /* News Section */
-    .news-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 1.5rem;
-      padding: 1.5rem;
-      border-left: 5px solid var(--accent-color);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-top-right-radius: 12px;
-      border-bottom-right-radius: 12px;
-    }
-
-    .news-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-      border-left-color: var(--success-color);
-    }
-
-    .news-date {
-      font-weight: 700;
-      font-family: 'Montserrat', sans-serif;
-      color: var(--accent-color);
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-    }
-
-    .news-content {
+    .avatar-interactive-hint {
       margin-top: 0.8rem;
-      color: var(--text-color);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      user-select: none;
     }
 
-    .news-content a {
-      display: inline-block;
-      margin-right: 1.2rem;
-      font-size: 1.1rem;
-      transition: transform 0.3s ease;
+    /* Status Badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--success-color);
+      background: var(--success-subtle);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 0.35rem 0.85rem;
+      border-radius: 30px;
+      margin-top: 0.75rem;
     }
 
-    .news-content a:hover {
-      transform: scale(1.2) rotate(5deg);
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success-color);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulseAnimation 2s infinite;
     }
 
-    /* Publications Section */
-    .publication {
-      background: white;
-      margin-bottom: 1.8rem;
-      padding: 1.5rem;
-      border-radius: 12px;
-      border-left: 5px solid var(--secondary-color);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
+    @keyframes pulseAnimation {
+      0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
     }
 
-    .publication:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateX(4px);
+    /* Hero Content Column */
+    .hero-content h1 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .publication strong {
-      color: var(--primary-color);
-    }
-
-    .publication-title {
-      font-weight: 700;
-      color: var(--primary-color);
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
+    .hero-subtitle {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-highlight);
+      margin-bottom: 0.85rem;
       line-height: 1.4;
     }
 
-    .publication-authors {
-      font-style: normal;
-      color: var(--text-color);
-      margin-bottom: 0.4rem;
-      font-size: 0.95rem;
+    .hero-affiliation-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.1rem;
     }
 
-    .publication-venue {
-      font-style: italic;
+    .affiliation-pill {
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--bg-subtle);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      padding: 0.25rem 0.7rem;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .skill-tag {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      background: var(--accent-subtle);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      padding: 0.2rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    .hero-bio {
+      font-size: 0.98rem;
+      color: var(--text-color);
+      margin-bottom: 1.4rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-custom {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-primary-custom {
+      background: var(--accent-gradient);
+      color: #ffffff !important;
+      border: none;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+
+    .btn-primary-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--accent-glow);
+      color: #ffffff !important;
+    }
+
+    .btn-secondary-custom {
+      background: var(--bg-subtle);
+      color: var(--primary-color) !important;
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary-custom:hover {
+      background: var(--accent-subtle);
+      color: var(--accent-color) !important;
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    /* Quick Social Icons Strip */
+    .quick-social-icons {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .quick-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .quick-social-btn:hover {
+      background: var(--accent-color);
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px var(--accent-glow);
+    }
+
+    /* Stat Ribbon Grid */
+    .stats-ribbon {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      transition: all 0.25s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-color);
+    }
+
+    .stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--accent-subtle);
+      color: var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .stat-number {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--primary-color);
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      line-height: 1.3;
+      margin-top: 0.15rem;
+    }
+
+    /* ==========================================================
+       Postdoc & Collaboration Callout
+       ========================================================== */
+    .collaboration-callout {
+      background: var(--bg-card);
+      border: 1px solid var(--accent-color);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 16px;
+      padding: 1.6rem 2rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow-md), 0 0 25px var(--accent-glow);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .collaboration-callout:hover {
+      box-shadow: var(--shadow-lg), 0 0 35px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    .callout-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .callout-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0;
+    }
+
+    .callout-text {
+      font-size: 0.95rem;
+      color: var(--text-color);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    .callout-action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    /* Content Cards / Containers */
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      padding: 1.8rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+
+    .content-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-color);
+    }
+
+    /* Venues Grid */
+    .venues-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+    }
+
+    .venue-pill {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.2s ease;
+    }
+
+    .venue-pill:hover {
+      background: var(--accent-subtle);
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    .venue-badge-q1 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: var(--success-subtle);
+      color: var(--success-color);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 0.15rem 0.45rem;
+      border-radius: 5px;
+      margin-left: auto;
+    }
+
+    /* ==========================================================
+       Timeline News Section
+       ========================================================== */
+    .timeline-container {
+      position: relative;
+      padding-left: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      bottom: 20px;
+      left: 7px;
+      width: 2px;
+      background: var(--border-color);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.6rem;
+    }
+
+    .timeline-node {
+      position: absolute;
+      left: -2rem;
+      top: 1.2rem;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 3px solid var(--accent-color);
+      box-shadow: 0 0 10px var(--accent-glow);
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-node {
+      transform: scale(1.3);
+      background: var(--accent-color);
+    }
+
+    .news-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      padding: 1.35rem 1.6rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .news-card:hover {
+      transform: translateY(-3px) translateX(3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-color);
+    }
+
+    .news-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .news-date-badge {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      background: var(--accent-subtle);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      padding: 0.2rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    .news-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      padding: 0.15rem 0.55rem;
+      border-radius: 6px;
+    }
+
+    .news-text {
+      color: var(--text-color);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .news-links {
+      display: inline-flex;
+      gap: 0.6rem;
+      margin-left: 0.5rem;
+    }
+
+    .news-links a {
+      color: var(--accent-color);
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+
+    .news-links a:hover {
+      transform: scale(1.2);
+    }
+
+    /* ==========================================================
+       Publications Section (Filter & BibTeX)
+       ========================================================== */
+    .publications-controls {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.8rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-bar-wrapper {
+      position: relative;
+      margin-bottom: 0.85rem;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
       color: var(--text-muted);
       font-size: 0.9rem;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 0.65rem 1rem 0.65rem 2.5rem;
+      font-size: 0.9rem;
+      color: var(--text-color);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      color: var(--accent-color);
+      background: var(--accent-subtle);
+    }
+
+    .filter-btn.active {
+      color: #ffffff;
+      background: var(--accent-color);
+      box-shadow: 0 2px 8px var(--accent-glow);
+    }
+
+    .pub-counter {
+      margin-left: auto;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Publication Card */
+    .publication-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-left: 4px solid var(--accent-color);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 1.4rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .publication-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-left-color: var(--accent-light);
+    }
+
+    .pub-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .pub-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.08rem;
+      line-height: 1.45;
+      color: var(--primary-color);
+      margin: 0;
+      flex: 1;
+    }
+
+    .pub-badges {
+      display: inline-flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .pub-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .pub-badge.badge-journal {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--success-color);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .pub-badge.badge-conf {
+      background: rgba(99, 102, 241, 0.12);
+      color: #6366f1;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .pub-authors {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      margin-bottom: 0.35rem;
+      line-height: 1.5;
+    }
+
+    .pub-authors strong {
+      color: var(--accent-color);
+      font-weight: 700;
+    }
+
+    .pub-venue {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 0.9rem;
+    }
+
+    .pub-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .pub-btn {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      background: var(--bg-subtle);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .pub-btn:hover {
+      background: var(--accent-subtle);
+      color: var(--accent-color);
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    .pub-btn.btn-cite {
+      color: var(--accent-color);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    /* Collapsible BibTeX Box */
+    .bibtex-box {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .bibtex-box.show {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .bibtex-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--code-text);
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin: 0;
+      padding-right: 4rem;
+      line-height: 1.5;
+    }
+
+    .copy-bibtex-btn {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+
+    .copy-bibtex-btn:hover {
+      background: var(--accent-light);
+    }
+
+    /* ==========================================================
+       Teaching Section
+       ========================================================== */
+    .teaching-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .teaching-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-left: 4px solid var(--success-color);
+      border-radius: 14px;
+      padding: 1.35rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .teaching-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      border-left-color: var(--accent-color);
+    }
+
+    .teaching-role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--success-color);
+      background: var(--success-subtle);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      margin-bottom: 0.65rem;
+      align-self: flex-start;
+    }
+
+    .teaching-course-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--primary-color);
+      margin-bottom: 0.35rem;
+    }
+
+    .teaching-institution {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
       margin-bottom: 0.6rem;
     }
 
-    .publication-links {
-      margin-top: 0.8rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .publication-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      padding: 0.5rem 0.8rem;
-      border-radius: 8px;
-      background: linear-gradient(135deg, var(--light-bg), var(--dark-bg));
-      color: var(--accent-color);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-    }
-
-    .publication-links a:hover {
-      background: var(--accent-color);
-      color: white;
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-
-    /* Teaching Section */
-    .teaching-item {
-      background: white;
-      margin-bottom: 1.5rem;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      border-left: 5px solid var(--success-color);
-      transition: all 0.3s ease;
-    }
-
-    .teaching-item:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateX(4px);
-    }
-
-    .teaching-position {
-      font-weight: 700;
-      color: var(--primary-color);
-      font-size: 1.05rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .teaching-university {
-      font-style: italic;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 0.3rem;
-    }
-
-    .teaching-role {
-      font-size: 0.9rem;
+    .teaching-details {
+      font-size: 0.88rem;
       color: var(--text-color);
+      line-height: 1.5;
+      margin-top: auto;
     }
 
-    /* Footer */
+    /* ==========================================================
+       Footer Section
+       ========================================================== */
     .footer {
-      padding: 3rem 0;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-      margin-top: 4rem;
-      color: white;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border-color);
+      padding: 3.5rem 0 2.5rem 0;
+      margin-top: 5rem;
+      color: var(--text-color);
+      transition: all 0.3s ease;
     }
 
-    .social-links {
+    .footer-social-links {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
+      gap: 0.8rem;
       flex-wrap: wrap;
+      margin-bottom: 1.8rem;
     }
 
-    .footer a {
-      color: white;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    .footer-social-link {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      color: var(--text-color);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 50px;
-      height: 50px;
+      font-size: 1.15rem;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .footer-social-link:hover {
+      background: var(--accent-color);
+      color: #ffffff;
+      transform: translateY(-4px) scale(1.1);
+      box-shadow: 0 6px 16px var(--accent-glow);
+    }
+
+    /* Back to Top Floating Button */
+    .back-to-top-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: var(--accent-gradient);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 14px var(--accent-glow);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(15px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
     }
 
-    .footer a:hover {
-      color: var(--accent-light);
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-5px) rotate(5deg);
-      border-color: var(--accent-light);
+    .back-to-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
     }
 
-    .footer p {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.95rem;
+    .back-to-top-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 22px var(--accent-glow);
+      color: #ffffff;
     }
 
-    /* Academic Icon Override Styles */
-    .ai-orcid:hover {
-      color: #a6ce39 !important; /* ORCID Original Green */
+    /* Toast Notification */
+    .toast-notification {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      background: var(--primary-color);
+      color: var(--bg-page);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.65rem 1.4rem;
+      border-radius: 30px;
+      box-shadow: var(--shadow-xl);
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid var(--border-color);
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      body {
-        padding-top: 60px;
+    .toast-notification.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 860px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.8rem;
       }
 
-      h1 {
-        font-size: 2rem;
+      .hero-affiliation-pills,
+      .hero-tags,
+      .hero-actions,
+      .quick-social-icons {
+        justify-content: center;
       }
 
-      h2 {
-        font-size: 1.5rem;
+      .hero-card {
+        padding: 1.8rem;
       }
 
-      #circle-shape-example {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
+      .timeline-container {
+        padding-left: 1.5rem;
       }
 
-      .profile-image-container {
-        width: 250px;
-        height: 250px;
-        margin: 0 auto;
-      }
-
-      .nav-link {
-        font-size: 0.75rem;
-      }
-
-      .news-card,
-      .publication,
-      .teaching-item {
-        padding: 1.2rem;
+      .timeline-node {
+        left: -1.5rem;
       }
     }
   </style>
-
 </head>
 
 <body>
+  <!-- Scroll Reading Progress Bar -->
+  <div id="scroll-progress"></div>
+
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white">
-    <div class="container" style="max-width: 900px;">
-      <a class="navbar-brand" href="#">Kahraman Kostas</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <!-- Dersler Dropdown (Çok Katmanlı / Nested) -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container" style="max-width: 960px;">
+      <a class="navbar-brand" href="#about">
+        <i class="fas fa-terminal"></i> Kahraman Kostas
+      </a>
+
+      <div class="d-flex align-items-center order-lg-3">
+        <!-- Theme Switcher Button -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+
+        <!-- Navbar Toggler for Mobile -->
+        <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+          style="border: 1px solid var(--border-color); color: var(--text-color); padding: 0.35rem 0.65rem;">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <!-- Dersler Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="derslerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="derslerDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Dersler
             </a>
             <ul class="dropdown-menu" aria-labelledby="derslerDropdown">
               <li class="dropdown-submenu">
                 <a class="dropdown-item" href="#">Veri Madenciliği</a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="https://github.com/kahramankostas/YBS-DataMining">İçerik</a></li>
-                  <li><a class="dropdown-item" href="https://forms.gle/852kQ1LhsNhdLsYh9">Anket</a></li>
+                  <li><a class="dropdown-item" href="https://github.com/kahramankostas/YBS-DataMining" target="_blank"><i class="fab fa-github me-1"></i> İçerik</a></li>
+                  <li><a class="dropdown-item" href="https://forms.gle/852kQ1LhsNhdLsYh9" target="_blank"><i class="fas fa-poll me-1"></i> Anket</a></li>
                 </ul>
               </li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" href="#">About</a>
+            <a class="nav-link active" href="#about">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#news">News</a>
@@ -591,7 +1442,7 @@
           <li class="nav-item">
             <a class="nav-link" href="#teaching">Teaching</a>
           </li>
-          
+
           <!-- Academic Profiles Dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="profilesDropdown" role="button" data-bs-toggle="dropdown"
@@ -599,14 +1450,15 @@
               Profiles
             </a>
             <ul class="dropdown-menu" aria-labelledby="profilesDropdown">
-              <li><a class="dropdown-item" href="https://orcid.org/0000-0002-4696-1857" target="_blank">ORCID</a></li>
-              <li><a class="dropdown-item" href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank">Google Scholar</a></li>
-              <li><a class="dropdown-item" href="https://www.researchgate.net/profile/Kahraman-Kostas" target="_blank">ResearchGate</a></li>
-              <li><a class="dropdown-item" href="https://www.webofscience.com/wos/author/record/JZT-7728-2024" target="_blank">Web of Science</a></li>
-              <li><a class="dropdown-item" href="https://www.scopus.com/authid/detail.uri?authorId=57222271214" target="_blank">Scopus</a></li>
+              <li><a class="dropdown-item" href="https://orcid.org/0000-0002-4696-1857" target="_blank"><i class="ai ai-orcid me-2" style="color:#a6ce39;"></i> ORCID</a></li>
+              <li><a class="dropdown-item" href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank"><i class="ai ai-google-scholar me-2" style="color:#4285f4;"></i> Google Scholar</a></li>
+              <li><a class="dropdown-item" href="https://www.researchgate.net/profile/Kahraman-Kostas" target="_blank"><i class="ai ai-researchgate me-2" style="color:#00ccbb;"></i> ResearchGate</a></li>
+              <li><a class="dropdown-item" href="https://www.webofscience.com/wos/author/record/JZT-7728-2024" target="_blank"><i class="ai ai-publons me-2"></i> Web of Science</a></li>
+              <li><a class="dropdown-item" href="https://www.scopus.com/authid/detail.uri?authorId=57222271214" target="_blank"><i class="ai ai-scopus me-2" style="color:#ff6900;"></i> Scopus</a></li>
             </ul>
           </li>
 
+          <!-- CV Dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="cvDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -614,25 +1466,26 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="cvDropdown">
               <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas.pdf"
-                  target="_blank">English CV</a></li>
+                  target="_blank"><i class="fas fa-file-pdf me-2 text-danger"></i> English CV</a></li>
               <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas_tr.pdf"
-                  target="_blank">Türkçe CV</a></li>
+                  target="_blank"><i class="fas fa-file-pdf me-2 text-danger"></i> Türkçe CV</a></li>
             </ul>
           </li>
 
+          <!-- MEB Dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="mebDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               MEB
             </a>
             <ul class="dropdown-menu" aria-labelledby="mebDropdown">
-              <li><a class="dropdown-item" href="https://ulkemyanimda.github.io/" target="_blank">Ülkem Yanımda Materyal</a></li>
-              <li><a class="dropdown-item" href="https://ulkemyanimda.eba.gov.tr/" target="_blank">Ülkem Yanımda Moodle</a></li>
-              <li><a class="dropdown-item" href="https://ulkemyanimda.eba.gov.tr/videolar/" target="_blank">TTKD Kitap QR</a></li>
-              <li><a class="dropdown-item" href="https://yyegm.meb.gov.tr/" target="_blank">YYEGM</a></li>
-              <li><a class="dropdown-item" href="kaynaklar/uy-seminer.html" target="_blank">UY-Seminer</a></li>
-              <li><a class="dropdown-item" href="kaynaklar/yztarihi.pptx" target="_blank">YZ Tarihi</a></li>
-              <li><a class="dropdown-item" href="kaynaklar/yurtdisi-uyum-uy.pptx" target="_blank">TTK Yurt Dışı Göreve Uyum </a></li>
+              <li><a class="dropdown-item" href="https://ulkemyanimda.github.io/" target="_blank"><i class="fas fa-globe me-2"></i> Ülkem Yanımda Materyal</a></li>
+              <li><a class="dropdown-item" href="https://ulkemyanimda.eba.gov.tr/" target="_blank"><i class="fas fa-graduation-cap me-2"></i> Ülkem Yanımda Moodle</a></li>
+              <li><a class="dropdown-item" href="https://ulkemyanimda.eba.gov.tr/videolar/" target="_blank"><i class="fas fa-qrcode me-2"></i> TTKD Kitap QR</a></li>
+              <li><a class="dropdown-item" href="https://yyegm.meb.gov.tr/" target="_blank"><i class="fas fa-building me-2"></i> YYEGM</a></li>
+              <li><a class="dropdown-item" href="kaynaklar/uy-seminer.html" target="_blank"><i class="fas fa-chalkboard-teacher me-2"></i> UY-Seminer</a></li>
+              <li><a class="dropdown-item" href="kaynaklar/yztarihi.pptx" target="_blank"><i class="fas fa-file-powerpoint me-2 text-warning"></i> YZ Tarihi</a></li>
+              <li><a class="dropdown-item" href="kaynaklar/yurtdisi-uyum-uy.pptx" target="_blank"><i class="fas fa-file-powerpoint me-2 text-warning"></i> TTK Yurt Dışı Göreve Uyum</a></li>
             </ul>
           </li>
 
@@ -641,459 +1494,1058 @@
     </div>
   </nav>
 
-  <div class="container" style="max-width: 900px;">
-    <!-- Profile Section -->
+  <!-- Main Container -->
+  <div class="container" style="max-width: 960px;">
+
+    <!-- ==========================================================
+         Hero Profile Section
+         ========================================================== -->
     <section id="about">
-      <div id="circle-shape-example">
-        <div class="profile-image-container">
-          <img src="assets/dr.jekyll.jpg" class="curve image-1" alt="Dr. Kahraman Kostas - Default">
-          <img src="assets/mr.hyde.jpg" class="curve image-2" alt="Dr. Kahraman Kostas - Hover">
+      <div class="hero-card">
+        <div class="hero-grid">
+          <!-- Left Column: Portrait & Interactive Effects -->
+          <div class="profile-avatar-column">
+            <div class="profile-image-wrapper" title="Dr. Jekyll ⇄ Mr. Hyde (Hover to transform)">
+              <img src="assets/dr.jekyll.jpg" class="profile-img img-default" alt="Dr. Kahraman Kostas - Dr Jekyll">
+              <img src="assets/mr.hyde.jpg" class="profile-img img-hover" alt="Dr. Kahraman Kostas - Mr Hyde">
+            </div>
+
+            <div class="avatar-interactive-hint">
+              <span>🎭 Hover me!</span>
+            </div>
+
+            <!-- Active Status Badge -->
+            <div class="status-badge">
+              <span class="pulse-dot"></span> Open for Collaborations
+            </div>
+
+            <!-- Quick Reach Social Icons -->
+            <div class="quick-social-icons">
+              <a href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank" class="quick-social-btn" title="Google Scholar">
+                <i class="ai ai-google-scholar"></i>
+              </a>
+              <a href="https://github.com/kahramankostas" target="_blank" class="quick-social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/kkostas/" target="_blank" class="quick-social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://orcid.org/0000-0002-4696-1857" target="_blank" class="quick-social-btn" title="ORCID">
+                <i class="ai ai-orcid"></i>
+              </a>
+              <button onclick="copyEmailToClipboard()" class="quick-social-btn" title="Copy Email (kahramankostas@gmail.com)" style="cursor:pointer; border:1px solid var(--border-color);">
+                <i class="fas fa-envelope"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Column: Info & Bio -->
+          <div class="hero-content">
+            <h1>Kahraman Kostas, PhD</h1>
+            <div class="hero-subtitle">
+              Computer Science Researcher & Technical Architect
+            </div>
+
+            <div class="hero-affiliation-pills">
+              <span class="affiliation-pill">
+                <i class="fas fa-university text-primary"></i> Heriot-Watt Univ. PhD
+              </span>
+              <span class="affiliation-pill">
+                <i class="fas fa-microchip text-danger"></i> Ex-Huawei UK R&D
+              </span>
+              <span class="affiliation-pill">
+                <i class="fas fa-landmark text-success"></i> National Education Expert
+              </span>
+            </div>
+
+            <div class="hero-tags">
+              <span class="skill-tag">IoT Security</span>
+              <span class="skill-tag">Generalisable ML</span>
+              <span class="skill-tag">Network Forensics</span>
+              <span class="skill-tag">Explainable AI</span>
+              <span class="skill-tag">Offline LLMs</span>
+            </div>
+
+            <p class="hero-bio">
+              I hold a PhD in Computer Science from <a href="https://www.hw.ac.uk/" target="_blank"
+                rel="noopener noreferrer"><strong>Heriot-Watt University</strong></a>, Edinburgh.
+              Bridging the gap between theoretical machine learning models and real-world deployment, my research addresses
+              a fundamental challenge in cyber-physical security: <strong>the lack of generalisable models for device identification and intrusion detection.</strong>
+            </p>
+
+            <div class="hero-actions">
+              <!-- CV Dropdown Button -->
+              <div class="btn-group">
+                <button type="button" class="btn-custom btn-primary-custom dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-file-download"></i> Get CV
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas.pdf" target="_blank"><i class="fas fa-file-pdf me-2 text-danger"></i> English CV (PDF)</a></li>
+                  <li><a class="dropdown-item" href="https://kahramankostas.github.io/assets/kahraman_kostas_tr.pdf" target="_blank"><i class="fas fa-file-pdf me-2 text-danger"></i> Türkçe CV (PDF)</a></li>
+                </ul>
+              </div>
+
+              <a href="#publications" class="btn-custom btn-secondary-custom">
+                <i class="fas fa-book-open"></i> Publications
+              </a>
+
+              <button onclick="copyEmailToClipboard()" class="btn-custom btn-secondary-custom" title="Click to copy email">
+                <i class="fas fa-envelope"></i> Contact Me
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats Ribbon -->
+      <div class="stats-ribbon">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+          <div>
+            <div class="stat-number">1st Place</div>
+            <div class="stat-label">Huawei UK Challenge Winner</div>
+          </div>
         </div>
 
-        <h1>Kahraman Kostas, PhD</h1>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-award"></i></div>
+          <div>
+            <div class="stat-number">4+ Q1</div>
+            <div class="stat-label">Top-Tier Journal Publications</div>
+          </div>
+        </div>
 
-        <p class="lead">
-          <strong>Computer Science Researcher specializing in IoT Security, Generalisable Machine Learning, and Network Forensics.</strong>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-globe-americas"></i></div>
+          <div>
+            <div class="stat-number">10+ Countries</div>
+            <div class="stat-label">2,000+ Students Impacted</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+          <div>
+            <div class="stat-number">3 Frameworks</div>
+            <div class="stat-label">IoTDevID, GeMID & IoTGeM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collaboration / Postdoc Callout -->
+      <div class="collaboration-callout">
+        <div class="callout-header">
+          <div class="callout-title">
+            <i class="fas fa-rocket text-primary"></i> Open for Collaborations &amp; Postdoctoral Positions
+          </div>
+          <button onclick="copyEmailToClipboard()" class="btn-custom btn-primary-custom" style="padding: 0.4rem 0.9rem; font-size: 0.82rem;">
+            <i class="fas fa-copy"></i> Copy Email
+          </button>
+        </div>
+        <p class="callout-text">
+          I am actively seeking <strong>Postdoctoral Research positions and joint academic initiatives</strong> in IoT security, applied ML, network forensics, and data-driven systems. I am especially interested in labs valuing rigorous empirical validation combined with real-world deployment.
         </p>
+        <div class="callout-action-row">
+          <a href="mailto:kahramankostas@gmail.com" class="pub-btn">
+            <i class="fas fa-paper-plane text-primary"></i> kahramankostas@gmail.com
+          </a>
+          <a href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank" class="pub-btn">
+            <i class="ai ai-google-scholar text-primary"></i> View Citation Record
+          </a>
+        </div>
+      </div>
 
-        <p>
-          I hold a PhD in Computer Science from <a href="https://www.hw.ac.uk/" target="_blank"
-            rel="noopener noreferrer">Heriot-Watt University</a>, Edinburgh.
-          Bridging the gap between theoretical ML models and real-world deployment, my research addresses a fundamental
-          challenge in IoT security:
-          <strong>the lack of generalisable models for device identification and intrusion detection.</strong>
-        </p>
-
-        <h3>Research & Impact</h3>
-
+      <!-- Detailed Research & Experience Content -->
+      <div class="content-card">
+        <h3><i class="fas fa-microscope text-primary me-2"></i> Research &amp; Impact</h3>
         <p>
           My doctoral thesis, “<a href="https://www.ros.hw.ac.uk/items/2a17932d-5b88-4c18-8e1a-6d21ec66da08"
             target="_blank" rel="noopener noreferrer">Behaviour-based Security with Machine Learning on IoT Networks</a>,”
           (Supervisors: <a href="https://researchportal.hw.ac.uk/en/persons/mike-just/" target="_blank"
-            rel="noopener noreferrer">Dr. Mike Just</a> & <a href="https://www.macs.hw.ac.uk/~ml355/" target="_blank"
-            rel="noopener noreferrer">Dr. Michael Lones</a>)
-          systematically demonstrated how conventional feature representations hinder model generalisation.
-        </p>
-
-        <p>
-          To solve this, I developed novel frameworks—<strong>IoTDevID, GeMID, and IoTGeM</strong>—explicitly designed
-          to remain robust across unseen devices and changing network conditions.
-          This work has been published in top-tier venues including:
-        </p>
-
-        <ul>
-          <li><em>IEEE Internet of Things Journal</em> (Q1)</li>
-          <li><em>Computer Networks</em> (Q1)</li>
-          <li><em>Internet of Things Journal -Elsevier-</em> (Q1)</li>
-          <li><em>IEEE Networking Letters</em> (Q1)</li>
-        </ul>
-
-        <h3>Industry & Applied Experience</h3>
-
-        <p>
-          <strong>Huawei R&D (Edinburgh):</strong> During my PhD, I worked as a Researcher at the Huawei UK R&D Centre.
-          I developed ML solutions for community detection and WiFi-based distance estimation, strengthening my ability
-          to build industry-scale systems.
-          Prior to this, my team won <strong>1st place in the Huawei UK University Challenge (2021)</strong> for our
-          work on indoor localisation, which we later published at the prestigious <strong>IEEE IPIN</strong> conference.
-        </p>
-
-        <p>
-          <strong>Large-Scale Technical Leadership (Current Role):</strong> Since September 2024, I have been serving as
-          a <strong>National Education Expert</strong> at the Turkish Ministry of National Education.
-          In this capacity, I act as the <strong>Technical Lead and Architect</strong> for the <a
-            href="https://ulkemyanimda.eba.gov.tr/" target="_blank" rel="noopener noreferrer">“Ulkem Yanımda”</a> project.
+            rel="noopener noreferrer">Dr. Mike Just</a> &amp; <a href="https://www.macs.hw.ac.uk/~ml355/" target="_blank"
+            rel="noopener noreferrer">Dr. Michael Lones</a>) systematically demonstrated how conventional feature representations hinder model generalisation.
         </p>
         <p>
-          I coordinated the technical infrastructure design and deployment of this international platform, which
-          connects <strong>100+ teachers</strong> with <strong>2000+ students</strong> across <strong>10+ countries</strong>.
-          My role involves managing full-stack operations, data analytics, and cross-border coordination to ensure
-          sustainable scalability.
+          To solve this, I developed novel frameworks—<strong>IoTDevID, GeMID, and IoTGeM</strong>—explicitly designed to remain robust across unseen devices and changing network conditions. This research has been published in high-impact top-tier venues:
         </p>
 
-        <h3>Background</h3>
-
-        <p>
-          I hold an MSc in Computer Networks and Security (Distinction) from the <a href="https://www.essex.ac.uk/"
-            target="_blank" rel="noopener noreferrer">University of Essex</a>.
-          My interdisciplinary background, including degrees in Computer Education (Marmara Univ.) and Literature,
-          informs my keen interest in explainable AI and research communication.
-        </p>
-
-        <div class="postdoc-notice"
-          style="background-color: #f0f4f8; border-left: 5px solid #0056b3; padding: 15px; margin-top: 20px; border-radius: 4px;">
-          <strong>🚀 Open for Collaborations:</strong> I am actively seeking <strong>Postdoctoral Research positions</strong> in IoT security, applied ML, and data-driven systems.
-          I am particularly interested in labs that value rigorous methodological analysis combined with real-world
-          deployment.
-          <a href="mailto:kahramankostas@gmail.com" style="font-weight: bold; text-decoration: underline;">Please get in touch to discuss opportunities.</a>
+        <!-- Venues Grid -->
+        <div class="venues-grid">
+          <div class="venue-pill">
+            <i class="fas fa-file-contract text-primary"></i> IEEE IoT Journal
+            <span class="venue-badge-q1">Q1</span>
+          </div>
+          <div class="venue-pill">
+            <i class="fas fa-network-wired text-primary"></i> Computer Networks
+            <span class="venue-badge-q1">Q1</span>
+          </div>
+          <div class="venue-pill">
+            <i class="fas fa-wifi text-primary"></i> Elsevier IoT Journal
+            <span class="venue-badge-q1">Q1</span>
+          </div>
+          <div class="venue-pill">
+            <i class="fas fa-satellite-dish text-primary"></i> IEEE Networking Letters
+            <span class="venue-badge-q1">Q1</span>
+          </div>
         </div>
 
-        <hr style="margin-top: 30px; margin-bottom: 20px; border: 0; border-top: 1px solid #eee;">
-
-        <p style="font-size: 0.9em; color: #666;">
-          <em>Outside the lab, I am passionate about Turkish literature, etymology, classical poetry, hiking, and photography.</em>
+        <h3 class="mt-4"><i class="fas fa-briefcase text-primary me-2"></i> Industry &amp; Applied Experience</h3>
+        <p>
+          <strong>Huawei R&amp;D (Edinburgh):</strong> During my PhD, I worked as a Researcher at the Huawei UK R&amp;D Centre. I developed ML solutions for community detection and WiFi-based distance estimation, strengthening my ability to build industry-scale systems. Prior to this, my team won <strong>1st place in the Huawei UK University Challenge (2021)</strong> for our work on indoor localisation, which we later published at the prestigious <strong>IEEE IPIN</strong> conference.
+        </p>
+        <p>
+          <strong>Large-Scale Technical Leadership (Current Role):</strong> Since September 2024, I have been serving as a <strong>National Education Expert</strong> at the Directorate General of Higher Education and Overseas Education (YYEGM). In this capacity, I act as the <strong>Technical Lead and Architect</strong> for the <a href="https://ulkemyanimda.eba.gov.tr/" target="_blank" rel="noopener noreferrer">“Ülkem Yanımda”</a> international platform. I coordinated the technical infrastructure design and deployment connecting <strong>100+ teachers</strong> with <strong>2000+ students</strong> across <strong>10+ countries</strong>.
         </p>
 
+        <h3 class="mt-4"><i class="fas fa-user-graduate text-primary me-2"></i> Background</h3>
+        <p>
+          I hold an MSc in Computer Networks and Security (Distinction) from the <a href="https://www.essex.ac.uk/"
+            target="_blank" rel="noopener noreferrer">University of Essex</a>. My interdisciplinary background, including degrees in Computer Education (Marmara Univ.) and Literature, informs my keen interest in explainable AI, natural language reasoning, and research communication.
+        </p>
+        <p class="mb-0 text-muted" style="font-size: 0.9rem;">
+          <i class="fas fa-compass me-1"></i> <em>Outside the lab, I am passionate about Turkish literature, etymology, classical poetry, hiking, and photography.</em>
+        </p>
       </div>
     </section>
 
-    <!-- News Section-->
+    <!-- ==========================================================
+         News Section (Timeline)
+         ========================================================== -->
     <section id="news">
-      <h2>News</h2>
-      <div class="row">
-        <div class="col-12">
-        
-		
-		
-<div class="news-card">
-  <div class="news-date">OCT 2026</div>
-  <div class="news-content">
-    Our paper "Externally Validating the IoTDevID Device Identification Methodology" has been presented at the 18th International Conference on Security of Information and Networks (SINCONF 2026).
-    <a href="https://github.com/kahramankostas/IoTDevID-CIC" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-    <a href="https://arxiv.org/pdf/2307.08679" target="_blank" rel="noopener noreferrer"><i class="fa fa-external-link"></i></a>
-  </div>
-</div>
-		  
-		  
-        <div class="news-card">
-          <div class="news-date">APR 2026</div>
-          <div class="news-content">
-            I Presented three papers at the <b>6th International Artificial Intelligence and Data Science Congress</b>: 
-            <a href="https://icada.com.tr/en/" target="_blank" rel="noopener noreferrer">
-              <i class="fa fa-external-link"></i>
-            </a>
-            
-            <ul style="margin-top:8px; padding-left:18px;">
+      <h2><i class="fas fa-newspaper text-primary me-2"></i> News &amp; Updates</h2>
+
+      <div class="timeline-container">
+        <!-- News item: OCT 2026 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="news-card">
+            <div class="news-meta">
+              <span class="news-date-badge">OCT 2026</span>
+              <span class="news-tag"><i class="fas fa-scroll me-1"></i> Conference Paper</span>
+            </div>
+            <p class="news-text">
+              Our paper <strong>"Externally Validating the IoTDevID Device Identification Methodology"</strong> has been presented at the 18th International Conference on Security of Information and Networks (SINCONF 2026).
+              <span class="news-links">
+                <a href="https://github.com/kahramankostas/IoTDevID-CIC" target="_blank" rel="noopener noreferrer" title="GitHub Code"><i class="fab fa-github"></i></a>
+                <a href="https://arxiv.org/pdf/2307.08679" target="_blank" rel="noopener noreferrer" title="Paper PDF"><i class="fas fa-external-link-alt"></i></a>
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <!-- News item: APR 2026 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="news-card">
+            <div class="news-meta">
+              <span class="news-date-badge">APR 2026</span>
+              <span class="news-tag"><i class="fas fa-chalkboard-teacher me-1"></i> 3 Conference Presentations</span>
+            </div>
+            <p class="news-text mb-2">
+              Presented three papers at the <strong>6th International Artificial Intelligence and Data Science Congress</strong>:
+              <a href="https://icada.com.tr/en/" target="_blank" rel="noopener noreferrer" class="ms-1"><i class="fas fa-external-link-alt"></i></a>
+            </p>
+            <ul class="mb-0 ps-3" style="font-size: 0.92rem;">
+              <li class="mb-1">
+                <strong>CNN-based IoT Device Identification: A Comparative Study on Payload vs. Fingerprint</strong>
+                <a href="https://arxiv.org/pdf/2304.13894" target="_blank" class="ms-1" title="Paper"><i class="fas fa-external-link-alt"></i></a>
+                <a href="https://github.com/kahramankostas/CNN-based-IoT-Device-Identification" target="_blank" class="ms-1" title="GitHub"><i class="fab fa-github"></i></a>
+              </li>
+              <li class="mb-1">
+                <strong>There Are No Silly Questions: Evaluation of Offline LLM Capabilities from a Turkish Perspective</strong>
+                <a href="https://arxiv.org/pdf/2603.09996" target="_blank" class="ms-1" title="Paper"><i class="fas fa-external-link-alt"></i></a>
+                <a href="https://github.com/edibeselvi/SillyQuestions/" target="_blank" class="ms-1" title="GitHub"><i class="fab fa-github"></i></a>
+              </li>
               <li>
-                <b>CNN-based IoT Device Identification: A Comparative Study on Payload vs. Fingerprint</b>
-                <a href="https://arxiv.org/pdf/2304.13894" target="_blank" rel="noopener noreferrer">
-                  <i class="fa fa-external-link"></i>
-                </a>
-                <a href="https://github.com/kahramankostas/CNN-based-IoT-Device-Identification" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-github"></i>
-                </a><br>
-              </li>
-              
-              <li style="margin-top:6px;">
-                <b>There Are No Silly Questions: Evaluation of Offline LLM Capabilities from a Turkish Perspective</b>
-                <a href="https://arxiv.org/pdf/2603.09996" target="_blank" rel="noopener noreferrer">
-                  <i class="fa fa-external-link"></i>
-                </a>
-                <a href="https://github.com/edibeselvi/SillyQuestions/" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-github"></i>
-                </a><br>
-              </li>
-              
-              <li style="margin-top:6px;">
-                <b>Measuring Logical Reasoning in Turkish Offline Language Models via Fallacy Detection</b>
-                <a href="https://www.researchgate.net/profile/Kahraman-Kostas/publication/401344591_Measuring_Logical_Reasoning_in_Turkish_Offline_Language_Models_via_Fallacy_Detection/links/69a2cab443ad5e30a8536212/Measuring-Logical-Reasoning-in-Turkish-Offline-Language-Models-via-Fallacy-Detection.pdf" target="_blank" rel="noopener noreferrer">
-                  <i class="fa fa-external-link"></i>
-                </a>
-                <a href="https://github.com/kahramankostas/TRfallacy/" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-github"></i>
-                </a><br>
+                <strong>Measuring Logical Reasoning in Turkish Offline Language Models via Fallacy Detection</strong>
+                <a href="https://www.researchgate.net/profile/Kahraman-Kostas/publication/401344591_Measuring_Logical_Reasoning_in_Turkish_Offline_Language_Models_via_Fallacy_Detection/links/69a2cab443ad5e30a8536212/Measuring-Logical-Reasoning-in-Turkish-Offline-Language-Models-via-Fallacy-Detection.pdf" target="_blank" class="ms-1" title="Paper"><i class="fas fa-external-link-alt"></i></a>
+                <a href="https://github.com/kahramankostas/TRfallacy/" target="_blank" class="ms-1" title="GitHub"><i class="fab fa-github"></i></a>
               </li>
             </ul>
           </div>
         </div>
-        
-          <div class="news-card">
-            <div class="news-date">OCT 2025</div>
-            <div class="news-content">
-              Our (With <a href="https://www.linkedin.com/in/rykostas">RYK</a>) paper "GeMID: Generalizable Models for
-              IoT Device Identification" has been accepted for publication in the Elsevier IoT journal.
-              <a href="https://github.com/kahramankostas/GeMID"><i class="fab fa-github"></i></a>
-              <a href="https://doi.org/10.1016/j.iot.2025.101806"><i class="fa fa-external-link"></i></a>
-            </div>
-          </div>
 
+        <!-- News item: OCT 2025 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
           <div class="news-card">
-            <div class="news-date">JUL 2025</div>
-            <div class="news-content">
-              Our paper, "IoTGeM: Generalizable Models for Behaviour-Based IoT Attack Detection" has been accepted for
-              publication in the Computer Networks journal.
-              <a href="https://github.com/kahramankostas/IoTGeM"><i class="fab fa-github"></i></a>
-              <a href="https://doi.org/10.1016/j.comnet.2025.111550"><i class="fa fa-external-link"></i></a>
+            <div class="news-meta">
+              <span class="news-date-badge">OCT 2025</span>
+              <span class="news-tag"><i class="fas fa-journal-whills me-1"></i> Q1 Journal</span>
             </div>
+            <p class="news-text">
+              Our (with <a href="https://www.linkedin.com/in/rykostas">RYK</a>) paper <strong>"GeMID: Generalizable Models for IoT Device Identification"</strong> has been accepted for publication in the <em>Elsevier Internet of Things</em> journal.
+              <span class="news-links">
+                <a href="https://github.com/kahramankostas/GeMID" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://doi.org/10.1016/j.iot.2025.101806" target="_blank" title="DOI"><i class="fas fa-external-link-alt"></i></a>
+              </span>
+            </p>
           </div>
+        </div>
 
+        <!-- News item: JUL 2025 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
           <div class="news-card">
-            <div class="news-date">JUN 2025</div>
-            <div class="news-content">
-              Our (With <a href="https://www.linkedin.com/in/rykostas">RYK</a>) paper "Graph-Based Floor Separation
-              Using Node Embeddings and Clustering of WiFi Trajectories" has been accepted to the IPIN 2025 conference.
-              <a href="https://github.com/kahramankostas/IPIN2025"><i class="fab fa-github"></i></a>
-              <a href="https://arxiv.org/abs/2505.08088"><i class="fa fa-external-link"></i></a>
+            <div class="news-meta">
+              <span class="news-date-badge">JUL 2025</span>
+              <span class="news-tag"><i class="fas fa-journal-whills me-1"></i> Q1 Journal</span>
             </div>
+            <p class="news-text">
+              Our paper, <strong>"IoTGeM: Generalizable Models for Behaviour-Based IoT Attack Detection"</strong> has been accepted for publication in the <em>Computer Networks</em> journal.
+              <span class="news-links">
+                <a href="https://github.com/kahramankostas/IoTGeM" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://doi.org/10.1016/j.comnet.2025.111550" target="_blank" title="DOI"><i class="fas fa-external-link-alt"></i></a>
+              </span>
+            </p>
           </div>
+        </div>
 
+        <!-- News item: JUN 2025 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
           <div class="news-card">
-            <div class="news-date">JAN 2025</div>
-            <div class="news-content">
-              New publication🎉 Our paper (Individual Packet Features are a Risk to Model Generalisation in ML-Based
-              Intrusion Detection) has been accepted to IEEE Networking Letters.
-              <a href="https://github.com/kahramankostas/IPF"><i class="fab fa-github"></i></a>
-              <a href="https://ieeexplore.ieee.org/abstract/document/10824899"><i class="fa fa-external-link"></i></a>
+            <div class="news-meta">
+              <span class="news-date-badge">JUN 2025</span>
+              <span class="news-tag"><i class="fas fa-map-marker-alt me-1"></i> Conference</span>
             </div>
+            <p class="news-text">
+              Our (with <a href="https://www.linkedin.com/in/rykostas">RYK</a>) paper <strong>"Graph-Based Floor Separation Using Node Embeddings and Clustering of WiFi Trajectories"</strong> has been accepted to the <em>IPIN 2025</em> conference.
+              <span class="news-links">
+                <a href="https://github.com/kahramankostas/IPIN2025" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://arxiv.org/abs/2505.08088" target="_blank" title="arXiv"><i class="fas fa-external-link-alt"></i></a>
+              </span>
+            </p>
           </div>
+        </div>
 
+        <!-- News item: JAN 2025 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
           <div class="news-card">
-            <div class="news-date">NOV 2024</div>
-            <div class="news-content">
-              Our new paper ready for publication (GeMID: Generalizable Models for Device Identification in IoT
-              Networks).
-              <a href="https://github.com/kahramankostas/GeMID"><i class="fab fa-github"></i></a>
-              <a href="https://arxiv.org/abs/2411.14441"><i class="fa fa-external-link"></i></a>
+            <div class="news-meta">
+              <span class="news-date-badge">JAN 2025</span>
+              <span class="news-tag"><i class="fas fa-award me-1"></i> IEEE Journal</span>
             </div>
+            <p class="news-text">
+              New publication 🎉 Our paper <strong>"Individual Packet Features are a Risk to Model Generalisation in ML-Based Intrusion Detection"</strong> has been accepted to <em>IEEE Networking Letters</em>.
+              <span class="news-links">
+                <a href="https://github.com/kahramankostas/IPF" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://ieeexplore.ieee.org/abstract/document/10824899" target="_blank" title="IEEE Xplore"><i class="fas fa-external-link-alt"></i></a>
+              </span>
+            </p>
           </div>
+        </div>
 
+        <!-- News item: NOV 2024 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
           <div class="news-card">
-            <div class="news-date">SEP 2024</div>
-            <div class="news-content">
-              I have started a new position as a National Education Specialist at the Directorate General of Higher
-              Education and Overseas Education.
-              <a href="https://yyegm.meb.gov.tr/"><i class="fa fa-external-link"></i></a>
+            <div class="news-meta">
+              <span class="news-date-badge">NOV 2024</span>
+              <span class="news-tag"><i class="fas fa-file-alt me-1"></i> Preprint</span>
             </div>
+            <p class="news-text">
+              Our paper ready for publication: <strong>"GeMID: Generalizable Models for Device Identification in IoT Networks"</strong>.
+              <span class="news-links">
+                <a href="https://github.com/kahramankostas/GeMID" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://arxiv.org/abs/2411.14441" target="_blank" title="arXiv"><i class="fas fa-external-link-alt"></i></a>
+              </span>
+            </p>
           </div>
+        </div>
 
+        <!-- News item: SEP 2024 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
           <div class="news-card">
-            <div class="news-date">MORE</div>
-            <div class="news-content">
-              For older news please click <a href="https://kahramankostas.github.io/news.html"
-                target="_blank">[here]</a>
+            <div class="news-meta">
+              <span class="news-date-badge">SEP 2024</span>
+              <span class="news-tag"><i class="fas fa-user-tie me-1"></i> Career</span>
             </div>
+            <p class="news-text">
+              I have started a new position as a <strong>National Education Specialist</strong> at the Directorate General of Higher Education and Overseas Education (YYEGM).
+              <span class="news-links">
+                <a href="https://yyegm.meb.gov.tr/" target="_blank" title="YYEGM"><i class="fas fa-external-link-alt"></i></a>
+              </span>
+            </p>
           </div>
         </div>
       </div>
+
+      <!-- More News Link Button -->
+      <div class="text-center mt-3">
+        <a href="https://kahramankostas.github.io/news.html" target="_blank" class="btn-custom btn-secondary-custom">
+          <i class="fas fa-archive me-1"></i> View Archived News &amp; Past Milestones
+        </a>
+      </div>
     </section>
 
-    <!-- Publications Section -->
+    <!-- ==========================================================
+         Publications Section (with Instant Search, Filters & BibTeX)
+         ========================================================== -->
     <section id="publications">
-      <h2>Publications</h2>
-	       <div class="publication">
-<div class="publication-title">
-  Externally Validating the IoTDevID Device Identification Methodology
-  <span class="badge" style="margin-left:8px; font-size:0.75em; background:#eef; padding:2px 6px; border-radius:6px;">
-    Conference Presentation
-  </span>
-</div>
-<div class="publication-authors">Kahraman Kostas, M Just, MA Lones</div>
-<div class="publication-venue">18th International Conference on Security of Information and Networks (SINCONF 2026), 2026</div>
-<div class="publication-links">
-  <a href="https://github.com/kahramankostas/IoTDevID-CIC" target="_blank" rel="noopener noreferrer" title="GitHub Repository">
-    <i class="fab fa-github"></i>
-  </a>
-  <a href="https://arxiv.org/pdf/2307.08679" target="_blank" rel="noopener noreferrer" title="Paper">
-    <i class="fa fa-external-link"></i>
-  </a>
-</div>
-</div>
-      <div class="publication">
-        <div class="publication-title">
-          CNN-based IoT Device Identification: A Comparative Study on Payload vs. Fingerprint
-          <span class="badge" style="margin-left:8px; font-size:0.75em; background:#eef; padding:2px 6px; border-radius:6px;">
-            Conference Presentation
-          </span>
+      <h2><i class="fas fa-book-reader text-primary me-2"></i> Publications</h2>
+
+      <!-- Search & Filter Controls -->
+      <div class="publications-controls">
+        <div class="search-bar-wrapper">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="pubSearchInput" class="search-input"
+            placeholder="Search papers by keyword, topic, author, year (e.g. IoT, LLM, CNN, 2026, Q1)...">
         </div>
-        <div class="publication-authors">Kahraman Kostas</div>
-        <div class="publication-venue">6th International Artificial Intelligence and Data Science Congress, 2026</div>
-        <div class="publication-links">
-          <a href="presentation/7.pdf" target="_blank" rel="noopener noreferrer" title="Slides">
-            <i class="fa fa-file-powerpoint"></i>
-          </a>
-          <a href="https://github.com/kahramankostas/CNN-based-IoT-Device-Identification" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://arxiv.org/pdf/2304.13894" target="_blank" rel="noopener noreferrer">
-            <i class="fa fa-external-link"></i>
-          </a>
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="journal">Q1 Journals</button>
+          <button class="filter-btn" data-filter="conference">Conferences</button>
+          <button class="filter-btn" data-filter="iot">IoT &amp; Security</button>
+          <button class="filter-btn" data-filter="ml-llm">ML &amp; LLMs</button>
+          <span id="pubCountDisplay" class="pub-counter">Showing 8 publications</span>
         </div>
       </div>
 
-      <div class="publication">
-	  
-	  
-        <div class="publication-title">
-          There Are No Silly Questions: Evaluation of Offline LLM Capabilities from a Turkish Perspective
-          <span class="badge" style="margin-left:8px; font-size:0.75em; background:#eef; padding:2px 6px; border-radius:6px;">
-            Conference Presentation
-          </span>
+      <!-- Publications List -->
+      <div id="publicationsList">
+
+        <!-- Publication 1: SINCONF 2026 -->
+        <div class="publication-card" data-category="conference iot" data-search="externally validating the iotdevid device identification methodology kahraman kostas just lones sinconf 2026 cic security">
+          <div class="pub-header">
+            <h4 class="pub-title">Externally Validating the IoTDevID Device Identification Methodology</h4>
+            <div class="pub-badges">
+              <span class="pub-badge badge-conf">SINCONF 2026</span>
+              <span class="pub-badge badge-conf">Conference</span>
+            </div>
+          </div>
+          <div class="pub-authors">
+            <strong>Kahraman Kostas</strong>, M Just, MA Lones
+          </div>
+          <div class="pub-venue">
+            18th International Conference on Security of Information and Networks (SINCONF 2026), 2026
+          </div>
+          <div class="pub-actions">
+            <a href="https://github.com/kahramankostas/IoTDevID-CIC" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fab fa-github"></i> Code
+            </a>
+            <a href="https://arxiv.org/pdf/2307.08679" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fas fa-file-pdf"></i> arXiv
+            </a>
+            <button class="pub-btn btn-cite" onclick="toggleBibtex('bib-sinconf2026')">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          <div id="bib-sinconf2026" class="bibtex-box">
+            <button class="copy-bibtex-btn" onclick="copyBibtexText('bib-sinconf2026')"><i class="fas fa-copy"></i> Copy</button>
+            <pre class="bibtex-code">@inproceedings{kostas2026externally,
+  title={Externally Validating the IoTDevID Device Identification Methodology},
+  author={Kostas, Kahraman and Just, Mike and Lones, Michael A.},
+  booktitle={18th International Conference on Security of Information and Networks (SINCONF 2026)},
+  year={2026}
+}</pre>
+          </div>
         </div>
-        <div class="publication-authors">Edibe Yılmaz, Kahraman Kostas</div>
-        <div class="publication-venue">6th International Artificial Intelligence and Data Science Congress, 2026</div>
-        <div class="publication-links">
-          <a href="presentation/15.pdf" target="_blank" rel="noopener noreferrer" title="Slides">
-            <i class="fa fa-file-powerpoint"></i>
-          </a>
-          <a href="https://github.com/edibeselvi/SillyQuestions/" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://arxiv.org/pdf/2603.09996" target="_blank" rel="noopener noreferrer">
-            <i class="fa fa-external-link"></i>
-          </a>
+
+        <!-- Publication 2: ICADA 2026 CNN -->
+        <div class="publication-card" data-category="conference iot ml-llm" data-search="cnn-based iot device identification comparative study payload fingerprint icada 2026 kahraman kostas slides presentation">
+          <div class="pub-header">
+            <h4 class="pub-title">CNN-based IoT Device Identification: A Comparative Study on Payload vs. Fingerprint</h4>
+            <div class="pub-badges">
+              <span class="pub-badge badge-conf">ICADA 2026</span>
+              <span class="pub-badge badge-conf">Conference</span>
+            </div>
+          </div>
+          <div class="pub-authors">
+            <strong>Kahraman Kostas</strong>
+          </div>
+          <div class="pub-venue">
+            6th International Artificial Intelligence and Data Science Congress, 2026
+          </div>
+          <div class="pub-actions">
+            <a href="presentation/7.pdf" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fas fa-file-powerpoint text-warning"></i> Slides
+            </a>
+            <a href="https://github.com/kahramankostas/CNN-based-IoT-Device-Identification" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fab fa-github"></i> Code
+            </a>
+            <a href="https://arxiv.org/pdf/2304.13894" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fas fa-file-pdf"></i> arXiv
+            </a>
+            <button class="pub-btn btn-cite" onclick="toggleBibtex('bib-icada2026-cnn')">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          <div id="bib-icada2026-cnn" class="bibtex-box">
+            <button class="copy-bibtex-btn" onclick="copyBibtexText('bib-icada2026-cnn')"><i class="fas fa-copy"></i> Copy</button>
+            <pre class="bibtex-code">@inproceedings{kostas2026cnn,
+  title={CNN-based IoT Device Identification: A Comparative Study on Payload vs. Fingerprint},
+  author={Kostas, Kahraman},
+  booktitle={6th International Artificial Intelligence and Data Science Congress},
+  year={2026}
+}</pre>
+          </div>
         </div>
+
+        <!-- Publication 3: ICADA 2026 Silly Questions -->
+        <div class="publication-card" data-category="conference ml-llm" data-search="there are no silly questions evaluation offline llm capabilities turkish perspective edibe yilmaz kahraman kostas icada 2026 slides language models">
+          <div class="pub-header">
+            <h4 class="pub-title">There Are No Silly Questions: Evaluation of Offline LLM Capabilities from a Turkish Perspective</h4>
+            <div class="pub-badges">
+              <span class="pub-badge badge-conf">ICADA 2026</span>
+              <span class="pub-badge badge-conf">Conference</span>
+            </div>
+          </div>
+          <div class="pub-authors">
+            Edibe Yılmaz, <strong>Kahraman Kostas</strong>
+          </div>
+          <div class="pub-venue">
+            6th International Artificial Intelligence and Data Science Congress, 2026
+          </div>
+          <div class="pub-actions">
+            <a href="presentation/15.pdf" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fas fa-file-powerpoint text-warning"></i> Slides
+            </a>
+            <a href="https://github.com/edibeselvi/SillyQuestions/" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fab fa-github"></i> Code
+            </a>
+            <a href="https://arxiv.org/pdf/2603.09996" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fas fa-file-pdf"></i> arXiv
+            </a>
+            <button class="pub-btn btn-cite" onclick="toggleBibtex('bib-icada2026-silly')">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          <div id="bib-icada2026-silly" class="bibtex-box">
+            <button class="copy-bibtex-btn" onclick="copyBibtexText('bib-icada2026-silly')"><i class="fas fa-copy"></i> Copy</button>
+            <pre class="bibtex-code">@inproceedings{yilmaz2026silly,
+  title={There Are No Silly Questions: Evaluation of Offline LLM Capabilities from a Turkish Perspective},
+  author={Y{\i}lmaz, Edibe and Kostas, Kahraman},
+  booktitle={6th International Artificial Intelligence and Data Science Congress},
+  year={2026}
+}</pre>
+          </div>
+        </div>
+
+        <!-- Publication 4: ICADA 2026 Fallacy Detection -->
+        <div class="publication-card" data-category="conference ml-llm" data-search="measuring logical reasoning turkish offline language models fallacy detection inanc feridun canci zeynep gizem edibe yilmaz kahraman kostas icada 2026">
+          <div class="pub-header">
+            <h4 class="pub-title">Measuring Logical Reasoning in Turkish Offline Language Models via Fallacy Detection</h4>
+            <div class="pub-badges">
+              <span class="pub-badge badge-conf">ICADA 2026</span>
+              <span class="pub-badge badge-conf">Conference</span>
+            </div>
+          </div>
+          <div class="pub-authors">
+            İnanç Feridun Canci, Zeynep Gizem Emir Shahbazov, Edibe Yılmaz, <strong>Kahraman Kostas</strong>
+          </div>
+          <div class="pub-venue">
+            6th International Artificial Intelligence and Data Science Congress, 2026
+          </div>
+          <div class="pub-actions">
+            <a href="presentation/40.pdf" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fas fa-file-powerpoint text-warning"></i> Slides
+            </a>
+            <a href="https://github.com/kahramankostas/TRfallacy/" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fab fa-github"></i> Code
+            </a>
+            <a href="https://www.researchgate.net/profile/Kahraman-Kostas/publication/401344591_Measuring_Logical_Reasoning_in_Turkish_Offline_Language_Models_via_Fallacy_Detection/links/69a2cab443ad5e30a8536212/Measuring-Logical-Reasoning-in-Turkish-Offline-Language-Models-via-Fallacy-Detection.pdf" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fas fa-file-pdf"></i> Paper
+            </a>
+            <button class="pub-btn btn-cite" onclick="toggleBibtex('bib-icada2026-fallacy')">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          <div id="bib-icada2026-fallacy" class="bibtex-box">
+            <button class="copy-bibtex-btn" onclick="copyBibtexText('bib-icada2026-fallacy')"><i class="fas fa-copy"></i> Copy</button>
+            <pre class="bibtex-code">@inproceedings{canci2026measuring,
+  title={Measuring Logical Reasoning in Turkish Offline Language Models via Fallacy Detection},
+  author={Canci, {\.I}nan{\c{c}} Feridun and Shahbazov, Zeynep Gizem Emir and Y{\i}lmaz, Edibe and Kostas, Kahraman},
+  booktitle={6th International Artificial Intelligence and Data Science Congress},
+  year={2026}
+}</pre>
+          </div>
+        </div>
+
+        <!-- Publication 5: Elsevier IoT 2025 GeMID -->
+        <div class="publication-card" data-category="journal iot ml-llm" data-search="gemid generalizable models iot device identification elsevier internet of things journal 2025 kahraman kostas rabia yasa kostas just lones q1">
+          <div class="pub-header">
+            <h4 class="pub-title">GeMID: Generalizable Models for IoT Device Identification</h4>
+            <div class="pub-badges">
+              <span class="pub-badge badge-journal">Q1 Journal</span>
+              <span class="pub-badge badge-journal">Elsevier IoT</span>
+            </div>
+          </div>
+          <div class="pub-authors">
+            <strong>Kahraman Kostas</strong>, <a href="https://www.linkedin.com/in/rykostas" target="_blank">Rabia Yasa Kostas</a>, Mike Just, Michael A. Lones
+          </div>
+          <div class="pub-venue">
+            Elsevier Internet of Things Journal, Vol. 30, 2025
+          </div>
+          <div class="pub-actions">
+            <a href="https://github.com/kahramankostas/GeMID" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fab fa-github"></i> Code
+            </a>
+            <a href="https://doi.org/10.1016/j.iot.2025.101806" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fas fa-external-link-alt"></i> DOI: 10.1016/j.iot.2025.101806
+            </a>
+            <button class="pub-btn btn-cite" onclick="toggleBibtex('bib-gemid2025')">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          <div id="bib-gemid2025" class="bibtex-box">
+            <button class="copy-bibtex-btn" onclick="copyBibtexText('bib-gemid2025')"><i class="fas fa-copy"></i> Copy</button>
+            <pre class="bibtex-code">@article{kostas2025gemid,
+  title={GeMID: Generalizable Models for IoT Device Identification},
+  author={Kostas, Kahraman and Yasa Kostas, Rabia and Just, Mike and Lones, Michael A.},
+  journal={Internet of Things},
+  volume={30},
+  pages={101806},
+  year={2025},
+  publisher={Elsevier},
+  doi={10.1016/j.iot.2025.101806}
+}</pre>
+          </div>
+        </div>
+
+        <!-- Publication 6: Computer Networks 2025 IoTGeM -->
+        <div class="publication-card" data-category="journal iot" data-search="iotgem generalisable models behaviour-based iot attack detection computer networks elsevier 2025 kahraman kostas just lones q1">
+          <div class="pub-header">
+            <h4 class="pub-title">IoTGeM: Generalisable Models for Behaviour-Based IoT Attack Detection</h4>
+            <div class="pub-badges">
+              <span class="pub-badge badge-journal">Q1 Journal</span>
+              <span class="pub-badge badge-journal">Computer Networks</span>
+            </div>
+          </div>
+          <div class="pub-authors">
+            <strong>Kahraman Kostas</strong>, Mike Just, Michael A. Lones
+          </div>
+          <div class="pub-venue">
+            Computer Networks, Vol. 262, 2025
+          </div>
+          <div class="pub-actions">
+            <a href="https://github.com/kahramankostas/IoTGeM" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fab fa-github"></i> Code
+            </a>
+            <a href="https://doi.org/10.1016/j.comnet.2025.111550" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fas fa-external-link-alt"></i> DOI: 10.1016/j.comnet.2025.111550
+            </a>
+            <button class="pub-btn btn-cite" onclick="toggleBibtex('bib-iotgem2025')">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          <div id="bib-iotgem2025" class="bibtex-box">
+            <button class="copy-bibtex-btn" onclick="copyBibtexText('bib-iotgem2025')"><i class="fas fa-copy"></i> Copy</button>
+            <pre class="bibtex-code">@article{kostas2025iotgem,
+  title={IoTGeM: Generalisable Models for Behaviour-Based IoT Attack Detection},
+  author={Kostas, Kahraman and Just, Mike and Lones, Michael A.},
+  journal={Computer Networks},
+  volume={262},
+  pages={111550},
+  year={2025},
+  publisher={Elsevier},
+  doi={10.1016/j.comnet.2025.111550}
+}</pre>
+          </div>
+        </div>
+
+        <!-- Publication 7: IEEE Networking Letters 2025 -->
+        <div class="publication-card" data-category="journal iot ml-llm" data-search="individual packet features risk to model generalisation ml-based intrusion detection ieee networking letters 2025 kahraman kostas just lones q1">
+          <div class="pub-header">
+            <h4 class="pub-title">Individual Packet Features are a Risk to Model Generalisation in ML-Based Intrusion Detection</h4>
+            <div class="pub-badges">
+              <span class="pub-badge badge-journal">Q1 Journal</span>
+              <span class="pub-badge badge-journal">IEEE NetLetters</span>
+            </div>
+          </div>
+          <div class="pub-authors">
+            <strong>Kahraman Kostas</strong>, Mike Just, Michael A. Lones
+          </div>
+          <div class="pub-venue">
+            IEEE Networking Letters, 2025
+          </div>
+          <div class="pub-actions">
+            <a href="https://github.com/kahramankostas/IPF" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fab fa-github"></i> Code
+            </a>
+            <a href="https://ieeexplore.ieee.org/abstract/document/10824899" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fas fa-external-link-alt"></i> IEEE Xplore
+            </a>
+            <button class="pub-btn btn-cite" onclick="toggleBibtex('bib-ipf2025')">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          <div id="bib-ipf2025" class="bibtex-box">
+            <button class="copy-bibtex-btn" onclick="copyBibtexText('bib-ipf2025')"><i class="fas fa-copy"></i> Copy</button>
+            <pre class="bibtex-code">@article{kostas2025individual,
+  title={Individual Packet Features are a Risk to Model Generalisation in ML-Based Intrusion Detection},
+  author={Kostas, Kahraman and Just, Mike and Lones, Michael A.},
+  journal={IEEE Networking Letters},
+  year={2025},
+  publisher={IEEE},
+  doi={10.1109/LNET.2025.3526189}
+}</pre>
+          </div>
+        </div>
+
+        <!-- Publication 8: JCEN 2024 -->
+        <div class="publication-card" data-category="journal ml-llm" data-search="semantic verbal fluency native speakers turkish systematic review category scoring rabia yasa kostas kahraman kostas macpherson wolters jcen 2024">
+          <div class="pub-header">
+            <h4 class="pub-title">Semantic verbal fluency in native speakers of Turkish: A systematic review of category use, scoring metrics and normative data in healthy individuals</h4>
+            <div class="pub-badges">
+              <span class="pub-badge badge-journal">Q1 Journal</span>
+              <span class="pub-badge badge-journal">JCEN</span>
+            </div>
+          </div>
+          <div class="pub-authors">
+            Rabia Yasa Kostas, <strong>Kahraman Kostas</strong>, Sarah E MacPherson, Maria K Wolters
+          </div>
+          <div class="pub-venue">
+            Journal of Clinical and Experimental Neuropsychology (JCEN), 2024
+          </div>
+          <div class="pub-actions">
+            <a href="https://www.tandfonline.com/doi/full/10.1080/13803395.2024.2331827" target="_blank" rel="noopener noreferrer" class="pub-btn">
+              <i class="fas fa-external-link-alt"></i> Taylor &amp; Francis
+            </a>
+            <button class="pub-btn btn-cite" onclick="toggleBibtex('bib-jcen2024')">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          <div id="bib-jcen2024" class="bibtex-box">
+            <button class="copy-bibtex-btn" onclick="copyBibtexText('bib-jcen2024')"><i class="fas fa-copy"></i> Copy</button>
+            <pre class="bibtex-code">@article{yasakostas2024semantic,
+  title={Semantic verbal fluency in native speakers of Turkish: A systematic review of category use, scoring metrics and normative data in healthy individuals},
+  author={Yasa Kostas, Rabia and Kostas, Kahraman and MacPherson, Sarah E. and Wolters, Maria K.},
+  journal={Journal of Clinical and Experimental Neuropsychology},
+  volume={46},
+  number={4},
+  pages={319--336},
+  year={2024},
+  publisher={Taylor \& Francis},
+  doi={10.1080/13803395.2024.2331827}
+}</pre>
+          </div>
+        </div>
+
       </div>
 
-      <div class="publication">
-        <div class="publication-title">
-          Measuring Logical Reasoning in Turkish Offline Language Models via Fallacy Detection
-          <span class="badge" style="margin-left:8px; font-size:0.75em; background:#eef; padding:2px 6px; border-radius:6px;">
-            Conference Presentation
-          </span>
-        </div>
-        <div class="publication-authors">İnanç Feridun Canci, Zeynep Gizem Emir Shahbazov, Edibe Yılmaz, Kahraman Kostas</div>
-        <div class="publication-venue">6th International Artificial Intelligence and Data Science Congress, 2026</div>
-        <div class="publication-links">
-          <a href="presentation/40.pdf" target="_blank" rel="noopener noreferrer" title="Slides">
-            <i class="fa fa-file-powerpoint"></i>
-          </a>
-          <a href="https://github.com/kahramankostas/TRfallacy/" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.researchgate.net/profile/Kahraman-Kostas/publication/401344591_Measuring_Logical_Reasoning_in_Turkish_Offline_Language_Models_via_Fallacy_Detection/links/69a2cab443ad5e30a8536212/Measuring-Logical-Reasoning-in-Turkish-Offline-Language-Models-via-Fallacy-Detection.pdf" target="_blank" rel="noopener noreferrer">
-            <i class="fa fa-external-link"></i>
-          </a>
-        </div>
-      </div>
-      
-      <div class="publication">
-        <div class="publication-title">GeMID: Generalizable Models for IoT Device Identification</div>
-        <div class="publication-authors">K Kostas, <a href="https://www.linkedin.com/in/rykostas">R Yasa Kostas</a>, M Just, MA Lones</div>
-        <div class="publication-venue">Elsevier Internet of Things Journal, 2025</div>
-        <div class="publication-links">
-          <a href="https://github.com/kahramankostas/GeMID"><i class="fab fa-github"></i></a>
-          <a href="https://doi.org/10.1016/j.iot.2025.101806"><i class="fa fa-external-link"></i></a>
-        </div>
-      </div>
-
-      <div class="publication">
-        <div class="publication-title">IoTGeM: Generalisable Models for Behaviour-Based IoT Attack Detection</div>
-        <div class="publication-authors">Kahraman Kostas, Mike Just, Michael A. Lones</div>
-        <div class="publication-venue">Computer Networks, 2025</div>
-        <div class="publication-links">
-          <a href="https://github.com/kahramankostas/IoTGeM"><i class="fab fa-github"></i></a>
-          <a href="https://doi.org/10.1016/j.comnet.2025.111550"><i class="fa fa-external-link"></i></a>
-        </div>
-      </div>
-
-      <div class="publication">
-        <div class="publication-title">Individual Packet Features are a Risk to Model Generalisation in ML-Based Intrusion Detection</div>
-        <div class="publication-authors">Kahraman Kostas, Mike Just, Michael A. Lones</div>
-        <div class="publication-venue">IEEE Networking Letters, 2025</div>
-        <div class="publication-links">
-          <a href="https://github.com/kahramankostas/IPF"><i class="fab fa-github"></i></a>
-          <a href="https://ieeexplore.ieee.org/abstract/document/10824899"><i class="fa fa-external-link"></i></a>
-        </div>
-      </div>
-
-      <div class="publication">
-        <div class="publication-title">Semantic verbal fluency in native speakers of Turkish: A systematic review of category use, scoring metrics and normative data in healthy individuals</div>
-        <div class="publication-authors">Rabia Yasa Kostas, Kahraman Kostas, Sarah E MacPherson, Maria K Wolters</div>
-        <div class="publication-venue">JCEN, 2024</div>
-        <div class="publication-links">
-          <a href="https://www.tandfonline.com/doi/full/10.1080/13803395.2024.2331827"><i class="fa fa-external-link"></i></a>
-        </div>
-      </div>
-
-      <div class="publication">
-        For more publication please click <a href="https://kahramankostas.github.io/news.html"
-          target="_blank">[here]</a>
+      <!-- More Publications Button -->
+      <div class="text-center mt-4">
+        <a href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank" class="btn-custom btn-secondary-custom me-2">
+          <i class="ai ai-google-scholar me-1"></i> Full List on Google Scholar
+        </a>
+        <a href="https://kahramankostas.github.io/news.html" target="_blank" class="btn-custom btn-secondary-custom">
+          <i class="fas fa-list me-1"></i> More on News Archive
+        </a>
       </div>
     </section>
 
-    <!-- Teaching Section -->
-<section id="teaching">
-  <h2>Teaching</h2>
+    <!-- ==========================================================
+         Teaching Section
+         ========================================================== -->
+    <section id="teaching">
+      <h2><i class="fas fa-chalkboard-teacher text-primary me-2"></i> Teaching &amp; Academic Service</h2>
 
-  <div class="teaching-item">
-    <div class="teaching-position">YBS 301 – Data Mining (Veri Madenciliği)</div>
-    <div class="teaching-university">Gümüşhane University</div>
-    <div class="teaching-role">
-      Instructor, Department of Management Information Systems, 2026–2027
-      <br>
-      <span class="teaching-note">
-        Taught in Turkish. Course repository:
-        <a href="https://github.com/kahramankostas/YBS-DataMining"
-           target="_blank" rel="noopener noreferrer">GitHub</a>
-      </span>
-    </div>
+      <div class="teaching-grid">
+        <!-- Course 1 -->
+        <div class="teaching-card">
+          <span class="teaching-role-badge">
+            <i class="fas fa-user-check"></i> Instructor
+          </span>
+          <div class="teaching-course-name">YBS 301 – Data Mining (Veri Madenciliği)</div>
+          <div class="teaching-institution">Gümüşhane University</div>
+          <div class="teaching-details">
+            Department of Management Information Systems, 2026–2027.<br>
+            <span class="text-muted">Taught in Turkish. Course repository:</span>
+            <a href="https://github.com/kahramankostas/YBS-DataMining" target="_blank" rel="noopener noreferrer" class="ms-1 font-weight-bold">
+              <i class="fab fa-github"></i> GitHub Courseware
+            </a>
+          </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="teaching-card">
+          <span class="teaching-role-badge" style="color:var(--accent-color); background:var(--accent-subtle); border-color:rgba(59,130,246,0.3);">
+            <i class="fas fa-chalkboard"></i> Teaching Assistant
+          </span>
+          <div class="teaching-course-name">Advanced Network Security</div>
+          <div class="teaching-institution">Heriot-Watt University</div>
+          <div class="teaching-details">
+            Teaching Assistant with Dr. Mike Just, 2021 &amp; 2022.
+          </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="teaching-card">
+          <span class="teaching-role-badge" style="color:var(--accent-color); background:var(--accent-subtle); border-color:rgba(59,130,246,0.3);">
+            <i class="fas fa-chalkboard"></i> Teaching Assistant
+          </span>
+          <div class="teaching-course-name">Computer Network Security</div>
+          <div class="teaching-institution">Heriot-Watt University</div>
+          <div class="teaching-details">
+            Teaching Assistant with Dr. Mike Just, 2020 &amp; 2021.
+          </div>
+        </div>
+
+        <!-- Course 4 -->
+        <div class="teaching-card">
+          <span class="teaching-role-badge" style="color:var(--accent-color); background:var(--accent-subtle); border-color:rgba(59,130,246,0.3);">
+            <i class="fas fa-chalkboard"></i> Teaching Assistant
+          </span>
+          <div class="teaching-course-name">Software Development 1 (JAVA)</div>
+          <div class="teaching-institution">Heriot-Watt University</div>
+          <div class="teaching-details">
+            Teaching Assistant with Dr. Michael Lones, 2020.
+          </div>
+        </div>
+
+        <!-- Course 5 -->
+        <div class="teaching-card">
+          <span class="teaching-role-badge" style="color:var(--accent-color); background:var(--accent-subtle); border-color:rgba(59,130,246,0.3);">
+            <i class="fas fa-chalkboard"></i> Teaching Assistant
+          </span>
+          <div class="teaching-course-name">Data Communications and Networking</div>
+          <div class="teaching-institution">Heriot-Watt University</div>
+          <div class="teaching-details">
+            Teaching Assistant with Dr. Idris Skloul Ibrahim, 2020.
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 
-  <div class="teaching-item">
-    <div class="teaching-position">Advanced Network Security</div>
-    <div class="teaching-university">Heriot-Watt University</div>
-    <div class="teaching-role">Teaching Assistant, Mike Just, 2021 &amp; 2022</div>
-  </div>
-
-  <div class="teaching-item">
-    <div class="teaching-position">Computer Network Security</div>
-    <div class="teaching-university">Heriot-Watt University</div>
-    <div class="teaching-role">Teaching Assistant, Mike Just, 2020 &amp; 2021</div>
-  </div>
-
-  <div class="teaching-item">
-    <div class="teaching-position">Software Development 1 (JAVA)</div>
-    <div class="teaching-university">Heriot-Watt University</div>
-    <div class="teaching-role">Teaching Assistant, Michael Lones, 2020</div>
-  </div>
-
-  <div class="teaching-item">
-    <div class="teaching-position">Data Communications and Networking</div>
-    <div class="teaching-university">Heriot-Watt University</div>
-    <div class="teaching-role">Teaching Assistant, Idris Skloul Ibrahim, 2020</div>
-  </div>
-</section>
-  </div>
-
-  <!-- Footer -->
+  <!-- ==========================================================
+       Footer Section
+       ========================================================== -->
   <footer class="footer text-center">
-    <div class="container">
-      <div class="social-links mb-4">
-        <a href="https://orcid.org/0000-0002-4696-1857" target="_blank" title="ORCID"><i class="ai ai-orcid fa-2x"></i></a>
-        <a href="https://github.com/kahramankostas" target="_blank" title="GitHub"><i class="fab fa-github fa-2x"></i></a>
-        <a href="https://www.linkedin.com/in/kkostas/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a>
-        <a href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar ai-2x"></i></a>
-        <a href="https://www.researchgate.net/profile/Kahraman-Kostas" target="_blank" title="ResearchGate"><i class="ai ai-researchgate ai-2x"></i></a>
-        <a href="https://www.webofscience.com/wos/author/record/JZT-7728-2024" target="_blank" title="Web of Science"><i class="ai ai-publons ai-2x"></i></a>
-        <a href="https://www.scopus.com/authid/detail.uri?authorId=57222271214" target="_blank" title="Scopus"><i class="ai ai-scopus ai-2x"></i></a>
-        <a href="https://twitter.com/kkostas" target="_blank" title="Twitter"><i class="fab fa-twitter fa-2x"></i></a>
-        <a href="mailto:kahramankostas@gmail.com" target="_blank" title="Email" class="fa fa-envelope fa-2x"></a>
-        <a href="https://www.instagram.com/kahramankostas/" target="_blank" title="Instagram"><i class="fab fa-instagram fa-2x"></i></a>
-        <a href="https://www.facebook.com/kahramankostas/" target="_blank" title="Facebook"><i class="fab fa-facebook fa-2x"></i></a>
+    <div class="container" style="max-width: 960px;">
+      <div class="footer-social-links">
+        <a href="https://orcid.org/0000-0002-4696-1857" target="_blank" class="footer-social-link" title="ORCID"><i class="ai ai-orcid"></i></a>
+        <a href="https://github.com/kahramankostas" target="_blank" class="footer-social-link" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/kkostas/" target="_blank" class="footer-social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://scholar.google.com/citations?user=XjOogr0AAAAJ&hl" target="_blank" class="footer-social-link" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+        <a href="https://www.researchgate.net/profile/Kahraman-Kostas" target="_blank" class="footer-social-link" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
+        <a href="https://www.webofscience.com/wos/author/record/JZT-7728-2024" target="_blank" class="footer-social-link" title="Web of Science"><i class="ai ai-publons"></i></a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=57222271214" target="_blank" class="footer-social-link" title="Scopus"><i class="ai ai-scopus"></i></a>
+        <a href="https://twitter.com/kkostas" target="_blank" class="footer-social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="mailto:kahramankostas@gmail.com" class="footer-social-link" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.instagram.com/kahramankostas/" target="_blank" class="footer-social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/kahramankostas/" target="_blank" class="footer-social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
       </div>
 
-       <div class="mb-4 d-flex justify-content-center align-items-center" style="height: 260px; overflow: hidden;">      
-        <script type="text/javascript" src="//cdn.livetrafficfeed.com/static/3d-maps/live.v2.js?o=000080&amp;l=339966&amp;b=008000&amp;c=ff0000&amp;n=e61c1c&amp;root=0&amp;s=200"></script><noscript><a href="#"></a></noscript>
+      <!-- Live Traffic Feed 3D Maps -->
+      <div class="mb-4 d-flex justify-content-center align-items-center" style="height: 260px; overflow: hidden; border-radius: 12px;">      
+        <script type="text/javascript" src="//cdn.livetrafficfeed.com/static/3d-maps/live.v2.js?o=000080&amp;l=339966&amp;b=008000&amp;c=ff0000&amp;n=e61c1c&amp;root=0&amp;s=200"></script>
+        <noscript><a href="#"></a></noscript>
       </div>   
 
-      <p class="mb-0">Copyleft 2025 Kahraman Kostas</p>
+      <p class="mb-0 text-muted" style="font-size: 0.88rem;">
+        Copyleft 2026 Dr. Kahraman Kostas &bull; Academic Portfolio
+      </p>
     </div>
   </footer>
 
-  <!-- Smooth Scrolling -->
+  <!-- Floating Back-to-Top Button -->
+  <button id="backToTopBtn" class="back-to-top-btn" aria-label="Back to Top" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Interactive Toast Notification -->
+  <div id="toastNotification" class="toast-notification">
+    <i class="fas fa-check-circle text-success"></i>
+    <span id="toastMessage">Copied to clipboard!</span>
+  </div>
+
+  <!-- Analytics -->
   <script data-goatcounter="https://kkostas.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+  <!-- ==========================================================
+       Interactive Logic: Theme Toggle, Search/Filter, BibTeX, Scroll
+       ========================================================== -->
   <script>
-    $(document).ready(function () {
-      $("a").on('click', function (event) {
-        if (this.hash !== "") {
-          event.preventDefault();
-          var hash = this.hash;
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top - 70
-          }, 800, function () {
-            window.location.hash = hash;
+    // --- 1. Theme Switcher (Dark / Light Mode) ---
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
+    const htmlElement = document.documentElement;
+
+    function applyTheme(theme) {
+      htmlElement.setAttribute('data-theme', theme);
+      localStorage.setItem('kk_theme', theme);
+      if (theme === 'dark') {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        themeToggleBtn.setAttribute('title', 'Switch to Light Mode');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        themeToggleBtn.setAttribute('title', 'Switch to Dark Mode');
+      }
+    }
+
+    const savedTheme = localStorage.getItem('kk_theme');
+    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme) {
+      applyTheme(savedTheme);
+    } else if (systemPrefersDark) {
+      applyTheme('dark');
+    } else {
+      applyTheme('light');
+    }
+
+    themeToggleBtn.addEventListener('click', function () {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
+
+    // --- 2. Scroll Progress Bar & Back to Top ---
+    const scrollProgressBar = document.getElementById('scroll-progress');
+    const backToTopBtn = document.getElementById('backToTopBtn');
+
+    window.addEventListener('scroll', function () {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (scrollTop / docHeight) * 100;
+      scrollProgressBar.style.width = scrolled + '%';
+
+      if (scrollTop > 350) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+
+      // Dynamic Active Navigation Highlight
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+      sections.forEach(function (sec) {
+        const top = sec.offsetTop - 120;
+        const height = sec.offsetHeight;
+        const id = sec.getAttribute('id');
+        if (scrollTop >= top && scrollTop < top + height) {
+          navLinks.forEach(function (link) {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + id) {
+              link.classList.add('active');
+            }
           });
         }
       });
+    });
 
-      $(window).scroll(function () {
-        var scrollDistance = $(window).scrollTop();
-        $('section').each(function (i) {
-          if ($(this).position().top - 100 <= scrollDistance) {
-            $('.navbar-nav a.active').removeClass('active');
-            $('.navbar-nav a').eq(i).addClass('active');
-          }
+    backToTopBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // --- 3. Toast Notifications ---
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const toastMessage = document.getElementById('toastMessage');
+      toastMessage.textContent = message;
+      toast.classList.add('show');
+      setTimeout(function () {
+        toast.classList.remove('show');
+      }, 2800);
+    }
+
+    // --- 4. Copy Email Helper ---
+    function copyEmailToClipboard() {
+      const email = 'kahramankostas@gmail.com';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(function () {
+          showToast('Email copied: ' + email);
+        }).catch(function () {
+          prompt('Copy email:', email);
         });
+      } else {
+        prompt('Copy email:', email);
+      }
+    }
+
+    // --- 5. BibTeX Citation Toggle & Copy ---
+    function toggleBibtex(id) {
+      const box = document.getElementById(id);
+      if (box.classList.contains('show')) {
+        box.classList.remove('show');
+      } else {
+        document.querySelectorAll('.bibtex-box.show').forEach(function (b) {
+          b.classList.remove('show');
+        });
+        box.classList.add('show');
+      }
+    }
+
+    function copyBibtexText(id) {
+      const box = document.getElementById(id);
+      const code = box.querySelector('.bibtex-code').innerText;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(function () {
+          showToast('BibTeX citation copied to clipboard!');
+        });
+      } else {
+        prompt('Copy BibTeX:', code);
+      }
+    }
+
+    // --- 6. Publication Live Search & Filtering ---
+    const pubSearchInput = document.getElementById('pubSearchInput');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const publicationCards = document.querySelectorAll('.publication-card');
+    const pubCountDisplay = document.getElementById('pubCountDisplay');
+
+    let currentFilter = 'all';
+
+    function filterPublications() {
+      const query = pubSearchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      publicationCards.forEach(function (card) {
+        const categories = card.getAttribute('data-category').split(' ');
+        const searchCorpus = (card.getAttribute('data-search') + ' ' + card.innerText).toLowerCase();
+
+        const matchesFilter = (currentFilter === 'all') || categories.includes(currentFilter);
+        const matchesSearch = query === '' || searchCorpus.includes(query);
+
+        if (matchesFilter && matchesSearch) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      pubCountDisplay.textContent = 'Showing ' + visibleCount + ' publication' + (visibleCount === 1 ? '' : 's');
+    }
+
+    filterButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter = this.getAttribute('data-filter');
+        filterPublications();
+      });
+    });
+
+    pubSearchInput.addEventListener('input', filterPublications);
+
+    // --- 7. Smooth Scroll for Anchor Links ---
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            const navHeight = document.querySelector('.navbar').offsetHeight;
+            const targetPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 15;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+            // Close mobile menu if open
+            const navCollapse = document.getElementById('navbarNav');
+            if (navCollapse && navCollapse.classList.contains('show')) {
+              const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+              if (bsCollapse) bsCollapse.hide();
+            }
+          }
+        }
       });
     });
   </script>
